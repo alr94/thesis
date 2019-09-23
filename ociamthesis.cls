@@ -81,7 +81,7 @@
 
 \usepackage{xcolor}
 \usepackage[pdftex]{graphicx} 
-	% allows graphics in pdf format.
+% allows graphics in pdf format.
 
 
 \usepackage{fancyhdr}
@@ -116,22 +116,22 @@
 \usepackage{textcomp}
 
 \usepackage{longtable} 
-	% Allows tables to span multiple pages (this package must be called before hyperref)
+% Allows tables to span multiple pages (this package must be called before hyperref)
 
 \usepackage[font=small,labelfont=bf]{caption} 
-	% Nicer captions
+% Nicer captions
 
 \usepackage{multicol,multirow,array} 
-	% Used to make multiple columns for the indices and for creating columns that span multiple rows in tables
+% Used to make multiple columns for the indices and for creating columns that span multiple rows in tables
 
 \usepackage{rotating} 
-	% To allow tables in landscape mode
+% To allow tables in landscape mode
 
 \usepackage{booktabs} 
-	% For better looking tables
+% For better looking tables
 
 \usepackage{pdfpages} 
-	% Allows multi-page pdfs to be inserted as graphics
+% Allows multi-page pdfs to be inserted as graphics
 
 \usepackage{xfrac}
 
@@ -156,18 +156,18 @@
 \newcolumntype{d}[3]{D{.}{\cdot}{#1} }
 
 \usepackage{appendix} 
-	% For helping format appendicies
+% For helping format appendicies
 \usepackage{notoccite} 
-	% To format the bibliography	
+% To format the bibliography
 
 
 \usepackage[colorlinks=false,pdfpagelabels]{hyperref} 
-	% for linking between references, figures, TOC, etc in the pdf document
+% for linking between references, figures, TOC, etc in the pdf document
 
 \usepackage[nohints,tight]{minitoc} 
-	\setcounter{minitocdepth}{2} 
-	% Generates mini tables of contents per chapter
-	
+\setcounter{minitocdepth}{2} 
+% Generates mini tables of contents per chapter
+
 % JEM: The following fixes minitoc to not be multiple-spaced.
 \let\oldmtc@verse\mtc@verse
 \renewcommand{\mtc@verse}[1]{\oldmtc@verse{#1}\setlength{\baselineskip}{\z@}}
@@ -369,10 +369,10 @@
 
 
 \usepackage[grey,utopia]{quotchap} 
-	% To put nice quotes at the beginning of the chapters
+% To put nice quotes at the beginning of the chapters
 
 \usepackage[nottoc]{tocbibind}
-	% Used for inserting the Bibliography, List of Figures, indices, etc into the table of contents.
+% Used for inserting the Bibliography, List of Figures, indices, etc into the table of contents.
 
 % JEM: Allow flexible spacing after figures, to reduce other stretching
 \setlength{\textfloatsep}{20pt plus15pt minus4pt}
