@@ -15,7 +15,10 @@
 % December 2019.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: References
+% TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+% References
+% Decide on historical vs theoretical overview or both
+% TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
 % \minitoc
 
@@ -44,7 +47,6 @@ neutrino interactions in matter as well as neutrino production. Finally Section
 \ref{nu_sn} will discuss the production of neutrinos in supernovae, as well as
 the role they could play in understanding supernovae.
 
-% TODO: decide on historical vs theoretical overview or both
 \section{A Brief History of Neutrino Physics} \label{nu_hist}
 
 The first attempt to incorporate the neutrino into a theoretical model came in
@@ -55,7 +57,7 @@ explaining the observed properties of \(\beta\)--decays provided strong evidence
 for the neutrinos existence, however, in 1934 after using Fermi's  theory to 
 predict the strength of neutrino interactions, H. Bethe and R. Peierls found 
 that the interactions were so weak that they might never be observed, a 
-prediction that held true for over 20 years.% TODO: refs
+prediction that held true for over 20 years.
 
 The first breakthrough in experimental neutrino physics would come in 1956. F.
 Reines and C. Cowan were attempting to measure positrons produced in inverse 
@@ -67,7 +69,7 @@ A detector containing 1400 litres of liquid scintillator was used to measure the
 large flux of electron anti--neutrinos in the vicinity of the Savannah River 
 nuclear reactor. They observed a large increase in the rate of positron events 
 when the reactor was on when compared to when the reactor was switched off, the 
-first experimental evidence for the existence of neutrinos. % TODO: ref
+first experimental evidence for the existence of neutrinos. 
 
 The discovery of the electron neutrino opened the door to answer questions of 
 neutrino flavour. As neutrinos are produced alongside a charged lepton it is 
@@ -92,16 +94,89 @@ the unique geometry of the interaction, in which a short tau track is produced
 at the vertex followed by a long muon track, allowed them to be distinguished 
 from other decays.
 
+While additional neutrino species are possible, data from measurements of the Z 
+boson line--shape at LEP in 1992 restricts the number of active light neutrino 
+species to be three. An active light neutrino is any neutrino with \(m_\nu <
+\frac{m_Z}{2}\) that can interact with the Z boson, such that the decay \(Z 
+\rightarrow \nu \nu \) is possible.
+
+Alongside the discovery of three different types of neutrino, there were
+interesting results when observing neutrinos produced in the Sun. The flux of
+neutrinos from the Sun at the earth surface had been predicted with Bachall's 
+Standard Solar Mode, however, in 1968 when Davis et al measured the flux in the
+Homestake experiment they found a deficit with respect to the prediction of the
+model, the so called solar neutrino problem. In the Homestake experiment
+electron neutrinos where being measured via there inverse beta decay 
+interactions with the chlorine in the target,
+\begin{equation}
+	v_e + ^{37}\mbox{Cl} \rightarrow ^{37}\mbox{Ar} + e^-.
+\end{equation}
+The neutrino interaction rate was measured by counting the number of argon 
+atoms in the chlorine tank by capturing them on helium gas which was
+periodically bubbled through the chamber.
+
+In addition to the solar neutrino problem, a similar deficit was observed in
+1988 for muon neutrinos produced during cosmic ray showers in the atmosphere.
+The Kamiokande experiment was able to measure both electron and muon neutrino 
+interactions via the cerenkov radiation produced by the charged leptons in 
+water, their data was consistent with the expected rate of electron neutrinos 
+from the atmosphere, however, a deficit of muon neutrinos was observed. 
+
+The next generation of the Kamiokande experiment, Super Kamiokande, aimed to
+understand the observed deficit of atmospheric muon neutrinos with a larger 
+water cerenkov detector capable of resolving the angular distribution of 
+atmospheric neutrino interactions. Super Kamiokande consists of a cylindrical 
+vessel containing 50kt of ultra pure water, surrounded by an array of around 13
+,000 photomultiplier tubes to detect the cerenkov light. Electron and muon 
+neutrinos can be distinguished based on the pattern of cerenkov light that is 
+left in the detector; due to their higher mass muons leave clear cerenkov 
+rings in the detector while electrons, which can scatter and shower, tend to 
+leave diffuse "fuzzy" rings on the wall of the detector. In 1998, Super 
+Kamiokande published measurements of the flux of atmospheric muon neutrinos as 
+a function of azimuthal angle. Since these neutrinos are created a short 
+distance from the earths surface, the incoming angle of the neutrino can be 
+used to estimate the distance travelled by the neutrino before arriving at the 
+detector; the down--going neutrinos have only travelled a short distance in 
+the atmosphere (\(\sim 10\mbox{km}\)), while the up--going neutrinos have 
+travelled through the entire earth to reach the detector (\(\sim 13,000\mbox{km
+}\)). Figure \ref{fig:sk_flux}, shows the flux of neutrinos measured by Super 
+Kamiokande as a function of distance travelled; the muon neutrino flux is 
+consistent with the no oscillation prediction at small \(\mbox{L} / \mbox{E}_\
+nu\), however, for large \(\mbox{L} / \mbox{E}_\nu\) a clear deficit is 
+observed. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/sk_flux.jpg}
+	\caption{Ratio of data to Monte Carlo for electron and muon neutrino fluxes 
+	measured by the Super Kamiokande experiment as a function of 
+	\(\mbox{L} / \mbox{E}_\nu\). The Monte Carlo prediction is based on the
+	assumption of no oscillations. The muon neutrino flux is consistent with the
+	no oscillation prediction at small \(\mbox{L} / \mbox{E}_\nu\), however, for
+	large \(\mbox{L} / \mbox{E}_\nu\) a clear deficit is observed. The best fit
+	under the assumption of atmospheric (\(\nu_\mu \rightarrow \nu_\tau\))
+	oscillations is shown, the best fit parameters are \(\Delta m^2 = 2.2 \times
+	10^{-3} \mbox{eV}^2\), and \(sin^22\theta = 1\). TODO: ref}
+	\label{fig:sk_flux}
+\end{figure}
+
+The solar neutrino problem would be solved by the Sudbury Neutrino Observatory
+(SNO) in 2002. Unlike other water cerenkov detectors, SNO was filled with heavy
+water, \(\mbox{D}_2\mbox{O}\), instead of its lighter isotope. The use of heavy
+water in the detector gave rise to additional neutrino interactions which
+allowed the SNO experiment to distinguish between three different interaction
+modes: charged current (CC), neutral current (NC), and elastic scattering (ES).
+Each mode is sensitive to a different part of the solar neutrino flux.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO
-% Neutral Current & gargamelle
-% 3 nu's at LEP
-% nu osc
-% atmos osc
-% solar osc
-% reactor osc
-% tau osc
+% Neutral Current & gargamelle??????
+% SK
+% SNO
+% Kamland
+% Opera
+% precision with daya bay etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \section{Neutrinos in the Standard Model} \label{nu_sm}
