@@ -105,9 +105,9 @@ interesting results when observing neutrinos produced in the Sun. The flux of
 neutrinos from the Sun at the earth surface had been predicted with Bachall's 
 Standard Solar Mode, however, in 1968 when Davis et al measured the flux in the
 Homestake experiment they found a deficit with respect to the prediction of the
-model, the so called solar neutrino problem. In the Homestake experiment
-electron neutrinos where being measured via there inverse beta decay 
-interactions with the chlorine in the target,
+standard solar model (SSM) \cite{TODO}, the so called solar neutrino problem. In 
+the Homestake experiment electron neutrinos where being measured via there 
+inverse beta decay interactions with the chlorine in the target,
 \begin{equation}
 	v_e + ^{37}\mbox{Cl} \rightarrow ^{37}\mbox{Ar} + e^-.
 \end{equation}
@@ -146,18 +146,27 @@ nu\), however, for large \(\mbox{L} / \mbox{E}_\nu\) a clear deficit is
 observed. 
 
 \begin{figure}
+
 	\centering
+
 	\includegraphics[width=0.7\textwidth]{figures/sk_flux.jpg}
-	\caption{Ratio of data to Monte Carlo for electron and muon neutrino fluxes 
+
+	\caption
+	[Ratio of data to Monte Carlo for electron and muon neutrino fluxes 
 	measured by the Super Kamiokande experiment as a function of 
+	\(\mbox{L} / \mbox{E}_\nu\).]
+	{Ratio of data to Monte Carlo for electron and muon neutrino fluxes measured 
+	by the Super Kamiokande experiment as a function of 
 	\(\mbox{L} / \mbox{E}_\nu\). The Monte Carlo prediction is based on the
 	assumption of no oscillations. The muon neutrino flux is consistent with the
 	no oscillation prediction at small \(\mbox{L} / \mbox{E}_\nu\), however, for
 	large \(\mbox{L} / \mbox{E}_\nu\) a clear deficit is observed. The best fit
 	under the assumption of atmospheric (\(\nu_\mu \rightarrow \nu_\tau\))
 	oscillations is shown, the best fit parameters are \(\Delta m^2 = 2.2 \times
-	10^{-3} \mbox{eV}^2\), and \(sin^22\theta = 1\). TODO: ref}
+	10^{-3} \mbox{eV}^2\), and \(sin^22\theta = 1\) \cite{Fukuda1998}.}
+
 	\label{fig:sk_flux}
+
 \end{figure}
 
 While it wouldn't completely solve the solar neutrino problem, the Sudbury
@@ -169,14 +178,75 @@ neutrino interactions which allowed the SNO experiment to distinguish between
 three different interaction modes: charged current (CC), neutral current (NC), 
 and elastic scattering (ES). Each interaction mode is sensitive to different 
 parts of the solar neutrino flux, including some sensitivity to the muon 
-neutrino and tau neutrino fluxes.  
+neutrino and tau neutrino fluxes via the NC and ES interactions. Analysis of the 
+data for each of the three unique interaction modes lead to a measurement of 
+the flavour composition of the solar neutrino flux at earth, while also 
+measuring an overall neutrino flux at earth that is consistent with the SSM.
+Figure \ref{fig:sno_flux} shows the composition of the solar neutrino flux as 
+measured in the SNO experiment \cite{Ahmad2002}, the flux prediction based on 
+the measured rate of NC events is consistent with the predictions of the 
+SSM. The composition of solar neutrinos measured in the SNO experiment was not
+a result of neutrino oscillations, instead it is the result of matter effects on
+the neutrino propagation via the Mikheyev–Smirnov–Wolfenstein (MSW) effect.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=0.8\textwidth]{figures/sno_flux.png}
+
+	\caption
+	[Solar neutrino flux composition as measured by the SNO experiment.]
+	{Solar neutrino flux composition as measured by the SNO experiment. The
+	coloured bands represent the measured flux of charged current (CC),
+	neutral current (NC), and elastic scattering (ES) events, including a \(\pm 1
+	\sigma\) spread. The central contours represent 68\%, 95\%, and 99\%
+	probability contours for the joint \(\phi_e\) and \(\phi_{\mu \tau}\) fit. The
+	dashed lines represent the predicted flux of \(^8\mbox{B}\) neutrinos based on 
+	the standard solar model \cite{Ahmad2002}. }
+
+	\label{fig:sno_flux}
+
+\end{figure}
+
+After the results of the SNO experiment there were still a number of possible
+solutions to the solar neutrino problem \cite{Smirnov2016}; TODO. In order for
+neutrino oscillations to be the unique solution to the problem, an
+\(\mbox{L/E}_\nu\) dependence would have to be measured. To make this
+measurement a much shorter neutrino baseline would be needed, along with a
+source of neutrinos with a small energy spread, and a detector with good energy
+resolution. In 2002 the Kamioka Liquid Scintillator Anti--neutrino Detector
+(KamLAND) experiment measured \(\bar{\nu_e}\) oscillations from a number of
+nuclear reactors with an average baseline of 180km. Along with an overall
+deficit of neutrino events, they were able to use the high energy resolution of
+the KamLAND detector to measure an \(\mbox{L/E}_\nu\) dependence of the 
+\(\bar{\nu_e}\) survival probability. Figure \ref{fig:kamland_spectrum},
+shows the ratio of the observed neutrino flux with the no oscillation predicted
+flux as a function of \(\mbox{L/E}_\nu\), a clear dependence can be seen and
+this data was enough to make neutrino oscillations the unique solution to the
+solar neutrino problem.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=0.8\textwidth]{figures/kamland_spec.png}
+
+	\caption
+	[Ratio of observed neutrino flux to the predicted flux in the absence of
+	neutrino oscillations in the KamLAND experiment.]
+	{Ratio of observed neutrino flux to the predicted flux in the absence of
+	neutrino oscillations in the KamLAND experiment.}
+
+	\label{fig:kamland_spectrum}
+
+\end{figure}
+
+Since the discovery of neutrino oscillations, ...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO
-% Neutral Current & gargamelle??????
-% SK
-% SNO
-% Kamland
+% Neutral Current & gargamelle
 % Opera
 % precision with daya bay etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
