@@ -181,10 +181,17 @@
 \flushbottom
 
 % This is where the whole-document ToC appears:
+{
+\hypersetup{
+	linkcolor=black,
+	citecolor=black
+}
+
 \tableofcontents
 
 \listoffigures
 \mtcaddchapter
+}
 % \mtcaddchapter is needed when adding a non-chapter (but chapter-like) entity 
 % to avoid confusing minitoc
 

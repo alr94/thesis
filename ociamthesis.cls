@@ -161,7 +161,13 @@
 % To format the bibliography
 
 
-\usepackage[colorlinks=true,pdfpagelabels]{hyperref} 
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=red,
+	pdfpagelabels
+}
 % for linking between references, figures, TOC, etc in the pdf document
 
 \usepackage[nohints,tight]{minitoc} 
