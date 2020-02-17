@@ -448,3 +448,39 @@
 % JEM: combine all of the commands you run before appendices start
 \newcommand{\startappendices}
   {\appendix\adjustmtc\noappendicestocpagenum\addappheadtotoc\appendixpage}
+
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ALR: my additions
+
+% Better overline
+\newcommand*\xoverline[2][0.75]{%
+  \sbox{\myboxA}{$\m@th#2$}%
+  \setbox\myboxB\null% Phantom box
+  \ht\myboxB=\ht\myboxA%
+  \dp\myboxB=\dp\myboxA%
+  \wd\myboxB=#1\wd\myboxA% Scale phantom
+  \sbox\myboxB{$\m@th\overline{\copy\myboxB}$}%  Overlined phantom
+  \setlength\mylenA{\the\wd\myboxA}%   calc width diff
+  \addtolength\mylenA{-\the\wd\myboxB}%
+  \ifdim\wd\myboxB<\wd\myboxA%
+    \rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+  \else
+    \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+  \fi}
+\makeatother
+
+% Array stretch for pmatrix etc
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+% braket
+\usepackage{physics}
