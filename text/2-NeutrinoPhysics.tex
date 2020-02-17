@@ -288,7 +288,7 @@ time of writing are:
 	\item What is the mass ordering of the neutrino mass eigenstates?
 	\item Is there CP violation in the neutrino sector?
 	\item Are neutrinos Dirac ($\nu \ne \bar{\nu}$) or Majorana 
-		($\nu = \bar{\nu}$)particles?
+		($\nu = \bar{\nu}$) particles?
 \end{itemize}
 
 \section{Neutrinos in the Standard Model} \label{nu_sm}
@@ -304,20 +304,22 @@ determined by the electroweak (EW) theory, which is derived from the $SU(2)
 \times U(1)$ gauge group. The neutrino fields enter into the SM Lagrangian in
 the CC and NC interactions:
 \begin{align}
+	\label{eqn:cc_lag}
 	\mathcal{L}^{CC} &= -\frac{g}{2\sqrt{2}}\; j^{CC}_\alpha(x)\; W^\alpha(x)\; +\; h.c. \\
 	\mathcal{L}^{NC} &= -\frac{g}{2cos\theta_W}\; j^{NC}_\alpha(x)\; Z^\alpha(x)\; +\; h.c.
 \end{align}
 Here 
 \begin{equation}
-	j^{CC}(x) = 2 \sum_{l=e,\mu,\tau} \bar{\nu}_{lL}(x)\; \gamma_\alpha\; l_L(x)
+	\label{eqn:cc_curr}
+	j^{CC}(x) = 2 \sum_{l=e,\mu,\tau} \bar{\nu_l}_{i}(x)\; \gamma_\alpha\; l^i(x)
 \end{equation}
 is the leptonic charged current and
 \begin{equation}
-	j^{NC}(x) = \sum_{l=e,\mu,\tau} \bar{\nu}_{lL}(x)\; \gamma_\alpha\; \nu_{lL}(x)
+	j^{NC}(x) = \sum_{l=e,\mu,\tau} \bar{\nu_l}_i(x)\; \gamma_\alpha\; \nu_l^i(x)
 \end{equation}
 is the neutrino neutral current, $W^\alpha(x)$ and $Z^\alpha(x)$ are the vector
-boson fields for the $W^\pm$ and $Z^0$ bosons respectively, $g$ is the electroweak
-coupling constant, and $\theta_W$ is the Weinberg angle.
+boson fields for the $W^\pm$ and $Z^0$ bosons respectively, $g$ is the 
+electroweak coupling constant, and $\theta_W$ is the Weinberg angle.
 
 Mass is included in the standard model through the Dirac mass term in the
 Lagrangian
@@ -332,7 +334,7 @@ neutrinos are assumed to be massless in the model. For massive neutrinos to
 exists the standard model needs to be modified; right handed neutrino fields
 need to be introduced. In addition it is still unknown whether neutrinos are
 Dirac or Majorana particles, meaning that additional Majorana mass terms are
-possible. A more general neutrino mass term, including both Dirac and Majorana
+possible. A more general neutrino mass term including both Dirac and Majorana
 components is 
 \begin{equation}
 	\mathcal{L}^{D+M} = 
@@ -346,6 +348,31 @@ components is
 % TODO
 % add in important/latest measurements of osc parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Neutrino oscillations are a result of quantum mechanical interference between
+different massive neutrino eigenstates. These mass eigenstates are produced and 
+measured coherently because the energy and momenta of the neutrino states are
+not measured with enough precision to distinguish the mass eigenstate of the
+neutrino.
+
+Neutrinos are produced in a state of definite flavour, \(l = e, \mu, \tau\), in 
+charged current (CC) and neutral current (NC) weak interactions, 
+\begin{equation}
+	W^+ \rightarrow l^+ \nu_l, \quad  W^- \rightarrow l^- \nu_l, \quad  Z   \rightarrow \nu_l \bar{\nu_l}.
+\end{equation}
+The CC processes are mostly used in neutrino oscillation experiments because
+they give information about the initial flavour state of the neutrinos. These
+processes are governed by the Lagrangian of the CC leptonic interactions, as in
+equation \ref{eqn:cc_lag}. The leptonic current \(j^\alpha\) is given in 
+\ref{eqn:cc_curr}. The neutrino flavour states, $\nu_l$, can be represented as a 
+superposition of massive neutrinos in any case where the energy and momentum 
+of the neutrino is not known with enough precision to determine the neutrino 
+mass,
+\begin{equation}
+	\nu_l = \sum_{k} U^*_{lk} \nu_k
+\end{equation}
+where $\nu_k$ are the neutrino mass eigenstates, and U is a unitary mixing
+matrix.
 
 \section{Neutrino Interactions} \label{nu_prod}
 
