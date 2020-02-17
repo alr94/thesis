@@ -58,17 +58,17 @@ Fermi's theory to predict the strength of neutrino interactions, H. Bethe and
 R. Peierls found that the interactions were so weak that they might never be 
 observed, a prediction that held true for over 20 years \cite{Bethe1934}.
 
-The first breakthrough in experimental neutrino physics would come in 1956. F.
+The first breakthrough in experimental neutrino physics would come in 26. F.
 Reines and C. Cowan were attempting to measure positrons produced in inverse 
 \(\beta\)--decay interactions,
 \begin{equation}
-	\bar{\nu_e} + p \rightarrow n + e^+.
+	\xoverline{\nu_e} + p \rightarrow n + e^+.
 \end{equation}
 A detector containing 1400 litres of liquid scintillator was used to measure the 
 large flux of electron anti--neutrinos in the vicinity of the Savannah River 
 nuclear reactor. They observed a large increase in the rate of positron events 
 when the reactor was on when compared to when the reactor was switched off, the 
-first experimental evidence for the existence of neutrinos \cite{Reines1953}. 
+first experimental evidence for the existence of neutrinos \cite{Reines23}. 
 
 The discovery of the electron neutrino opened the door to answer questions of 
 neutrino flavour. As neutrinos are produced alongside a charged lepton it is 
@@ -227,11 +227,11 @@ an \(\mbox{L/E}_\nu\) dependence would have to be measured. To make this
 measurement a much shorter neutrino baseline would be needed, along with a 
 source of neutrinos with a small energy spread, and a detector with good 
 energy resolution. In 2002 the Kamioka Liquid Scintillator Anti--neutrino 
-Detector (KamLAND) experiment measured \(\bar{\nu_e}\) oscillations from a 
+Detector (KamLAND) experiment measured \(\xoverline{\nu_e}\) oscillations from a 
 number of nuclear reactors, which produce neutrinos at the MeV scale \cite{
 	Eguchi2003, Araki2005}. Along with an overall deficit of neutrino events, 
 they were able to use the high energy resolution of the KamLAND detector to 
-measure an \(\mbox{L/E}_\nu\) dependence of the \(\bar{\nu_e}\) survival 
+measure an \(\mbox{L/E}_\nu\) dependence of the \(\xoverline{\nu_e}\) survival 
 probability.  Figure \ref{fig:kamland_spectrum}, shows the ratio of the 
 observed neutrino flux with the no oscillation predicted flux as a function of 
 \(\mbox{L/E}_\nu\), a clear dependence can be seen and this data was enough to 
@@ -287,15 +287,15 @@ time of writing are:
 	\item What are the absolute masses of the neutrinos?
 	\item What is the mass ordering of the neutrino mass eigenstates?
 	\item Is there CP violation in the neutrino sector?
-	\item Are neutrinos Dirac ($\nu \ne \bar{\nu}$) or Majorana 
-		($\nu = \bar{\nu}$) particles?
+	\item Are neutrinos Dirac ($\nu \ne \xoverline{\nu}$) or Majorana 
+		($\nu = \xoverline{\nu}$) particles?
 \end{itemize}
 
 \section{Neutrinos in the Standard Model} \label{nu_sm}
 
 In the standard model neutrinos form part of the left handed fermion doublets
 \begin{equation}
-	\psi_i = \begin{pmatrix} \nu_i \\ l^-_i \end{pmatrix}
+	\psi_i = \begin{pmatrix}[1.5] \nu_i \\ l^-_i \end{pmatrix}
 \end{equation}
 where they are paired with a charged lepton of the same flavour in charged
 CC interactions, and $i$ represents any of the three known generations of 
@@ -311,11 +311,11 @@ the CC and NC interactions:
 Here 
 \begin{equation}
 	\label{eqn:cc_curr}
-	j^{CC}(x) = 2 \sum_{l=e,\mu,\tau} \bar{\nu_l}_{i}(x)\; \gamma_\alpha\; l^i(x)
+	j^{CC}_\alpha(x) = 2 \sum_{l=e,\mu,\tau} \xoverline{\nu_l}(x)\; \gamma_\alpha\; l(x)
 \end{equation}
 is the leptonic charged current and
 \begin{equation}
-	j^{NC}(x) = \sum_{l=e,\mu,\tau} \bar{\nu_l}_i(x)\; \gamma_\alpha\; \nu_l^i(x)
+	j^{NC}_\alpha(x) = \sum_{l=e,\mu,\tau} \xoverline{\nu_l}(x)\; \gamma_\alpha\; \nu_l(x)
 \end{equation}
 is the neutrino neutral current, $W^\alpha(x)$ and $Z^\alpha(x)$ are the vector
 boson fields for the $W^\pm$ and $Z^0$ bosons respectively, $g$ is the 
@@ -324,9 +324,9 @@ electroweak coupling constant, and $\theta_W$ is the Weinberg angle.
 Mass is included in the standard model through the Dirac mass term in the
 Lagrangian
 \begin{align}
-	\mathcal{L}^{D} &= m_D \bar{\psi} \psi \\
+	\mathcal{L}^{D} &= m_D \xoverline{\psi} \psi \\
 	&= m_D \overline{(\psi_L + \psi_R)}(\psi_L + \psi_R) \\ 
-	&= m_D(\bar{\psi}_L \psi_R + \bar{\psi}_R \psi_L)
+	&= m_D(\xoverline{\psi}_L \psi_R + \xoverline{\psi}_R \psi_L)
 \end{align}
 where $L$ and $R$ represent the left and right handed components of the field.
 The lack of right handed neutrino states in the standard model therefore means
@@ -338,9 +338,9 @@ possible. A more general neutrino mass term including both Dirac and Majorana
 components is 
 \begin{equation}
 	\mathcal{L}^{D+M} = 
-	\begin{pmatrix} \bar{\nu}_L \; \bar{\nu}_R \end{pmatrix} 
-	\begin{pmatrix} m_L \; m_D \\ m_D \; m_R \end{pmatrix} 
-	\begin{pmatrix} \nu_L \\ \nu_R \end{pmatrix}.
+	\begin{pmatrix}[1.5] \xoverline{\nu}_L \; \xoverline{\nu}_R \end{pmatrix} 
+	\begin{pmatrix}[1.5] m_L \; m_D \\ m_D \; m_R \end{pmatrix} 
+	\begin{pmatrix}[1.5] \nu_L \\ \nu_R \end{pmatrix}.
 \end{equation}
 
 \section{Neutrino Oscillations} \label{nu_osc}
@@ -358,21 +358,170 @@ neutrino.
 Neutrinos are produced in a state of definite flavour, \(l = e, \mu, \tau\), in 
 charged current (CC) and neutral current (NC) weak interactions, 
 \begin{equation}
-	W^+ \rightarrow l^+ \nu_l, \quad  W^- \rightarrow l^- \nu_l, \quad  Z   \rightarrow \nu_l \bar{\nu_l}.
+	W^+ \rightarrow l^+ \nu_l, \quad  W^- \rightarrow l^- \nu_l, \quad  Z   \rightarrow \nu_l \xoverline{\nu_l}.
 \end{equation}
-The CC processes are mostly used in neutrino oscillation experiments because
+The CC processes are most often used in neutrino oscillation experiments because
 they give information about the initial flavour state of the neutrinos. These
 processes are governed by the Lagrangian of the CC leptonic interactions, as in
-equation \ref{eqn:cc_lag}. The leptonic current \(j^\alpha\) is given in 
-\ref{eqn:cc_curr}. The neutrino flavour states, $\nu_l$, can be represented as a 
-superposition of massive neutrinos in any case where the energy and momentum 
-of the neutrino is not known with enough precision to determine the neutrino 
-mass,
+Equation \ref{eqn:cc_lag}. The leptonic current \(j_\alpha\) is given in 
+\ref{eqn:cc_curr}. 
+
+The neutrino flavour states, $\nu_l$, can be represented as a superposition of 
+massive neutrinos in any case where the energy and momentum of the neutrino is 
+not known with enough precision to determine the neutrino mass, 
 \begin{equation}
-	\nu_l = \sum_{k} U^*_{lk} \nu_k
+	\label{eqn:mass_sup}
+	\nu_l = \sum_{k} U^*_{lk} \nu_k,
 \end{equation}
 where $\nu_k$ are the neutrino mass eigenstates, and U is a unitary mixing
-matrix.
+matrix. In terms of the neutrino mass eigenstates, the leptonic current 
+\(j_\alpha\) from Equation \ref{eqn:cc_curr} becomes, 
+\begin{equation}
+	\label{eqn:cc_curr_mass}
+	j^{CC}_\alpha(x) = 2 \sum_{l=e,\mu,\tau} \sum_{k} U^*_{lk} \xoverline{\nu_k}(x)\; \gamma_\alpha\; l(x).
+\end{equation}
+
+The representation of neutrino flavour states as a superposition of mass 
+eigenstates gives rise to the phenomenon of neutrino oscillations. Consider a 
+neutrino produced in a CC weak interaction with flavour \(l\) and momentum 
+\(\vb{p}\). This neutrino flavour state is described by equation
+\ref{eqn:mass_sup}, where \(U\) is a unitary mixing matrix called the PMNS
+(Pontecorvo, Maki, Nakagawa, and Sakata) matrix. For 3 flavour mixing the PMNS
+matrix takes the form:
+\begin{equation}
+	\label{eqn:pmns}
+	U = 
+	\begin{pmatrix}[2]
+		U_{e1} & U_{e2} & U_{e3} \\
+		U_{\mu1} & U_{\mu2} & U_{\mu3} \\
+		U_{\tau1} & U_{\tau2} & U_{\tau3} \\
+	\end{pmatrix}.
+\end{equation}
+
+In a vacuum, the neutrino mass states are eigenstates of the free particle Hamiltonian
+\begin{equation}
+	\label{eqn:ham_eig}
+	{\cal H} \ket{\nu_k} = E_k \ket{\nu_k},
+\end{equation}
+with energy
+\begin{equation}
+	\label{eqn:nu_en}
+	E_k = \sqrt{\vb{p}^2 + m_k^2}.
+\end{equation}
+So the solutions to the time dependent Schrodinger equation, 
+\begin{equation}
+	\label{eqn:tdse}
+	i\dv{t}\ket{\nu_k(t)} = {\cal H}\ket{\nu_k(t)},
+\end{equation}
+are plane waves
+\begin{equation}
+	\label{eqn:plane_wave}
+	\ket{\nu_k(t)} = e^{-iE_kt}\ket{\nu_k}.
+\end{equation}
+The time evolution of the initial flavour state is then:
+\begin{equation}
+	\label{eqn:flavour_time_mass}
+	\ket{\nu_l(t)} = \sum_k U_{lk}^* e^{-iE_kt} \ket{\nu_k}, 
+\end{equation}
+such that the neutrino is in a state of definite flavour l at \(t = 0\), 
+\(\ket{\nu_l(t=0)} = \ket{\nu_l}\).
+
+The mass states can be written in terms of the flavour states by inverting
+Equation \ref{eqn:mass_sup}:
+\begin{equation}
+	\label{eqn:flav_sup}
+	\ket{\nu_k} = \sum_l U_{lk} \ket{\nu_l}.
+\end{equation}
+Where we have used the fact that the states form an orthonormal basis,
+\(\braket{\nu_l}{\nu_m} = \delta_{lm}\), and that the transformation matrix is 
+unitary, \(UU^\dagger = \vb{1}\).
+
+Substituting Equation \ref{eqn:flav_sup} into the time evolution of the flavour
+state, Equation \ref{eqn:flavour_time_mass}, gives:
+\begin{equation}
+	\label{eqn:flavour_time_flav}
+	\ket{\nu_l(t)} = \sum_{m = e, \mu, \tau} \qty(\grande \sum_k U^*_{lk} e^{-iE_kt} U_{mk})\ket{\nu_m} 
+\end{equation}
+So as the initial flavour state evolves with time, it becomes a superposition 
+of different flavour states; this process is known as neutrino oscillation.
+
+The probability of finding the initial neutrino in state \(\nu_m\) as a 
+function of time is:
+\begin{align}
+	\label{eqn:p_osc_u}
+	P_{\nu_l \rightarrow \nu_m}(t) &= \abs{\braket{\nu_m}{\nu_l(t)}}^2 \\
+	                               &= \sum_{kj} U^*_{lk} U_{mk} U_{lj} U^*_{mj} e^{-i(E_k - E_j)t}.
+\end{align}
+
+All neutrino oscillation experiments to date operate in a regime where 
+\(E \gg m\), in this regime the relativistic energy relation for neutrinos can 
+be expanded as \({E_k \simeq E + \frac{m_k^2}{2E}}\), where \(E = \abs{p}\). 
+Hence, 
+\begin{equation}
+	\label{eqn:energy_diff}
+	E_k - E_j \simeq \frac{m_k^2 - m_j^2}{2E} = \frac{\Delta m_{kj}^2}{2E}.
+\end{equation}
+In addition, neutrino oscillation experiments do not measure the neutrino
+propagation time \(t\). Instead, they measure the propagation distance \(L\), 
+also known as the baseline. In the ultra--relativistic limit we can approximate 
+\({t \simeq L\) in natural units. As a result Equation \ref{eqn:p_osc_u} can be 
+approximated as:
+\begin{align}
+	\label{eqn:p_osc_u}
+	P_{\nu_l \rightarrow \nu_m}(t) &= \sum_{kj} U^*_{lk} U_{mk} U_{lj} U^*_{mj} e^{-i\frac{\Delta m^2_{kj}L}{2E}}.
+\end{align}
+
+% FIXME: You were here
+
+
+
+
+
+
+
+
+
+
+
+% TODO: Put this discussion later, just do it in terms of U's for now
+The PMNS matrix is often parametrised in terms of three mixing angles 
+\(\theta_{12}\), \(\theta_{13}\), and \(\theta_{23}\) and three CP--violating 
+phases \(\delta_{CP}\), \(\alpha_1\), and \(\alpha_2\):
+\begin{equation}
+	\label{eqn:pmns_expanded}
+	U = 
+	\underbrace{\begin{pmatrix}[2] 
+		c_{12}  & s_{12} & 0 \\
+		-s_{12} & c_{12} & 0 \\
+		0       & 0      & 1 \\
+	\end{pmatrix}}_{\mbox{\small Solar}}
+	\underbrace{\begin{pmatrix}[2]
+		c_{13}                 & 0 & s_{13}e^{-i\delta_{CP}} \\
+		0                      & 1 & 0 \\
+		-s_{13}e^{i\delta_{CP}} & 0 & c_{13} \\
+	\end{pmatrix}}_{\mbox{\small TODO}}
+	\underbrace{\begin{pmatrix}[2]
+		1 & 0       & 0 \\
+		0 & c_{23}  & s_{23} \\
+		0 & -s_{23} & c_{23} \\
+	\end{pmatrix}}_{\mbox{\small Atmospheric}}
+	\underbrace{\begin{pmatrix}[2]
+		e^{i\frac{\alpha_1}{2}} & 0                       & 0 \\
+		0                       & e^{i\frac{\alpha_2}{2}} & 0 \\
+		0                       & 0                       & 1 \\
+	\end{pmatrix}}_{\mbox{\small Majorana}}.
+\end{equation}
+Expressing the mixing matrix like this factorises the matrix into its 
+components, which are responsible for oscillations of different initial states. 
+The first component contains only \(\theta_{12}\) which is dominant in Solar
+neutrino oscillations. The third component dominates in the mixing of 
+atmospheric neutrinos, and is a function of \(\theta_{23}\). The final element 
+which is significant for neutrino oscillations is the second component, known 
+as the TODO matrix. This component depends on \(\theta_{13}\) and 
+\(\delta_{CP}\).
+
+The final matrix in factorised version of the PMNS matrix is called the Majorana
+component, it contains the Majorana CP--violating phases. 
 
 \section{Neutrino Interactions} \label{nu_prod}
 
