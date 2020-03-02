@@ -15,10 +15,6 @@
 % December 2019.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-% Decide on historical vs theoretical overview or both
-% TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-
 % \minitoc
 
 Despite being one of the most abundant particle in the universe, neutrinos are 
@@ -467,26 +463,17 @@ also known as the baseline. In the ultra--relativistic limit we can approximate
 \({t \simeq L\) in natural units. As a result Equation \ref{eqn:p_osc_u} can be 
 approximated as:
 \begin{align}
-	\label{eqn:p_osc_u}
+	\label{eqn:p_osc_u_l}
 	P_{\nu_l \rightarrow \nu_m}(t) &= \sum_{kj} U^*_{lk} U_{mk} U_{lj} U^*_{mj} e^{-i\frac{\Delta m^2_{kj}L}{2E}}.
 \end{align}
+As such neutrino oscillation experiments are only sensitive to the differences
+in mass squared between the neutrino mass eigenstates, and not the absolute
+masses of the states. 
 
-% FIXME: You were here
-
-
-
-
-
-
-
-
-
-
-
-% TODO: Put this discussion later, just do it in terms of U's for now
-The PMNS matrix is often parametrised in terms of three mixing angles 
-\(\theta_{12}\), \(\theta_{13}\), and \(\theta_{23}\) and three CP--violating 
-phases \(\delta_{CP}\), \(\alpha_1\), and \(\alpha_2\):
+In the widely accepted three neutrino model of neutrino oscillation, the PMNS 
+matrix is often parametrised in terms of three mixing angles \(\theta_{12}\), 
+\(\theta_{13}\), and \(\theta_{23}\) and three CP--violating phases 
+\(\delta_{CP}\), \(\alpha_1\), and \(\alpha_2\):
 \begin{equation}
 	\label{eqn:pmns_expanded}
 	U = 
@@ -499,7 +486,7 @@ phases \(\delta_{CP}\), \(\alpha_1\), and \(\alpha_2\):
 		c_{13}                 & 0 & s_{13}e^{-i\delta_{CP}} \\
 		0                      & 1 & 0 \\
 		-s_{13}e^{i\delta_{CP}} & 0 & c_{13} \\
-	\end{pmatrix}}_{\mbox{\small TODO}}
+	\end{pmatrix}}_{\mbox{\small Cross--mixing}}
 	\underbrace{\begin{pmatrix}[2]
 		1 & 0       & 0 \\
 		0 & c_{23}  & s_{23} \\
@@ -512,13 +499,19 @@ phases \(\delta_{CP}\), \(\alpha_1\), and \(\alpha_2\):
 	\end{pmatrix}}_{\mbox{\small Majorana}}.
 \end{equation}
 Expressing the mixing matrix like this factorises the matrix into its 
-components, which are responsible for oscillations of different initial states. 
+components, which are responsible for oscillations in different sectors. 
 The first component contains only \(\theta_{12}\) which is dominant in Solar
 neutrino oscillations. The third component dominates in the mixing of 
 atmospheric neutrinos, and is a function of \(\theta_{23}\). The final element 
 which is significant for neutrino oscillations is the second component, known 
-as the TODO matrix. This component depends on \(\theta_{13}\) and 
-\(\delta_{CP}\).
+as the cross--mixing matrix. This component depends on the final mixing angle, 
+\(\theta_{13}\) and on one of the CP--violating phases, \(\delta_{CP}\). If
+\(\delta_{CP}\) is non--zero then U will have complex components in off diagonal
+elements, leading to different probabilities for CP flipped oscillations,
+\(P(\nu_\alpha \rightarrow \nu_\beta) \neq P(\xoverline{\nu_\alpha} \rightarrow
+\xoverline{\nu_\beta})\).
+
+% FIXME: you were here
 
 The final matrix in factorised version of the PMNS matrix is called the Majorana
 component, it contains the Majorana CP--violating phases. 
