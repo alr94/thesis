@@ -484,3 +484,6 @@
 
 % braket
 \usepackage{physics}
+
+% bold maths
+\usepackage{amsmath}
