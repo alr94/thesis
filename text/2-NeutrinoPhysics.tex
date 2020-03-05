@@ -170,7 +170,7 @@ observed.
 	large \(\mbox{L} / \mbox{E}_\nu\) a clear deficit is observed. The best fit
 	under the assumption of atmospheric (\(\nu_\mu \rightarrow \nu_\tau\))
 	oscillations is shown, the best fit parameters are \(\Delta m^2 = 2.2 \times
-	10^{-3} \mbox{eV}^2\), and \(sin^22\theta = 1\) \cite{Fukuda1998}.}
+	10^{-3} \mbox{eV}^2\), and \(\sin^22\theta = 1\) \cite{Fukuda1998}.}
 
 	\label{fig:sk_flux}
 
@@ -333,6 +333,7 @@ Dirac or Majorana particles, meaning that additional Majorana mass terms are
 possible. A more general neutrino mass term including both Dirac and Majorana
 components is 
 \begin{equation}
+	\label{eqn:m_dirac_majorana}
 	\mathcal{L}^{D+M} = 
 	\begin{pmatrix}[1.5] \xoverline{\nu}_L \; \xoverline{\nu}_R \end{pmatrix} 
 	\begin{pmatrix}[1.5] m_L \; m_D \\ m_D \; m_R \end{pmatrix} 
@@ -342,7 +343,8 @@ components is
 \section{Neutrino Oscillations} \label{nu_osc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO
-% add in important/latest measurements of osc parameters
+% Add in important/latest measurements of osc parameters
+% Change notation for flavour states
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Neutrino oscillations are a result of quantum mechanical interference between
@@ -382,8 +384,8 @@ eigenstates gives rise to the phenomenon of neutrino oscillations. Consider a
 neutrino produced in a CC weak interaction with flavour \(l\) and momentum 
 \(\vb{p}\). This neutrino flavour state is described by equation
 \ref{eqn:mass_sup}, where \(U\) is a unitary mixing matrix called the PMNS
-(Pontecorvo, Maki, Nakagawa, and Sakata) matrix. For 3 flavour mixing the PMNS
-matrix takes the form:
+(Pontecorvo, Maki, Nakagawa, and Sakata) matrix. For three flavour mixing the 
+PMNS matrix takes the form:
 \begin{equation}
 	\label{eqn:pmns}
 	U = 
@@ -466,12 +468,19 @@ approximated as:
 	\label{eqn:p_osc_u_l}
 	P_{\nu_l \rightarrow \nu_m}(t) &= \sum_{kj} U^*_{lk} U_{mk} U_{lj} U^*_{mj} e^{-i\frac{\Delta m^2_{kj}L}{2E}}.
 \end{align}
-As such neutrino oscillation experiments are only sensitive to the differences
+As such neutrino oscillations in a vacuum are only sensitive to the differences
 in mass squared between the neutrino mass eigenstates, and not the absolute
-masses of the states. 
+masses of the states. To determine the mass ordering of the neutrino mass
+eigenstates oscillations in matter must be considered. %\cite{PhysRevD.17.2369}.
 
-In the widely accepted three neutrino model of neutrino oscillation, the PMNS 
-matrix is often parametrised in terms of three mixing angles \(\theta_{12}\), 
+\subsection{Neutrino Oscillations in Matter}
+% FIXME: you were here
+
+\subsection{Current Knowledge and Open Questions}
+
+At the time of writing the most widely accepted model of neutrino oscillations
+involves three neutrino mass eigenstates. In this model, the PMNS matrix is 
+often parametrised in terms of three mixing angles \(\theta_{12}\), 
 \(\theta_{13}\), and \(\theta_{23}\) and three CP--violating phases 
 \(\delta_{CP}\), \(\alpha_1\), and \(\alpha_2\):
 \begin{equation}
@@ -509,12 +518,79 @@ as the cross--mixing matrix. This component depends on the final mixing angle,
 \(\delta_{CP}\) is non--zero then U will have complex components in off diagonal
 elements, leading to different probabilities for CP flipped oscillations,
 \(P(\nu_\alpha \rightarrow \nu_\beta) \neq P(\xoverline{\nu_\alpha} \rightarrow
-\xoverline{\nu_\beta})\).
-
-% FIXME: you were here
+\xoverline{\nu_\beta})\). Discovery of this effect is one of the major goals of
+the next generation of neutrino oscillation experiments.
 
 The final matrix in factorised version of the PMNS matrix is called the Majorana
-component, it contains the Majorana CP--violating phases. 
+component. The CP--violating phases in this matrix cancel in the oscillation
+probability and so they can't be measured in neutrino oscillation experiments.
+In fact, they only lead to physical effects if neutrinos are Majorana particles
+(i.e. if they are there own antiparticle). Other experiments are required to 
+determine in neutrinos are Majorana particles, for example, neutrinoless double
+beta decay experiments such as CUORE \cite{Arnaboldi2004}, NEXT 
+\cite{Alvarez2012}, and SNO+ \cite{Andringa2016}. The question of the nature of 
+neutrinos has implications on neutrino mass generation, as discussed in Equation
+\ref{eqn:m_dirac_majorana}.
+
+A large number of neutrino oscillation measurements now exist from solar,
+reactor, atmospheric, and accelerator neutrino experiments. When combined these
+results give us our current best estimates of the neutrino oscillation
+parameters. The current combined results, from the 2018 Review of Particle
+Physics by the Particle Data Group \cite{PhysRevD.98.030001}, along with the 
+major contributing experiments for each measurement are summarised below.
+
+\subsubsection*{\boldsymbol{\theta_{12}}}
+The constraints on the solar mixing angle $\theta_{12}$ are dominated by a
+combination of data from solar neutrino experiments (e.g. SNO \cite{Ahmad2002}
+and Super Kamiokande \cite{PhysRevLett.86.5651}) with data from the KamLAND 
+experiment \cite{Araki2005}. The current constraint,
+\begin{equation}
+	\label{eqn:theta_12}
+	\sin^2(\theta_{12}) = 0.297 \mbox{ } \substack{+ 0.017 \\ - 0.016},
+\end{equation}
+comes from a three neutrino fit to the solar and KamLAND data 
+\cite{Capozzi:2016rtj}.
+
+\subsubsection*{\boldsymbol{\Delta m^2_{21}}}
+The best measurement of $\Delta m^2_{21}$ comes from the same combined fit to 
+the solar neutrino and KamLAND data \cite{Capozzi:2016rtj}. The measured value
+is
+\begin{equation}
+	\label{eqn:delta_m_21}
+	\Delta m^2_{21} = (7.37 \mbox{ } \substack{+ 0.17 \\ - 0.16}) \times 10^{-5} \mbox{  eV}^2.
+\end{equation}
+
+\subsubsection*{$\boldsymbol{\theta_{23}}$ and $\boldsymbol{\Delta m^2_{32}}$}
+There is a strong correlation between $\theta_{23}$ and $\Delta m^2_{32}$ and
+therefore their measurements are usually presented as a two--dimensional
+contour. 
+% FIXME: You were here
+
+\begin{figure}
+	\centering
+	\caption{TODO}
+	\includegraphics[width=0.8\textwidth]{figures/theta23_msquare.png}
+	\label{fig:delm_sin23}
+\end{figure}
+
+% In addition, due to uncertainty surrounding the ordering of neutrino
+% masses, a new parameter 
+% \begin{equation}
+	% \label{eqn:delta_m}
+	% \Delta m^2 = m_3^2 - (m_1^2 + m_2^2)/ 2 = \Delta m^2_{32} + \frac{\Delta m^2_{21}}{2}
+% \end{equation}
+% is often defined which represents the dominant mass squared difference in long 
+% baseline neutrino oscillations. Because $\Delta m^2_{32} \gg \Delta m^2_{21}$
+% this new parameter is a good approximation to $\Delta m^2_{32}$. 
+
+% Figure 
+% \ref{fig:delm_sin23} shows the allowed regions in 
+% $\Delta m^2$--$\sin^2(\theta_{23})$ space from fits to neutrino oscillation data 
+% \cite{Capozzi:2016rtj}.
+
+\subsubsection*{\boldsymbol{\theta_{13}}}
+
+\subsubsection*{\boldsymbol{\delta_{CP}}}
 
 \section{Neutrino Interactions} \label{nu_prod}
 
