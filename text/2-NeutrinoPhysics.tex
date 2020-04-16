@@ -170,7 +170,7 @@ observed.
 	large \(\mbox{L} / \mbox{E}_\nu\) a clear deficit is observed. The best fit
 	under the assumption of atmospheric (\(\nu_\mu \rightarrow \nu_\tau\))
 	oscillations is shown, the best fit parameters are \(\Delta m^2 = 2.2 \times
-	10^{-3} \mbox{eV}^2\), and \(\sin^22\theta = 1\) \cite{Fukuda1998}.}
+	10^{-3} \mbox{eV}^2\), and \(\sin^22\theta = 1\). \cite{Fukuda1998}.}
 
 	\label{fig:sk_flux}
 
@@ -340,6 +340,9 @@ components is
 	\begin{pmatrix}[1.5] \nu_L \\ \nu_R \end{pmatrix}.
 \end{equation}
 
+\section{Neutrino Interactions} \label{nu_prod}
+% FIXME: you were here
+
 \section{Neutrino Oscillations} \label{nu_osc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO
@@ -474,7 +477,6 @@ masses of the states. To determine the mass ordering of the neutrino mass
 eigenstates oscillations in matter must be considered. %\cite{PhysRevD.17.2369}.
 
 \subsection{Neutrino Oscillations in Matter}
-% FIXME: you were here
 
 \subsection{Current Knowledge and Open Questions}
 
@@ -549,11 +551,11 @@ experiment \cite{Araki2005}. The current constraint,
 	\sin^2(\theta_{12}) = 0.297 \mbox{ } \substack{+ 0.017 \\ - 0.016},
 \end{equation}
 comes from a three neutrino fit to the solar and KamLAND data 
-\cite{Capozzi:2016rtj}.
+\cite{Capozzi:2016rtj, TODO}.
 
 \subsubsection*{\boldsymbol{\Delta m^2_{21}}}
 The best measurement of $\Delta m^2_{21}$ comes from the same combined fit to 
-the solar neutrino and KamLAND data \cite{Capozzi:2016rtj}. The measured value
+the solar neutrino and KamLAND data \cite{Capozzi:2016rtj, TODO}. The measured value
 is
 \begin{equation}
 	\label{eqn:delta_m_21}
@@ -563,35 +565,50 @@ is
 \subsubsection*{$\boldsymbol{\theta_{23}}$ and $\boldsymbol{\Delta m^2_{32}}$}
 There is a strong correlation between $\theta_{23}$ and $\Delta m^2_{32}$ and
 therefore their measurements are usually presented as a two--dimensional
-contour. 
-% FIXME: You were here
-
+contour. Figure \ref{fig:delm_sin23} shows a comparison of the world leading
+contours for $\sin^2 (\theta_{23})$--$\Delta m^2_{32}$, with the tightest error
+bands coming from long baseline accelerator experiments such as T2K, MINOS, and 
+NO$\nu$A \cite{PhysRevD.96.092006, PhysRevLett.112.191801,
+PhysRevLett.123.151803}. The results are dependent on the neutrino mass
+ordering, based on a global three neutrino oscillation analysis 
+\cite{Capozzi:2016rtj, TODO}, 
+\begin{align}
+	\label{eqn:delta_m_32}
+	|\Delta m^2_{32}| &= (2.46 \mbox{ } \substack{+ 0.04 \\ - 0.04}) \times 10^{-3} \mbox{  eV}^2 \quad \mbox{(NO)} \\
+	                  &= (2.50 \mbox{ } \substack{+ 0.05 \\ - 0.04}) \times 10^{-3} \mbox{  eV}^2 \quad \mbox{(IO)},
+\end{align}
+and 
+\begin{align}
+	\label{eqn:delta_m_32}
+	\sin^2(\theta_{23}) &= 0.437 \mbox{  } \substack{+ 0.033 \\ - 0.020} \quad \mbox{(NO)} \\
+	                    &= 0.569 \mbox{  } \substack{+ 0.028 \\ - 0.051} \quad \mbox{(IO)}.
+\end{align}
 \begin{figure}
 	\centering
-	\caption{TODO}
 	\includegraphics[width=0.8\textwidth]{figures/theta23_msquare.png}
+	\caption{The 90\% confidence region contours for 
+	$\sin^2 (\theta_{23})$--$\Delta m^2_{32}$ from a number of the leading 
+	neutrino oscillation experiments \cite{TODO}. The best fit point for the 
+	NO$\nu$A experiment is shown as a black dot. \cite{PhysRevLett.123.151803}}
 	\label{fig:delm_sin23}
 \end{figure}
 
-% In addition, due to uncertainty surrounding the ordering of neutrino
-% masses, a new parameter 
-% \begin{equation}
-	% \label{eqn:delta_m}
-	% \Delta m^2 = m_3^2 - (m_1^2 + m_2^2)/ 2 = \Delta m^2_{32} + \frac{\Delta m^2_{21}}{2}
-% \end{equation}
-% is often defined which represents the dominant mass squared difference in long 
-% baseline neutrino oscillations. Because $\Delta m^2_{32} \gg \Delta m^2_{21}$
-% this new parameter is a good approximation to $\Delta m^2_{32}$. 
-
-% Figure 
-% \ref{fig:delm_sin23} shows the allowed regions in 
-% $\Delta m^2$--$\sin^2(\theta_{23})$ space from fits to neutrino oscillation data 
-% \cite{Capozzi:2016rtj}.
-
 \subsubsection*{\boldsymbol{\theta_{13}}}
+Reactor neutrino experiments such as Daya Bay \cite{TODO}, Double Chooz
+\cite{TODO}, and RENO \cite{TODO} have made the most precise measurements of
+$\theta_{13}$. A three neutrino global fit to the reactor data gives 
+\cite{Capozzi:2016rtj, TODO}
+\begin{equation}
+	\sin^2 \theta_{13} = (2.15 \pm 0.07) \times 10^{-2}
+	\label{eqn:theta_13}
+\end{equation}
 
 \subsubsection*{\boldsymbol{\delta_{CP}}}
+While there are no measurements of $\delta_{CP}$, there are some hints that it
+may be none--zero from long baseline accelerator neutrino experiments T2K and
+NO$\nu$A.
 
-\section{Neutrino Interactions} \label{nu_prod}
+The T2K experiment...
+% FIXME: You were here
 
 \section{Supernova Neutrinos} \label{nu_sn}
