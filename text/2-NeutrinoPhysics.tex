@@ -15,7 +15,7 @@
 % December 2019.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \minitoc
+\minitoc
 
 Despite being one of the most abundant particle in the universe, neutrinos are 
 some of the most elusive; due to the fact that neutrinos can only interact via
@@ -36,11 +36,12 @@ anticipated when neutrinos were first postulated. This chapter will detail
 some of the history and theory of neutrino's and their interactions.
 
 In this chapter, Section \ref{nu_hist} will give a brief historical overview of 
-neutrino physics, Section \ref{nu_osc} will introduce neutrino oscillations
-and the theory used to describe them, while Section \ref{nu_prod} will discuss
-neutrino interactions in matter as well as neutrino production. Finally Section
-\ref{nu_sn} will discuss the production of neutrinos in supernovae, as well as
-the role they could play in understanding supernovae.
+neutrino physics. Section \ref{nu_sm} will introduce the theory of neutrinos in
+the Standard Model, followed by a discussion of neutrino interactions and
+production in Section \ref{nu_prod}. Section \ref{nu_osc} will introduce 
+neutrino oscillations and the theory used to describe them. Finally Section
+\ref{nu_sn} will discuss the production and measurement of neutrinos from
+supernovae.
 
 \section{A Brief History of Neutrino Physics} \label{nu_hist}
 
@@ -340,13 +341,18 @@ components is
 	\begin{pmatrix}[1.5] \nu_L \\ \nu_R \end{pmatrix}.
 \end{equation}
 
+\newpage
 \section{Neutrino Interactions} \label{nu_prod}
-% FIXME: you were here
+\begin{mccorrection}
+	TODO.
+	Do I need a whole subsection on this or should I just incorporate it into the
+	Neutrinos in the SM section?
+\end{mccorrection}
+\newpage
 
 \section{Neutrino Oscillations} \label{nu_osc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO
-% Add in important/latest measurements of osc parameters
 % Change notation for flavour states
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -476,7 +482,12 @@ in mass squared between the neutrino mass eigenstates, and not the absolute
 masses of the states. To determine the mass ordering of the neutrino mass
 eigenstates oscillations in matter must be considered. %\cite{PhysRevD.17.2369}.
 
+\newpage
 \subsection{Neutrino Oscillations in Matter}
+\begin{mccorrection}
+	TODO
+\end{mccorrection}
+\newpage
 
 \subsection{Current Knowledge and Open Questions}
 
@@ -484,7 +495,7 @@ At the time of writing the most widely accepted model of neutrino oscillations
 involves three neutrino mass eigenstates. In this model, the PMNS matrix is 
 often parametrised in terms of three mixing angles \(\theta_{12}\), 
 \(\theta_{13}\), and \(\theta_{23}\) and three CP--violating phases 
-\(\delta_{CP}\), \(\alpha_1\), and \(\alpha_2\):
+$\dcp$, \(\alpha_1\), and \(\alpha_2\):
 \begin{equation}
 	\label{eqn:pmns_expanded}
 	U = 
@@ -516,8 +527,8 @@ neutrino oscillations. The third component dominates in the mixing of
 atmospheric neutrinos, and is a function of \(\theta_{23}\). The final element 
 which is significant for neutrino oscillations is the second component, known 
 as the cross--mixing matrix. This component depends on the final mixing angle, 
-\(\theta_{13}\) and on one of the CP--violating phases, \(\delta_{CP}\). If
-\(\delta_{CP}\) is non--zero then U will have complex components in off diagonal
+\(\theta_{13}\) and on one of the CP--violating phases, $\dcp$. If
+$\dcp$ is non--zero then U will have complex components in off diagonal
 elements, leading to different probabilities for CP flipped oscillations,
 \(P(\nu_\alpha \rightarrow \nu_\beta) \neq P(\xoverline{\nu_\alpha} \rightarrow
 \xoverline{\nu_\beta})\). Discovery of this effect is one of the major goals of
@@ -568,7 +579,7 @@ therefore their measurements are usually presented as a two--dimensional
 contour. Figure \ref{fig:delm_sin23} shows a comparison of the world leading
 contours for $\sin^2 (\theta_{23})$--$\Delta m^2_{32}$, with the tightest error
 bands coming from long baseline accelerator experiments such as T2K, MINOS, and 
-NO$\nu$A \cite{PhysRevD.96.092006, PhysRevLett.112.191801,
+\nova \cite{PhysRevD.96.092006, PhysRevLett.112.191801,
 PhysRevLett.123.151803}. The results are dependent on the neutrino mass
 ordering, based on a global three neutrino oscillation analysis 
 \cite{Capozzi:2016rtj, TODO}, 
@@ -585,11 +596,11 @@ and
 \end{align}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/theta23_msquare.png}
+	\includegraphics[width=0.9\textwidth]{figures/theta23_msquare.pdf}
 	\caption{The 90\% confidence region contours for 
 	$\sin^2 (\theta_{23})$--$\Delta m^2_{32}$ from a number of the leading 
 	neutrino oscillation experiments \cite{TODO}. The best fit point for the 
-	NO$\nu$A experiment is shown as a black dot. \cite{PhysRevLett.123.151803}}
+	\nova \ experiment is shown as a black dot. \cite{PhysRevLett.123.151803}}
 	\label{fig:delm_sin23}
 \end{figure}
 
@@ -604,11 +615,62 @@ $\theta_{13}$. A three neutrino global fit to the reactor data gives
 \end{equation}
 
 \subsubsection*{\boldsymbol{\delta_{CP}}}
-While there are no measurements of $\delta_{CP}$, there are some hints that it
+While there are no accurate measurements of $\dcp$ there are some hints that it
 may be none--zero from long baseline accelerator neutrino experiments T2K and
-NO$\nu$A.
+\nova.
 
-The T2K experiment...
-% FIXME: You were here
+The T2K experiment's joint fit to electron neutrino appearance and 
+anti--electron neutrino appearance shows an excess of electron neutrino events 
+and a deficit of anti--electron neutrino events when compared to the 
+predictions for \(\delta_{CP} = 0\). This results in a preference for negative 
+values of $\dcp$ with a \(3\sigma\) confidence interval of \([-3.41, -0.03]\) 
+in the case of normal neutrino mass ordering. The fit results are shown in 
+Fig. \ref{fig:t2k_cp}. \cite{Abe2019}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/t2k_cp.pdf}
+	\caption{Confidence intervals for $\dcp$ from the T2K experiment 
+	\cite{Abe2019}. 
+	Top: 68.27\% confidence level contours for $\dcp$ versus $\sin^2\theta_{13}$ 
+	under the assumption of normal ordering. \\
+	Middle : Confidence intervals at the 68.27\% and 99.73\% confidence level for 
+	$\dcp$ versus $sin^2\theta_{23}$ from a fit to T2K and reactor data under the 
+	assumption of normal ordering. \\
+	Bottom: Confidence intervals for $\dcp$ from a fit to T2K and reactor data for 
+	both the normal and inverted orderings. The vertical line in the shaded box 
+	shows the best-fit value of $\dcp$, the shaded box shows the 68.27\% 
+	confidence interval, and the error bar shows the 99.73\% confidence interval. 
+	}
+	\label{fig:t2k_cp}
+\end{figure}
 
+The \nova \ experiment has also performed joint fits to neutrino and
+anti--neutrino oscillation data, the fit results are shown in Fig.
+\ref{fig:nova_cp}. As with T2K the normal mass ordering is preferred, however
+for \nova \ the full range of $\dcp$ is covered at $3\sigma$ highlighting the 
+need for further study of CP--violation in neutrino oscillations.
+\cite{PhysRevLett.123.151803}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/nova_dcp.pdf}
+	\caption{Confidence intervals for $\dcp$ from the \nova \ experiment 
+	\cite{PhysRevLett.123.151803}. \\
+	Top: Confidence interval for $\dcp$ versus $\sin^2\theta_{23}$ under the
+	assumption of normal ordering.\\
+	Bottom: Confidence interval for $\dcp$ versus $\sin^2\theta_{23}$ under the
+	assumption of inverted ordering.\\
+	}
+	\label{fig:nova_cp}
+\end{figure}
+
+\newpage
 \section{Supernova Neutrinos} \label{nu_sn}
+\begin{mccorrection}
+	TODO.
+	\begin{itemize}
+		\item Supernova neutrino production mechanism.
+		\item SN1987a
+		\item Prospects for supernova neutrinos in DUNE
+	\end{itemize}
+\end{mccorrection}
+\newpage

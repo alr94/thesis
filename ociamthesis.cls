@@ -456,6 +456,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ALR: my additions
 
+% Shortcuts
+\newcommand{\protodune}{ProtoDUNE--SP}
+\newcommand{\nova}{NO$\nu$A}
+\newcommand{\dcp}{\delta_{CP}}
+
+
 % Better overline
 \newcommand*\xoverline[2][0.75]{%
   \sbox{\myboxA}{$\m@th#2$}%
