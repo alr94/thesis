@@ -459,7 +459,7 @@
 % Shortcuts
 \newcommand{\protodune}{ProtoDUNE--SP}
 \newcommand{\nova}{NO$\nu$A}
-\newcommand{\dcp}{\delta_{CP}}
+\newcommand{\dcp}{$\delta_{CP}$}
 
 
 % Better overline
