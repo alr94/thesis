@@ -68,13 +68,13 @@ the energy uncertainty of LArTPC detectors for low--energy electrons.
 \mccorrect{Chapter outline.}
 
 \section{Michel Electrons in Liquid Argon} \label{ME_LAr}
-\begin{mccorrection}
-	Michel electrons
-	\begin{itemize}
-	\item Two types: at rest and captured
-	\item Energy spectra
-	\end{itemize}
-\end{mccorrection}
+% \begin{mccorrection}
+% 	Michel electrons
+% 	\begin{itemize}
+% 	\item Two types: at rest and captured
+% 	\item Energy spectra
+% 	\end{itemize}
+% \end{mccorrection}
 
 Michel electrons are produced when a muon decays at rest. This decay gives rise
 to a characteristic energy spectrum which has a sharp cut--off at around 50 MeV,
@@ -87,18 +87,13 @@ negative muons in liquid argon and therefore in \protodune{} the observed energy
 spectrum is a combination of the two processes in roughly equal quantities.
 
 \begin{figure}
-
 	\centering
-
 	\includegraphics[width=\textwidth]{figures/michel_spectra.pdf}
-
 	\caption
 	[Michel electron energy spectra in Liquid Argon]
 	{Michel electron energy spectra in liquid argon. (a) free muons. (b) muon 
 	capture at rest.}
-
 	\label{fig:michel_spec}
-
 \end{figure}
 
 \begin{mccorrection}
@@ -252,7 +247,6 @@ to tackle this problem, and it's application on Michel electron events in
 	\item Michel hit tagging CNN
 	\item Hit tagging + clustering explanation
 	\item Algorithm performance: purity and efficiency
-	\item CNN distributions
 	\item Data v MC event selection distributions
 	\end{itemize}
 \end{mccorrection}
@@ -260,7 +254,8 @@ to tackle this problem, and it's application on Michel electron events in
 In order to select Michel electrons in \protodune{} data, an event selection
 algorithm was developed based on combining the results from the hit tagging CNN 
 from the previous chapter with clustering performed by the main \protodune{} 
-reconstruction framework, Pandora. 
+reconstruction framework, Pandora. The performance of the Michel electron 
+classifier in isolation are discussed in the previous chapter.
 
 The event selection algorithm proceeds in the following steps:
 \begin{enumerate}
@@ -292,15 +287,13 @@ Michel--like hits based on the output of the Michel electron score from the CNN
 with a threshold of 0.9. In the case of a tie the Michel electron candidate with
 the most hits is chosen.
 
-The fourth step is the final decision, if the best Michel electron candidate is
-made up of more than 80 \% of Michel--like hits then it is selected as a
-Michel electron candidate.
-
-Based on this algorithm Michel electron events are selected with over
-\mccorrect{TODO \%} purity and \mccorrect{TODO \%} efficiency in \protodune{}
-simulation. Figure \ref{fig:michel_like_frac} shows a comparison of the fraction of Michel--like
-hits for the best Michel electron candidate in \protodune{} data and simulation.
-\mccorrect{TODO, analysis and figure}.
+The fourth step is the final decision, which is based on the fraction of Michel
+like hits in the best Michel electron candidate. Figure 
+\ref{fig:michel_like_frac} shows a comparison of the fraction of Michel--like 
+hits for the best Michel electron candidate in \protodune{} data and 
+simulation. \mccorrect{TODO, analysis of fig.} Events are selected if the best Michel electron candidate is made 
+up of more than 80 \% of Michel--like hits then it is selected as a Michel 
+electron candidate.
 \begin{figure}
 	\centering
 	% TODO
@@ -311,7 +304,25 @@ hits for the best Michel electron candidate in \protodune{} data and simulation.
 	\label{fig:michel_like_frac}
 \end{figure}
 
-\mccorrect{TODO: Event selection distributions.}
+Based on this algorithm Michel electron events are selected with an average
+purity of \mccorrect{TODO \%} and an average efficiency of \mccorrect{TODO \%} 
+in \protodune{} simulation. Figure \ref{fig:efficiency_v_energy} shows the
+distribution of event selection efficiency and purity as a function on Michel
+electron energy. \mccorrect{TODO, analysis and figure.}
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/eff_v_energy.pdf}
+	\includegraphics[width=\textwidth]{figures/pur_v_energy.pdf}
+	\caption
+	[Purity and efficiency of Michel electron event selection as a function of
+	energy.]
+	{Purity and efficiency of Michel electron event selection as a function of
+	energy.}
+	\label{fig:efficiency_v_energy}
+\end{figure}
+
+\mccorrect{TODO, muon kinematic distributions.}
 
 \section{Michel Electron Energy Reconstruction} \label{ME_R} 
 \begin{mccorrection}
@@ -328,6 +339,98 @@ hits for the best Michel electron candidate in \protodune{} data and simulation.
 	\item Reco geometry variables
 	\end{itemize}
 \end{mccorrection}
+
+To reconstruct the energy of Michel electrons in liquid argon the relevant hits
+must first be selected. Once the hits are selected the ionisation energy
+deposited by each hit is then reconstructed, the reconstructed energy of the 
+Michel electron is the sum of the reconstructed energy of all relevant hits. In
+this section we will detail a hit selection algorithm based on a type of
+convolutional neural network called a U-Net, which returns hit selection maps 
+for the Michel electron energy reconstruction. This algorithm is used to select 
+Michel electron hits with a high purity and efficiency, the resulting 
+reconstructed energy spectrum is used to estimate the energy resolution of 
+\protodune{} for electrons in the tens of MeV range.
+
+A U-Net is a type of convolutional neural network which is designed to perform
+semantic segmentation of images \cite{TODO}. In semantic segmentation the goal
+of the network is to return a map of pixels which correspond to the areas of 
+interest; the output of the network is the same dimension as the input with a 
+one--to--one correspondence between input pixels and output pixels. The
+architecture used for the hit selection algorithm is shown in Fig.
+\ref{fig:unet_arch}. During the first half of the network architecture the
+resolution of the output is decreases, this is analogous to many conventional
+CNN's and during this phase the network learns about the content of the image.
+The second phase of the architecture allows the U-Net to rebuild the locations 
+of different features within the initial image, this is achieved by passing 
+the details of previous layers to the network as the resolution of the output 
+map is slowly increased back to the original resolution \cite{TODO}.
+
+In the Michel electron case, the goal of the network is to return a map of all
+ionisation energy deposits which come from the Michel electron, this includes
+the initial track and any secondary deposits from radiated photons. The inputs
+and outputs are two dimensional images of the location of reconstructed hits
+centered on the selected Michel electron. The amplitude of each input pixel is 
+given by the integrated charge of any reconstructed hits within the pixel. For
+the outputs the pixels have an amplitude of 1 if they contain a Michel electron
+hit, and 0 otherwise. Only data from the collection plane is used because there 
+is a higher signal to noise ratio on these wires. 
+
+Intersection--over--union was used as the loss function for the U-Net. This loss
+is defined as 
+\begin{equation}
+	\mbox{IOU}(A, B) = \frac{|A \cap B|}{|A \cup B|}
+\end{equation}
+where $A$ is the set of all selected hits, and $B$ is the set of all true hits.
+This loss rewards the network for selecting as many correct hits as possible
+(high intersection), while penalising it for selecting more hits than it needs
+to (high union). The IOU score lies between 0 and 1, with a score of 1
+corresponding to a perfect match between the two sets and therefore perfect hit
+tagging in our Michel electron case.
+
+Details of the training, validation, and testing samples are given in Table
+\ref{tab:unet_train}. \mccorrect{TODO, discuss sample sizes.}
+\begin{table}
+	\centering
+	\begin{tabular}{c|c}
+		Patch Type & Sample Size \\ \hline
+		Training   & TODO \\
+		Validation & TODO \\
+		Test       & TODO    
+	\end{tabular}
+	\caption
+	[Number of training, validation, and loss samples in U-Net data.]
+	{Number of training, validation, and loss samples in U-Net data.}
+	\label{tab:unet_train}
+\end{table}
+
+As with the hit tagging CNN from the previous chapter, the training and
+validation scores were monitored throughout training using TensorFlow. The
+weights of the network were saved after each epoch, and the final weights were
+those from the epoch before the epoch when the validation score first decreased.
+Figure \ref{fig:unet_loss} shows the evolution of the loss over time, along with
+a vertical line representing the loss at which the weights were chosen.
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/unet_loss.pdf}
+	\caption
+	[U-Net training and validation loss as a function of epoch.]
+	{U-Net training and validation loss as a function of epoch.}
+	\label{fig:unet_loss}
+\end{figure}
+
+Figure \ref{fig:unet_example} shows an example of the input, true output, and
+prediction of the U-Net for an event from \protodune{} simulation.
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/unet_example.pdf}
+	\caption
+	[Example input, true output, and prediction images for U-Net.]
+	{Example input, true output, and prediction images for U-Net. Left: Input
+	image. Top Right: True Output. Bottom Right: U-Net Prediction.}
+	\label{fig:unet_example}
+\end{figure}
 
 \section{Energy Uncertainty for Michel Electrons} \label{ME_EU}
 \begin{mccorrection}
