@@ -493,3 +493,6 @@
 
 % bold maths
 \usepackage{amsmath}
+
+% figure placement 
+\usepackage{float}

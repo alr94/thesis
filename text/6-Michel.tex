@@ -61,9 +61,10 @@ neither track--like or shower--like. Low--energy electrons therefore require
 unique reconstruction algorithms to maximise the overall reconstruction 
 performance. This chapter will discuss an approach to low--energy electron
 reconstruction in LArTPC detectors based on the use of convolutional neural
-networks and semantic segmentation. Michel electron events from \protodune{} will
-be used to test the performance of this technique and to provide an estimate of
-the energy uncertainty of LArTPC detectors for low--energy electrons.
+networks and semantic segmentation. Michel electron events from \protodune{} 
+will be used to test the performance of this technique and to provide an 
+estimate of the energy uncertainty of LArTPC detectors for low--energy 
+electrons.
 
 \mccorrect{Chapter outline.}
 
@@ -96,18 +97,18 @@ spectrum is a combination of the two processes in roughly equal quantities.
 	\label{fig:michel_spec}
 \end{figure}
 
-\begin{mccorrection}
-	Electron and photon energy loss 
-	\begin{itemize}
-	\item Ionisation to radiative transition
-	\item Event signature
-	\item Example event
-	\item Photon radiation length
-	\item Photon spectrum
-	\item Photon multiplicity
-	\item Fractional energy loss vs energy
-	\end{itemize}
-\end{mccorrection}
+% \begin{mccorrection}
+% 	Electron and photon energy loss 
+% 	\begin{itemize}
+% 	\item Ionisation to radiative transition
+% 	\item Event signature
+% 	\item Example event
+% 	\item Photon radiation length
+% 	\item Photon spectrum
+% 	\item Photon multiplicity
+% 	\item Fractional energy loss vs energy
+% 	\end{itemize}
+% \end{mccorrection}
 
 As discussed in chapter \ref{ch:4-energyloss}, the energy loss for electrons in
 liquid argon passes from an ionisation dominated regime to a radiation dominated
@@ -163,15 +164,15 @@ events.
 
 \mccorrect{Paragraph + figure on fraction of energy lost to radiation.}
 
-\begin{mccorrection}
-	Impact on event geometry and energy reco
-	\begin{itemize}
-	\item Track only ionisation
-	\item Geometry of radiation
-	\item 40cm ionisation 
-	\item Need to collect radiative photons
-	\end{itemize}
-\end{mccorrection}
+% \begin{mccorrection}
+% 	Impact on event geometry and energy reco
+% 	\begin{itemize}
+% 	\item Track only ionisation
+% 	\item Geometry of radiation
+% 	\item 40cm ionisation 
+% 	\item Need to collect radiative photons
+% 	\end{itemize}
+% \end{mccorrection}
 
 The energy which is lost into radiated photons is only visible once the photons
 interact in the argon to produce secondary electrons which then ionise the
@@ -242,14 +243,14 @@ to tackle this problem, and it's application on Michel electron events in
 \protodune{} data.
 
 \section{Michel Electron Event Selection} \label{ME_ES}
-\begin{mccorrection}
-	\begin{itemize}
-	\item Michel hit tagging CNN
-	\item Hit tagging + clustering explanation
-	\item Algorithm performance: purity and efficiency
-	\item Data v MC event selection distributions
-	\end{itemize}
-\end{mccorrection}
+% \begin{mccorrection}
+% 	\begin{itemize}
+% 	\item Michel hit tagging CNN
+% 	\item Hit tagging + clustering explanation
+% 	\item Algorithm performance: purity and efficiency
+% 	\item Data v MC event selection distributions
+% 	\end{itemize}
+% \end{mccorrection}
 
 In order to select Michel electrons in \protodune{} data, an event selection
 algorithm was developed based on combining the results from the hit tagging CNN 
@@ -325,20 +326,20 @@ electron energy. \mccorrect{TODO, analysis and figure.}
 \mccorrect{TODO, muon kinematic distributions.}
 
 \section{Michel Electron Energy Reconstruction} \label{ME_R} 
-\begin{mccorrection}
-	\begin{itemize} 
-	\item U-Nets and semantic segmentation
-	\item Algorithm outline
-	\item Details of my U-Net
-	\item Architecture plot
-	\item Map examples
-	\item Data v MC score distribution
-	\item Reco spectrum
-	\item NHits
-	\item Energy per hit
-	\item Reco geometry variables
-	\end{itemize}
-\end{mccorrection}
+% \begin{mccorrection}
+% 	\begin{itemize} 
+% 	\item U-Nets and semantic segmentation
+% 	\item Algorithm outline
+% 	\item Details of my U-Net
+% 	\item Architecture plot
+% 	\item Map examples
+% 	\item Data v MC score distribution
+% 	\item Reco spectrum
+% 	\item NHits
+% 	\item Energy per hit
+% 	\item Reco geometry variables
+% 	\end{itemize}
+% \end{mccorrection}
 
 To reconstruct the energy of Michel electrons in liquid argon the relevant hits
 must first be selected. Once the hits are selected the ionisation energy
@@ -350,6 +351,8 @@ for the Michel electron energy reconstruction. This algorithm is used to select
 Michel electron hits with a high purity and efficiency, the resulting 
 reconstructed energy spectrum is used to estimate the energy resolution of 
 \protodune{} for electrons in the tens of MeV range.
+
+\subsection{Michel Electron Hit Tagging with U-Nets}
 
 A U-Net is a type of convolutional neural network which is designed to perform
 semantic segmentation of images \cite{TODO}. In semantic segmentation the goal
@@ -433,8 +436,9 @@ a vertical line representing the loss at which the weights were chosen.
 	\label{fig:unet_loss}
 \end{figure}
 
-Figure \ref{fig:unet_example} shows an example of the input, true output, and
-prediction of the U-Net for an event from \protodune{} simulation.
+A demonstration of the output of the U-Net is given in Figure 
+\ref{fig:unet_example} which shows the input, output, and truth images for an 
+event from \protodune{} simulation.
 \begin{figure}
 	\centering
 	% TODO
@@ -444,6 +448,140 @@ prediction of the U-Net for an event from \protodune{} simulation.
 	{Example input, true output, and prediction images for U-Net. Left: Input
 	image. Top Right: True Output. Bottom Right: U-Net Prediction.}
 	\label{fig:unet_example}
+\end{figure}
+
+The network produces a sharply peaked output distribution in both data and
+simulation as seen in Figure \ref{fig:unet_pred_data}, which shows sharp peaks
+in the distribution at 0 and 1. The distribution has slightly sharper peaks in 
+simulation as with seen with the hit tagging CNN from the previous chapter, this
+is unsurprising due to the fact that the simulation does not perfectly match the
+data. \mccorrect{TODO. Is there a good way to mitigate this?}
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/unet_pred_data.png}
+	\caption
+	[U-Net Predicted Distribution.]
+	{U-Net Predicted Distribution.}
+	\label{fig:unet_pred_data}
+\end{figure}
+
+
+\subsection{Michel Electron Reconstruction}
+
+Michel electron reconstruction was evaluated on a dataset which was part of the 
+same batch of simulation as the training, test, and validation data, but
+distinct from all of them. 
+
+\subsubsection{Ionisation Energy Reconstruction}
+
+The total ionisation energy is reconstructed by summing the hit--by--hit
+ionisation energy for all hits selected by the U-Net. The ionisation energy for
+each hit is reconstructed from the hit integral in ADC as 
+\begin{equation}
+	E_{hit} = \frac{I_{hit} \times C_X \times C_{YZ} \times N \times W_{ion}}{C \times R}\mbox{,}
+\end{equation}
+where $E_{hit}$ is the reconstructed hit energy in MeV, $I_{hit}$ is the
+integrated hit charge in ADC, $C_X$ is the X--correction factor which is
+dependent on the X coordinate of the hit within the TPC, $C_{YZ}$ is the 
+YZ--correction factor which is dependent on the Y and Z coordinates 
+of the hit within the TPC, $N$ is a dimensionless normalisation factor which
+normalises the data and MC distributions to give the same magnitude, $W_{ion}$
+is the ionisation energy of argon in MeV per electron, $C$ is a constant
+conversion factor which has units ADC per electron, and $R$ is the
+recombination factor. 
+
+The position dependent calibration matrices correct for non-uniformity in the
+detector response across the TPC. In the X direction the main contributing
+factors are attenuation due to electron absorption, and variations in the
+electron drift velocity due to space charge effects. The main contributing
+factor for the YZ--correction matrix is wire--to--wire response variations.
+
+As discussed in chapter \ref{ch:4-energyloss} the recombination factor is a
+$\frac{dE}{dx}$ dependent factor which depends on the conditions in the liquid
+argon. Due to the shortness of Michel electron tracks and the other charge 
+deposits it is challenging to assign $\frac{dE}{dx}$ on a hit--by--hit 
+basis for this sample, therefore, an average recombination factor is used for 
+all hits. The recombination factor is calculated using the box model 
+\cite{TODO} under \protodune{} operating conditions to be 0.69.
+
+Figure \ref{fig:hit_ion_reco} shows the distribution of reconstructed hit
+energies in \protodune{} data and simulation. 
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/hit_ion_reco.png}
+	\caption
+	[Reconstructed Hit Ionisation Energy]
+	{Reconstructed Hit Ionisation Energy}
+	\label{fig:hit_ion_reco}
+\end{figure}
+
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/michel_ion_reco.png}
+	\caption
+	[Reconstructed Michel Electron Ionisation Energy]
+	{Reconstructed Michel Electron Ionisation Energy}
+	\label{fig:michel_ion_reco}
+\end{figure}
+
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/ion_per_hit.png}
+	\caption
+	[Average Ionisation Energy per Hit]
+	{Average Ionisation Energy per Hit}
+	\label{fig:ion_per_hit}
+\end{figure}
+
+\subsubsection{Michel Electron Energy Reconstruction}
+
+\subsection{Reconstruction Performance}
+
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/unet_pred.png}
+	\caption
+	[U-Net output distribution.]
+	{U-Net output distribution.}
+	\label{fig:unet_pred}
+\end{figure}
+
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.png}
+	\caption
+	[U-Net purity vs completeness.]
+	{U-Net purity vs completeness.}
+	\label{fig:unet_pur_comp}
+\end{figure}
+
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/reco_v_ion.png}
+	\includegraphics[width=\textwidth]{figures/reco_v_ion_delta.png}
+	\caption
+	[Reconstucted Ionisation vs True Ionisation.]
+	{Reconstucted Ionisation vs True Ionisation.}
+	\label{fig:reco_v_ion}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/reco_v_mich.png}
+	\includegraphics[width=\textwidth]{figures/reco_v_mich_delta.png}
+	\caption
+	[Reconstucted Energy vs True Michel Electron Energy.]
+	{Reconstucted Energy vs True Michel Electron Energy.}
+	\label{fig:reco_v_mich}
 \end{figure}
 
 \section{Energy Uncertainty for Michel Electrons} \label{ME_EU}
