@@ -88,7 +88,7 @@ spectrum is a combination of the two processes in roughly equal quantities.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/michel_spectra.pdf}
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/michel_spectra.pdf}
 	\caption
 	[Michel electron energy spectra in Liquid Argon]
 	{Michel electron energy spectra in liquid argon. (a) free muons. (b) muon 
@@ -226,7 +226,7 @@ vertex. The average energy recovered is increased from \mccorrect{TODO \%} to
 \begin{figure}
 	\centering
 	% TODO
-	\includegraphics[width=\textwidth]{figures/frac_v_radius.pdf}
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/frac_v_radius.pdf}
 	\caption
 	[Fraction of Michel electron energy collected vs collection radius.]
 	{Fraction of Michel electron energy collected vs collection radius.}
@@ -297,7 +297,7 @@ electron candidate.
 \begin{figure}
 	\centering
 	% TODO
-	\includegraphics[width=\textwidth]{figures/michel_like_frac.pdf}
+	\includegraphics[width=\textwidth]{figures/michel_like_frac.png}
 	\caption
 	[Fraction of Michel--like hits in the best Michel electron candidate.]
 	{Fraction of Michel--like hits in the best Michel electron candidate.}
@@ -312,8 +312,8 @@ electron energy. \mccorrect{TODO, analysis and figure.}
 \begin{figure}
 	\centering
 	% TODO
-	\includegraphics[width=\textwidth]{figures/eff_v_energy.pdf}
-	\includegraphics[width=\textwidth]{figures/pur_v_energy.pdf}
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
+	\includegraphics[width=\textwidth]{figures/MC_purity_v_energy.png}
 	\caption
 	[Purity and efficiency of Michel electron event selection as a function of
 	energy.]
@@ -363,7 +363,7 @@ CNN's and during this phase the network learns about the content of the image.
 The second phase of the architecture allows the U-Net to rebuild the locations 
 of different features within the initial image, this is achieved by passing 
 the details of previous layers to the network as the resolution of the output 
-map is slowly increased back to the original resolution \cite{TODO}.
+map is slowly increased back to the original resolution \cite{TODO}. 
 
 In the Michel electron case, the goal of the network is to return a map of all
 ionisation energy deposits which come from the Michel electron, this includes
@@ -386,6 +386,20 @@ This loss rewards the network for selecting as many correct hits as possible
 to (high union). The IOU score lies between 0 and 1, with a score of 1
 corresponding to a perfect match between the two sets and therefore perfect hit
 tagging in our Michel electron case.
+
+The network architecture used for the Michel electron reconstruction is shown in
+Figure \ref{fig:unet_arch}. \mccorrect{Description}. As with the hit tagging CNN
+from the previous chapter, both dropout and early--stopping are implemented to
+prevent over--fitting.
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/unet_arch.png}
+	\caption
+	[CNN architecture used to select ionisation energy deposits.]
+	{CNN architecture used to select ionisation energy deposits.}
+	\label{fig:unet_arch}
+\end{figure}
 
 Details of the training, validation, and testing samples are given in Table
 \ref{tab:unet_train}. \mccorrect{TODO, discuss sample sizes.}
@@ -412,7 +426,7 @@ a vertical line representing the loss at which the weights were chosen.
 \begin{figure}
 	\centering
 	% TODO
-	\includegraphics[width=\textwidth]{figures/unet_loss.pdf}
+	\includegraphics[width=\textwidth]{figures/unet_loss.png}
 	\caption
 	[U-Net training and validation loss as a function of epoch.]
 	{U-Net training and validation loss as a function of epoch.}
@@ -435,8 +449,8 @@ prediction of the U-Net for an event from \protodune{} simulation.
 \section{Energy Uncertainty for Michel Electrons} \label{ME_EU}
 \begin{mccorrection}
 	\begin{itemize}
-	\item Reco energy scaling
-	\item Uncertainty vs energy
-	\item Differences in dune far detector
+		\item Reco energy scaling
+		\item Uncertainty vs energy
+		\item Differences in dune far detector
 	\end{itemize}
 \end{mccorrection}
