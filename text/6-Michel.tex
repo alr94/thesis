@@ -89,6 +89,7 @@ spectrum is a combination of the two processes in roughly equal quantities.
 
 \begin{figure}
 	\centering
+	% TODO
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/michel_spectra.pdf}
 	\caption
 	[Michel electron energy spectra in Liquid Argon]
@@ -122,6 +123,7 @@ features.
 
 \begin{figure}
 	\centering
+	% TODO
 	\includegraphics[width=\textwidth]{figures/michel_candidate.pdf}
 	\caption
 	[Michel electron candidate event from ProtoDUNE--SP data.]
@@ -182,6 +184,7 @@ distribution of secondary electrons is shown in Fig. \ref{fig:photon_geom}.
 \mccorrect{TODO, analysis.}
 \begin{figure}
 	\centering
+	% TODO
 	\includegraphics[width=\textwidth]{figures/photon_geom.pdf}
 	\caption
 	[Spatial distribution of radiated ionisation deposits.]
@@ -226,7 +229,7 @@ vertex. The average energy recovered is increased from \mccorrect{TODO \%} to
 \mccorrect{TODO, figure and paragraph for energy fraction vs radius.}
 \begin{figure}
 	\centering
-	% TODO
+	% TODO: Make this plot.
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/frac_v_radius.pdf}
 	\caption
 	[Fraction of Michel electron energy collected vs collection radius.]
@@ -297,7 +300,7 @@ up of more than 80 \% of Michel--like hits then it is selected as a Michel
 electron candidate.
 \begin{figure}
 	\centering
-	% TODO
+	% TODO: Remake this plot
 	\includegraphics[width=\textwidth]{figures/michel_like_frac.png}
 	\caption
 	[Fraction of Michel--like hits in the best Michel electron candidate.]
@@ -312,7 +315,7 @@ distribution of event selection efficiency and purity as a function on Michel
 electron energy. \mccorrect{TODO, analysis and figure.}
 \begin{figure}
 	\centering
-	% TODO
+	% TODO: Remake these plots.
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
 	\includegraphics[width=\textwidth]{figures/MC_purity_v_energy.png}
 	\caption
@@ -396,7 +399,7 @@ from the previous chapter, both dropout and early--stopping are implemented to
 prevent over--fitting.
 \begin{figure}
 	\centering
-	% TODO
+	% TODO: Make this plot.
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/unet_arch.png}
 	\caption
 	[CNN architecture used to select ionisation energy deposits.]
@@ -404,21 +407,23 @@ prevent over--fitting.
 	\label{fig:unet_arch}
 \end{figure}
 
-Details of the training, validation, and testing samples are given in Table
-\ref{tab:unet_train}. \mccorrect{TODO, discuss sample sizes.}
-\begin{table}
+The datasets for the training process were generated from a full simulation of 
+the \protodune{} detector under beam operation including both cosmic ray and
+beam particles. The images produced contain the location and integrated charge
+for each hit within the image window, the number of hits included in each image
+is shown in figure \ref{fig:n_hits_image} alongside the same distribution for
+data. \mccorrect{The peak in hits at 100 corresponds to ... TODO}. The training 
+data is split into training, test, and validation sets in the ratio 80:10:10. In
+total around 40,000,000 images were generated.
+\begin{figure}
 	\centering
-	\begin{tabular}{c|c}
-		Patch Type & Sample Size \\ \hline
-		Training   & TODO \\
-		Validation & TODO \\
-		Test       & TODO    
-	\end{tabular}
+	% TODO: Make this plot.
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/n_hits_image.png}
 	\caption
-	[Number of training, validation, and loss samples in U-Net data.]
-	{Number of training, validation, and loss samples in U-Net data.}
-	\label{tab:unet_train}
-\end{table}
+	[Number of hits in image.]
+	{Number of hits in image.}
+	\label{fig:n_hits_image}
+\end{figure}
 
 As with the hit tagging CNN from the previous chapter, the training and
 validation scores were monitored throughout training using TensorFlow. The
@@ -450,7 +455,15 @@ event from \protodune{} simulation.
 	\label{fig:unet_example}
 \end{figure}
 
-The network produces a sharply peaked output distribution in both data and
+\subsection{Michel Electron Reconstruction}
+
+Michel electron reconstruction was evaluated on a dataset which was part of the 
+same batch of simulation as the training, test, and validation data, but
+distinct from all of them. 
+
+\subsubsection{Hit Selection}
+
+The U-Net produces a sharply peaked output distribution in both data and
 simulation as seen in Figure \ref{fig:unet_pred_data}, which shows sharp peaks
 in the distribution at 0 and 1. The distribution has slightly sharper peaks in 
 simulation as with seen with the hit tagging CNN from the previous chapter, this
@@ -466,12 +479,20 @@ data. \mccorrect{TODO. Is there a good way to mitigate this?}
 	\label{fig:unet_pred_data}
 \end{figure}
 
-
-\subsection{Michel Electron Reconstruction}
-
-Michel electron reconstruction was evaluated on a dataset which was part of the 
-same batch of simulation as the training, test, and validation data, but
-distinct from all of them. 
+Hits from the input images are selected as Michel electron hits if their score
+exceed a selection threshold of 0.9. The number of hits selected per event for
+data and simulation is shown in figure \ref{fig:mich_n_hits}. Around 10 hits are
+selected on average per event, with a slightly larger spread in data than in
+simulation.
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/mich_n_hits.png}
+	\caption
+	[Number of hits in Michel electron events.]
+	{Number of hits in Michel electron events.}
+	\label{fig:mich_n_hits}
+\end{figure}
 
 \subsubsection{Ionisation Energy Reconstruction}
 
@@ -489,7 +510,8 @@ of the hit within the TPC, $N$ is a dimensionless normalisation factor which
 normalises the data and MC distributions to give the same magnitude, $W_{ion}$
 is the ionisation energy of argon in MeV per electron, $C$ is a constant
 conversion factor which has units ADC per electron, and $R$ is the
-recombination factor. 
+recombination factor. The distribution of reconstructed hit energies in
+\protodune{} data and simulation is shown in Figure \ref{fig:hit_ion_reco}.
 
 The position dependent calibration matrices correct for non-uniformity in the
 detector response across the TPC. In the X direction the main contributing
@@ -505,8 +527,6 @@ basis for this sample, therefore, an average recombination factor is used for
 all hits. The recombination factor is calculated using the box model 
 \cite{TODO} under \protodune{} operating conditions to be 0.69.
 
-Figure \ref{fig:hit_ion_reco} shows the distribution of reconstructed hit
-energies in \protodune{} data and simulation. 
 \begin{figure}
 	\centering
 	% TODO
@@ -517,6 +537,10 @@ energies in \protodune{} data and simulation.
 	\label{fig:hit_ion_reco}
 \end{figure}
 
+The reconstructed ionisation energy spectrum from Michel electron candidates is
+shown in Figure \ref{fig:michel_ion_reco} along with the average ionisation
+energy per hit. The distribution peaks at around 18 MeV and has a tail up to 
+just under 50 MeV.
 \begin{figure}
 	\centering
 	% TODO
@@ -527,17 +551,34 @@ energies in \protodune{} data and simulation.
 	\label{fig:michel_ion_reco}
 \end{figure}
 
+\subsubsection{Michel Electron Energy Reconstruction}
+
+The true Michel electron energy includes contributions from scintillation light
+as well as radiated ionisation energy which is not contained within the images
+used in reconstruction. To estimate the total Michel electron energy the
+reconstructed ionisation energy needs to be scaled to account for these losses.
+As shown in Figure \ref{fig:michel_track_only} there is a none--linear
+correlation between the true Michel electron energy and the available ionisation
+energy in reconstruction, therefore, a quadratic energy scaling factor was used
+to convert the reconstructed ionisation energy into a reconstructed Michel
+electron energy. 
+
+The energy scaling factor was estimated by fitting the reconstructed ionisation
+energy as a function of true Michel electron energy in \protodune{} simulation
+with a quadratic correction as shown in Figure \ref{fig:quadratic_fit}. This 
+equation is then inverted to give the reconstructed Michel electron energy for a
+given reconstructed ionisation energy.
 \begin{figure}
 	\centering
 	% TODO
-	\includegraphics[width=\textwidth]{figures/ion_per_hit.png}
+	\includegraphics[width=\textwidth]{figures/reco_v_true.png}
 	\caption
-	[Average Ionisation Energy per Hit]
-	{Average Ionisation Energy per Hit}
-	\label{fig:ion_per_hit}
+	[Quadratic Energy Scale Factor.]
+	{Quadratic Energy Scale Factor.}
+	\label{fig:quadratic_fit}
 \end{figure}
 
-\subsubsection{Michel Electron Energy Reconstruction}
+FIXME.
 
 \subsection{Reconstruction Performance}
 
