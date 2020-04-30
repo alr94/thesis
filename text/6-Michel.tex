@@ -394,9 +394,15 @@ corresponding to a perfect match between the two sets and therefore perfect hit
 tagging in our Michel electron case.
 
 The network architecture used for the Michel electron reconstruction is shown in
-Figure \ref{fig:unet_arch}. \mccorrect{Description}. As with the hit tagging CNN
-from the previous chapter, both dropout and early--stopping are implemented to
-prevent over--fitting.
+Figure \ref{fig:unet_arch}. The network consists of a repeating structure which
+contains the following key components:
+\begin{itemize}
+	\item Convolutional layers in the form of inception units.
+	\item Pooling layers for downscaling.
+	\item Residual connections and up--sampling.
+\end{itemize}
+FIXME. \mccorrect{Description}. As with the hit tagging CNN from the previous chapter, 
+both dropout and early--stopping are implemented to prevent over--fitting.
 \begin{figure}
 	\centering
 	% TODO: Make this plot.
@@ -410,20 +416,9 @@ prevent over--fitting.
 The datasets for the training process were generated from a full simulation of 
 the \protodune{} detector under beam operation including both cosmic ray and
 beam particles. The images produced contain the location and integrated charge
-for each hit within the image window, the number of hits included in each image
-is shown in figure \ref{fig:n_hits_image} alongside the same distribution for
-data. \mccorrect{The peak in hits at 100 corresponds to ... TODO}. The training 
-data is split into training, test, and validation sets in the ratio 80:10:10. In
-total around 40,000,000 images were generated.
-\begin{figure}
-	\centering
-	% TODO: Make this plot.
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/n_hits_image.png}
-	\caption
-	[Number of hits in image.]
-	{Number of hits in image.}
-	\label{fig:n_hits_image}
-\end{figure}
+for each hit within the image window. The training data is split into training, 
+test, and validation sets in the ratio 80:10:10. In total around 40,000,000 
+images were generated for the training stage.
 
 As with the hit tagging CNN from the previous chapter, the training and
 validation scores were monitored throughout training using TensorFlow. The
@@ -494,6 +489,51 @@ simulation.
 	\label{fig:mich_n_hits}
 \end{figure}
 
+The performance of the hit tagging algorithm was analysed with the simulated
+sample. The U-Net output distribution for true Michel electron hits and falsely
+tagged hits is shown in Figure \ref{fig:unet_pred}, along with a ratio of the
+true and false hits as a function of energy. The ratio shows a strong
+separation between true hits and false hits, which appear at high scores and low
+scores respectively.
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/unet_pred.pdf}
+	\caption
+	[U-Net output distribution.]
+	{U-Net output distribution.}
+	\label{fig:unet_pred}
+\end{figure}
+
+Based on the score distributions for true and false hits the precision and
+completeness of the hit tagging algorithm can be evaluated. The precision and
+completeness are defined as 
+\begin{align}
+	\mbox{Precision} \quad &= \quad  \frac{N_{TP}}{N_{TP} + N_{FP}} \\
+	\vspace{2mm}
+	\mbox{Completeness} \quad &= \quad \frac{N_{TP}}{N_{TP} + N_{FN}}
+\end{align}
+where $N_{TP}$, $N_{FP}$, and $N_{FN}$ are the number of true--positive,
+false--positive, and false--negative hits respectively. These parameters give a
+quantitative evaluation of the performance of the hit tagging algorithm,
+allowing for comparison between different algorithms. The purity and
+completeness of the hit tagging was calculated for a range of selection
+thresholds in the range $[10^{-7}, 1 - 10^{-7}]$, Figure \ref{fig:unet_pur_comp}
+shows the purity against completeness for the values in this range. The hit
+tagging algorithm produces a high precision and completeness throughout range of
+thresholds, however the steepness of the distributions means that the choice of
+threshold makes little difference to the performance meaning that little can be
+done to optimise the performance by varying the threshold.
+\begin{figure}
+	\centering
+	% TODO
+	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.pdf}
+	\caption
+	[U-Net purity vs completeness.]
+	{U-Net purity vs completeness.}
+	\label{fig:unet_pur_comp}
+\end{figure}
+
 \subsubsection{Ionisation Energy Reconstruction}
 
 The total ionisation energy is reconstructed by summing the hit--by--hit
@@ -551,6 +591,19 @@ just under 50 MeV.
 	\label{fig:michel_ion_reco}
 \end{figure}
 
+\mccorrect{TODO: analysis of ionisation reconstruction performance.}
+
+\begin{figure}
+	\centering
+	% TODO: Fix these images
+	\includegraphics[width=\textwidth]{figures/reco_v_ion.png}
+	\includegraphics[width=\textwidth]{figures/reco_v_ion_delta.png}
+	\caption
+	[Reconstucted Ionisation vs True Ionisation.]
+	{Reconstucted Ionisation vs True Ionisation.}
+	\label{fig:reco_v_ion}
+\end{figure}
+
 \subsubsection{Michel Electron Energy Reconstruction}
 
 The true Michel electron energy includes contributions from scintillation light
@@ -566,8 +619,13 @@ electron energy.
 The energy scaling factor was estimated by fitting the reconstructed ionisation
 energy as a function of true Michel electron energy in \protodune{} simulation
 with a quadratic correction as shown in Figure \ref{fig:quadratic_fit}. This 
-equation is then inverted to give the reconstructed Michel electron energy for a
-given reconstructed ionisation energy.
+quadratic is then inverted to give the reconstructed Michel electron energy for 
+a given reconstructed ionisation energy, the reconstructed energy distribution
+is shown in Figure \ref{fig:michel_energy_reco} alongside the true Michel
+electron energy distribution from the simulation. There is a large difference in
+the shape of the two distributions, this is due to the large and broad
+distribution of energy lost to photons.
+
 \begin{figure}
 	\centering
 	% TODO
@@ -578,41 +636,7 @@ given reconstructed ionisation energy.
 	\label{fig:quadratic_fit}
 \end{figure}
 
-FIXME.
-
-\subsection{Reconstruction Performance}
-
-\begin{figure}
-	\centering
-	% TODO
-	\includegraphics[width=\textwidth]{figures/unet_pred.png}
-	\caption
-	[U-Net output distribution.]
-	{U-Net output distribution.}
-	\label{fig:unet_pred}
-\end{figure}
-
-\begin{figure}
-	\centering
-	% TODO
-	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.png}
-	\caption
-	[U-Net purity vs completeness.]
-	{U-Net purity vs completeness.}
-	\label{fig:unet_pur_comp}
-\end{figure}
-
-\begin{figure}
-	\centering
-	% TODO
-	\includegraphics[width=\textwidth]{figures/reco_v_ion.png}
-	\includegraphics[width=\textwidth]{figures/reco_v_ion_delta.png}
-	\caption
-	[Reconstucted Ionisation vs True Ionisation.]
-	{Reconstucted Ionisation vs True Ionisation.}
-	\label{fig:reco_v_ion}
-\end{figure}
-
+\mccorrect{TODO: analysis of michel energy reconstruction performance.}
 
 \begin{figure}
 	\centering
@@ -625,7 +649,7 @@ FIXME.
 	\label{fig:reco_v_mich}
 \end{figure}
 
-\section{Energy Uncertainty for Michel Electrons} \label{ME_EU}
+\section{Discussion} \label{ME_EU}
 \begin{mccorrection}
 	\begin{itemize}
 		\item Reco energy scaling
