@@ -1,0 +1,17 @@
+\documentclass[tikz]{standalone}
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\begin{document}
+
+	\feynmandiagram[vertical=a to b, small, xscale=1.5] {
+	i1 [particle=\( \nu_e \)] 
+	   -- [fermion] a 
+	   -- [fermion]3 [particle=\( e^- \)],
+	a -- [photon, edge label=\(W\)] b,
+	i2 [particle=\( e^- \)] 
+	   -- [fermion] b 
+	   -- [fermion] f2 [particle=\( \nu_e
+	\)]
+	};
+
+\end{document}

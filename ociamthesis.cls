@@ -496,3 +496,24 @@
 
 % figure placement 
 \usepackage{float}
+
+% feynman
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+% subfigures
+\usepackage{subcaption}
+
+% fill to page end
+\usepackage{zref-savepos,graphicx}
+\usepackage{lipsum}
+
+% \filltopageendgraphics[<options>]{<file>}
+\newcommand{\filltopageendgraphics}[2][]{%
+	\par
+	\zsaveposy{top-\thepage}% Mark (baseline of) top of image
+	\vfill
+	\zsaveposy{bottom-\thepage}% Mark (baseline of) bottom of image
+	\smash{\includegraphics[height=\dimexpr\zposy{top-\thepage}sp-\zposy{bottom-\thepage}sp\relax,#1]{#2}}%
+	\par
+}
+

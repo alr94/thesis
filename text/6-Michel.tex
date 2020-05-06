@@ -149,19 +149,31 @@ events.
 
 \begin{figure}
 	% TODO: split into 2 figures
+
 	\centering
-	\includegraphics[width=\textwidth]{figures/photon_spec.pdf}
-	\newline
-	\includegraphics[width=\textwidth]{figures/photon_mult.pdf}
+
+	\begin{subfigure}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{figures/photon_spec.pdf}
+		\caption[Photon energy spectrum.]{Photon energy spectrum.}
+		\label{fig:photon_spec}
+	\end{subfigure}
+
+	\vspace{5mm}
+
+	\begin{subfigure}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{figures/photon_mult.pdf}
+		\caption[Photon multiplicity.]{Photon multiplicity as a function of true
+		Michel electron energy.}
+		\label{fig:photon_mult}
+	\end{subfigure}
+
 	\caption
-	[Energy spectrum and multiplicity of radiated photons from Michel electron 
-	events.]
-	{Energy spectrum  and multiplicity of radiated photons from Michel electron events in
-	\protodune{} simulation. 
-	(a) Energy spectrum of radiated photons, log scale. 
-	(b) Radiated photon multiplicity vs Michel electron energy. 
-	}
-	\label{fig:photon_spec}
+	[Properties of radiated energy deposits from Michel electrons.]
+	{Properties of radiated energy deposits from Michel electrons in \protodune{}
+	simulation.} 
+
+	\label{fig:photon_prop}
+
 \end{figure}
 
 \mccorrect{Paragraph + figure on fraction of energy lost to radiation.}
@@ -209,18 +221,25 @@ vertex. The average energy recovered is increased from \mccorrect{TODO \%} to
 \begin{figure}
 	\centering
 
-	\begin{subfigure}{\textwidth}
-		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/michel_track_only.pdf}
-		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/track_frac.pdf}
+	\begin{subfigure}[b]{\textwidth}
+		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/michel_track_only.pdf}
+		% \includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/track_frac.pdf}
+		\caption[Initial Michel electron track only.]{Initial Michel electron track only.}
+		\label{fig:track_only}
 	\end{subfigure}
-	\begin{subfigure}{\textwidth}
-		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/cone_reco.pdf}
-		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/cone_frac.pdf}
+
+	\vspace{5mm}
+
+	\begin{subfigure}[b]{\textwidth}
+		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/cone_reco.pdf}
+		% \includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/cone_frac.pdf}
+		\caption[Ionisation withing a 40cm cone at 6 \degree opening angle.]{Ionisation withing a 40cm cone at 6 \degree opening angle.}
+		\label{fig:cone_reco}
 	\end{subfigure}
 
 	\caption
-	[Comparison of track--only ionisation and ionisation within a collection cone.]
-	{Comparison of track--only ionisation and ionisation within a collection cone.}
+	[Available ionisation energy vs true Michel electron energy.]
+	{Available ionisation energy vs true Michel electron energy.}
 
 	\label{fig:michel_track_only}
 
@@ -310,20 +329,33 @@ electron candidate.
 
 Based on this algorithm Michel electron events are selected with an average
 purity of \mccorrect{TODO \%} and an average efficiency of \mccorrect{TODO \%} 
-in \protodune{} simulation. Figure \ref{fig:efficiency_v_energy} shows the
+in \protodune{} simulation. Figure \ref{fig:eff_and_pur} shows the
 distribution of event selection efficiency and purity as a function on Michel
 electron energy. \mccorrect{TODO, analysis and figure.}
 \begin{figure}
 	\centering
 	% TODO: Remake these plots.
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
-	\includegraphics[width=\textwidth]{figures/MC_purity_v_energy.png}
+	\begin{subfigure}[b]{\textwidth}
+		\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
+		\caption[Purity vs True Michel electron energy.]{Purity vs True Michel
+		electron energy.}
+		\label{fig:eff_v_energy}
+	\end{subfigure}
+	\begin{subfigure}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{figures/MC_purity_v_energy.png}
+		\caption[Efficiency vs True Michel electron energy.]{Efficiency vs True Michel
+		electron energy.}
+		\label{fig:pur_v_energy}
+	\end{subfigure}
+
 	\caption
 	[Purity and efficiency of Michel electron event selection as a function of
 	energy.]
 	{Purity and efficiency of Michel electron event selection as a function of
 	energy.}
-	\label{fig:efficiency_v_energy}
+
+	\label{fig:eff_and_pur}
+
 \end{figure}
 
 \mccorrect{TODO, muon kinematic distributions.}
@@ -596,13 +628,37 @@ just under 50 MeV.
 \begin{figure}
 	\centering
 	% TODO: Fix these images
-	\includegraphics[width=\textwidth]{figures/reco_v_ion.png}
-	\includegraphics[width=\textwidth]{figures/reco_v_ion_delta.png}
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/reco_v_ion.png}
 	\caption
 	[Reconstucted Ionisation vs True Ionisation.]
 	{Reconstucted Ionisation vs True Ionisation.}
 	\label{fig:reco_v_ion}
 \end{figure}
+
+\mccorrect{TODO: Energy resolution fits vs energy.}
+
+\begin{figure}
+	\centering
+	% TODO: make set of fits as a function of energy
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/frac_diff_v_ion.png}
+	\caption
+	[Fractional energy difference between reconstructed and true Michel electron
+	energy.]
+	{Fractional energy difference between reconstructed and true Michel electron
+	energy.}
+	\label{fig:frac_diff_ion}
+\end{figure}
+
+\begin{figure}
+	\centering
+	% TODO: make set of fits as a function of energy
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/res_bias_v_ion.png}
+	\caption
+	[Energy resolution and bias as a function of true ionisation energy.]
+	{Energy resolution and bias as a function of true ionisation energy.}
+	\label{fig:res_and_bias_ion}
+\end{figure}
+
 
 \subsubsection{Michel Electron Energy Reconstruction}
 
@@ -620,11 +676,19 @@ The energy scaling factor was estimated by fitting the reconstructed ionisation
 energy as a function of true Michel electron energy in \protodune{} simulation
 with a quadratic correction as shown in Figure \ref{fig:quadratic_fit}. This 
 quadratic is then inverted to give the reconstructed Michel electron energy for 
-a given reconstructed ionisation energy, the reconstructed energy distribution
-is shown in Figure \ref{fig:michel_energy_reco} alongside the true Michel
-electron energy distribution from the simulation. There is a large difference in
-the shape of the two distributions, this is due to the large and broad
-distribution of energy lost to photons.
+a given reconstructed ionisation energy, 
+\begin{equation}
+	E_{michel} = \left( \frac{E_{ion}}{a} - d \right)^{\frac{1}{2}} - \frac{b}{2a},
+	\quad d = \frac{c}{a} - \left( \frac{b}{2a} \right)^2 
+\end{equation}
+where $E_{michel}$ is the reconstructed Michel electron energy, $E_{ion}$ is the
+reconstructed ionisation energy, and a, b, and c are the parameters from the
+quadratic fit. The fit gives
+\begin{align}
+	a &= TODO, \\
+	b &= TODO, \\
+	c &= TODO.
+\end{align}
 
 \begin{figure}
 	\centering
@@ -636,20 +700,62 @@ distribution of energy lost to photons.
 	\label{fig:quadratic_fit}
 \end{figure}
 
-\mccorrect{TODO: analysis of michel energy reconstruction performance.}
-
+The reconstructed Michel electron energy spectrum is shown in Figure
+\ref{fig:reco_v_mich}, alongside the true Michel electron energy spectrum from
+the simulation. There is a significant difference in the shape of the two
+spectra, this is due to the significant energy loss to scintillation and
+radiation that cannot collected in \protodune{} due to challenges in the
+reconstruction. 
 \begin{figure}
 	\centering
-	% TODO
-	\includegraphics[width=\textwidth]{figures/reco_v_mich.png}
-	\includegraphics[width=\textwidth]{figures/reco_v_mich_delta.png}
+	% TODO: make set of fits as a function of energy
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/reco_v_mich.png}
 	\caption
-	[Reconstucted Energy vs True Michel Electron Energy.]
-	{Reconstucted Energy vs True Michel Electron Energy.}
+	[Reconstructed Energy vs True Michel Electron Energy.]
+	{Reconstructed Energy vs True Michel Electron Energy.}
 	\label{fig:reco_v_mich}
 \end{figure}
 
-\section{Discussion} \label{ME_EU}
+\mccorrect{TODO: Energy resolution fits vs energy.}
+
+The energy uncertainty and bias are estimated by fitting the fractional energy 
+difference between the reconstructed and true Michel electron energies as a 
+function of true Michel electron energy. The fractional energy difference, 
+defined as 
+\begin{equation}
+	\Delta = \frac{E_{reco} - E_{true}}{E_{true}},
+\end{equation}
+is considered in bins of true Michel electron energy which are plotted in Figure
+\ref{fig:frac_diff_energy}. This difference is fit with a gaussian distribution in each
+bin in order to estimate the energy uncertainty and bias as a function of the 
+true Michel electron energy.
+\begin{figure}
+	\centering
+	% TODO: make set of fits as a function of energy
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/frac_diff_v_energy.png}
+	\caption
+	[Fractional energy difference between reconstructed and true Michel electron
+	energy.]
+	{Fractional energy difference between reconstructed and true Michel electron
+	energy.}
+	\label{fig:frac_diff_energy}
+\end{figure}
+
+The energy resolution and bias as a function of true Michel electron energy are 
+estimated as the standard deviation and mean of the gaussian fit to the
+fractional energy difference in each energy bin, these values are plotted in
+Figure \ref{fig:res_and_bias_energy}. \mccorrect{TODO: analysis of results}.
+\begin{figure}
+	\centering
+	% TODO: make set of fits as a function of energy
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/res_bias_v_energy.png}
+	\caption
+	[Energy resolution and bias as a function of true Michel electron energy.]
+	{Energy resolution and bias as a function of true Michel electron energy.}
+	\label{fig:res_and_bias_energy}
+\end{figure}
+
+\section{Conclusions} \label{ME_EU}
 \begin{mccorrection}
 	\begin{itemize}
 		\item Reco energy scaling
