@@ -18,15 +18,18 @@
 % duties as an on--site expert at CERN. I expect to be able to complete the rest
 % of the work by the end of December 2019 alongside the other analysis work.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO 
+% image of experiment
+% explain scintialltion process
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: image of experiment? 
+
 \protodune{} is one of two prototypes for the DUNE far detector modules that has
 been operating at the Neutrino Platform at CERN since the summer of 2018. The
 experiment collected data from a charged particle beam for approximately 3 
 months before Long Shutdown 2 of the Large Hadron Collider. Since then a 
 programme of cosmic ray data collection has been ongoing.
 
-% TODO: Chapter outline
 This chapter will outline the technical details of the \protodune{} experiment.
 Section \ref{sec:pdsp_dune} will outline the role of \protodune{} in the context
 of the DUNE experiment. This will be followed by a discussion of the main
@@ -227,10 +230,78 @@ location of the incoming test--beam \cite{TODO}.
 
 \subsection{The Photon Detection System}
 
-In the single--phase far detector modules, the PDS must be embedded in the APA
-frames. This is to maximise the light yield from scintillation, and to increase
-the spacial information from the light by placing the photon detectors close to
-the scintillation source.
+\subsubsection*{The Role of Light in LArTPCs}
+% TODO: talk about scintialltion light production + fast and slow components
+
+The ionisation signals in a LArTPC are slow, it takes charge milliseconds to
+travel from the cathode plane to the anode plane in \protodune{}. In contrast,
+scintillation photons only take on the order of nanoseconds to reach the closest
+anode plane. This scintillation light plays an important role in the accurate 3D
+reconstruction of interactions in the LArTPC, it provides a $t_0$. 
+
+In a LArTPC interactions play out much quicker than the detector is able to 
+record them; as such each event actually integrates over a large number of
+interactions within the readout window, analogous to taking a photograph with a 
+long exposure. The true time, $t_0$, of the interactions in the event cannot be 
+reconstructed from the ionisation signals alone; by utilising the much faster 
+scintillation signals the time of interactions can be calculated with much 
+higher precision, this data can then be used to correct the position offset
+caused in the ionisation signals.
+
+\bigskip
+
+The PDS in \protodune{} is integrated into the APAs. Ten photon detector modules
+ are embedded in each APA frame between the layers of wires on each APA 
+face, as shown in Figure \ref{fig:pdsp_tpc}. Three types of photon detector
+module were tested in \protodune{}, two very similar module designs based on
+wavelength coupling silicon photomultipliers to wavelength shifting bars, and a
+third novel design know as the ARAPUCA light trap.
+
+The majority of the photon detector modules in \protodune{}  consist of 
+wavelength shifting bars coupled to silicon photomultipliers (SiPM). 
+Tetraphenyl-butadiene (TPB) is used to shift the wavelength of the light 
+ultra--violet to blue before the light is transmitted down the waveguide to 
+the SiPMs, as illustrated in Figure \ref{fig:pdsp_pd}. The main difference 
+between the two nominal designs is in the wavelength of transmission within the 
+waveguide; in one case the wavelength is transmitted at the blue wavelength
+produced by the TPB, in the other case the blue light from the TPB is first
+absorbed in the waveguide which then produces green light which is transmitted
+down the waveguide.
+
+A small number \mccorrect{(I think only one.)} of the photon detector modules in
+\protodune{} feature a novel design known as an ARAPUCA light trap. In this
+design the photons are trapped in a small box through a sequence of wavelength
+shifting and optical filtering, significantly increasing the photon detection
+efficiency \cite{Segreto:2018jdx}. 
+
+\mccorrect{Performance of the PD in \protodune{} is discussed in ... TODO.}
+
+
+\begin{figure}
+
+	\centering
+	% TODO: make my own figure.
+
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{figures/TODO.jpg}
+		\caption{Default modules}
+		\label{fig:pd_module}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{figures/TODO.jpg}
+		\caption{ARAPUCA}
+		\label{fig:arapuca_module}
+	\end{subfigure}
+
+	\caption
+	[The operating principle of the \protodune{} photon detector modules.]
+	{The operating principle of the \protodune{} photon detector modules.}
+
+	\label{fig:pdsp_tpc}
+
+\end{figure}
+
 
 \subsection{Cold Electronics and Data Acquisition}
 
