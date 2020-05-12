@@ -19,8 +19,7 @@
 % of the work by the end of December 2019 alongside the other analysis work.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: figure of experiment? 
-% TODO: introductory chapter
+% TODO: image of experiment? 
 \protodune{} is one of two prototypes for the DUNE far detector modules that has
 been operating at the Neutrino Platform at CERN since the summer of 2018. The
 experiment collected data from a charged particle beam for approximately 3 
@@ -33,7 +32,7 @@ Section \ref{sec:pdsp_dune} will outline the role of \protodune{} in the context
 of the DUNE experiment. This will be followed by a discussion of the main
 elements of the experiment, the \protodune{} detector systems and the H4
 beam line, in Sections \ref{sec:pdsp_detector} and \ref{sec:h4} respectively.
-The high event rate in \protodune{} is dominated by a high flux of comsic rays
+The high event rate in \protodune{} is dominated by a high flux of cosmic rays
 which will be discussed in Section \ref{sec:pdsp_cosmic}. Section
 \ref{sec:pdsp_sim_reco} will then discuss the simulation and reconstruction of 
 \protodune{} data. Finally Section \ref{sec:pdsp_om} will cover details of the 
@@ -68,21 +67,21 @@ experiment identifies three primary scientific goals
 \cite{Abi:2020evt}:
 \begin{itemize}
 	\item Perform a comprehensive programme of neutrino oscillation measurements
-	including measurements of \dcp{}, neutrino mass ordering, and the
-	$\theta_{23}$ octant.
+		including measurements of \dcp{}, neutrino mass ordering, and the
+		$\theta_{23}$ octant.
 	\item Search for proton decay in several decay modes.
 	\item Measure $\nu_e$ from a core--collapse supernova if one occurs within our
-	galaxy during the lifetime of the experiment.
+		galaxy during the lifetime of the experiment.
 \end{itemize}
 In addition, the experiment hopes to fulfill a significant programme of
 secondary science goals:
 \begin{itemize}
 	\item Other accelerator based neutrino physics, such as non--standard
-	interactions, sterile neutrinos, and CPT violation.
+		interactions, sterile neutrinos, and CPT violation.
 	\item Measurements of neutrino properties using atmospheric neutrinos.
 	\item Dark matter searches in both the near and far detectors.
 	\item A programme of neutrino interaction physics studies in the DUNE near
-	detector.
+		detector.
 \end{itemize}
 
 To achieve these goals DUNE has opted to base the near and far detector designs
@@ -112,7 +111,7 @@ illustrated in Figure \ref{fig:lartpc}.
 
 	\caption
 	[LArTPC detection principal.]
-	{LArTPC detection principal. Figure from \cite{Acciarri:2016smi}.}
+	{LArTPC detection principal. Figure from \cite{Abi:2020loh}.}
 
 	\label{fig:lartpc}
 
@@ -139,14 +138,14 @@ cathode plane, and photon detectors. The \protodune{} experiment has four
 primary goals, as outlined in the Technical Design Report \cite{Abi2017}:
 \begin{itemize}
 	\item Prototype the production and installation procedures for the
-	single--phase far detector design.
+		single--phase far detector design.
 	\item Validate the design from the perspective of basic detector performance;
-	this can be achieved with cosmic-ray data. 
+		this can be achieved with cosmic-ray data. 
 	\item Accumulate large samples of test-beam data to understand/calibrate the
-	response of the detector to different particle species.
+		response of the detector to different particle species.
 	\item Demonstrate the long-term operational stability of the detector as part
-	of the risk mitigation program ahead of the construction of the first 10 kt
-	far detector module.
+		of the risk mitigation program ahead of the construction of the first 10 kt
+		far detector module.
 \end{itemize}
 As such, \protodune{} represents a significant milestone in the development of
 the far detector for the DUNE experiment. Its successful operation, both in a 
@@ -157,25 +156,90 @@ detector.
 \section{The \protodune{} Detector} \label{sec:pdsp_detector}
 
 The \protodune{} detector is located at the Neutrino Platform at CERN along the
-H4 beamline. It is a single--phase LArTPC detector with a total liquid argon 
-mass of 0.77 kt, making it the largest single--phase liquid argon TPC built to 
-date. 
+H4 beam line. It is a single--phase LArTPC detector with a total liquid argon 
+mass of 0.77 kt, making it the largest monolithic single--phase liquid argon TPC
+to be built to date. The TPC comprises the following major components, which 
+are illustrated in Figure \ref{fig:pdsp_tpc}:
+\begin{itemize}
+	\item A cathode plane constructed of modular Cathode Plane Assemblies (CPA).
+	\item Two anode planes constructed of modular Anode Plane Assemblies (APA).
+	\item A photon detection system (PDS) which is integrated into the APAs.
+	\item A field cage (FC), beam plug, and high voltage systems (HV).
+	\item Readout electronics submerged in the liquid argon, cold electronics 
+		(CE). 
+\end{itemize}
+The detector components are designed to be an almost exact replica of the final 
+single--phase far detector modules, but the detector has an overall scaling 
+factor of approximately $1:20$ in terms of total liquid argon mass 
+\cite{Abi2017}.
 
-\subsection{The Cryostat}
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=0.9\textwidth]{figures/pdsp_tpc.jpg}
+
+	\caption
+	[The main components of the \protodune{} TPC.]
+	{The main components of the \protodune{} TPC. Figure from \cite{Abi2017}.}
+
+	\label{fig:pdsp_tpc}
+
+\end{figure}
 
 \subsection{The Liquid Argon TPC}
 
+The \protodune{} TPC has an active volume of 6 m (height) $\times$ 7.2 m (width,
+drift direction) $\times$ 7 m (length, approximate beam direction). The cathode 
+plane at the center of the active width is flanked by two anode planes which 
+define two 3.6 m drift volumes. The field cage around these two drift volumes
+helps to ensure a uniform electric field within the drift region.
+
+Each anode plane is modularly constructed from three APAs which have dimensions
+6 m (height) $\times$ 2.3 m (width). The APA frame holds three sets of parallel
+wires on the inward and outward facing sides, these are oriented at different 
+angles to enable 3D reconstruction. The first two sets of wires are induction
+wires, these are electrically connected and biased such that they are
+electrically transparent to the drifting ionisation; ionisation passing the
+induction wires causes an induced bi--polar signal. The third set of wires are 
+known as collection wires, they are not electrically connected; when drifting 
+ionisation approaches the collection wires it is absorbed producing a 
+uni--polar signal. In \protodune{} each set of induction wires contains 800
+wires at a 4.67 mm pitch, and each set of collection wires contains 480 wires at
+a 4.79 mm pitch. The wire planes from each APA are read out by CE mounted on 
+the APA frame. A total of 2560 electronics channels are used to read out the 
+data from each APA.  The CE amplify and digitise the signals from the wires 
+before transmitting them to the Data Acquisition System (DAQ).
+
+The cathode plane in \protodune{} consists of an array of 18 CPA modules, 2 m 
+(height) $\times$ 1.2 m (width). The cathode plane is held at -180 kV to 
+provide a 500 $\mbox{Vcm}^{-1}}$ drift field in each of the drift volumes. The 
+field cage surrounding the drift regions ensures that the electric field is 
+uniform across the detector volume. \mccorrect{How does it do this? Equally
+spaced resistors I think.}
+
+One area in which the design of \protodune{} differs from the far detector is
+the inclusion of the beam plug. This is necessary to minimize interactions
+between the charged particle test--beam and the cryostat before the beam enters 
+the active region of the detector. A cylindrical beam plug, containing 
+nitrogen gas, penetrates from the cryostat wall into the field cage at 
+location of the incoming test--beam \cite{TODO}. 
+
 \subsection{The Photon Detection System}
 
-\subsection{The Cosmic Ray Taggers}
+In the single--phase far detector modules, the PDS must be embedded in the APA
+frames. This is to maximise the light yield from scintillation, and to increase
+the spacial information from the light by placing the photon detectors close to
+the scintillation source.
 
-\subsection{The Data Acquisition System}
-
+\subsection{Cold Electronics and Data Acquisition}
 
 \section{The H4 Beam Line} \label{sec:h4}
 
 
 \section{Cosmic Rays in ProtoDUNE--SP} \label{sec:pdsp_cosmic}
+\subsection{The Cosmic Ray Taggers}
+
 
 
 \section{ProtoDUNE--SP Simulation and Reconstruction} \label{sec:pdsp_sim_reco}
