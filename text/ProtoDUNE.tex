@@ -34,7 +34,7 @@ This chapter will outline the technical details of the \protodune{} experiment.
 Section \ref{sec:pdsp_dune} will outline the role of \protodune{} in the context
 of the DUNE experiment. This will be followed by a discussion of the main
 elements of the experiment, the \protodune{} detector systems and the H4
-beam line, in Sections \ref{sec:pdsp_detector} and \ref{sec:h4} respectively.
+beamline, in Sections \ref{sec:pdsp_detector} and \ref{sec:h4} respectively.
 The high event rate in \protodune{} is dominated by a high flux of cosmic rays
 which will be discussed in Section \ref{sec:pdsp_cosmic}. Section
 \ref{sec:pdsp_sim_reco} will then discuss the simulation and reconstruction of 
@@ -44,7 +44,7 @@ on the \protodune{} online monitoring system during my time at CERN, the
 development and maintenance of this system represent a significant body of 
 work over 12 months.  
 
-\section{The DUNE Experiment and \protodune{}} \label{sec:pdsp_dune}
+\section{\protodune{} in the Context of DUNE} \label{sec:pdsp_dune}
 
 \begin{figure}
 
@@ -159,7 +159,7 @@ detector.
 \section{The \protodune{} Detector} \label{sec:pdsp_detector}
 
 The \protodune{} detector is located at the Neutrino Platform at CERN along the
-H4 beam line. It is a single--phase LArTPC detector with a total liquid argon 
+H4 beamline. It is a single--phase LArTPC detector with a total liquid argon 
 mass of 0.77 kt, making it the largest monolithic single--phase liquid argon TPC
 to be built to date. The TPC comprises the following major components, which 
 are illustrated in Figure \ref{fig:pdsp_tpc}:
@@ -294,21 +294,78 @@ so called SiPM Signal Processors (SSP), which handle 10 channels each and are
 mounted on the top of the cryostat. After processing in the SSPs the PDS data is
 passed onto the DAQ along with the TPC data.
 
-\subsection{Electronics and Data Acquisition}
-\mccorrect{Do I need a separate section on this?}
+\subsection{The Data Acquisition System}
 
-\section{The H4 Beam Line} \label{sec:h4}
+Data from the TPC, PDS, and other auxiliary systems in \protodune{} are
+collated by the data acquisition system (DAQ). The DAQ distributes triggers,
+packages the data into events, monitors the data quality, and stores the data
+ready for future analysis. An overview of the \protodune{} DAQ system is seen in
+Figure \ref{fig:pdsp_daq} \cite{8672182}. \mccorrect{TODO.}
 
+\begin{figure}
 
-\section{Cosmic Rays in ProtoDUNE--SP} \label{sec:pdsp_cosmic}
-\subsection{The Cosmic Ray Taggers}
+	\centering
 
+	\includegraphics[width=0.7\textwidth]{figures/pdsp_daq.png}
 
-\section{ProtoDUNE--SP Simulation and Reconstruction} \label{sec:pdsp_sim_reco}
+	\caption
+	[Outline of the data acquisition system in \protodune{}.]
+	{Outline of the data acquisition system in \protodune{}. Figure from \cite{8672182}.}
 
-\subsection{Simulation}
+	\label{fig:pdsp_daq}
 
-\subsection{Reconstruction}
+\end{figure}
+
+\section{The H4 beamline} \label{sec:h4}
+
+The \protodune{} experiment is located at the end of the H4 beamline at CERN.
+The beam can be configured to provide hadron, muon, and electron beams with
+energies in the range 1--7 GeV into the detector. 
+
+The H4 beamline as a tertiary beamline which is produced when a secondary beam
+from the T2 primary target interacts with a secondary target. Particles from the
+secondary beam are selected based on momentum and charge before travelling down
+the H4 beamline to \protodune{}. A schematic of the instrumentation and magnets
+in the H4 beamline is given in Figure \ref{fig:h4_schem}. 
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=\textwidth]{figures/h4_schem.pdf}
+
+	\caption
+	[Schematic of the H4 beamline magnets and instrumentation.]
+	{Schematic of the H4 beamline magnets and instrumentation. Figure from
+	\cite{protoduneperf}.}
+
+	\label{fig:pdsp_daq}
+
+\end{figure}
+
+By combining momentum measurements from the profile monitors with time of flight
+(TOF) and Cerenkov measurements the beam momentum and composition can be 
+measured. The predicted and measured distribution of TOF vs momentum for data 
+from a number of runs at different momenta is shown in Figure \ref{fig:h4_tof}.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=\textwidth]{figures/h4_tof.pdf}
+
+	\caption
+	[Time of flight vs momentum distributions from the H4 beamline
+	instrumentation.]
+	{Time of flight vs momentum distributions from the H4 beamline
+	instrumentation. Figure from \cite{protoduneperf}}
+
+	\label{fig:h4_tof}
+
+\end{figure}
+
+\section{The Cosmic Ray Tagger} \label{sec:pdsp_cosmic}
+
+\section{Simulation and Reconstruction} \label{sec:pdsp_sim_reco}
 
 \section{ProtoDUNE--SP Online Monitoring System} \label{sec:pdsp_om}
-
