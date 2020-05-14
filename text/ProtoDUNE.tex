@@ -18,11 +18,6 @@
 % duties as an on--site expert at CERN. I expect to be able to complete the rest
 % of the work by the end of December 2019 alongside the other analysis work.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO 
-% image of experiment
-% explain scintialltion process
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \protodune{} is one of two prototypes for the DUNE far detector modules that has
 been operating at the Neutrino Platform at CERN since the summer of 2018. The
@@ -54,7 +49,7 @@ work over 12 months.
 
 	\caption
 	[The Deep Underground Neutrino Experiment.]
-	{The Deep Underground Neutrino Experiment. Figure from \cite{TODO}.}
+	{The Deep Underground Neutrino Experiment. Figure from \cite{Abi:2020wmh}.}
 
 	\label{fig:dune_baseline}
 
@@ -119,6 +114,25 @@ illustrated in Figure \ref{fig:lartpc}.
 	\label{fig:lartpc}
 
 \end{figure}
+
+\subsubsection*{The Role of Light in LArTPCs}
+
+The ionisation signals in a LArTPC are slow, it takes charge milliseconds to
+travel from the cathode plane to the anode plane. In contrast, scintillation 
+photons only take on the order of nanoseconds to reach the closest anode 
+plane. This scintillation light plays an important role in the accurate 3D 
+reconstruction of interactions in the LArTPC, it provides a $t_0$. 
+
+In a LArTPC interactions play out much quicker than the detector is able to 
+record them; as such each event actually integrates over a large number of
+interactions within the readout window, analogous to taking a photograph with a 
+long exposure. The true time, $t_0$, of the interactions in the event cannot be 
+reconstructed from the ionisation signals alone; by utilising the much faster 
+scintillation signals the time of interactions can be calculated with much 
+higher precision, this data can then be used to correct the position offset
+caused in the ionisation signals.
+
+\bigskip
 
 The details of the charge readout and photon detection systems are specific to 
 each detector, but broadly speaking LArTPC detectors can be split into two 
@@ -208,12 +222,16 @@ known as collection wires, they are not electrically connected; when drifting
 ionisation approaches the collection wires it is absorbed producing a 
 uni--polar signal. In \protodune{} each set of induction wires contains 800
 wires at a 4.67 mm pitch, and each set of collection wires contains 480 wires at
-a 4.79 mm pitch. The wire planes from each APA are read out by electronics 
-mounted on the APA frame; these electronics are submerged in the liquid argon
-and therefore referred to as cold electronics (CE). A total of 2560 
-electronics channels are used to read out the data from each APA. The CE 
-amplify and digitise the signals from the wires before transmitting them to 
-the Data Acquisition System (DAQ).
+a 4.79 mm pitch. 
+
+The wire planes from each APA are read out by electronics mounted on the APA 
+frame; these electronics are submerged in the liquid argon and therefore 
+referred to as cold electronics (CE). A total of 2560 electronics channels are 
+used to read out the data from each APA. The CE amplify, shape, and digitise the
+signals from the wires before transmitting them outside the TPC to the Warm
+Interface Boards (WIB). The WIBs collate the data from the CE boards along with
+timing information from the timing system and pass the data onto the 
+Data Acquisition System (DAQ).
 
 The cathode plane in \protodune{} consists of an array of 18 CPA modules, 2 m 
 (height) $\times$ 1.2 m (width). The cathode plane is held at -180 kV to 
@@ -227,38 +245,47 @@ the inclusion of the beam plug. This is necessary to minimize interactions
 between the charged particle test--beam and the cryostat before the beam enters 
 the active region of the detector. A cylindrical beam plug, containing 
 nitrogen gas, penetrates from the cryostat wall into the field cage at 
-location of the incoming test--beam \cite{TODO}. 
+location of the incoming test--beam. 
 
 \subsection{The Photon Detection System}
-
-\subsubsection*{The Role of Light in LArTPCs}
-% TODO: talk about scintialltion light production + fast and slow components
-
-The ionisation signals in a LArTPC are slow, it takes charge milliseconds to
-travel from the cathode plane to the anode plane. In contrast, scintillation 
-photons only take on the order of nanoseconds to reach the closest anode 
-plane. This scintillation light plays an important role in the accurate 3D 
-reconstruction of interactions in the LArTPC, it provides a $t_0$. 
-
-In a LArTPC interactions play out much quicker than the detector is able to 
-record them; as such each event actually integrates over a large number of
-interactions within the readout window, analogous to taking a photograph with a 
-long exposure. The true time, $t_0$, of the interactions in the event cannot be 
-reconstructed from the ionisation signals alone; by utilising the much faster 
-scintillation signals the time of interactions can be calculated with much 
-higher precision, this data can then be used to correct the position offset
-caused in the ionisation signals.
-
-\bigskip
 
 The PDS in \protodune{} is integrated into the APAs. Ten photon detector modules
 are embedded in each APA frame between the layers of wires on each APA 
 face, as shown in Figure \ref{fig:pdsp_tpc}. Three types of photon detector
 module were tested in \protodune{}, two very similar module designs based on
 wavelength coupling silicon photomultipliers to wavelength shifting bars, and a
-third novel design know as the ARAPUCA light trap.
+third novel design know as the ARAPUCA light trap. The operating principles of
+the two designs are illustrated in Figure \ref{fig:pdsp_pd}.
 
-The majority of the photon detector modules in \protodune{}  consist of 
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{0.28\textwidth}
+		\centering
+		\includegraphics[height=0.3\textheight]{figures/pdsp_pd.pdf}
+		\caption{Waveguide.}
+		\label{fig:pd_bars}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.67\textwidth}
+		\centering
+		\includegraphics[height=0.3\textheight]{figures/pdsp_arapuca.pdf}
+		\caption{ARAPUCA.}
+		\label{fig:arapuca}
+	\end{subfigure}
+
+	\caption
+	[The operating principal of the photon detector modules in \protodune{}.]
+	{The operating principal of the photon detector modules in \protodune{}.
+	Figure \subref{fig:pd_bars} from \cite{Abi2017}. Figure \subref{fig:arapuca} 
+	from \cite{Machado:2016jqe}}
+
+	\label{fig:pdsp_pd}
+
+\end{figure}
+
+The majority of the photon detector modules in \protodune{} consist of 
 wavelength shifting bars coupled to silicon photomultipliers (SiPM). 
 Tetraphenyl-butadiene (TPB) is used to shift the wavelength of the light 
 ultra--violet to blue before the light is transmitted down the waveguide to 
@@ -294,39 +321,19 @@ so called SiPM Signal Processors (SSP), which handle 10 channels each and are
 mounted on the top of the cryostat. After processing in the SSPs the PDS data is
 passed onto the DAQ along with the TPC data.
 
-\subsection{The Data Acquisition System}
-
-Data from the TPC, PDS, and other auxiliary systems in \protodune{} are
-collated by the data acquisition system (DAQ). The DAQ distributes triggers,
-packages the data into events, monitors the data quality, and stores the data
-ready for future analysis. An overview of the \protodune{} DAQ system is seen in
-Figure \ref{fig:pdsp_daq} \cite{8672182}. \mccorrect{TODO.}
-
-\begin{figure}
-
-	\centering
-
-	\includegraphics[width=0.7\textwidth]{figures/pdsp_daq.png}
-
-	\caption
-	[Outline of the data acquisition system in \protodune{}.]
-	{Outline of the data acquisition system in \protodune{}. Figure from \cite{8672182}.}
-
-	\label{fig:pdsp_daq}
-
-\end{figure}
-
 \section{The H4 beamline} \label{sec:h4}
 
-The \protodune{} experiment is located at the end of the H4 beamline at CERN.
-The beam can be configured to provide hadron, muon, and electron beams with
-energies in the range 1--7 GeV into the detector. 
+The \protodune{} experiment is located at the end of the H4 beamline at CERN,
+the location of the beamline with respect to the detector is illustrated in
+Figure \ref{fig:pdsp_CRT}.  The beam can be configured to provide hadron, 
+muon, and electron beams with energies in the range 1--7 GeV into the 
+detector. 
 
 The H4 beamline as a tertiary beamline which is produced when a secondary beam
 from the T2 primary target interacts with a secondary target. Particles from the
 secondary beam are selected based on momentum and charge before travelling down
-the H4 beamline to \protodune{}. A schematic of the instrumentation and magnets
-in the H4 beamline is given in Figure \ref{fig:h4_schem}. 
+the H4 beamline to \protodune{}. A schematic of the beamline instrumentation
+(BI) and magnets in the H4 beamline is given in Figure \ref{fig:h4_schem}. 
 
 \begin{figure}
 
@@ -339,7 +346,7 @@ in the H4 beamline is given in Figure \ref{fig:h4_schem}.
 	{Schematic of the H4 beamline magnets and instrumentation. Figure from
 	\cite{protoduneperf}.}
 
-	\label{fig:pdsp_daq}
+	\label{fig:h4_schem}
 
 \end{figure}
 
@@ -347,6 +354,8 @@ By combining momentum measurements from the profile monitors with time of flight
 (TOF) and Cerenkov measurements the beam momentum and composition can be 
 measured. The predicted and measured distribution of TOF vs momentum for data 
 from a number of runs at different momenta is shown in Figure \ref{fig:h4_tof}.
+This information is used to trigger the detector during beam running, and is
+sent to the central trigger board for distribution to the detector components.
 
 \begin{figure}
 
@@ -366,6 +375,107 @@ from a number of runs at different momenta is shown in Figure \ref{fig:h4_tof}.
 
 \section{The Cosmic Ray Tagger} \label{sec:pdsp_cosmic}
 
+As a surface level detector with no overburden \protodune{} measures a
+significant rate, on the order of 20 kHz, of cosmic ray muons, corresponding 
+to an average of 60 muons per 3 ms readout window. These muons provide a 
+useful source of calibration data in to form of long tracks and stopping muons. 
+The Cosmic Ray Tagger (CRT) in \protodune{} was installed on the upstream and
+downstream faces of the TPC to trigger the detector for cosmic--ray muons which
+travel parallel to the anode plane. In addition the CRT provides an additional
+source of $t_0$ tagged tracks for calibration.
+
+The CRT consists of four parts, two upstream assemblies and two downstream
+assemblies, the locations of the CRT assemblies is illustrated in Figure
+\ref{fig:pdsp_CRT}. Each CRT assembly is constructed from overlapping 
+scintillation counters which cover an area 6.8 m high and 3.65 m wide. 
+Scintillation strips of length 365 cm and width 5 cm are placed in 
+perpendicular arrays to give two--dimensional reconstruction within each CRT 
+assembly. By combining data from upstream and downstream CRT assemblies with a 
+time coincidence requirement the trajectories of tracks can be reconstructed.
+
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.6\textwidth]{figures/crt_side.pdf}
+		\label{fig:crt_side}
+		\caption{Side view.}
+	\end{subfigure}
+
+	\vspace{3mm}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.6\textwidth]{figures/crt_top.pdf}
+		\label{fig:crt_top}
+		\caption{Top view.}
+	\end{subfigure}
+
+	\caption
+	[Location of the H4 beamline and cosmic ray taggers in relation to the
+	\protodune{} detector.]
+	{Location of the H4 beamline and cosmic ray taggers in relation to the
+	\protodune{} detector. Figures from \cite{protoduneperf}.}
+
+	\label{fig:pdsp_CRT}
+
+\end{figure}
+
+\section{The Data Acquisition System}
+
+Data from the TPC, PDS, and CRT in \protodune{} are collated by the Data 
+Acquisition system (DAQ). The DAQ distributes triggers, compresses and packages 
+the data into events, monitors the data quality, and stores the data ready for 
+future analysis. An overview of the \protodune{} DAQ system is seen in Figure 
+\ref{fig:pdsp_daq}; there are four primary data flows in the system: TPC, PDS,
+CRT, and BI. Timing and triggering signals are distributed to the detector 
+components by the timing board which maintains a 50 MHz clock and receives 
+$\sim 40 \mbox{Hz}$ of triggers from the Central Trigger Board (CTB) based on 
+data from the BI and CRT \cite{Abi2017}.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=\textwidth]{figures/pdsp_daq.pdf}
+
+	\caption
+	[Outline of the data acquisition system in \protodune{}.]
+	{Outline of the data acquisition system in \protodune{}. Figure from
+	\cite{Abi2017}.}
+
+	\label{fig:pdsp_daq}
+
+\end{figure}
+
+The \protodune{} TPC contains a total of 15,360 wires spread across the six
+APAs, the wires are digitized at a rate of 2 MHz resulting in an overall data
+flow of around 480 $\mbox{Gb s}^{-1}$ from the TPC electronics. An event in
+\protudune{} corresponds to a continuous readout of the detector for 3 ms,
+resulting in 6000 samples from each wire; data is buffered such that the readout
+window can be opened 250 $\mu$s before the trigger time. Data from the TPC is
+received by two systems, a system based on Reconfigurable Computing Elements
+(RCE) \cite{7431254} handles the data from five APAs while data from the sixth 
+is received by a system based on Front--End Link Exchange (FELIX) cards which 
+have been developed by the ATLAS collaboration \cite{Anderson_2016}.
+
+The software layer of the \protodune{} DAQ is based on Fermilab's artdaq 
+\cite{6495515}. This component is primarily responsible for acquiring the data,
+packaging it, and storing it locally. Triggered events are queued and 
+distributed to the board readers and event builders by the Data Flow 
+Orchestrator. There are multiple board readers which are each responsible for 
+processing the data from specific hardware components, details vary between 
+specific board readers but generally these processes are responsible for 
+formatting the data from each component ready for aggregation. Data from the
+various detector components are aggregated by the event builders, which are
+responsible for assembling the completed events. After compression events have
+an average size of 60 MB. Artdaq is also responsible for the real--time 
+monitoring of data quality via the online monitoring system, this system will be
+discussed in Section \ref{sec:pdsp_om}.
+
 \section{Simulation and Reconstruction} \label{sec:pdsp_sim_reco}
+TODO.
 
 \section{ProtoDUNE--SP Online Monitoring System} \label{sec:pdsp_om}

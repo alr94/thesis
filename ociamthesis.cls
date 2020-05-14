@@ -501,7 +501,7 @@
 \usepackage[compat=1.1.0]{tikz-feynman}
 
 % subfigures
-\usepackage{subcaption}
+\usepackage[subrefformat=parens]{subcaption}
 
 % fill to page end
 \usepackage{zref-savepos,graphicx}
@@ -516,4 +516,3 @@
 	\smash{\includegraphics[height=\dimexpr\zposy{top-\thepage}sp-\zposy{bottom-\thepage}sp\relax,#1]{#2}}%
 	\par
 }
-
