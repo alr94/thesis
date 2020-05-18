@@ -475,7 +475,109 @@ an average size of 60 MB. Artdaq is also responsible for the real--time
 monitoring of data quality via the online monitoring system, this system will be
 discussed in Section \ref{sec:pdsp_om}.
 
-\section{Simulation and Reconstruction} \label{sec:pdsp_sim_reco}
-TODO.
+\section{Simulation} \label{sec:simulation}
+
+Simulation and reconstruction of \protodune{} data takes place in the LArSoft
+framework \cite{Snider2017}. LArSoft is a software suite for simulating and
+reconstructing data collected by LArTPC detectors based on the art event 
+framework from Fermilab \cite{Green:2012gv}. LArSoft is under active use and
+development by a number of participating LArTPC based experiments, with each
+experiment making use of its core functionality as well as experiment specific
+code. The simulation and reconstruction of \protodune{} data in the LArSoft
+framework will be discussed in sections \ref{sec:simulation} and
+\ref{sec:reconstruction} respectively.
+
+Simulation in LArSoft is broken down into three sequential stages: generation,
+propagation, and detector simulation. The initial state particles are produced
+in the generation step, these propagation and interaction of these particles in
+the detector is simulated during the propagation step, finally the transport of 
+energy depositions and simulation of detector effects are handled by the
+detector simulation phase.
+
+As a surface based detector in a test beam, \protodune{} is subject to three
+main sources of particles: beam particles, beam halo particles, and cosmic ray
+particles. The beam particle and beam halo flux in the vicinity of 
+\protodune{} was provided by simulations of the H4 beamline 
+\cite{Booth:2019brj} based on two simulation frameworks, G4beamline 
+\cite{g4beamline} and FLUKA \cite{BOHLEN2014211}. The cosmic ray flux in
+\protodune{} is simulated using CORSIKA \cite{Heck:1998vt}. Finally, low energy 
+radiological backgrounds in LAr are simulated, these include $^{39}\mbox{Ar,} ^
+{85}\mbox{Kr, and } ^{222}\mbox{Rn}$.
+
+After generation, the particles are allowed to propagate and interact in the 
+detector geometry, including the cryostat, external systems, and experimental
+hall. This is simulated using GEANT4 \cite{Agostinelli:2002hh} which tracks 
+particles in small steps; the step size, $300 \mu m$, is chosen to be much 
+smaller then the spatial resolution of the detector to allow for small--scale 
+processes like showering to be accurately simulated. 
+
+Particles which propagate through the detector during the propagation phase of
+the simulation leave energy deposits in the form of ionisation electrons and
+scintillation photons. It takes 23.6 eV to ionise a single argon atom and 
+around 19.5 eV to produce a single scintillation photon, as such a 
+minimum--ionising particle (MIP), which deposits around $2 \mbox{MeV cm}^{-1}$ 
+in liquid argon, will produce tens of thousands of electrons and photons per cm.
+
+The detector simulation phase of the simulation chain is responsible for
+drifting the ionisation electrons towards the collection wires, propagating the
+simulated photons to the photon detectors, and simulating the response of the
+wires, SiPMs, and electronics to the signals. The shear number of ionisation 
+electrons and scintillation photons produced in a \protodune{} event makes 
+simulating the propagation of the full set of particles impractical and 
+therefore LArSoft employs approximation techniques to accurately predict the 
+observed signals within a reasonable computation time. A number of detector 
+effects are taken into account when simulating the electron drift: 
+electron--ion recombination, transverse and longitudinal diffusion, electric 
+field distortions due to space charge, and electron capture on impurities. 
+
+When the ionisation and scintillation signals arrive at the detector components,
+simulated waveforms are produced based on the induced signals produced in the
+detector components. These signals are converted into electrical signals
+followed by electronics simulation which is completed in LArSoft. The
+electronics simulation includes simulation of: electronics gain, noise, and 
+analogue to digital conversion. The simulated waveforms produced by the 
+\protodune{} simulation are then compressed and stored in ROOT files for 
+reconstruction.
+
+\section{Reconstruction} \label{sec:reconstruction}
+\subsection{Optical Reconstruction} \label{sec:op_reco}
+\mccorrect{TODO.}
+
+
+\subsection{TPC Reconstruction} \label{sec:tpc_reco}
+An event consists of a synchronised set of waveforms from all of the TPC 
+channels, with each event corresponding to 3 ms or 6000 samples. The particle
+interactions within each event are reconstructed into objects like tracks and
+showers which can be used for physics analyses, this sections provides a brief 
+summary of the steps involved in this reconstruction.
+
+First, the TPC waveforms are passed through a set of filtering algorithms which
+are designed to reduce the noise on the waveforms, as well as to mitigate 
+electronics effects such as sticky--codes and undershooting. An additional step
+known as a 2D deconvolution is applied to extract the original signal from the
+measured signal given a detector response function for the wire in question as
+well as neighboring wires, this method has been described in detail by the 
+MicroBooNE collaboration \cite{Adams:2018dra}.
+
+Once the deconvoluted waveforms have been calculated, regions of interest (ROI) 
+are defined, these are regions of high amplitude in which charge deposition is
+likely to have occurred. Reconstructed hits are found within each region of
+interest by fitting gaussian peaks to the peaks within the region; most hits
+consist of a single gaussian peak, however in busy regions of the detector
+multiple gaussian peaks may be used to fit a single pulse. Each reconstructed
+hit will have an associated peak time, width, and integral, these objects form
+the basic input for the subsequent pattern recognition algorithms.
+
+\mccorrect{Add figure?}
+
+Pandora \cite{Marshall2015} is the primary pattern recognition software used in
+\protodune{}. It takes a multi--algorithm approach to reconstructing particle
+interactions in the detector, and has been successfully used by other LArTPC
+detectors, such as MicroBooNE \cite{Acciarri:2017hat}. Pandora handles the 
+clustering of hits as well as the reconstruction of 3D objects like tracks and 
+showers. 
+
+\mccorrect{TODO.}
 
 \section{ProtoDUNE--SP Online Monitoring System} \label{sec:pdsp_om}
+\mccorrect{TODO.}
