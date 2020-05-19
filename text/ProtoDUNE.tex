@@ -557,7 +557,39 @@ electronics effects such as sticky--codes and undershooting. An additional step
 known as a 2D deconvolution is applied to extract the original signal from the
 measured signal given a detector response function for the wire in question as
 well as neighboring wires, this method has been described in detail by the 
-MicroBooNE collaboration \cite{Adams:2018dra}.
+MicroBooNE collaboration \cite{Adams:2018dra}. An example of the noise filtering
+and 2D deconvolution technique applied to a 7 GeV test beam event in 
+\protodune{} data is given in Figure \ref{fig:2d_deconv}.
+
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}{0.48\textwidth}
+		\includegraphics[width=\textwidth]{figures/protodune_evd_orig.pdf}
+		\label{fig:pdsp_raw}
+		\caption{Before noise filtering.}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.48\textwidth}
+		\includegraphics[width=\textwidth]{figures/protodune_evd_raw.pdf}
+		\label{fig:pdsp_filt}
+		\caption{After noise filtering.}
+	\end{subfigure}
+	\begin{subfigure}{0.48\textwidth}
+		\vspace{5mm}
+		\includegraphics[width=\textwidth]{figures/protodune_evd_decon.pdf}
+		\label{fig:pdsp_deconv}
+		\caption{After 2D deconvolution.}
+	\end{subfigure}
+
+	\caption
+	[Example of noise filtering and 2D deconvolution in \protodune{} data.]
+	{Example of noise filtering and 2D deconvolution in \protodune{} data. Figures from \cite{protoduneperf}.}
+
+	\label{fig:2d_deconv}
+
+\end{figure}
 
 Once the deconvoluted waveforms have been calculated, regions of interest (ROI) 
 are defined, these are regions of high amplitude in which charge deposition is
@@ -566,18 +598,151 @@ interest by fitting gaussian peaks to the peaks within the region; most hits
 consist of a single gaussian peak, however in busy regions of the detector
 multiple gaussian peaks may be used to fit a single pulse. Each reconstructed
 hit will have an associated peak time, width, and integral, these objects form
-the basic input for the subsequent pattern recognition algorithms.
+the basic input for the subsequent pattern recognition algorithms. An example of
+the reconstructed hits is shown in Figure \ref{fig:gaushit}.
 
-\mccorrect{Add figure?}
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=\textwidth]{figures/gaushit.pdf}
+
+	\caption
+	[Reconstructed hits from \protodune{} data.]
+	{Reconstructed hits from \protodune{} data. Figure from \cite{protoduneperf}.}
+
+	\label{fig:gaushit}
+
+\end{figure}
 
 Pandora \cite{Marshall2015} is the primary pattern recognition software used in
 \protodune{}. It takes a multi--algorithm approach to reconstructing particle
 interactions in the detector, and has been successfully used by other LArTPC
 detectors, such as MicroBooNE \cite{Acciarri:2017hat}. Pandora handles the 
-clustering of hits as well as the reconstruction of 3D objects like tracks and 
-showers. 
+clustering of hits into 2D clusters, the matching of 2D clusters into 3D
+clusters, as well as the reconstruction of 3D objects like tracks and 
+showers. Ultimately Pandora returns a tree of reconstructed Particle Flow
+Particles (PFParticles), each corresponding to a distinct track or shower, and 
+connected through parent--daughter relationships which define the particle flow 
+in the interaction. Pandora reconstruction proceeds in two stages: a cosmic 
+pass and a beam pass. 
 
-\mccorrect{TODO.}
+First the cosmic pass reconstructs the event with algorithms designed to 
+reconstruct track--like particles. Track stitching algorithms can be used to
+assign a $t_0$ to tracks during this stage; any track which crosses either a CPA
+or APA will produce track segments on either side of the boundary, these
+segments point in the same direction but will have been displaced from each 
+other based on the arrival time of the corresponding particle. The $t_0$ for 
+that track is equal to half the time shift required to realign the two segments 
+into a continuous track. After the cosmic pass any clear cosmic--ray candidates 
+are removed under the following conditions \cite{protoduneperf}:
+\begin{itemize}
+	\item The particle travels through both the top and bottom of the detector.
+	\item The assigned $t_0$ is inconsistent with the beam time.
+	\item If no $t_0$ assigned, try $t_0 = 0$. If any hits are reconstructed 
+		with positions outside of the detector this track is inconsistent with the 
+		beam.
+\end{itemize}
+
+Beam particle reconstruction considers only the hits that were not removed by 
+being labelled as clear cosmic--rays. These hits are formed into 3D slices which
+contain all the hits from a single parent particle and it's daughters. The
+slices are reconstructed under both the cosmic--ray and beam particle
+hypothesis, and a boosted decision tree (BDT) is used to determine whether a 
+given slice is consistent with being a beam particle. 
+
+Under the beam particle hypothesis a more complex chain of algorithms is used to
+reconstruct a given slice, these algorithms are capable of reconstructing the
+particle hierarchies seen in the complex hadronic interactions from the
+\protodune{} beam. These algorithms return the particle flow of the interactions
+in the form of PFParticles as well as the reconstructed interaction vertex for
+the primary beam particle. An example of the reconstructed particle hierarchy
+from a \protodune{} beam event is shown in Figure \ref{fig:pandora_pfp}.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=0.9\textwidth]{figures/pandoraEvent.pdf}
+
+	\caption
+	[Reconstructed particle hierarchy from Pandora.]
+	{Reconstructed particle hierarchy from Pandora. Figure from
+	\cite{protoduneperf}.}
+
+	\label{fig:pandora_pfp}
+
+\end{figure}
+
+As well as precise spatial reconstruction, LArTPCs provide excellent
+calorimetric information. To convert the measured charge of each hit into a
+reconstructed energy a number of spatial and $dQ/dx$ dependent factors need to
+be taken into account. The reconstructed charge of each hit is given by the
+integrated area under the gaussian fit to that hit. The $dx$ for each hit varies
+based on the direction of the track with respect to the wires, it is equal to
+the wire spacing divided by the sine of the angle between the track and the
+wire when the track is projected onto the wire plane. 
+
+A number of factors affect the measured $dQ/dx$, these effects need to be 
+corrected in order to recover the $dQ/dx$ at the source of the ionisation. 
+These factors are split into two parts in the \protodune{} reconstruction:
+\begin{itemize}
+	\item Corrections in the drift direction, X corrections. Examples include 
+		longitudinal diffusion, attenuation on impurities, and drift velocity
+		variations.
+	\item Corrections in the direction of the wire planes, YZ corrections.
+		Examples include wire to wire response, transverse diffusion, and detector
+		features such as electron diverters near the APA boundaries.
+\end{itemize}
+A calibration matrix is calculated for both sets of corrections by considering a
+sample of cathode crossing muons. The aim of these calibration matrices is to 
+normalise the response over the TPC volume based on the median of the measured
+$dQ/dx$ distribution in each location. The distribution is then normalised to 
+the average value at the anode plane, where the effects of the X corrections are
+expected to be negligible. The corrected $dQ/dx$ is given by
+\begin{equation}
+	\left( dQ/dx \right)_{\mbox{corrected}} = N_Q C_{yz}(y, z) C_x(x) \left( dQ/dx
+	\right)_{\mbox{reconstructed}},
+\end{equation}
+where $N_Q$ normalises the median of the distributions to the median value at
+the anode, and $C_{yz}$ and $C_{x}$ are the calibration matrices for the YZ and 
+X corrections respectively.
+
+The final step in energy reconstruction is to convert the corrected $dQ/dx$ into
+a reconstructed $dE/dx$, this involves accounting for electron--ion
+recombination at the source to convert $dQ/dx$ to $dE/dx$. The conversion is 
+based on the modelling of the recombination effect in liquid argon using the 
+modified box model, which has been studied in a LArTPC by the ArgoNeuT
+experiment \cite{Acciarri2013a}. The reconstructed $dE/dx$ is 
+\begin{equation}
+	\frac{dE}{dx} = \left( exp \left( \frac{\frac{dQ}{dx}}{C_{cal}} \frac{\beta^\prime
+	W_{ion}}{\rho \epsilon} \right) - \alpha \right)
+	\left( \frac{\rho \epsilon}{\beta^\prime} \right)
+\end{equation}
+where $C_{cal}$ is a calibration constant used to convert ADC to electrons,
+$W_{ion}$ is the work function of argon, $\epsilon$ is the local electric field,
+$\rho$ is the liquid argon density, and \(\alpha = 0.93\) and 
+\(\beta = 0.212 \mbox{ (kV/cm)(g/cm}^3)} / \mbox{MeV}\) are the box model 
+parameters as measured by ArgoNeuT. The calibration constant, $C_{cal}$ is 
+calculated by fitting the most probable value of the reconstructed $dE/dx$ 
+distribution as a function of range to the theoretical prediction for $dE/dx$ 
+vs range for a sample of stopping muons, as shown in figure \ref{fig:dedx_v_rr}.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=0.9\textwidth]{figures/dedx_v_rr.pdf}
+
+	\caption
+	[$dE/dx$ vs residual range for a stopping muon sample in \protodune{} data.]
+	{$dE/dx$ vs residual range for a stopping muon sample in \protodune{} data. 
+	Figure from \cite{protoduneperf}.}
+
+	\label{fig:dedx_v_rr}
+
+\end{figure}
+
 
 \section{ProtoDUNE--SP Online Monitoring System} \label{sec:pdsp_om}
 \mccorrect{TODO.}
