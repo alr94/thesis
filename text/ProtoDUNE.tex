@@ -539,11 +539,11 @@ digital conversion. The simulated waveforms produced by the \protodune{}
 simulation are then compressed and stored ready for reconstruction.
 
 \section{Reconstruction} \label{sec:reconstruction}
-\subsection{Optical Reconstruction} \label{sec:op_reco}
-\mccorrect{TODO.}
 
+% \subsection{Optical Reconstruction} \label{sec:op_reco}
+% \mccorrect{TODO.}
+% \subsection{TPC Reconstruction} \label{sec:tpc_reco}
 
-\subsection{TPC Reconstruction} \label{sec:tpc_reco}
 An event consists of a synchronised set of waveforms from all of the TPC 
 channels, with each event corresponding to 3 ms or 6000 samples. The particle
 interactions within each event are reconstructed into objects like tracks and
@@ -744,4 +744,48 @@ vs range for a sample of stopping muons, as shown in figure \ref{fig:dedx_v_rr}.
 
 
 \section{ProtoDUNE--SP Online Monitoring System} \label{sec:pdsp_om}
-\mccorrect{TODO.}
+
+As well as monitoring the stability of the detector and DAQ systems, the quality
+of the collected data has to be constantly monitored. This assures the shifter 
+that the data is of high quality, and prevents long runs of low quality data
+being collected, which reduce the experiments effective uptime. The online
+monitoring system (OM) is responsible for providing this quality assurance.
+
+As shown in Figure \ref{fig:pdsp_daq}, the OM is a part of the \protodune{} DAQ
+system, this allows the system to get access to the data leaving the detector as
+soon as possible. The OM is responsible for processing this data and displaying
+the results to the shifter in the control room. It consists of three main
+components:
+\begin{itemize}
+	\item Analysis processes which decode and analyse the raw data from each 
+		detector subsystem.
+	\item Merging processes which collate monitoring data from each subsystem.
+	\item A web interface which displays monitoring data.
+\end{itemize}
+
+An overview of the data flow in the OM system is shown in Figure
+\ref{fig:om_flow}. Data from the detector is first filtered before being run in
+any OM processes. The data which is passed onto the OM processes is then split
+up and decoded by the relevant RawDecoder which reformats the data ready for
+analysis. A number of Analyser modules then make use of this data to make plots,
+which are merged along with plots from external systems, and sent to a web
+interface to be displayed in the control room.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=\textwidth]{figures/om_flow.png}
+
+	\caption
+	[Data flow in the \protodune{} online monitoring system.]
+	{Data flow in the \protodune{} online monitoring system.}
+
+	\label{fig:om_flow}
+
+\end{figure}
+
+
+\subsection{Data Processing}
+\subsection{Merging}
+\subsection{Monitoring Web Interface}
