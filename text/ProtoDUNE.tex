@@ -754,8 +754,8 @@ monitoring system (OM) is responsible for providing this quality assurance.
 As shown in Figure \ref{fig:pdsp_daq}, the OM is a part of the \protodune{} DAQ
 system, this allows the system to get access to the data leaving the detector as
 soon as possible. The OM is responsible for processing this data and displaying
-the results to the shifter in the control room. It consists of three main
-components:
+the results to the shifter in the control room as soon as possible after the
+event was triggered. It consists of three main components:
 \begin{itemize}
 	\item Analysis processes which decode and analyse the raw data from each 
 		detector subsystem.
@@ -763,13 +763,15 @@ components:
 	\item A web interface which displays monitoring data.
 \end{itemize}
 
-An overview of the data flow in the OM system is shown in Figure
-\ref{fig:om_flow}. Data from the detector is first filtered before being run in
-any OM processes. The data which is passed onto the OM processes is then split
-up and decoded by the relevant RawDecoder which reformats the data ready for
-analysis. A number of Analyser modules then make use of this data to make plots,
-which are merged along with plots from external systems, and sent to a web
-interface to be displayed in the control room.
+An overview of the data flow in the OM is shown in Figure \ref{fig:om_flow}. 
+Data from the detector is first filtered before being run in any OM processes. 
+The data which is passed onto the OM processes is then split up and decoded by 
+the relevant RawDecoder which reformats the data ready for analysis. A number 
+of Analyser modules then make use of this data to make plots, which are merged 
+along with plots from external systems, and sent to a web interface to be 
+displayed in the control room. The following sections will provide a brief 
+summary of these stages, as well as examples of the plots which are produced 
+in the OM.
 
 \begin{figure}
 
@@ -785,7 +787,79 @@ interface to be displayed in the control room.
 
 \end{figure}
 
-
 \subsection{Data Processing}
+The data processing for the OM is based on Fermilab's art and artdaq software
+frameworks \cite{TODO}, the only exception is the beam instrumentation data 
+which is analysed outside of the OM system by the CERN beam group. The beam
+instrumentation plots are merged with the rest of the OM plots after data
+processing.
+
+The first step of the data processing is event filtering, the main purpose of
+this step is to control the flow of data into the OM. Two types of filtering
+take place sequentially; first a random filter is used to cut the data rate into
+the OM to a manageable level, then a second filter which aims to increase the 
+likelihood that processed events were triggered by the beam instrumentation or 
+cosmic--ray tagger is used. Different OM processes take different amount of
+processing time per event, therefore multiple filters are used which control the
+data rate into each process separately.
+
+After filtering the events are ready to be processed. The data coming into the
+OM system is in its raw form, it arrives in small pieces known as Fragments
+which have to be decoded before they can be used by the OM. The RawDecoders 
+are responsible for interpreting the headers and data streams from each 
+detector component, and restructuring the data ready for processing. The 
+details of the decoding vary based on the readout system under consideration; 
+each readout system defines a class which details the contents of each
+fragment, the RawDecoders use the contents of this class to decode the fragments
+to prepare the data for processing.
+
+After the data has been decoded it is ready to be analysed, this is done by a
+number of Analyser modules which analyse the data from different detector
+components and produce ROOT \cite{ANTCHEVA20092499} plots as output. Details 
+of the processing done for each detector component will be given below.
+
+\subsubsection*{Time Projection Chamber}
+As the largest data source in \protodune{} the TPC data was analysed in several
+small steps: basic data checks, pedestals and noise, Fourier analysis, and event
+displays.
+
+The basic data checks are intended to quickly spot any fundamental issues with
+the incoming data. An example of a basic check is to check which FEMBs are
+active in the monitored events, Figure \ref{fig:active_femb} shows an example of
+the number of events recorded by each FEMB on APA 1.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=\textwidth]{figures/active_femb.png}
+
+	\caption
+	[Example of a data quality check, number of events recorded by each FEMB.]
+	{Example of a data quality check, number of events recorded by each FEMB.}
+
+	\label{fig:active_femb}
+
+\end{figure}
+
+
+
+
+\subsubsection*{Photon Detection System}
+
+\subsubsection*{Timing}
+
+\subsubsection*{Trigger}
+
+\subsubsection*{Beam Instrumentation}
+
+\subsubsection*{Cosmic Ray Tagger}
+A bug in the DAQ meant that the CRT was run separately during the main beam 
+run. Therefore, the CRT data was analysed separately from the rest of the 
+\protodune{} systems and merged in the OM similarly to the beam 
+instrumentation data.
+
 \subsection{Merging}
+
+
 \subsection{Monitoring Web Interface}
