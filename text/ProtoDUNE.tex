@@ -821,7 +821,8 @@ of the processing done for each detector component will be given below.
 \subsubsection*{Time Projection Chamber}
 As the largest data source in \protodune{} the TPC data was analysed in several
 small steps: basic data checks, pedestals and noise, Fourier analysis, and event
-displays.
+displays. Examples of some of the plots produced by the TPC analysis are
+detailed below.
 
 The basic data checks are intended to quickly spot any fundamental issues with
 the incoming data. An example of a basic check is to check which FEMBs are
@@ -829,48 +830,47 @@ active in the monitored events, Figure \ref{fig:active_femb} shows an example of
 the number of events recorded by each FEMB on APA 1 for a sample of 10 analysed
 events.
 
-
 The pedestals and noise are continually evaluated by the online monitoring, this
 data is displayed in the control room and used later in the monitoring chain to
 flatten the background in the event displays. Basic hit removal is used to 
 ensure that the pedestals and RMS are only calculated in the regions of the 
-readout corresponding to noise signals. Figure \ref{fig:ped_noise} shows an
-example of the pedestal and noise plots for a single APA.
-
+readout corresponding to noise signals. The RMS of all channels can be
+represented on a single plot by arranging the channels into a 2D grid and
+displaying the RMS as the colour scale on a 2D histogram, an example of this
+plot is shown in Figure \ref{fig:ped_noise}.
 
 To identify noise sources in the APA it is useful to study the Fourier transform
 of the signal distribution, this allows the frequencies to be identified and the
 Fourier distributions can be studied under different conditions to identify
-noise sources; the camera's in the TPC where identified as a noise source in
+noise sources; the cameras in the TPC where identified as a noise source in
 this way. The OM therefore provides fast Fourier transforms (FFT) for each
-APA, an example of the FFTs for a single \protodune{} APA is shown in Figure
+APA, an example of the FFT for a single FEMB is shown in Figure
 \ref{fig:TPC_FFT}.
 
 \begin{figure}
 
 	\centering
 
-	\begin{subfigure}[b]{0.6\textwidth}
+	\begin{subfigure}[b]{0.85\textwidth}
 		\centering
-		%TODO: make me
-		\includegraphics[width=\textwidth, height=0.7\textwidth]{figures/active_femb.png}
-		\caption {Number of events recorded by each FEMB.}
+		\includegraphics[width=0.9\textwidth]{figures/active_femb.pdf}
+		\caption {Number of events recorded by each FEMB on APA 6.}
 		\label{fig:active_femb}
 	\end{subfigure}
 
-	\begin{subfigure}[b]{0.6\textwidth}
-		\centering
-		%TODO: make me
-		\includegraphics[width=\textwidth, height=0.7\textwidth]{figures/ped_noise.png}
-		\caption {Background RMS for a single APA.}
+	\begin{subfigure}[b]{0.85\textwidth}
+		\raggedleft
+		\vspace{3mm}
+		\includegraphics[width=0.95\textwidth]{figures/all_chan_rms.png}
+		\caption {RMS for all channels.} 
 		\label{fig:ped_noise}
 	\end{subfigure}
 
-	\begin{subfigure}[b]{0.6\textwidth}
+	\begin{subfigure}[b]{0.85\textwidth}
 		\centering
-		%TODO: make me
-		\includegraphics[width=\textwidth, height=0.7\textwidth]{figures/tpc_fft.png}
-		\caption {FFTs for all components on a single APA.}
+		\vspace{3mm}
+		\includegraphics[width=0.9\textwidth]{figures/tpc_fft.pdf}
+		\caption {FFT for a single FEMB.}
 		\label{fig:TPC_FFT}
 	\end{subfigure}
 
@@ -881,7 +881,7 @@ APA, an example of the FFTs for a single \protodune{} APA is shown in Figure
 
 \end{figure}
 
-Event displays display the data from all the TPC readout channels
+Event displays display all the data from all the TPC readout channels
 simultaneously, and as such they provide the most general check of TPC 
 performance in the OM. During the beam run of \protodune{} a number of issues in
 the data were first identified in the event display, for example issues in the 
@@ -902,9 +902,9 @@ previously is visible here, this issue affects a single FEMB and is mitigated
 during offline reconstruction.  
 
 \begin{figure}
+
 	\centering
 
-	%TODO: make me
 	\includegraphics[width=\textwidth]{figures/beam_evd.png}
 
 	\caption
@@ -918,20 +918,120 @@ during offline reconstruction.
 \end{figure}
 
 \subsubsection*{Photon Detection System}
+Similarly to the TPC data the PDS data is analysed for pedestal, RMS, and FFTs;
+in addition the raw waveforms for each channel are accumulated over a number of
+events and displayed in the online monitoring. Examples of some of the PDS 
+monitoring plots are shown in Figure \ref{fig:pds_om}.
 
-\subsubsection*{Timing}
+\begin{figure}
 
-\subsubsection*{Trigger}
+	\centering
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/pds_fft.pdf}
+		\caption {FFT for a single PDS channel.}
+		\label{fig:PDS_FFT}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/pds_wav.pdf}
+		\caption {Cumulative waveforms for a single PDS channel.}
+		\label{fig:PDS_wav}
+	\end{subfigure}
+
+	\caption
+	[Examples of online monitoring plots for the photon detection system data.]
+	{Examples of online monitoring plots for the photon detection system data.}
+	\label{fig:pds_om}
+
+\end{figure}
+
+\subsubsection*{Trigger and Timing}
+The trigger and timing systems share much of the same data, because the timing
+system is used to distribute the triggers from the trigger system, so their
+monitoring is related. Some examples of useful timing and trigger plots include
+time--stamp difference distributions, and trigger records. The time--stamp delta
+plots show the difference in time--stamp between consecutive events, this
+distribution can be used to monitor the stability of the trigger rate during
+triggered operation. Trigger records are 2D histograms which details of
+the time and type of trigger issued by the trigger board. Figure
+\ref{fig:timing_OM} contains examples of these two plots.
+
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/timestamp_delta.pdf}
+		\caption {Time--stamp delta distribution.}
+		\label{fig:timestamp_delta}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/trigger_record.pdf}
+		\caption {Trigger records.}
+		\label{fig:trig_record}
+	\end{subfigure}
+
+	\caption
+	[Examples of online monitoring plots for the timing and trigger data.]
+	{Examples of online monitoring plots for the timing and trigger data.}
+	\label{fig:timing_OM}
+
+\end{figure}
 
 \subsubsection*{Beam Instrumentation}
+The beamline instrumentation was monitored by CERN, who produced beamline
+monitoring plots \cite{Booth:2019brj}. The plots where continually overwritten 
+on a time schedule which was decoupled from the \protodune{} running schedule, 
+the OM was responsible for collating the output of these plots in sync with 
+the \protodune{} run schedule, such that the collated beam information for 
+each run could be monitored. After collation the beam instrumentation plots 
+where merged with the rest of the OM plots. The beam instrumentation plots 
+included momentum, and time of flight, examples of which are shown in 
+Figure \ref{fig:beam_OM}.
+
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/beam_momentum_om.pdf}
+		\caption {Beam momentum distribution.}
+		\label{fig:beam_momentum_om}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/beam_tof_om.pdf}
+		\caption {Beam time of flight distribution.}
+		\label{fig:beam_tof_om}
+	\end{subfigure}
+
+	\caption
+	[Examples of online monitoring plots for the beam instrumentation.]
+	{Examples of online monitoring plots for the beam instrumentation.}
+	\label{fig:beam_OM}
+
+\end{figure}
 
 \subsubsection*{Cosmic Ray Tagger}
 A bug in the DAQ meant that the CRT was run separately during the main beam 
 run. Therefore, the CRT data was analysed separately from the rest of the 
-\protodune{} systems and merged in the OM similarly to the beam 
-instrumentation data.
+\protodune{} systems and merged in the OM similarly to the beam instrumentation 
+data.
 
 \subsection{Merging}
-
 
 \subsection{Monitoring Web Interface}
