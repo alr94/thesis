@@ -789,10 +789,10 @@ in the OM.
 
 \subsection{Data Processing}
 The data processing for the OM is based on Fermilab's art and artdaq software
-frameworks \cite{TODO}, the only exception is the beam instrumentation data 
-which is analysed outside of the OM system by the CERN beam group. The beam
-instrumentation plots are merged with the rest of the OM plots after data
-processing.
+frameworks \cite{Green:2012gv, 6495515}, the only exception is the beam 
+instrumentation data which is analysed outside of the OM system by the CERN 
+beam group. The beam instrumentation plots are merged with the rest of the OM 
+plots after data processing.
 
 The first step of the data processing is event filtering, the main purpose of
 this step is to control the flow of data into the OM. Two types of filtering
@@ -826,24 +826,96 @@ displays.
 The basic data checks are intended to quickly spot any fundamental issues with
 the incoming data. An example of a basic check is to check which FEMBs are
 active in the monitored events, Figure \ref{fig:active_femb} shows an example of
-the number of events recorded by each FEMB on APA 1.
+the number of events recorded by each FEMB on APA 1 for a sample of 10 analysed
+events.
+
+
+The pedestals and noise are continually evaluated by the online monitoring, this
+data is displayed in the control room and used later in the monitoring chain to
+flatten the background in the event displays. Basic hit removal is used to 
+ensure that the pedestals and RMS are only calculated in the regions of the 
+readout corresponding to noise signals. Figure \ref{fig:ped_noise} shows an
+example of the pedestal and noise plots for a single APA.
+
+
+To identify noise sources in the APA it is useful to study the Fourier transform
+of the signal distribution, this allows the frequencies to be identified and the
+Fourier distributions can be studied under different conditions to identify
+noise sources; the camera's in the TPC where identified as a noise source in
+this way. The OM therefore provides fast Fourier transforms (FFT) for each
+APA, an example of the FFTs for a single \protodune{} APA is shown in Figure
+\ref{fig:TPC_FFT}.
 
 \begin{figure}
 
 	\centering
 
-	\includegraphics[width=\textwidth]{figures/active_femb.png}
+	\begin{subfigure}[b]{0.6\textwidth}
+		\centering
+		%TODO: make me
+		\includegraphics[width=\textwidth, height=0.7\textwidth]{figures/active_femb.png}
+		\caption {Number of events recorded by each FEMB.}
+		\label{fig:active_femb}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.6\textwidth}
+		\centering
+		%TODO: make me
+		\includegraphics[width=\textwidth, height=0.7\textwidth]{figures/ped_noise.png}
+		\caption {Background RMS for a single APA.}
+		\label{fig:ped_noise}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.6\textwidth}
+		\centering
+		%TODO: make me
+		\includegraphics[width=\textwidth, height=0.7\textwidth]{figures/tpc_fft.png}
+		\caption {FFTs for all components on a single APA.}
+		\label{fig:TPC_FFT}
+	\end{subfigure}
 
 	\caption
-	[Example of a data quality check, number of events recorded by each FEMB.]
-	{Example of a data quality check, number of events recorded by each FEMB.}
-
-	\label{fig:active_femb}
+	[Examples of online monitoring plots for the TPC data.]
+	{Examples of online monitoring plots for the TPC data.}
+	\label{fig:tpc_om}
 
 \end{figure}
 
+Event displays display the data from all the TPC readout channels
+simultaneously, and as such they provide the most general check of TPC 
+performance in the OM. During the beam run of \protodune{} a number of issues in
+the data were first identified in the event display, for example issues in the 
+channel mapping and timing synchronisation. They are also particularly useful 
+for checking that the beam trigger results in beam particles in the TPC. As 
+a result a significant effort was made to make event displays available in 
+the \protodune{} OM system; in particular changes to the display server 
+were required, these will be discussed later. 
 
+Event displays were offered for all views in all APAs, as well as a specific 
+beam window event displays in each view, and stitched event displays for all 
+of the APAs on each side of the TPC. As the slowest plot to make in the OM, 
+only one set of event displays was made per OM output file; to maximise the 
+number of beam particles in the event displays the trigger information was 
+included during processing. An example of a beam window event display is shown 
+in Figure \ref{fig:beam_evd}; the timing synchronisation issue mentioned
+previously is visible here, this issue affects a single FEMB and is mitigated 
+during offline reconstruction.  
 
+\begin{figure}
+	\centering
+
+	%TODO: make me
+	\includegraphics[width=\textwidth]{figures/beam_evd.png}
+
+	\caption
+	[An example of a beam window event display from the \protodune{} online
+	monitoring system.]
+	{An example of a beam window event display from the \protodune{} online
+	monitoring system.}
+
+	\label{fig:beam_evd}
+
+\end{figure}
 
 \subsubsection*{Photon Detection System}
 
