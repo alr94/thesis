@@ -748,8 +748,8 @@ vs range for a sample of stopping muons, as shown in figure \ref{fig:dedx_v_rr}.
 As well as monitoring the stability of the detector and DAQ systems, the quality
 of the collected data has to be constantly monitored. This assures the shifter 
 that the data is of high quality, and prevents long runs of low quality data
-being collected, which reduce the experiments effective uptime. The online
-monitoring system (OM) is responsible for providing this quality assurance.
+being collected. The online monitoring system (OM) is responsible for 
+providing this quality assurance.
 
 As shown in Figure \ref{fig:pdsp_daq}, the OM is a part of the \protodune{} DAQ
 system, this allows the system to get access to the data leaving the detector as
@@ -1030,8 +1030,162 @@ Figure \ref{fig:beam_OM}.
 A bug in the DAQ meant that the CRT was run separately during the main beam 
 run. Therefore, the CRT data was analysed separately from the rest of the 
 \protodune{} systems and merged in the OM similarly to the beam instrumentation 
-data.
+data. Some examples of CRT monitoring plots include plots of the rate of hits
+for each channel, and the mean ADC for each channel, these are shown in Figure
+\ref{fig:crt_OM}.
 
-\subsection{Merging}
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/crt_rate_om.pdf}
+		\caption {Hit rate per channel.}
+		\label{fig:crt_rate_om}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/crt_adc_om.pdf}
+		\caption {Mean ADC per channel.}
+		\label{fig:crt_adc_om}
+	\end{subfigure}
+
+	\caption
+	[Examples of online monitoring plots for the cosmic ray tagger.]
+	{Examples of online monitoring plots for the cosmic ray tagger.}
+	\label{fig:crt_OM}
+
+\end{figure}
 
 \subsection{Monitoring Web Interface}
+The plots from the data analysis are stored in a ROOT file on the \protodune{}
+DAQ servers, this data is viewable from anywhere in CERN via a web interface
+which was adapted for \protodune{} from LHCb's Monet \cite{Adinolfi_2017}. 
+Monet consists of a Flask web application \cite{flask} which uses Bokeh
+\cite{bokeh} to render plots for display, ROOT \cite{ANTCHEVA20092499} and 
+NumPy \cite{numpy} are used to process the monitoring data in preparation for 
+display.
+
+Two important modifications were made to Monet for \protodune{}: efficiency 
+improvements which were required to handle the large amounts of data in the 
+event displays, and the addition of a separate rendering server with 
+additional capabilities. 
+
+The components of the web interface, and their connections, are outlined in 
+Figure \ref{fig:monet_flow}. When a user makes a request, which could be a
+request to open a new page of plots or a request to interact with a plot, the 
+request is sent to the display server which decides what to do with it.
+Depending on the nature of the request the display server will then interact
+with the histogram database and/or the rendering server, before updating the
+plots and displaying them to the user. 
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=0.7\textwidth]{figures/monet_flow.png}
+
+	\caption
+	[Data flow diagram for the web interface in the \protodune{} online 
+	monitoring system.] 
+	{ Data flow diagram for the web interface in the \protodune{} online 
+	monitoring system. } 
+	\label{fig:monet_flow}
+
+\end{figure}
+
+The plots in the monitoring files are organised into pages in Monet. Each page
+can contain any number of plots which are organised into an array on the screen,
+an example of this is shown in Figure \ref{fig:monet_page}. The histogram 
+database is responsible for the details of each of these pages, this includes
+the plots on each page, their locations, and the relevant rendering options for
+each plot. When a new page is requested the display server requests these
+details from the histogram database before preparing a request to the rendering
+server to render the plots.
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width=\textwidth]{figures/profiled_fft_monet.png}
+
+	\caption
+	[An example of an online monitoring page.] 
+	{ An example of an online monitoring page, profiled FFTs for APA 1. } 
+	\label{fig:monet_page}
+
+\end{figure}
+
+The rendering server is responsible for rendering the plots from the monitoring
+root files, it is capable of rendering all 1D and 2D root plots. In LHCb's Monet
+rendering is handled directly on the display server, by separating the rendering
+processes onto their own server additional functionality was possible. The main
+advantage of the rendering server was that it enabled the OM to utilise a
+dynamic binning algorithm to scale the resolution of the displayed images in
+response to user interaction. This is mainly used for the event displays; the 
+event display is initially loaded in a low resolution, but if a user is 
+interested in a specific region of the event display then they can zoom in on 
+the region of interest, which is then displayed at a higher resolution by the 
+dynamic binning algorithm, as demonstrated in Figure \ref{fig:dynamic_binning}.
+
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/zoomed_out.png}
+		\caption {Full APA view.}
+		\label{fig:zoomed_out}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\vspace{3mm}
+		\includegraphics[width=\textwidth]{figures/zoomed_in.png}
+		\caption {Zoomed region.}
+		\label{fig:zoomed_in}
+	\end{subfigure}
+
+	\caption
+	[Example of the dynamic binning algorithm in the \protodune{} online
+	monitoring system.]
+	{ Example output of the dynamic binning algorithm in the \protodune{} online
+	monitoring system. }
+	\label{fig:dynamic_binning}
+
+\end{figure}
+
+The other significant modification to Monet was to modify the data handling to 
+significantly improve the efficiency of data transfer to the renderer.
+When Monet was first adapted for \protodune{} it was too slow to render some 
+of the larger plots such as event displays, it would take minutes to render a 
+single event display. By improving the efficiency of the data transfer from ROOT
+to Bokeh, the rendering time was reduced to around 4 seconds per event display.
+% \mccorrect{TODO: do I need to expand here or is this sufficient? Seems a little
+% over the top to explain the change of algorithm.}
+
+\bigskip
+
+In the \protodune{} Technical Design Report \cite{Abi2017}, the proposed online
+monitoring system was described as being able to \say{provide data quality 
+assurance in real--time}. In practice the response time from event trigger to
+visible plots is around 1 minute, which can be split into 3 main parts, filling
+the data file with events, analysis, and writing out the OM files in the ratio 
+20:10:30. During this time each set of plots will have analysed up to 100 events
+with fewer events being analysed in some cases, for example only one event is 
+analysed for the event display. 
+
+% First, the OM had to wait for each data file to be closed in order to start 
+% it's analysis, which means 100 events are written before the OM can start 
+% looking at the data. A shared memory system was proposed in which the OM and 
+% EventBuilders can simultaneously look at the data as it is coming off the 
+% detector, this would reduce the latency in the OM by allowing it to analyse
+% the data promptly as it is read out by the detector. Unfortunately, this system
+% was never implemented during the first beam run of \protodune{}, and it remains 
+% under development.
