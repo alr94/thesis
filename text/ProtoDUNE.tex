@@ -752,8 +752,7 @@ being collected. The online monitoring system (OM) is responsible for
 providing this quality assurance.
 
 As shown in Figure \ref{fig:pdsp_daq}, the OM is a part of the \protodune{} DAQ
-system, this allows the system to get access to the data leaving the detector as
-soon as possible. The OM is responsible for processing this data and displaying
+system. The OM is responsible for processing the data and displaying
 the results to the shifter in the control room as soon as possible after the
 event was triggered. It consists of three main components:
 \begin{itemize}
@@ -799,7 +798,7 @@ this step is to control the flow of data into the OM. Two types of filtering
 take place sequentially; first a random filter is used to cut the data rate into
 the OM to a manageable level, then a second filter which aims to increase the 
 likelihood that processed events were triggered by the beam instrumentation or 
-cosmic--ray tagger is used. Different OM processes take different amount of
+cosmic--ray tagger. Different OM processes take different amount of
 processing time per event, therefore multiple filters are used which control the
 data rate into each process separately.
 
@@ -1104,8 +1103,8 @@ an example of this is shown in Figure \ref{fig:monet_page}. The histogram
 database is responsible for the details of each of these pages, this includes
 the plots on each page, their locations, and the relevant rendering options for
 each plot. When a new page is requested the display server requests these
-details from the histogram database before preparing a request to the rendering
-server to render the plots.
+details from the histogram database before requesting the rendering server to 
+render the plots.
 
 \begin{figure}
 
@@ -1121,11 +1120,12 @@ server to render the plots.
 \end{figure}
 
 The rendering server is responsible for rendering the plots from the monitoring
-root files, it is capable of rendering all 1D and 2D root plots. In LHCb's Monet
-rendering is handled directly on the display server, by separating the rendering
-processes onto their own server additional functionality was possible. The main
-advantage of the rendering server was that it enabled the OM to utilise a
-dynamic binning algorithm to scale the resolution of the displayed images in
+ROOT files, it is capable of rendering all 1D and 2D ROOT plots. In LHCb's Monet
+rendering is handled directly on the display server, however in \protodune{} an
+additional rendering server was added. By separating the rendering processes 
+onto their own server additional functionality was possible. The main 
+advantage of the rendering server was that it enabled the OM to utilise a 
+dynamic binning algorithm to scale the resolution of the displayed images in 
 response to user interaction. This is mainly used for the event displays; the 
 event display is initially loaded in a low resolution, but if a user is 
 interested in a specific region of the event display then they can zoom in on 
@@ -1140,7 +1140,8 @@ dynamic binning algorithm, as demonstrated in Figure \ref{fig:dynamic_binning}.
 		\centering
 		\vspace{3mm}
 		\includegraphics[width=\textwidth]{figures/zoomed_out.png}
-		\caption {Full APA view.}
+		\caption {Full APA view. The white square represents the zoomed region in
+		Figure \ref{fig:zoomed_in}.}
 		\label{fig:zoomed_out}
 	\end{subfigure}
 
@@ -1155,7 +1156,7 @@ dynamic binning algorithm, as demonstrated in Figure \ref{fig:dynamic_binning}.
 	\caption
 	[Example of the dynamic binning algorithm in the \protodune{} online
 	monitoring system.]
-	{ Example output of the dynamic binning algorithm in the \protodune{} online
+	{ Example of the dynamic binning algorithm in the \protodune{} online
 	monitoring system. }
 	\label{fig:dynamic_binning}
 
@@ -1174,12 +1175,10 @@ to Bokeh, the rendering time was reduced to around 4 seconds per event display.
 
 In the \protodune{} Technical Design Report \cite{Abi2017}, the proposed online
 monitoring system was described as being able to \say{provide data quality 
-assurance in real--time}. In practice the response time from event trigger to
-visible plots is around 1 minute, which can be split into 3 main parts, filling
-the data file with events, analysis, and writing out the OM files in the ratio 
-20:10:30. During this time each set of plots will have analysed up to 100 events
-with fewer events being analysed in some cases, for example only one event is 
-analysed for the event display. 
+assurance in real--time}, in practice the response time is around one minute.
+During this time each set of plots will have contain data from 10 events, 
+however, the event displays and TPC FFTs each contain data from one event.
+\mccorrect{TODO: Should I include a discussion of possible improvements?}
 
 % First, the OM had to wait for each data file to be closed in order to start 
 % it's analysis, which means 100 events are written before the OM can start 
