@@ -516,3 +516,6 @@
 	\smash{\includegraphics[height=\dimexpr\zposy{top-\thepage}sp-\zposy{bottom-\thepage}sp\relax,#1]{#2}}%
 	\par
 }
+
+% Cell formatting
+\usepackage{makecell}
