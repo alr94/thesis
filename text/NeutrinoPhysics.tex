@@ -22,12 +22,12 @@ some of the most elusive; due to the fact that neutrinos can only interact via
 the weak interaction. The history of neutrino physics is therefore strongly
 connected to the discovery and study of weak interactions. Measurements by
 Chadwick in 1914 showed that the energy spectrum of electrons released in
-(\beta\)--decays was continuous, this is in contrast to discrete spectra
-observed in \(\alpha\) and \(\gamma\) decays, and seemingly violates
+$\beta$--decays was continuous, this is in contrast to discrete spectra
+observed in $\alpha$ and $\gamma$ decays, and seemingly violates
 conservation of energy under the assumption of a two--body final state which was
 expected at the time. In order to solve this problem, Pauli postulated that the 
 continuous energy spectrum could be explained, if the energy released in a 
-\(\beta\)--decay could be shared with an additional neutral weakly interacting 
+$\beta$--decay could be shared with an additional neutral weakly interacting 
 fermion, which Pauli named the neutron. Fermi later renamed Pauli's fermion to 
 the neutrino after Chadwick discovered the neutron in 1932. Despite claims that 
 neutrinos might never be detected, neutrinos have now been discovered and they 
@@ -81,9 +81,10 @@ produced in the resulting neutrino interactions, and therefore the neutrinos
 produced were only ever associated with a muon, which shows that neutrinos are 
 produced with a distinct flavour in weak interactions \cite{Danby1962}.
 
-In 1973 the Gargamelle experiment at CERN released results on the measurement of
-neutrino interactions \cite{Hasert1973}. They observed a new type of 
-interaction, neutral current (NC) interactions: 
+In 1973 the Gargamelle experiment at the European Organisation for Nuclear
+Research (CERN) released results on the measurement of neutrino interactions 
+\cite{Hasert1973}. They observed a new type of interaction, neutral current 
+(NC) interactions: 
 \begin{equation}
 	\nu_l + N \rightarrow \nu_l + X
 \end{equation}
@@ -263,9 +264,9 @@ went undetected. The first evidence of tau neutrino production in oscillations
 wouldn't come until 2010, when the OPERA experiment measured a \(\nu_\tau\) 
 candidate in a \(\nu_\mu\) beam. They used similar emulsion detectors to those 
 used to discover the \(\nu_\tau\) in DONUT, and a muon neutrino beam on a 730 km 
-baseline from CERN to LNGS. By the end of the experiment a total of 10 candidate
-events have been observed, 6.1 \(\sigma\) above the expected background 
-\cite{Agafonova2010, Agafonova2018}.
+baseline from CERN to Laboratori Nazionali del Gran Sasso (LNGS). By the end 
+of the experiment a total of 10 candidate events have been observed, 6.1 
+\(\sigma\) above the expected background \cite{Agafonova2010, Agafonova2018}.
 
 Since the discovery of neutrino oscillations, many more experiments have made
 measurements of oscillations and the majority of the parameters of the neutrino
@@ -376,6 +377,7 @@ PMNS matrix takes the form:
 	\end{pmatrix}.
 \end{equation}
 
+\subsection{Neutrino Oscillations in Vacuum}
 In a vacuum, the neutrino mass states are eigenstates of the free particle Hamiltonian
 \begin{equation}
 	\label{eqn:ham_eig}
@@ -464,13 +466,12 @@ eigenstates. It gives no information about the absolute masses of the
 neutrino eigenstates or their ordering. The question of the absolute
 neutrino masses cannot be answered in neutrino oscillation experiments. To get
 access to the absolute masses other experiments are required, e.g. direct mass
-measurements with tritium beta decay experiments such as KATRIN \cite{TODO}.  
-Neutrino oscillation experiments can give insight on the ordering of the 
-neutrino masses, but to understand how the oscillations of neutrinos in matter 
-must be considered.
+measurements with tritium beta decay experiments such as KATRIN 
+\cite{Aker:2019qfn}.  Neutrino oscillation experiments can give insight on the 
+ordering of the neutrino masses, but to understand how the oscillations of 
+neutrinos in matter must be considered.
 
-% TODO: decide whether to keep this.
-% \subsection{Neutrino Oscillations in Matter}
+\subsection{Neutrino Oscillations in Matter}
 In real neutrino oscillation experiments, neutrinos travel through matter,
 whether it be the matter in a star or the earths crust. Neutrinos propagating in
 matter are subject to an additional potential due to the interaction of the 
@@ -825,14 +826,13 @@ interaction modes in DUNE.
 % TODO: what do I mean here. E.g. muon pion separation...
 
 \section{Supernova Neutrinos} \label{nu_sn}
-%FIXME: you were here with comments.
 
-Supernovae are extremely violent explosions which are undergone by certain types
-of stars at the end of their life. These explosions can emit one the order of
-$10^{53}$ erg of energy, and in certain cases, known as core--collapse
-supernovae, about 99\% of this energy is carried away by neutrinos. 
-Measurements of these neutrinos can provide insight into the mechanism 
-involved in supernova bursts, as well as the study of neutrino masses 
+Supernovae are extremely violent explosions, which are undergone by certain 
+types of stars at the end of their life. These explosions can emit on the 
+order of $10^{46}$ Joule of energy, and in certain cases, known as 
+core--collapse supernovae, about 99\% of this energy is carried away by 
+neutrinos.  Measurements of these neutrinos can provide insight into the 
+mechanism involved in supernova bursts, as well as the study of neutrino masses
 \cite{GiuntiCarlo2007FoNP}.  
 
 \subsection{Core--collapse Supernova Dynamics}
@@ -963,10 +963,22 @@ measurements from IMB \cite{Loredo:2001rx}.
 Since SN1987A significant progress has been made for both experimental and
 theoretical aspects of neutrino physics. Progress has been made in modelling
 supernova explosions, and the impact of neutrino oscillations on the supernova
-environment have been considered \cite{Mirizzi:2015eza}. The current and next generation 
-of neutrino experiments expect to measure thousands of neutrino events for a 
-galactic supernova instead of tens, this data could provide insights into the
-dynamics of supernovae as well as neutrino physics.
+environment have been considered \cite{Mirizzi:2015eza}. The current and next 
+generation of neutrino experiments expect to measure thousands of neutrino 
+events for a galactic supernova instead of tens. The flux of neutrinos at earth
+has three components $\nu_e$, $\xoverline{\nu_e}$, and $\nu_x$, the predicted 
+energy spectra of each component is shown in Figure \ref{fig:sn_spec}.  
+Measuring the spectrum and time structure of a supernova neutrino burst could 
+provide insights into the dynamics of supernovae, as well as neutrino physics.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figures/supernova_spectrum_production.eps}
+	\caption
+	[Supernova neutrino energy spectrum.]
+	{Supernova neutrino energy spectrum. Figure from \cite{Scholberg:2012id}.}
+	\label{fig:sn_spec}
+\end{figure}
 
 \subsection{Supernova Neutrino Prospects in DUNE}
 
@@ -980,7 +992,7 @@ Cerenkov and scintillator based detectors, and therefore the majority of the
 current landscape of supernova neutrino detectors. The large charged--current 
 cross section for $\nu_e$ on argon therefore makes DUNE a highly complementary 
 detector to the other major supernova neutrino detectors, and DUNE offers a 
-unique sensitivity to the neutronisation burst which is primarily made up of 
+unique sensitivity to the neutronisation burst, which is primarily made up of 
 $\nu_e$.  
 
 \subsubsection{Supernova Neutrino Interactions in Liquid Argon}
@@ -993,7 +1005,7 @@ $^{40}\mbox{Ar}$,
 \end{equation}
 This interaction leaves an $e^-$ and an excited $K$ in the final state. In 
 addition there are charged--current $\xoverline{\nu_e}$ interactions with argon, 
-and elastic scattering interactions with electrons which are available to
+and elastic scattering interactions with electrons, which are available to
 neutrinos of all flavours. The dominant cross sections in liquid argon as a 
 function of energy are shown in Figure \ref{fig:sn_xsec} \cite{Abi:2020evt}.
 
@@ -1035,14 +1047,14 @@ into both neutrino physics and the dynamics of supernova bursts.
 	\label{fig:sn_nus}
 \end{figure}
 
-Detecting and reconstructing tens of MeV electrons from supernova neutrinos is
-necessary to study supernova neutrinos, as can be seen from the observed energy
-spectrum for supernova neutrinos in Figure \ref{fig:sn_enegry}. There are 
-significant challenges involved in this measurement from the detection of low 
-energy activity, as well as the impacts of the ionisation geometry of tens of 
-MeV on reconstruction.  Effectively reconstructing electrons in the tens of 
-MeV range is essential to improving our understanding of supernova neutrinos 
-in DUNE. This is one of the subjects of this thesis, and is discussed in 
-chapter \ref{ch:michel} using the case of Michel electrons in \protodune{} 
-to benchmark the performance of low energy electron reconstruction in liquid 
+Detecting and reconstructing tens of MeV electrons is necessary to study 
+supernova neutrinos, as can be seen from the observed energy spectrum for 
+supernova neutrinos in Figure \ref{fig:sn_nus}. There are significant 
+challenges involved in this measurement from the detection of low energy 
+activity, as well as the impacts of the ionisation geometry of tens of MeV on 
+reconstruction.  Effectively reconstructing electrons in the tens of MeV range 
+is essential to improving our understanding of supernova neutrinos in DUNE. 
+This is one of the subjects of this thesis, and is discussed in chapter 
+\ref{ch:michel} using the case of Michel electrons in \protodune{} to 
+benchmark the performance of low energy electron reconstruction in liquid 
 argon time projection chambers.
