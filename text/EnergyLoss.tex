@@ -20,8 +20,6 @@ reconstruction algorithms developed in Chapters \ref{ch:chargeid} and
 theory of electromagnetic energy loss in liquid argon, highlighting the 
 important features of the energy loss for muons, electrons, and photons.
 
-In this chapter Section \mccorect{TODO.}
-
 \section{Electromagnetic Energy Loss in Matter}
 In matter, charged particles lose energy through a number of small successive
 collisions with the electrons in the material, and by radiative processes which
@@ -51,9 +49,10 @@ and $\delta$ is a density effect correction which is relevant in solids and
 liquids. 
 
 Three important features of the energy loss in the Bethe formula are the minimum
-ionising region, the relativistic rise, and the Bragg peak, these regions are
-labelled in Figure \ref{fig:muon_dedx} which shows the $dE/dx$ for muons in 
-argon as a function of momentum.
+ionising region, the relativistic rise, and the Bragg peak, these regions can be
+seen in Figure \ref{fig:muon_dedx} which shows the $dE/dx$ for muons in argon 
+as a function of momentum. 
+
 \begin{figure}
 
 	\centering
@@ -154,8 +153,8 @@ which depend on the atomic number of the material\cite{Tsai:1973py}.
 \subsubsection*{Critical Energy}
 The critical energy is often defined as the energy at which the collision and 
 radiative stopping power are equivalent, other definitions are also used, such
-as the definition by Rossi, the energy at which the ionisation loss per
-radiation length is equal to the electron energy \cite{TODO}. Rossi's 
+as the definition by Rossi, the energy where the ionisation loss per
+radiation length is equal to the electron energy \cite{Rossi:1952kt}. Rossi's 
 definition is equivalent to using the approximate $dE/dx$ calculated 
 above\cite{PhysRevD.98.030001}. The value of the critical energy has important 
 implications for reconstruction algorithms, because different approaches are 
@@ -214,7 +213,6 @@ atom.
 \end{equation*}
 
 \bigskip
-
 The cross section for these effects vary as a function of photon energy. The 
 cross sections for each process in liquid argon, as well as the total photon 
 cross section, are given in Figure \ref{fig:photon_xsec}. The Compton scattering
@@ -246,7 +244,7 @@ section per target. The contribution to the mean free path from pair production
 is related to the radiation length for electrons, $X_0$ from Equation
 \ref{eq:rad_length}, by $\lambda_{PP} = (9/7) \; X_0$ \cite{PhysRevD.98.030001}.
 The mean free path for photons in the MeV range is shown in Figure
-\ref{fig:photon_mfp}, along with the main components. 
+\ref{fig:photon_mfp}, along with the main contributing cross sections. 
 
 \begin{figure}
 
@@ -259,5 +257,91 @@ The mean free path for photons in the MeV range is shown in Figure
 	{Photon mean free path in liquid argon. Data from \cite{photon_xsec}.}
 
 	\label{fig:photon_mfp}
+
+\end{figure}
+
+\subsection{Typical Interaction Signatures in \protodune{}}
+As a result of the differences in energy loss which depend on particle species
+and energy, different particles leave distinct signatures in the detector.  
+Figure \ref{fig:particle_signatures} shows the typical signatures of four 
+types of interaction in a liquid argon TPC for events from \protodune{} 
+data.
+
+The most common interaction in \protodune{} is that of a cosmic ray muon, seen
+in Figure \ref{fig:muon_signature}. Muons, and other heavy particles, leave 
+long tracks in the detector which deposit around 2.1 MeV/cm in the minimum 
+ionising region. Alongside muon tracks, relatively high energy electrons, 
+known as delta rays, are occasionally produced. Delta rays can be seen as 
+electron activity along the length of the muon track.
+
+Electrons in \protodune{} have two distinct signatures, which depend on the
+energy of the electron. For high energy electrons, with energies above around
+300 MeV, radiative energy loss dominates and showers are produced, an example 
+of an electron shower can be seen in Figure \ref{fig:electron_signature}. 
+These showers are the result of a cascade of electrons, which are produced by 
+a chain of bremsstrahlung photons and electron positron pairs.
+
+At energies in the tens of MeV range electrons have a different signature, 
+which consists of a small electron track accompanied by a number of small 
+ionisation energy deposits due to radiated photons. A common source of these
+electrons in \protodune{} are Michel electrons, which are the electrons produced
+when a muon decays at rest in the detector. An example of a typical Michel
+electron event is shown in Figure \ref{fig:michel_signature}. The Michel 
+electron is accompanied by the incoming Muon in the image, which cannot be 
+separated in the ionisation signal due to the slow drift of the ionisation.
+
+As with electrons, photon interactions in liquid argon have two distinct
+signatures at high and low energies. Low energy photons are typically produced
+by the interactions of low energy electrons in the liquid argon, such as the
+Michel electron interaction in Figure \ref{fig:michel_signature}. When these 
+photons interact they produce small isolated energy deposits, which are 
+created by the ionisation caused by the Compton scattered electron of electron 
+positron pair.
+
+At high energies, photons produce similar interactions to high energy electrons,
+which produce electromagnetic showers in the liquid argon. Their is a slight
+difference in the $dE/dx$ in the first few cm of these showers which can allow
+for electron and photon showers to be distinguished \cite{Acciarri:2016sli}. A 
+common source of photon showers in \protodune{} are $\pi^0$ decays, shown in 
+Figure \ref{fig:pi0_signature}, which produce a pair of photons.
+
+\begin{figure}
+
+	\centering
+	% TODO: make these plots.
+
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/muon_signature.png}
+		\caption{Muon track with delta ray.}
+		\label{fig:muon_signature}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/electron_signature.png}
+		\caption{Electron shower.}
+		\label{fig:electron_signature}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/michel_candidate.pdf}
+		\caption{Michel electron.}
+		\label{fig:michel_signature}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/pi0_signature.png}
+		\caption{Photon showers from a $\pi^0$ decay.}
+		\label{fig:pi0_signature}
+	\end{subfigure}
+
+	\caption
+	[Typical particle interactions in \protodune{} for different particle species.]
+	{Typical particle interactions in \protodune{} for different particle species.}
+
+	\label{fig:particle_signatures}
 
 \end{figure}
