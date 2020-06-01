@@ -1,5 +1,157 @@
-\chapter{\label{ch:ml}Machine Learning} 
+\chapter{\label{ch:ml}Neural Networks} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Relevant bits
+%
+%   - Neural Network
+%   - CNN
+%   - Recurrent NN
+%   - Backpropagation
+%   - Dropout
+%   - Inception
+%   - Batch normalisation
+%
+%   - Losses
+%     - IOU
+%     - 
+%
+%   - Activations
+%     - RELU
+%     - Sigmoid
+%
+%   - Architectures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \minitoc
 
+Machine Learning (ML) is a field of research which studies algorithms which 
+can learn to make predictions from data, i.e. predict a set of output variables,
+given a set of input variables. The algorithms typically take the form of a
+multivariate function, which is used to predict the output \cite{Reed1999}.
 
+ML algorithms are often classified into four groups based on two distinctions: 
+regression or classification, and supervised or unsupervised. The first
+distinction is based on the nature of the output distribution expected from the
+network; regression algorithms are designed to predict the outputs of a 
+continuous function, whereas classification algorithms aim to separate data 
+into groups. Finally, the distinction between supervised and unsupervised 
+algorithms is based on the outputs used during training; in a supervised 
+algorithm the true output is known, and the network's goal is to predict the 
+true output, while in an unsupervised algorithm the output is unknown, and the 
+networks goal is to extract meaningful structure from the data.
+
+Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two 
+examples of the application of Neural Networks (NN) for event reconstruction 
+in LArTPC data. These algorithms are classification algorithms based on the
+supervised learning approach. This chapter will briefly describe the theory
+behind NNs, as well as providing details of the relevant techniques used in 
+the subsequent chapters.
+
+\section{Artificial Neural Networks}
+Artificial neural networks (ANN) are a class of ML algorithm that draw
+inspiration from biological neurons. An ANN consists of a set of nodes, along
+with a set of connections between those nodes. The set of nodes and connections
+is often referred to as a graph or architecture. The nodes in 
+the graph take the form of artificial neurons, which pass a number of inputs 
+through an activation function to produce a single output, as depicted in 
+Figure \ref{fig:neuron}.  The output of each neuron is either distributed to 
+subsequent neurons in the network, or it is part of the output of the network. 
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width = \textwidth]{figures/neuron.pdf}
+
+	\caption
+	[Graphical representation of an individual neuron in an artificial neural
+	network.]
+	{Graphical representation of an individual neuron in an artificial neural
+	network.}
+
+	\label{fig:neuron}
+
+\end{figure}
+
+One of the most widely used ANNs is the multi--layer perceptron 
+(MLP)\cite{Reed1999}; this class of network consists of at least three layers 
+of nodes: an input layer, one or more hidden layers, and an output layer. The 
+layers are connected in a feedforward configuration, such that the graph of 
+nodes contains no cycles. The layers of an MLP are often fully connected or 
+dense, meaning that the output of every node is connected to the input of 
+every node in the next layer of the network. An example of a fully connected 
+MLP, with two hidden layers, is shown in Figure \ref{fig:mlp}. 
+
+Each node receives input from nodes in the previous layer, and uses the inputs
+to calculate a response function. For the $i^{th}$ node in the $j^{th}$ layer 
+of a network, 
+\begin{equation*}
+	z^{i,j} = \mathbf{w}^{i,j} \cdot \mathbf{x}^{j-1} + b^{i,j}
+\end{equation*}
+where $z^{i,j}$ is the response function, $\mathbf{w}^{i,j}$ is the weights
+vector, $b^{i,j}$ is the bias, and $\mathbf{x}^{j-1}$ is the input vector from 
+the previous layer. This response function is usually passed through a
+nonlinear activation function, $f$, to produce the output, which is passed onto
+the next layer,
+\begin{equation*}
+	a^j_i = f \left( z^{i,j} \right).
+\end{equation*}
+
+The weights and biases of the nodes in an MLP can be adjusted to make accurate 
+predictions of data. For a classification task, there are typically as many
+output nodes as there are classes, with output values in the range zero to one. 
+The output value of a classification network, quantifies how well the image
+represents each class, based on the networks prediction. In principle, MLPs 
+are able to approximate any function to arbitrary precision with a 
+single hidden layer \cite{Cybenko1989ApproximationBS}; however, there is no 
+limit on the number of nodes required in order to achieve a good 
+approximation. In practice, networks with additional hidden layers can reach 
+the required precision with fewer nodes than a network with a single hidden 
+layer \cite{Lecun2015}.
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width = \textwidth]{figures/mlp.pdf}
+
+	\caption
+	[A graphical representation of a multi--layer perceptron.]
+	{ A graphical representation of a multi--layer perceptron. }
+
+	\label{fig:mlp}
+
+\end{figure}
+
+\subsection{Convolutional Neural Networks}
+An extension of the MLP with considerable success, particularly in image 
+classification tasks, is the convolutional neural network (CNN) 
+\cite{Jackel2008, Szegedy2015}, which addresses some of the drawbacks of the 
+traditional MLP. In particular, when evaluating data with a high dimensional 
+input, having a fully connected network architecture leads to a large number 
+of neurons and high computational cost. In addition, for spatially correlated 
+data, such an architecture does not take into account the local spatial 
+structure of the data, instead focussing on all the data at once. A CNN 
+attempts to resolve these issues by exploiting the local spatial structure of 
+the data.
+
+In a CNN the singular input neutrons of a traditional MLP are replaced by
+convolutional kernels. A convolutional kernel is a matrix containing a set of 
+weights, which are multiplied pixel--by--pixel with small regions of the input 
+data. Kernels are sometimes referred to as feature detectors, which emphasises
+the fact that each kernel identifies a given feature in the data, based on the
+weights in the kernel matrix. The kernels are evaluated at every valid 
+location of the input image, and the outputs at each location are combined to
+build feature maps which show the spatial distribution of each learned feature
+in the data. 
+
+\subsection{Residual Neural Networks}
+\subsection{Network Architectures}
+\subsubsection*{Common Layers}
+
+
+\section{Supervised Learning}
+\subsection{Backpropagation}
+\subsubsection{Activation Functions}
+\subsection{Batch Normalisation}
+\subsection{Regularisation}
+\subsubsection*{Dropout}
+\subsubsection*{Early Stopping}
