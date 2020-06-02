@@ -34,18 +34,19 @@ regression or classification, and supervised or unsupervised. The first
 distinction is based on the nature of the output distribution expected from the
 network; regression algorithms are designed to predict the outputs of a 
 continuous function, whereas classification algorithms aim to separate data 
-into groups. Finally, the distinction between supervised and unsupervised 
-algorithms is based on the outputs used during training; in a supervised 
-algorithm the true output is known, and the network's goal is to predict the 
-true output, while in an unsupervised algorithm the output is unknown, and the 
-networks goal is to extract meaningful structure from the data.
+into groups. The distinction between supervised and unsupervised algorithms is 
+based on the outputs used during training; in a supervised algorithm the true 
+output is known, and the network's goal is to predict the true output, while 
+in an unsupervised algorithm the output is unknown, and the networks goal is 
+to extract meaningful structure from the data.
 
 Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two 
 examples of the application of Neural Networks (NN) for event reconstruction 
 in LArTPC data. These algorithms are classification algorithms based on the
-supervised learning approach. This chapter will briefly describe the theory
-behind NNs, as well as providing details of the relevant techniques used in 
-the subsequent chapters.
+supervised learning approach. This chapter will not provide a full survey of
+the available ML techniques, instead it will briefly describe the theory 
+behind NNs, as well as providing details of the techniques used in the 
+subsequent chapters. 
 
 \section{Artificial Neural Networks}
 Artificial neural networks (ANN) are a class of ML algorithm that draw
@@ -81,32 +82,6 @@ dense, meaning that the output of every node is connected to the input of
 every node in the next layer of the network. An example of a fully connected 
 MLP, with two hidden layers, is shown in Figure \ref{fig:mlp}. 
 
-Each node receives input from nodes in the previous layer, and uses the inputs
-to calculate a response function. For the $i^{th}$ node in the $j^{th}$ layer 
-of a network, 
-\begin{equation*}
-	z^{i,j} = \mathbf{w}^{i,j} \cdot \mathbf{x}^{j-1} + b^{i,j}
-\end{equation*}
-where $z^{i,j}$ is the response function, $\mathbf{w}^{i,j}$ is the weights
-vector, $b^{i,j}$ is the bias, and $\mathbf{x}^{j-1}$ is the input vector from 
-the previous layer. This response function is usually passed through a
-nonlinear activation function, $f$, to produce the output, which is passed onto
-the next layer,
-\begin{equation*}
-	a^j_i = f \left( z^{i,j} \right).
-\end{equation*}
-
-The weights and biases of the nodes in an MLP can be adjusted to make accurate 
-predictions of data. For a classification task, there are typically as many
-output nodes as there are classes, with output values in the range zero to one. 
-The output value of a classification network, quantifies how well the image
-represents each class, based on the networks prediction. In principle, MLPs 
-are able to approximate any function to arbitrary precision with a 
-single hidden layer \cite{Cybenko1989ApproximationBS}; however, there is no 
-limit on the number of nodes required in order to achieve a good 
-approximation. In practice, networks with additional hidden layers can reach 
-the required precision with fewer nodes than a network with a single hidden 
-layer \cite{Lecun2015}.
 \begin{figure}
 
 	\centering
@@ -121,36 +96,126 @@ layer \cite{Lecun2015}.
 
 \end{figure}
 
+Each node receives input from nodes in the previous layer, and uses the inputs
+to calculate a response function. For the $i^{th}$ node in the $j^{th}$ layer 
+of a network, 
+\begin{equation*}
+	z^{i,j} = \mathbf{w}^{i,j} \cdot \mathbf{x}^{j-1} + b^{i,j}
+\end{equation*}
+where $z^{i,j}$ is the response function, $\mathbf{w}^{i,j}$ is the weights
+vector, $b^{i,j}$ is the bias, and $\mathbf{x}^{j-1}$ is the input vector from 
+the previous layer. This response function is usually passed through a
+nonlinear activation function, $f$, to produce the output from the node,
+$y$, which is part of the input for the next layer,
+\begin{equation*}
+	\left(\mathbf{x}^j\right)_i = y^{i,j} = f \left( z^{i,j} \right).
+\end{equation*}
+
+Some common choices for the activation function are the sigmoid function, the
+hyperbolic tangent, the rectified linear unit (ReLU), and the softmax function
+\cite{Lecun2015, He2015, Szegedy2015}.
+\begin{align}
+	\tag{Sigmoid} f(x) &= \frac{1}{1+e^x} \\
+	\tag{Tanh}    f(x) &= \frac{e^x - e^{-x}}{e^x+e^{-x}} \\
+	\tag{ReLU}    f(x) &= \mbox{max}\left( 0, x \right) \\
+	\tag{Softmax} f(x) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
+	\label{eqn:losses}
+\end{align}
+In the softmax function, the index $i$ indicates the current node, and the index
+$j$ includes all nodes in the current layer. This construction ensures that 
+the outputs from a softmax layer sum to one, and as such this unit is commonly 
+used in categorisation tasks when the output must belong to one of a given set 
+of categories. The benefits and drawbacks of these common activation functions 
+will be discussed later in this chapter, when we will discuss modifying 
+weights with the backpropagation algorithm.
+
+The weights and biases of the nodes in an MLP can be adjusted to make accurate 
+predictions of data. For a classification task, there are typically as many
+output nodes as there are classes, with output values in the range zero to one. 
+The output value of a classification network, quantifies how well the image
+represents each class, based on the networks prediction. In principle, MLPs 
+are able to approximate any function to arbitrary precision with a 
+single hidden layer \cite{Cybenko1989ApproximationBS}; however, there is no 
+limit on the number of nodes required in order to achieve a good 
+approximation. In practice, networks with additional hidden layers can reach 
+the required precision with fewer nodes than a network with a single hidden 
+layer, but there are diminishing returns with more than a few hidden layers 
+\cite{Reed1999, Lecun2015}.
+
 \subsection{Convolutional Neural Networks}
 An extension of the MLP with considerable success, particularly in image 
 classification tasks, is the convolutional neural network (CNN) 
-\cite{Jackel2008, Szegedy2015}, which addresses some of the drawbacks of the 
-traditional MLP. In particular, when evaluating data with a high dimensional 
-input, having a fully connected network architecture leads to a large number 
-of neurons and high computational cost. In addition, for spatially correlated 
-data, such an architecture does not take into account the local spatial 
-structure of the data, instead focussing on all the data at once. A CNN 
-attempts to resolve these issues by exploiting the local spatial structure of 
-the data.
+\cite{Jackel2008, Szegedy2015, 5537907}, which addresses some of the drawbacks 
+of the traditional MLP. In particular, when evaluating data with a high 
+dimensional input, having a fully connected network architecture leads to a 
+large number of neurons and high computational cost. In addition, for 
+spatially correlated data, such an architecture does not take into account the 
+local spatial structure of the data, instead focussing on all the data at 
+once. A CNN attempts to resolve these issues by exploiting the local spatial 
+structure of the data.
 
 In a CNN the singular input neutrons of a traditional MLP are replaced by
 convolutional kernels. A convolutional kernel is a matrix containing a set of 
 weights, which are multiplied pixel--by--pixel with small regions of the input 
-data. Kernels are sometimes referred to as feature detectors, which emphasises
-the fact that each kernel identifies a given feature in the data, based on the
-weights in the kernel matrix. The kernels are evaluated at every valid 
-location of the input image, and the outputs at each location are combined to
-build feature maps which show the spatial distribution of each learned feature
-in the data. 
+image. The convolution operator is defined as, 
+\begin{equation}
+	\left( x * y \right)_i = \sum_{j = - \infty}^{\infty} x_j y_{i-j},
+\end{equation}
+where x and y are discrete sequences. In the machine learning context, y
+represents the image, and x the convolutional kernel, which is defined to be
+zero beyond the finite size of the filter. The convolution operation is applied
+to all pixels in the input image, which are replaced by the resulting 
+convolution in the next layer of the network. Many convolutional kernels are 
+used in each layer of the network, each producing an output image which is 
+passed to the next layer. 
+
+Convolutional kernels are sometimes referred to as feature detectors, which 
+emphasises the fact that each kernel identifies a given feature in the data, 
+based on the weights in the kernel matrix. The output image from each kernel 
+is known as a feature map, reflecting the fact that they represent the spatial 
+distribution of the features learned by a given feature detector. 
+
+\subsubsection*{Pooling}
+The use of images as network input typically drastically increases the number of
+input parameters for a network, when combined with a large number of
+convolutional filters this can lead to a dramatic increase in the computational
+cost of training a network. Pooling \cite{5537907} is a downsampling technique 
+designed to reduce the number of parameters in the network, and therefore 
+reduce the computational cost of making predictions. In a pooling algorithm 
+the input data from each $m \times n$ region of the input data is downsampled 
+to a single value, the downsampled image is used as the input for the next 
+layer of the network. Two common pooling algorithms are max pooling and 
+average pooling; in max pooling the maximum value from within the downsampling 
+region is used, whereas average pooling uses the average value from the region.
+
+\bigskip
+
+While convolutions are able to extract features from the data, they typically
+are not able to make predictions in the desired format for classification tasks.
+Therefore, after convolutions, data is typically flattened and passed through
+one or more dense layers in order to produce the classification prediction. A
+graphical representation of a typical CNN architecture is shown in Figure
+\ref{fig:cnn_layer}, it includes convolutional, pooling, and dense layers.
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width = \textwidth]{figures/cnn_layer.png}
+
+	\caption
+	[A graphical representation of a convolutional neural network.]
+	{ A graphical representation of a convolutional neural network. Figure
+	generated with \cite{cnn_diagrams}.}
+
+	\label{fig:cnn_layer}
+
+\end{figure}
 
 \subsection{Residual Neural Networks}
-\subsection{Network Architectures}
-\subsubsection*{Common Layers}
-
+\cite{He_2016_CVPR}
 
 \section{Supervised Learning}
 \subsection{Backpropagation}
-\subsubsection{Activation Functions}
 \subsection{Batch Normalisation}
 \subsection{Regularisation}
 \subsubsection*{Dropout}
