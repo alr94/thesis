@@ -61,7 +61,7 @@ subsequent neurons in the network, or it is part of the output of the network.
 
 	\centering
 
-	\includegraphics[width = \textwidth]{figures/neuron.pdf}
+	\includegraphics[width = 0.7\textwidth]{figures/neuron.pdf}
 
 	\caption
 	[Graphical representation of an individual neuron in an artificial neural
@@ -86,7 +86,7 @@ MLP, with two hidden layers, is shown in Figure \ref{fig:mlp}.
 
 	\centering
 
-	\includegraphics[width = \textwidth]{figures/mlp.pdf}
+	\includegraphics[width = 0.8\textwidth]{figures/mlp.pdf}
 
 	\caption
 	[A graphical representation of a multi--layer perceptron.]
@@ -159,7 +159,7 @@ convolutional kernels. A convolutional kernel is a matrix containing a set of
 weights, which are multiplied pixel--by--pixel with small regions of the input 
 image. The convolution operator is defined as, 
 \begin{equation}
-	\left( x * y \right)_i = \sum_{j = - \infty}^{\infty} x_j y_{i-j},
+	\left( x * y \right)_i = \sum_{j = - \infty}^{\infty} x_j \; y_{i-j},
 \end{equation}
 where x and y are discrete sequences. In the machine learning context, y
 represents the image, and x the convolutional kernel, which is defined to be
@@ -196,6 +196,7 @@ Therefore, after convolutions, data is typically flattened and passed through
 one or more dense layers in order to produce the classification prediction. A
 graphical representation of a typical CNN architecture is shown in Figure
 \ref{fig:cnn_layer}, it includes convolutional, pooling, and dense layers.
+
 \begin{figure}
 
 	\centering
@@ -212,11 +213,134 @@ graphical representation of a typical CNN architecture is shown in Figure
 \end{figure}
 
 \subsection{Residual Neural Networks}
-\cite{He_2016_CVPR}
+Adding more layers to a neural network usually improves the performance, the
+popular intuition for this is that with each subsequent layer the network is
+able to learn more complex features of the image with which to make it's
+classification. In fact adding more layer should never decrease the 
+performance of a network, because the new layers could be set to be the 
+identity, which would result in the same output from the network. However, it 
+has been demonstrated that adding too many layers to a simple neural network 
+will reduce performance, suggesting that the optimisation of
+larger networks leads to degradation\cite{He_2016_CVPR}.
+
+One method which has been shown to counter the degradation of deep networks, 
+is the use of residual neural networks (ResNet). In a ResNet, the input to 
+each layer is combined with the results of the convolutions as part of the 
+input to a future layer; in effect, the identity transformation has been added
+to the set of filters in the layer. An example of these shortcut connections 
+is shown in Figure \ref{fig:short_connect}\cite{He_2016_CVPR}. 
+
+\begin{figure}
+
+	\centering
+
+	\includegraphics[width = 0.6\textwidth]{figures/short_connect.pdf}
+
+	\caption
+	[An example of a shortcut connection in a convolutional neural network.]
+	{ An example of a shortcut connection in a convolutional neural network.
+	Figure from \cite{He_2016_CVPR}.}
+
+	\label{fig:short_connect}
+
+\end{figure}
 
 \section{Supervised Learning}
-\subsection{Backpropagation}
-\subsection{Batch Normalisation}
+Supervised learning is the process of teaching a neural network to accurately
+predict the correct output, the ground truth, for a given input. The network is 
+optimised by minimising the loss function, which quantifies the difference 
+between the network output and the ground truth. The choice of loss function 
+is dependent on the problem being considered, specific examples will discussed 
+in subsequent chapters, which will detail the CNN algorithms developed as part 
+of this thesis.
+
+The output of a neural network, g(x), is the result of a chain of function 
+evaluations and matrix multiplication; for a network with $n$ layers,
+\begin{equation}
+	g(x) = f^n(W^n f^{n-1}(W^{n-1} \;...\; f^1(W^1 x) \;...\; ).
+\end{equation}
+where $g$ is the output of the network, $x$ is the input, $f$ are the 
+activation functions for each layer, and $W$ are the weights for each layer. 
+The loss of the network is given by the loss function, L,  evaluated on the 
+output of the network and the ground truth, y,
+\begin{equation}
+	L(y, g(x)).
+\end{equation}
+
+To make accurate predictions with a NN, quantified by the loss function, the
+weights and biases of the network need to be optimised. The backpropagation
+algorithm\cite{Rumelhart1986} is currently the most widely used algorithm for
+minimising the loss function by adjusting the weights and biases in the network.
+
+Consider the weights for the $j^{th}$ node in the $i^{th}$ layer of a network,
+$W^{ij}$, the loss function varies with respect to these weights as $\partial 
+L/\partial W^{ ij }$, by adjusting the weights according to this gradient we 
+can minimise $L$. If we adjust the weights with,
+\begin{equation}
+	\Delta W^{ ij } = -\eta \frac{\partial L}{\partial W^{ ij }},
+\end{equation}
+for positive learning rates, $\eta > 0$, we are guaranteed to reduce the loss. 
+The backpropagation algorithm provides an algorithm for calculating the 
+derivatives required to adjust the weights in each layer.
+
+TODO>>>>>>>
+
+% To calculate the derivative in Equation \ref{eq:weight_change}, we start with
+% the chain rule,
+% \begin{equation}
+% 	\frac{\partial L}{\partial W^{ ij }} = \frac{\partial L}{\partial a^j}
+% 	\frac{\partial a^j}{\partial W^{ ij }},
+% \end{equation}
+% where $a^j$ is the activation function. The activation function can be written
+% in terms of the weights, $w$, and the output of the $i^th$ layer
+% \begin{equation}
+% 	a^j = w^{ij} x^j
+% \end{equation}
+
+% where $a^i$ is the activation function for the $i^{th}$ layer. The first term is
+% usually called the error, 
+% \begin{equation}
+% 	\delta^i = \frac{\partial L}{\partial a^i},
+% \end{equation}
+% this term will be discussed later. The second term can be calculated from the
+% equation for the activation function for the $i^th$ layer,
+% \begin{equation}
+% 	\frac{\partial a^i}{\partial W^i} = \frac{\partial}{\partial W^i} \left( W^i \cdot x^{i-1}
+% 	\right) = x^{i-1},
+% \end{equation}
+% where $x^{i-1}$ is the output from the previous layer of the network.
+
+%The gradient of the loss with respect to the losses in the $i^{th}$ layer of the
+%network is therefore,
+%\begin{equation}
+%	\frac{\partial L}{\partial W^i} = \delta^i \; x^{i-1},
+%\end{equation}
+%which defines a recursive relationship between the output of one layer and the
+%gradient of the next. 
+
+% The error, $\delta$, also follows a recursive relationship.
+% \begin{align}
+% 	\nonumber \delta^i &= \frac{\partial L}{\partial a^i}\\ 
+% 	\nonumber &= \frac{\partial L}{\partial a^{i+1}} \; \frac{\partial a^{i+1}}{\partial
+% 	a^i} \\
+% 	\nonumber &= \delta^{i+1} \; \frac{\partial a^{i+1}}{\partial a^i} \\
+% \end{align}
+% Recalling that, 
+% \begin{equation}
+% 	a^{i+1} = W^{i+1} \; f(a^i),
+% \end{equation}
+% the error becomes,
+% \begin{equation}
+% 	\delta^i = f^\prime(a^i) W^{i+1} \delta^{i+1}.
+% \end{equation}
+% Therefore, the partial derivative of the loss function with respect to the
+% weights in the $i^{th}$ layer is,
+% \begin{equation}
+% 	\frac{\partial L}{\partial W^i} = \left( f^\prime(x^i) W^{i+1} \delta^{i+1} \right) \cdot x^{i-1}
+% \end{equation}
+
+\subsubsection{Batch Normalisation}
+
 \subsection{Regularisation}
-\subsubsection*{Dropout}
-\subsubsection*{Early Stopping}
+\cite{Srivastava2014DropoutAS}
+\cite{OrrGenevieveB.1998NNTo}
