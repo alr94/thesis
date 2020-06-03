@@ -1,27 +1,5 @@
 \chapter{\label{ch:ml}Neural Networks} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Relevant bits
-%
-%   - Neural Network
-%   - CNN
-%   - Recurrent NN
-%   - Backpropagation
-%   - Dropout
-%   - Inception
-%   - Batch normalisation
-%
-%   - Losses
-%     - IOU
-%     - 
-%
-%   - Activations
-%     - RELU
-%     - Sigmoid
-%
-%   - Architectures
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \minitoc
 
 Machine Learning (ML) is a field of research which studies algorithms which 
@@ -38,15 +16,15 @@ into groups. The distinction between supervised and unsupervised algorithms is
 based on the outputs used during training; in a supervised algorithm the true 
 output is known, and the network's goal is to predict the true output, while 
 in an unsupervised algorithm the output is unknown, and the networks goal is 
-to extract meaningful structure from the data.
+to extract meaningful structure from the data\cite{Lecun2015}.
 
 Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two 
 examples of the application of Neural Networks (NN) for event reconstruction 
 in LArTPC data. These algorithms are classification algorithms based on the
 supervised learning approach. This chapter will not provide a full survey of
-the available ML techniques, instead it will briefly describe the theory 
-behind NNs, as well as providing details of the techniques used in the 
-subsequent chapters. 
+the available ML techniques, which are both numerous and diverse, instead it 
+will briefly describe the theory behind NNs, as well as providing details of 
+the techniques used in the subsequent chapters. 
 
 \section{Artificial Neural Networks}
 Artificial neural networks (ANN) are a class of ML algorithm that draw
@@ -100,15 +78,15 @@ Each node receives input from nodes in the previous layer, and uses the inputs
 to calculate a response function. For the $i^{th}$ node in the $j^{th}$ layer 
 of a network, 
 \begin{equation*}
-	z^{i,j} = \mathbf{w}^{i,j} \cdot \mathbf{x}^{j-1} + b^{i,j}
+	a^{i,j} = \mathbf{w}^{i,j} \cdot \mathbf{x}^{j-1} + b^{i,j}
 \end{equation*}
-where $z^{i,j}$ is the response function, $\mathbf{w}^{i,j}$ is the weights
+where $a^{i,j}$ is the response function, $\mathbf{w}^{i,j}$ is the weights
 vector, $b^{i,j}$ is the bias, and $\mathbf{x}^{j-1}$ is the input vector from 
 the previous layer. This response function is usually passed through a
 nonlinear activation function, $f$, to produce the output from the node,
 $y$, which is part of the input for the next layer,
 \begin{equation*}
-	\left(\mathbf{x}^j\right)_i = y^{i,j} = f \left( z^{i,j} \right).
+	\left(\mathbf{x}^j\right)_i = y^{i,j} = f \left( a^{i,j} \right).
 \end{equation*}
 
 Some common choices for the activation function are the sigmoid function, the
@@ -118,7 +96,7 @@ hyperbolic tangent, the rectified linear unit (ReLU), and the softmax function
 	\tag{Sigmoid} f(x) &= \frac{1}{1+e^x} \\
 	\tag{Tanh}    f(x) &= \frac{e^x - e^{-x}}{e^x+e^{-x}} \\
 	\tag{ReLU}    f(x) &= \mbox{max}\left( 0, x \right) \\
-	\tag{Softmax} f(x) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
+	\tag{Softmax} f(x) &= \frac{e^{x_i}}{\displaystyle\sum_j e^{x_j}} \\
 	\label{eqn:losses}
 \end{align}
 In the softmax function, the index $i$ indicates the current node, and the index
@@ -162,12 +140,12 @@ image. The convolution operator is defined as,
 	\left( x * y \right)_i = \sum_{j = - \infty}^{\infty} x_j \; y_{i-j},
 \end{equation}
 where x and y are discrete sequences. In the machine learning context, y
-represents the image, and x the convolutional kernel, which is defined to be
-zero beyond the finite size of the filter. The convolution operation is applied
-to all pixels in the input image, which are replaced by the resulting 
-convolution in the next layer of the network. Many convolutional kernels are 
-used in each layer of the network, each producing an output image which is 
-passed to the next layer. 
+represents the image, and x the convolutional kernel, which are defined to be
+zero beyond the finite size of the filter or image. The convolution operation 
+is applied to all pixels in the input image, which are replaced by the 
+resulting convolution in the next layer of the network. Many convolutional 
+kernels are used in each layer of the network, each producing an output image 
+which is passed to the next layer. 
 
 Convolutional kernels are sometimes referred to as feature detectors, which 
 emphasises the fact that each kernel identifies a given feature in the data, 
@@ -181,12 +159,12 @@ input parameters for a network, when combined with a large number of
 convolutional filters this can lead to a dramatic increase in the computational
 cost of training a network. Pooling \cite{5537907} is a downsampling technique 
 designed to reduce the number of parameters in the network, and therefore 
-reduce the computational cost of making predictions. In a pooling algorithm 
-the input data from each $m \times n$ region of the input data is downsampled 
-to a single value, the downsampled image is used as the input for the next 
-layer of the network. Two common pooling algorithms are max pooling and 
-average pooling; in max pooling the maximum value from within the downsampling 
-region is used, whereas average pooling uses the average value from the region.
+reduce the computational cost of making predictions. In pooling algorithms
+the data from each $m \times n$ region of the input is downsampled to a single 
+value, the downsampled image is used as the input for the next layer of the 
+network. Two common pooling algorithms are max pooling and average pooling; in 
+max pooling the maximum value from within the downsampling region is used, 
+whereas average pooling uses the average value from the region.
 
 \bigskip
 
@@ -227,7 +205,7 @@ One method which has been shown to counter the degradation of deep networks,
 is the use of residual neural networks (ResNet). In a ResNet, the input to 
 each layer is combined with the results of the convolutions as part of the 
 input to a future layer; in effect, the identity transformation has been added
-to the set of filters in the layer. An example of these shortcut connections 
+to the set of operations in the layer. An example of these shortcut connections 
 is shown in Figure \ref{fig:short_connect}\cite{He_2016_CVPR}. 
 
 \begin{figure}
@@ -273,17 +251,16 @@ algorithm\cite{Rumelhart1986} is currently the most widely used algorithm for
 minimising the loss function by adjusting the weights and biases in the network.
 
 Consider the weight for the $j^{th}$ node in the $l^{th}$ layer of a network for
-incoming node $i$ from the previous layer, $W^l_{ij}$, the loss function 
-varies with respect to these weights as $\partial L/\partial W^l_{ ij }$, by 
-adjusting the weights according to this gradient we can minimise $L$. If we 
-adjust the weights with, 
+and incoming connection from the $i^{th}$ node from the previous layer, 
+$W^l_{ij}$, the loss function varies with respect to these weights as 
+$\partial L/\partial W^l_{ ij }$. If we modify the weights with, 
 \begin{equation} 
 	\Delta W^l_{ ij } = -\eta \frac{\partial L}{\partial W^l_{ ij }},
 	\label{eq:delta_w}
 \end{equation}
-for positive learning rates, $\eta > 0$, we are guaranteed to reduce the loss. 
-The backpropagation algorithm provides an algorithm for calculating the 
-derivatives required to adjust the weights in each layer.
+for positive learning rates, $\eta > 0$, we are guaranteed to reduce the loss
+for a given input. The backpropagation algorithm provides an algorithm for 
+calculating the derivatives required to adjust the weights in each layer.
 
 Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
 \begin{equation}
@@ -291,17 +268,17 @@ Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
 	\frac{\partial a^l_j}{\partial W^l_{ij}},
 	\label{eq:backprop_chain_rule}
 \end{equation}
-where $a^l_j$ is the activation function. The derivative of the activation
-function with respect to the weights, is just the input to the layer from the
+where $a^l$ are response functions for the nodes in layer $l$. The derivative 
+of the response function with respect to the weights, is just the input from the
 previous layer,
 \begin{equation}
 	\frac{\partial a^l_j}{\partial W^l_{ij}} = \frac{\partial}{\partial W^l_{ij}}
 	\left( \sum_{k = 1}^{n_l} W^l_{kj} x^{l-1}_{k} \right) = x^{l-1}_i,
 	\label{eq:backprop_d_activ}
 \end{equation}
-where $x$ are the outputs from each layer, and $n_l$ is the number of nodes in
-layer $l$. The other term, which is often denoted as $\delta^l_j$, is known as
-the error; this term will be discussed shortly. Combining Equations 
+where $x^{l-1}$ are the outputs from layer $l-1$, and $n_l$ is the number of 
+nodes in layer $l$. The other term, which is often denoted as $\delta^l_j$, is 
+known as the error; this term will be discussed shortly. Combining Equations 
 \ref{eq:backprop_chain_rule} and \ref{eq:backprop_d_activ} gives,
 \begin{equation*}
 	\frac{\partial L}{\partial W^l_{ij}} = \delta^l_j \; x^{l-1}_i.
@@ -311,21 +288,24 @@ The value of the error depends on the loss function being used in each
 particular model. The error can also be shown to have a recursive relationship 
 via the chain rule,
 \begin{align*}
-		\delta^l_j = \frac{\partial L}{\partial a^l_j} &= \sum_{k=1}^{n^{l+1}} \frac{\partial L}{\partial a^{l+1}_{k}}\frac{\partial a^{l+1}_k}{\partial a^l_j}\\ 
-		&= \sum^{n^{l+1}}_{k = 1} \delta^{l+1}_k \frac{\partial a^{l+1}_k}{\partial a^l_j},
+		\delta^l_j = \frac{\partial L}{\partial a^l_j} &= \sum_{k=1}^{n^{l+1}} 
+		\frac{\partial L}{\partial a^{l+1}_{k}}\frac{\partial a^{l+1}_k}{\partial 
+		a^l_j}\\ 
+		&= \sum^{n^{l+1}}_{k = 1} \delta^{l+1}_k \frac{\partial a^{l+1}_k}{\partial 
+		a^l_j},
 \end{align*}
-where the sum is over all nodes in layer $l+1$. We can used the definition of
-$a$ to simplify this further,
+where the sum is over all nodes in layer $l+1$. We can use the definition of the
+response function to simplify this further,
 \begin{align*}
-		\frac{\partial a^{l+1}_k}{\partial a^l_j} &= \frac{\partial}{\partial a^l_j} \left( \sum^{n^l}_{p=1} W^{l+1}_{pk} f(a^l_p) \right) \\ 
-		&= W^{l+1}_{jk} \; f^\prime(a^l_k)
+		\frac{\partial a^{l+1}_k}{\partial a^l_j} &= \frac{\partial}{\partial a^l_j} 
+		\left( \sum^{n^l}_{p=1} W^{l+1}_{pk} f(a^l_p) \right) \\ 
+		&= W^{l+1}_{jk} \; f^\prime(a^l_j)
 \end{align*}
 where $f$ is the activation function. The error is therefore,
 \begin{equation*}
 	\delta^l_j = \sum^{n^{l+1}}_{k=1} \delta^{l+1}_k W^{l+1}_{jk} f^\prime(a^l_j),
 \end{equation*}
-which can be calculated recursively, if we go backwards through the network,
-based on the error in the previous layer.
+which depends on the value of the error in the following layer.
 
 Based on these manipulations with the chain rule, the backpropagation 
 algorithm is as follows,
@@ -356,12 +336,12 @@ computing the gradients expensive. They also typically have vanishing
 gradients in the tails, which can lead to slow learning if the value of the 
 activation is consistently in the tail of the distribution. 
 
-The ReLU activation function is much cheaper to compute computationally, and 
-while the gradient is undefined at zero, in practice this is not a problem. One
-issue with ReLU units, is the vanishing gradient in the negative region. This
-issue can be resolved by implementing a small negative gradient below zero,
-which is known as a Leaky ReLU or Parametric ReLU \cite{He2015}. In practice, 
-ReLU units have been found to outperform traditional sigmoid 
+The ReLU activation function is much cheaper to compute, and while the 
+gradient is undefined at zero, in practice this is not a problem. One issue 
+with ReLU units, is the vanishing gradient in the negative region. This issue 
+can be resolved by implementing a small negative gradient below zero, which is 
+known as a Leaky ReLU or Parametric ReLU \cite{He2015}. In practice, ReLU 
+units have been found to outperform traditional sigmoid 
 units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 
 \subsection{Regularisation}
@@ -374,10 +354,10 @@ the weights stay relatively small. In this thesis we will make use of two
 regularisation techniques, dropout\cite{Srivastava2014DropoutAS} and early
 stopping\cite{OrrGenevieveB.1998NNTo}.
 
-In each training iteration, the Dropout algorithm sets a subset of weights in
+In each training iteration, the dropout algorithm sets a subset of weights in
 each layer to zero. Each weight has a probability, $p$, of being set to zero for
 each iteration. The product of the remaining weights is scaled up by a factor 
-of $1/r$, which ensures that the size of the input to the activation function
+of $1/p$, which ensures that the size of the input to the activation function
 remains reasonably consistent. This reduced network is then trained using the
 backpropagation algorithm, and the non--zero weights are updated. During the
 next iteration, the set of non--zero weights is reselected, and a new reduced
@@ -387,8 +367,9 @@ networks. The dropout algorithm with $p=0.5$, has proven to provide robust
 regularisation, and is a popular technique in the field\cite{Lecun2015}.
 
 \say{Early stopping (is) beautiful free lunch}, according to Geoff
-Hinton\cite{Hinton2015}. It refers to the act of monitoring the loss on the validation set
-during training, in order to stop training before over--fitting has occurred. The
-work in this thesis implements the early stopping technique proposed by Lutz
-Prechelt\cite{OrrGenevieveB.1998NNTo}, which suggests stopping training after
-the first checkpoint when the validation loss increases.
+Hinton\cite{Hinton2015}. It refers to the act of monitoring the loss on the 
+validation set during training, in order to stop training before over--fitting 
+has occurred. The work in this thesis implements the early stopping technique 
+proposed by Lutz Prechelt\cite{OrrGenevieveB.1998NNTo}, which suggests 
+stopping training after the first checkpoint when the validation loss increases,
+and using the weights from the previous checkpoint.
