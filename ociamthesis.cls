@@ -519,3 +519,6 @@
 
 % Cell formatting
 \usepackage{makecell}
+
+%Quotes
+\usepackage{dirtytalk}

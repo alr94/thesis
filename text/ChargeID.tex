@@ -1,7 +1,7 @@
 \chapter{\label{ch:chargeid}Charge Identification with Convolutional Neural 
 Networks} 
 
-% \minitoc
+\minitoc
 
 \noindent A major problem faced by the next generation of neutrino experiments
 is the correct categorisation of particle interactions within the detector.
@@ -11,82 +11,14 @@ important to be able to distinguish muons from electrons, or more generally
 tracks from showers.
 
 This chapter will describe an approach for hit classification in LArTPCs using
-machine learning techniques. A brief theoretical overview of neural networks
-will be presented in section \ref{ml}, including a discussion of convolutional
-neural networks and their application to pattern recognition. Section
-\ref{hit-id} will detail an approach to hit classification in LArTPCs based on
-tagging the source of energy depositions with a convolutional neural network.
-The performance of this approach will be analysed with ProtoDUNE--SP simulation
-and data in sections \ref{cnn-perf-sim} and \ref{cnn-perf-data} respectively.
+machine learning techniques. Section \ref{hit-id} will detail an approach to 
+hit classification in LArTPCs based on tagging the source of energy 
+depositions with a convolutional neural network.  The performance of this 
+approach will be analysed with ProtoDUNE--SP simulation and data in sections 
+\ref{cnn-perf-sim} and \ref{cnn-perf-data} respectively.
 
-\section{Neural Networks} \label{ml}
-
-An artificial neural network (ANN) consists of a set of nodes, together with a
-set of connections between those nodes. The nodes in the graph take the form of
-an artificial neuron which passes a number of inputs through a nonlinear
-activation function to produce a single output. In an ANN the connections
-provide a mechanism for taking the output of a given node and using it as the
-input for a subsequent node. This structure of nodes and connections provides a
-very flexible framework, the basis for a number of machine learning algorithms
-which utilise this flexibility to learn the structure of complex data sets.
-
-In order for an ANN to make accurate predictions based on data, the weights and
-biases between each set of neurons must be tuned such that the outputs of the
-network match those expected for a given input. In supervised learning
-\cite{Reed:1998:NSS:552600}, the loss, a measure of the difference between the
-truth and the output of an ANN, can be used to learn the appropriate values of
-the weights and biases using the method of gradient descent. The loss is
-computed and its gradient as a function of the weights and biases can be
-calculated with the back--propagation algorithm \cite{Rumelhart1986}; the loss
-is then minimised based on the gradient calculated with back--propagation. This
-process can be repeated until the loss function reaches an acceptable level or
-stops decreasing.
-
-One of the most widely used ANN's is the multi--layer perceptron (MLP)
-\cite{Reed:1998:NSS:552600}; this class of networks consists of at least three
-layers of nodes: an input layer, one or more hidden layers, and an output layer.
-These layers are connected in a feed--forward configuration such that the graph
-of nodes contains no cycle. Traditionally, the layers are also fully connected
-such that the output of each node is connected to the inputs of all nodes in the
-next layer. These networks are able to approximate any function to arbitrary
-precision with a single hidden layer \cite{Cybenko1989ApproximationBS}; however,
-there is no limit on the number of nodes required in order to achieve a good
-approximation. In practice networks with additional hidden layers can reach the
-required precision with fewer nodes than a network with a single hidden layer
-\cite{Lecun2015}.
-
-ANN's provide a flexible tool for a variety of pattern recognition tasks but
-there can be issues with their training and use. Typical issues with ANN's
-include a risk of slow learning due to vanishing gradients for typical sigmoid
-activation functions and a high risk of over--training due to the large number
-of free parameters. In particular, over--training can lead to poor
-generalisation of the network for real world examples, despite excellent
-performance when evaluated on the training sample \cite{Reed:1998:NSS:552600}.
-
-An extension of the MLP with considerable success, particularly in image
-classification tasks, is the convolutional neural network (CNN)
-\cite{Jackel2008, Szegedy2015}. When evaluating data with a high dimensional
-input, having a fully connected network architecture leads to large numbers of
-neurons and high computational cost. In addition, for spatially correlated data
-such an architecture does not take the local spatial structure of the data into
-account. A CNN attempts to resolve these issues by exploiting the local
-connectivity of the data; single input neurons are replaced by convolutional
-kernels which are evaluated on small regions of the input. These convolutional
-kernels are evaluated over all valid locations in the input producing feature
-maps which describe the spatial distribution of the features which each kernel
-has learned to identify. Each set of feature maps can then be used as an input
-for either convolutional layers or fully connected layers. 
-
-Convolutional kernels provide a local translation invariant evaluation of
-features within the data; with this method low level features are identified
-first and their spatial distribution can then be exploited to identify higher
-level structure in the data \cite{Jackel2008}. This makes these networks ideal
-for pattern recognition in images, where common features can be located anywhere
-in the image. The high spatial and calorimetric energy resolution of LArTPC
-detector data make these algorithms an ideal candidate for classification of the
-data, and successful applications on CNNs have been achieved in ongoing neutrino
-experiments \cite{Aurisano:2016jvx, Acciarri:2016ryt}. The remainder of this
-chapter will detail a use of CNNs to identify low level features in LArTPC data.
+% \section{Neural Networks} \label{ml}
+% \cite{Aurisano:2016jvx, Acciarri:2016ryt}
 
 \section{Hit Identification with Convolutional Neural Networks}
 \label{hit-id}

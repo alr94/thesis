@@ -126,8 +126,8 @@ $j$ includes all nodes in the current layer. This construction ensures that
 the outputs from a softmax layer sum to one, and as such this unit is commonly 
 used in categorisation tasks when the output must belong to one of a given set 
 of categories. The benefits and drawbacks of these common activation functions 
-will be discussed later in this chapter, when we will discuss modifying 
-weights with the backpropagation algorithm.
+will be discussed later in this chapter, when we discuss modifying weights 
+with the backpropagation algorithm.
 
 The weights and biases of the nodes in an MLP can be adjusted to make accurate 
 predictions of data. For a classification task, there are typically as many
@@ -256,91 +256,139 @@ of this thesis.
 
 The output of a neural network, g(x), is the result of a chain of function 
 evaluations and matrix multiplication; for a network with $n$ layers,
-\begin{equation}
+\begin{equation*}
 	g(x) = f^n(W^n f^{n-1}(W^{n-1} \;...\; f^1(W^1 x) \;...\; ).
-\end{equation}
+\end{equation*}
 where $g$ is the output of the network, $x$ is the input, $f$ are the 
 activation functions for each layer, and $W$ are the weights for each layer. 
 The loss of the network is given by the loss function, L,  evaluated on the 
 output of the network and the ground truth, y,
-\begin{equation}
+\begin{equation*}
 	L(y, g(x)).
-\end{equation}
+\end{equation*}
 
 To make accurate predictions with a NN, quantified by the loss function, the
 weights and biases of the network need to be optimised. The backpropagation
 algorithm\cite{Rumelhart1986} is currently the most widely used algorithm for
 minimising the loss function by adjusting the weights and biases in the network.
 
-Consider the weights for the $j^{th}$ node in the $i^{th}$ layer of a network,
-$W^{ij}$, the loss function varies with respect to these weights as $\partial 
-L/\partial W^{ ij }$, by adjusting the weights according to this gradient we 
-can minimise $L$. If we adjust the weights with,
-\begin{equation}
-	\Delta W^{ ij } = -\eta \frac{\partial L}{\partial W^{ ij }},
+Consider the weight for the $j^{th}$ node in the $l^{th}$ layer of a network for
+incoming node $i$ from the previous layer, $W^l_{ij}$, the loss function 
+varies with respect to these weights as $\partial L/\partial W^l_{ ij }$, by 
+adjusting the weights according to this gradient we can minimise $L$. If we 
+adjust the weights with, 
+\begin{equation} 
+	\Delta W^l_{ ij } = -\eta \frac{\partial L}{\partial W^l_{ ij }},
+	\label{eq:delta_w}
 \end{equation}
 for positive learning rates, $\eta > 0$, we are guaranteed to reduce the loss. 
 The backpropagation algorithm provides an algorithm for calculating the 
 derivatives required to adjust the weights in each layer.
 
-TODO>>>>>>>
+Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
+\begin{equation}
+	\frac{\partial L}{\partial W^l_{ij}} = \frac{\partial L}{\partial a^l_j} \;
+	\frac{\partial a^l_j}{\partial W^l_{ij}},
+	\label{eq:backprop_chain_rule}
+\end{equation}
+where $a^l_j$ is the activation function. The derivative of the activation
+function with respect to the weights, is just the input to the layer from the
+previous layer,
+\begin{equation}
+	\frac{\partial a^l_j}{\partial W^l_{ij}} = \frac{\partial}{\partial W^l_{ij}}
+	\left( \sum_{k = 1}^{n_l} W^l_{kj} x^{l-1}_{k} \right) = x^{l-1}_i,
+	\label{eq:backprop_d_activ}
+\end{equation}
+where $x$ are the outputs from each layer, and $n_l$ is the number of nodes in
+layer $l$. The other term, which is often denoted as $\delta^l_j$, is known as
+the error; this term will be discussed shortly. Combining Equations 
+\ref{eq:backprop_chain_rule} and \ref{eq:backprop_d_activ} gives,
+\begin{equation*}
+	\frac{\partial L}{\partial W^l_{ij}} = \delta^l_j \; x^{l-1}_i.
+\end{equation*}
 
-% To calculate the derivative in Equation \ref{eq:weight_change}, we start with
-% the chain rule,
-% \begin{equation}
-% 	\frac{\partial L}{\partial W^{ ij }} = \frac{\partial L}{\partial a^j}
-% 	\frac{\partial a^j}{\partial W^{ ij }},
-% \end{equation}
-% where $a^j$ is the activation function. The activation function can be written
-% in terms of the weights, $w$, and the output of the $i^th$ layer
-% \begin{equation}
-% 	a^j = w^{ij} x^j
-% \end{equation}
+The value of the error depends on the loss function being used in each 
+particular model. The error can also be shown to have a recursive relationship 
+via the chain rule,
+\begin{align*}
+		\delta^l_j = \frac{\partial L}{\partial a^l_j} &= \sum_{k=1}^{n^{l+1}} \frac{\partial L}{\partial a^{l+1}_{k}}\frac{\partial a^{l+1}_k}{\partial a^l_j}\\ 
+		&= \sum^{n^{l+1}}_{k = 1} \delta^{l+1}_k \frac{\partial a^{l+1}_k}{\partial a^l_j},
+\end{align*}
+where the sum is over all nodes in layer $l+1$. We can used the definition of
+$a$ to simplify this further,
+\begin{align*}
+		\frac{\partial a^{l+1}_k}{\partial a^l_j} &= \frac{\partial}{\partial a^l_j} \left( \sum^{n^l}_{p=1} W^{l+1}_{pk} f(a^l_p) \right) \\ 
+		&= W^{l+1}_{jk} \; f^\prime(a^l_k)
+\end{align*}
+where $f$ is the activation function. The error is therefore,
+\begin{equation*}
+	\delta^l_j = \sum^{n^{l+1}}_{k=1} \delta^{l+1}_k W^{l+1}_{jk} f^\prime(a^l_j),
+\end{equation*}
+which can be calculated recursively, if we go backwards through the network,
+based on the error in the previous layer.
 
-% where $a^i$ is the activation function for the $i^{th}$ layer. The first term is
-% usually called the error, 
-% \begin{equation}
-% 	\delta^i = \frac{\partial L}{\partial a^i},
-% \end{equation}
-% this term will be discussed later. The second term can be calculated from the
-% equation for the activation function for the $i^th$ layer,
-% \begin{equation}
-% 	\frac{\partial a^i}{\partial W^i} = \frac{\partial}{\partial W^i} \left( W^i \cdot x^{i-1}
-% 	\right) = x^{i-1},
-% \end{equation}
-% where $x^{i-1}$ is the output from the previous layer of the network.
+Based on these manipulations with the chain rule, the backpropagation 
+algorithm is as follows,
+\begin{enumerate}
+	\item Calculate the forward pass, while storing the results for $g(x)$, 
+		$a^l_j$, and $x^l_j$.
+	\item Starting at the output layer, calculate the derivatives, going backwards
+		through the network. 
+	\begin{itemize}
+		\item Store the results for $\delta^l_j$, to use when calculating subsequent
+			layers.
+	\end{itemize}
+	\item Update the weights according to the update rule in Equation
+		\ref{eq:delta_w}.
+\end{enumerate}
 
-%The gradient of the loss with respect to the losses in the $i^{th}$ layer of the
-%network is therefore,
-%\begin{equation}
-%	\frac{\partial L}{\partial W^i} = \delta^i \; x^{i-1},
-%\end{equation}
-%which defines a recursive relationship between the output of one layer and the
-%gradient of the next. 
+\bigskip
 
-% The error, $\delta$, also follows a recursive relationship.
-% \begin{align}
-% 	\nonumber \delta^i &= \frac{\partial L}{\partial a^i}\\ 
-% 	\nonumber &= \frac{\partial L}{\partial a^{i+1}} \; \frac{\partial a^{i+1}}{\partial
-% 	a^i} \\
-% 	\nonumber &= \delta^{i+1} \; \frac{\partial a^{i+1}}{\partial a^i} \\
-% \end{align}
-% Recalling that, 
-% \begin{equation}
-% 	a^{i+1} = W^{i+1} \; f(a^i),
-% \end{equation}
-% the error becomes,
-% \begin{equation}
-% 	\delta^i = f^\prime(a^i) W^{i+1} \delta^{i+1}.
-% \end{equation}
-% Therefore, the partial derivative of the loss function with respect to the
-% weights in the $i^{th}$ layer is,
-% \begin{equation}
-% 	\frac{\partial L}{\partial W^i} = \left( f^\prime(x^i) W^{i+1} \delta^{i+1} \right) \cdot x^{i-1}
-% \end{equation}
+The rate of learning in the backpropagation algorithm is dependent on the
+derivative of the activation function, therefore, the choice of activation
+function has an impact on learning. Two important factors when considering
+activation functions are the computational cost of calculating the derivative,
+and the gradient of the function. 
 
-\subsubsection{Batch Normalisation}
+Traditional activation functions, such as sigmoid and tanh, are usually 
+bounded and differentiable, however the presence of exponentials makes 
+computing the gradients expensive. They also typically have vanishing 
+gradients in the tails, which can lead to slow learning if the value of the 
+activation is consistently in the tail of the distribution. 
+
+The ReLU activation function is much cheaper to compute computationally, and 
+while the gradient is undefined at zero, in practice this is not a problem. One
+issue with ReLU units, is the vanishing gradient in the negative region. This
+issue can be resolved by implementing a small negative gradient below zero,
+which is known as a Leaky ReLU or Parametric ReLU \cite{He2015}. In practice, 
+ReLU units have been found to outperform traditional sigmoid 
+units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 
 \subsection{Regularisation}
-\cite{Srivastava2014DropoutAS}
-\cite{OrrGenevieveB.1998NNTo}
+Regularisation refers to a set of techniques which are used to prevent
+over--fitting during the training of a NN. This ensures that the trained network
+can generalise well beyond the training data. A number of regularisation
+techniques can be used, such as applying penalty terms to the loss
+function which are proportional to the square of the weights, ensuring that 
+the weights stay relatively small. In this thesis we will make use of two 
+regularisation techniques, dropout\cite{Srivastava2014DropoutAS} and early
+stopping\cite{OrrGenevieveB.1998NNTo}.
+
+In each training iteration, the Dropout algorithm sets a subset of weights in
+each layer to zero. Each weight has a probability, $p$, of being set to zero for
+each iteration. The product of the remaining weights is scaled up by a factor 
+of $1/r$, which ensures that the size of the input to the activation function
+remains reasonably consistent. This reduced network is then trained using the
+backpropagation algorithm, and the non--zero weights are updated. During the
+next iteration, the set of non--zero weights is reselected, and a new reduced
+network is trained. Finally, after training, the final weights of the network
+are multiplied by $p$ to give the so--called model average of the reduced
+networks. The dropout algorithm with $p=0.5$, has proven to provide robust
+regularisation, and is a popular technique in the field\cite{Lecun2015}.
+
+\say{Early stopping (is) beautiful free lunch}, according to Geoff
+Hinton\cite{Hinton2015}. It refers to the act of monitoring the loss on the validation set
+during training, in order to stop training before over--fitting has occurred. The
+work in this thesis implements the early stopping technique proposed by Lutz
+Prechelt\cite{OrrGenevieveB.1998NNTo}, which suggests stopping training after
+the first checkpoint when the validation loss increases.
