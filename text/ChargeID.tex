@@ -118,7 +118,7 @@ The truth vectors for different true particle sources are detailed in Table
 
 The training data for the CNN was built using simulations of the \protodune{}
 detector in the LArSoft framework; the simulations used were under beam
-operating conditions, and therefore included simulations of cosmic rays, and
+operating conditions, and therefore included simulations of cosmic--rays, and
 test beam particles in the range of 1--7 GeV. Around 29 million input images
 were produced in total for the training, this sample was split into three
 datasets, the training, validation, and test sets. The training set is used to
@@ -255,17 +255,18 @@ The performance of the hit tagging algorithm was evaluated with reconstructed
 events from \protodune{} simulation, the dataset used for this performance
 analysis was distinct from the training, validation, and test sets. 
 
-The distributions of the shower classifier output for true shower hits and all
-other hits is given in Figure \ref{fig:show_output}. There is a strong
-separation seen between the distributions for the shower and track hits, showing
-that the network has strong discriminating power. 
-
-% TODO: check this statement.
-% The output of the track classifier is almost exactly,
-% \begin{equation*}
-% 	p_T = 1 - p_s,
-% \end{equation*}
-% and therefore isn't shown here. 
+The distributions of the shower score from the TSE classifier for true shower 
+hits and all other hits is given in Figure \ref{fig:show_output}. There is a 
+strong separation seen between the distributions for the shower and track 
+hits, showing that the network has strong discriminating power. In practice, the
+empty score of the TSE classifier was found to be on the order of $10^{-9}$ or
+smaller for all hits tested. As such,
+\begin{equation*}
+	\mbox{TrackScore} \approx 1 - \mbox{ShowerScore},
+\end{equation*}
+which means that the results of the analysis of the shower score are valid for
+the analysis of the track score. Therefore, we will only discuss the shower
+score here.
 
 The shower classification threshold for subsequent algorithms should be tuned on
 a case by case basis, however, for this study a simple optimisation strategy 
@@ -290,33 +291,176 @@ where,
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/shower_combined.pdf} 
 	\caption
-	[Shower classifier output distributions.]
-	{Shower classifier output distributions for true showers, and all other hits. 
-	Threshold optimisation was done using the F1 score metric which is also 
-	plotted.}
+	[Shower score output distributions for the TSE classifier.]
+	{Shower score output distributions for the TSE classifier. Threshold 
+	optimisation was done using the F1 score metric which is also plotted.}
 	\label{fig:show_output}
 \end{figure}
 
-The overall performance of the shower classifier can also be evaluated with an
+The overall performance of the TSE classifier can also be evaluated with an
 receiver operating characteristic (ROC) curve\cite{Fawcett2006}. The ROC curve
 shows the true positive rate vs the false positive rate for the classifier, as
 the selection threshold is varied. Figure \ref{fig:show_roc} shows two ROC
-curves for the shower classifier, one which is evaluated in simulation including
+curves for the TSE classifier, one which is evaluated in simulation including
 the space charge effect (SCE), and the other which excludes the SCE. Both curves
 demonstrate that the network is capable of achieving high true positive rates,
 while maintaining low false positive rates. In addition, their is a very close
-agreement between the two curves, which suggests that the shower classifier is
+agreement between the two curves, which suggests that the TSE classifier is
 robust to changes in the SCE model.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/show_roc_comparison.pdf}
 	\caption
-	[ROC curve for the shower classifier.]
-	{ROC curves for the shower classifier.}
+	[ROC curves for the shower score from the TSE classifier.]
+	{ROC curves for the shower score from the TSE classifier.}
 	\label{fig:show_roc}
 \end{figure}
 
-\section{Validation and Performance on ProtoDUNE--SP Data} \label{cnn-perf-data}
+The performance of the Michel electron classifier was analysed with the same
+methods as the shower classifier. The Michel electron score distribution for
+true Michel electron hits and all other hits is shown in Figure
+\ref{fig:michel_output}. In this case the large discrepancy in sample size
+between Michel electron hits and other hits, leads to a low F1 score of around
+0.2 when considering the performance on a hit--by--hit basis. However, in
+Chapter zref{ch:michel}, we will see that despite the low performance of the
+classifier for individual hits, a pure sample of Michel electron events can be
+selected by clustering hits with high Michel electron scores.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/michel_combined.pdf} 
+	\caption
+	[Michel electron score distributions for the Michel electron classifier.]
+	{Michel electron score distributions for the Michel electron classifier. 
+	The F1 score metric was used to assist threshold selection, and is also
+	plotted. The final threshold was modified when combined with a clustering
+	algorithm, see the analysis in Chapter \ref{ch:michel}}
+	\label{fig:michel_output}
+\end{figure}
+
+The ROC curve is independent of the relevant size of each true sample, and
+therefore, it provides a more instructive evaluation of the performance of the
+Michel electron classifier than the score distribution and F1 score. The ROC 
+curves for the Michel electron classifier are shown in Figure 
+\ref{fig:michel_roc}, where both SCE and no SCE samples are shown. The jitter 
+in the lines is due to the smaller sample size in this case. In both cases the 
+Michel electron classifier is able to achieve a true positive rate of over 90\%,
+while maintaining a false positive rate of less than 2.5\%. There is a larger 
+difference between the SCE and no SCE curves for the Michel electron sample,
+however, the difference is still no bigger than 4\%.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/michel_roc_comparison.pdf}
+	\caption
+	[ROC curves for the Michel electron classifier.]
+	{ROC curves for the Michel electron classifier.}
+	\label{fig:michel_roc}
+\end{figure}
+
+\subsection{Comparison with Pandora}
+
+Pandora is the primary reconstruction framework used in \protodune{}, it is
+discussed in Chapter \ref{ch:protodune}. One of the goals of the CNN is to
+provide supplementary information to Pandora to assist analysers in defining 
+pure event samples. This is possible because Pandora and the CNN have slightly
+different goals, Pandora aims to cluster hits in the most appropriate way based
+on their spatial distribution, while the CNN aims to classify the hits based on 
+the particle that caused the energy deposition.
+
+\mccorrect{TODO.}
+
+\section{Validation and Performance on \protodune{} Data} \label{cnn-perf-data}
+
+For validation on real \protodune{} data two approaches were used: visual
+validation with event scans, and the comparison of score distributions for
+different particle species, based on the particle identification (PID) from the
+beam instrumentation. Data from \protodune{} run number 5387 was used for all of
+these validations; the data for this run was taken on under stable operating
+conditions, with an average beam energy of 1 GeV.
+
+Hand scans of the events show qualitatively that the performance on the data is
+good. Figure \ref{fig:real_event} shows and example of the track score for hits
+in a reconstructed event from run 5387. The hits in this image are from the
+collection plane near the beam entry point, an electron shower tagged by the
+beam instrumentation (BI) can be seen near the centre of the image. In the event
+we can see that for hits in the tracks the CNN produces a large output score,
+and for the shower like activity in the event the score is low, as we expect. In
+addition, the classifier is able to identify that the hits adjacent to the 
+track, which are from delta rays, are from electrons.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figures/run5387_tpc1_view2_128178.pdf}
+	\caption
+	[Track classifier scores for a reconstructed event in \protodune{} data.]
+	{Track classifier scores for a reconstructed event in \protodune{} data.}
+	\label{fig:real_event}
+\end{figure}
+
+In the case of particles originating from the charged particle beam, the BI can
+be used to provide an effective truth source with which the results of the CNN 
+can be compared between data and simulation. Any particles that arrive
+out--of--time with the beam can be assumed to be cosmic--ray muons, and 
+therefore form an additional truth source. The shower score distributions for
+electrons, pions, protons, and muons are produced based on these samples.
+
+The shower score distribution for beam pions is shown in Figure
+\ref{fig:beam_pions_cnn}. TODO.
+
+\begin{figure}
+	% TODO: remake me
+	\centering
+	\includegraphics[width=\textwidth]{figures/beam_pion_cnn.png}
+	\caption
+	[Shower classifier score for hits from beam pions.]
+	{Shower classifier score for hits from beam pions.}
+	\label{fig:beam_pi_cnn}
+\end{figure}
+
+\begin{figure}
+	% TODO: remake me
+	\centering
+	\includegraphics[width=\textwidth]{figures/beam_proton_cnn.png}
+	\caption
+	[Shower classifier score for hits from beam pions.]
+	{Shower classifier score for hits from beam pions.}
+	\label{fig:beam_proton_cnn}
+\end{figure}
+
+\begin{figure}
+	% TODO: remake me
+	\centering
+	\includegraphics[width=\textwidth]{figures/beam_electron_cnn.png}
+	\caption
+	[Shower classifier score for hits from beam pions.]
+	{Shower classifier score for hits from beam pions.}
+	\label{fig:beam_electron_cnn}
+\end{figure}
+
+\begin{figure}
+	% TODO: make me
+	\centering
+	\includegraphics[width=\textwidth]{figures/cosmic_muon_cnn.png}
+	\caption
+	[Shower classifier score for hits from cosmic--ray muons.]
+	{Shower classifier score for hits from cosmic--ray muons.}
+	\label{fig:cosmic_muon_cnn}
+\end{figure}
+
+
+\section{Application of CNN Scores in \protodune{} Analyses} \label{cnn-appl}
+
+The output of the CNN classifier has been applied in a number of \protodune{}
+analyses since it was developed. Chapter \ref{ch:michel} will detail one use of
+the network in a Michel electron analysis, this analysis was completed by the
+author. In addition, the network is being incorporated into analyses by other
+members of the \protodune{} experiment, applications include:
+\begin{itemize}
+	\item Selecting shower candidates for neutral pion event selection. 
+		\cite{Milo}
+	\item Identifying charge exchange candidates in charged pion cross section 
+		analyses. \cite{Jake, Francesca} \item $e^{+/-}$ 
+\end{itemize}
 
