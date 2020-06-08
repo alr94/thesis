@@ -408,46 +408,52 @@ out--of--time with the beam can be assumed to be cosmic--ray muons, and
 therefore form an additional truth source. The shower score distributions for
 electrons, pions, protons, and muons are produced based on these samples.
 
-The shower score distribution for beam pions is shown in Figure
-\ref{fig:beam_pi_cnn}. TODO.
+The shower classifier scores for the pion, proton, and electron test beam 
+samples are shown in Figure \ref{fig:cnn_scores_beam}, the histograms are
+normalised by the number of beam particles. The data in these distributions was
+taken from \protodune{} run 5387, which had a beam momentum of 1 GeV/c.
+\mccorrect{TODO.}
 
 \begin{figure}
-	% TODO: remake me
+
 	\centering
-	\includegraphics[width=\textwidth]{figures/hit_cnn_pion.pdf}
+
+	\begin{subfigure}[b]{0.7\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/hit_cnn_pion.pdf}
+		\caption {pions}
+		\label{fig:beam_pi_cnn}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.7\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/hit_cnn_proton.pdf}
+		\caption {protons}
+		\label{fig:beam_proton_cnn}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.7\textwidth}
+		% TODO: remake me
+		\centering
+		\includegraphics[width=\textwidth]{figures/beam_electron_cnn.png}
+		\caption {electrons}
+		\label{fig:beam_electron_cnn}
+	\end{subfigure}
+
 	\caption
-	[Shower classifier score for hits from beam pions.]
-	{Shower classifier score for hits from beam pions.}
-	\label{fig:beam_pi_cnn}
+	[Shower classifier scores for particles from the \protodune{} beam.]
+	{ Shower classifier scores for particles from the \protodune{} beam. }
+
+	\label{fig:cnn_scores_beam}
+
 \end{figure}
 
 \begin{figure}
-	% TODO: remake me
 	\centering
-	\includegraphics[width=\textwidth]{figures/hit_cnn_proton.pdf}
+	\includegraphics[width=\textwidth]{figures/hit_cnn_cosmics.pdf}
 	\caption
-	[Shower classifier score for hits from beam protons.]
-	{Shower classifier score for hits from beam protons.}
-	\label{fig:beam_proton_cnn}
-\end{figure}
-
-\begin{figure}
-	% TODO: remake me
-	\centering
-	\includegraphics[width=\textwidth]{figures/hit_cnn_electron.pdf}
-	\caption
-	[Shower classifier score for hits from beam electrons.]
-	{Shower classifier score for hits from beam electrons.}
-	\label{fig:beam_electron_cnn}
-\end{figure}
-
-\begin{figure}
-	% TODO: make me
-	\centering
-	\includegraphics[width=\textwidth]{figures/hit_cnn_muon.pdf}
-	\caption
-	[Shower classifier score for hits from cosmic--ray muons.]
-	{Shower classifier score for hits from cosmic--ray muons.}
+	[Shower classifier score for hits from cosmic--rays.]
+	{Shower classifier score for hits from cosmic--rays.}
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 
