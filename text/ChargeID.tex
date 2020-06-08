@@ -369,7 +369,9 @@ different goals, Pandora aims to cluster hits in the most appropriate way based
 on their spatial distribution, while the CNN aims to classify the hits based on 
 the particle that caused the energy deposition.
 
-\mccorrect{TODO.}
+\mccorrect{TODO. I'd like to replicate Francesca's study here and show a
+comparison of the fraction of different particle species identified as track's
+and showers by Pandora and the CNN.}
 
 \section{Validation and Performance on \protodune{} Data} \label{cnn-perf-data}
 
@@ -407,12 +409,12 @@ therefore form an additional truth source. The shower score distributions for
 electrons, pions, protons, and muons are produced based on these samples.
 
 The shower score distribution for beam pions is shown in Figure
-\ref{fig:beam_pions_cnn}. TODO.
+\ref{fig:beam_pi_cnn}. TODO.
 
 \begin{figure}
 	% TODO: remake me
 	\centering
-	\includegraphics[width=\textwidth]{figures/beam_pion_cnn.png}
+	\includegraphics[width=\textwidth]{figures/hit_cnn_pion.pdf}
 	\caption
 	[Shower classifier score for hits from beam pions.]
 	{Shower classifier score for hits from beam pions.}
@@ -422,33 +424,32 @@ The shower score distribution for beam pions is shown in Figure
 \begin{figure}
 	% TODO: remake me
 	\centering
-	\includegraphics[width=\textwidth]{figures/beam_proton_cnn.png}
+	\includegraphics[width=\textwidth]{figures/hit_cnn_proton.pdf}
 	\caption
-	[Shower classifier score for hits from beam pions.]
-	{Shower classifier score for hits from beam pions.}
+	[Shower classifier score for hits from beam protons.]
+	{Shower classifier score for hits from beam protons.}
 	\label{fig:beam_proton_cnn}
 \end{figure}
 
 \begin{figure}
 	% TODO: remake me
 	\centering
-	\includegraphics[width=\textwidth]{figures/beam_electron_cnn.png}
+	\includegraphics[width=\textwidth]{figures/hit_cnn_electron.pdf}
 	\caption
-	[Shower classifier score for hits from beam pions.]
-	{Shower classifier score for hits from beam pions.}
+	[Shower classifier score for hits from beam electrons.]
+	{Shower classifier score for hits from beam electrons.}
 	\label{fig:beam_electron_cnn}
 \end{figure}
 
 \begin{figure}
 	% TODO: make me
 	\centering
-	\includegraphics[width=\textwidth]{figures/cosmic_muon_cnn.png}
+	\includegraphics[width=\textwidth]{figures/hit_cnn_muon.pdf}
 	\caption
 	[Shower classifier score for hits from cosmic--ray muons.]
 	{Shower classifier score for hits from cosmic--ray muons.}
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
-
 
 \section{Application of CNN Scores in \protodune{} Analyses} \label{cnn-appl}
 
