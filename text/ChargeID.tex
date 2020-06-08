@@ -409,10 +409,14 @@ therefore form an additional truth source. The shower score distributions for
 electrons, pions, protons, and muons are produced based on these samples.
 
 The shower classifier scores for the pion, proton, and electron test beam 
-samples are shown in Figure \ref{fig:cnn_scores_beam}, the histograms are
-normalised by the number of beam particles. The data in these distributions was
-taken from \protodune{} run 5387, which had a beam momentum of 1 GeV/c.
-\mccorrect{TODO.}
+samples are shown in Figure \ref{fig:cnn_scores_beam}. The data in the pion 
+and proton distributions was taken from two \protodune{} run 5387, and the 
+data in the electron distribution was from run 5809, both of these runs had a 
+beam momentum of 1 GeV/c. The data in all of the shower classifier distributions
+are normalised by the number of triggered beam particles.
+
+The distributions show a reasonable agreement between data and simulation, 
+however, there is some discrepancy between the two datasets. \mccorrect{TODO.}
 
 \begin{figure}
 
@@ -433,16 +437,15 @@ taken from \protodune{} run 5387, which had a beam momentum of 1 GeV/c.
 	\end{subfigure}
 
 	\begin{subfigure}[b]{0.7\textwidth}
-		% TODO: remake me
 		\centering
-		\includegraphics[width=\textwidth]{figures/beam_electron_cnn.png}
+		\includegraphics[width=\textwidth]{figures/hit_cnn_electron.pdf}
 		\caption {electrons}
 		\label{fig:beam_electron_cnn}
 	\end{subfigure}
 
 	\caption
 	[Shower classifier scores for particles from the \protodune{} beam.]
-	{ Shower classifier scores for particles from the \protodune{} beam. }
+	{Shower classifier scores for particles from the \protodune{} beam.}
 
 	\label{fig:cnn_scores_beam}
 
