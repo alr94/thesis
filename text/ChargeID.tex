@@ -401,12 +401,12 @@ these analyses are mentioned briefly in Section \ref{cnn-appl}.
 
 \section{Validation and Performance on \protodune{} Data} \label{cnn-perf-data}
 
-For validation on real \protodune{} data two approaches were used: visual
-validation with event scans, and the comparison of score distributions for
-different particle species, based on the particle identification (PID) from the
-beam instrumentation. Data from \protodune{} run number 5387 was used for all of
-these validations; the data for this run was taken on under stable operating
-conditions, with an average beam energy of 1 GeV.
+For validation on real \protodune{} data three approaches were used: visual
+validation with event scans, comparisons of the overall score distributions, 
+and the comparison of score distributions for different particle species. Data 
+from \protodune{} runs 5387 and 5809 were used for these validations; the data 
+for these run was taken on under stable operating conditions, with an average 
+beam energy of 1 GeV.
 
 Hand scans of the events show qualitatively that the performance on the data is
 good. Figure \ref{fig:real_event} shows and example of the track score for hits
@@ -427,12 +427,33 @@ track, which are from delta rays, are from electrons.
 	\label{fig:real_event}
 \end{figure}
 
+The overall score distribution for all hits is the gives an overall validation
+of the network performance between data and simulation. It is also the only
+method which remains decoupled from the Pandora reconstruction algorithm, and
+therefore it is independent of any differences between data and simulation which
+impact the results of Pandora. The remaining algorithms which this comparison
+relies on are the noise removal algorithms and the hit tagging algorithm. The
+overall shower score distribution for data and simulation is shown in Figure
+\ref{fig:cnn_overall_score}, which shows good agreement between data and
+simulation.
+\begin{figure}
+	% TODO
+	\centering
+	\includegraphics[width=\textwidth]{figures/hit_cnn_all.pdf}
+	\caption
+	[Overall shower score distribution from the CNN for all hits in data and simulation.]
+	{Overall shower score distribution from the CNN for all hits in data and simulation.}
+	\label{fig:cnn_overall_score}
+\end{figure}
+
 In the case of particles originating from the charged particle beam, the BI can
 be used to provide an effective truth source with which the results of the CNN 
 can be compared between data and simulation. Any particles that arrive
 out--of--time with the beam can be assumed to be cosmic--ray muons, and 
 therefore form an additional truth source. The shower score distributions for
-electrons, pions, protons, and muons are produced based on these samples.
+electrons, pions, protons, and muons are produced based on these samples. It is
+important to note that the results for these true particle samples will depend 
+on how the differences between data and simulation affect Pandora.
 
 The shower classifier scores for the pion, proton, and electron test beam 
 samples are shown in Figure \ref{fig:cnn_scores_beam}. The data in the pion 
@@ -442,16 +463,12 @@ momentum of 1 GeV/c. The data in all of the shower classifier distributions
 are normalised by the number of triggered beam particles of the given flavour.
 
 The shower score distributions for the beam particle samples show an overall
-good agreement between data and simulation. However, there is still some
-discrepancy, which highlights the differences between the data and the
+good agreement between data and simulation. However, there are still some
+discrepancies, which highlights the differences between the data and the
 simulation. The difference is most pronounced for the electron sample, which
 gets more entries at low shower scores in data than simulation. In fact every
 bin in the electron sample has more entries in data, due to the fact that the
-electrons in data contain more reconstructed hits than in simulation. The
-differences between data and simulation in \protodune{} are under active
-consideration. If this hit tagging network were retrained with improved
-simulation we would expect an improved agreement, which would reduce the
-associated systematic errors with using this network in physics analyses.
+electron showers in data contain more reconstructed hits than in simulation. 
 \begin{figure}
 
 	\centering
@@ -486,8 +503,11 @@ associated systematic errors with using this network in physics analyses.
 \end{figure}
 
 The shower score distribution for cosmic--ray tracks is shown in Figure
-\ref{fig:cosmic_muon_cnn}. TODO.
-
+\ref{fig:cosmic_muon_cnn}. Again a good agreement is seen over the majority of
+the range, but in data there is an excess of hits with a high shower score. This
+could be due to the fact that Pandora sometimes includes delta rays and Michel
+electrons in reconstructed tracks, which may happen at different rates in data
+and simulation.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/hit_cnn_cosmics.pdf}
