@@ -590,28 +590,29 @@ each sample distribution in data and simulation. The fractional difference
 between the numbers in each case is a rough estimate of the uncertainty 
 associated with this simple selection algorithm. This can be considered as an
 upper--bound on event selection uncertainties in each sample, since it is based
-on the CNN scores alone. The overall uncertainty for all hits is on the order of
-4\%. The discrepancy between data and simulation varies depending on the 
-particle species, electrons have the smallest uncertainty at around 1\%, while
-protons and cosmic--rays have an uncertainty of 18\% based on this simple
-hit--by--hit algorithm.
+on the CNN score of each individual hit. The ratio of data to simulation for 
+all hits is on the order of 4\%. This ratio varies depending on the particle 
+species, electrons have the smallest difference at around 1\%, while protons 
+and cosmic--rays have an difference of 18\% based on this simple hit--by--hit 
+algorithm.  
 \begin{table}
 	\centering
 	\bgroup 
 	\def\arraystretch{1.5}
-	% TODO: neaten me up
-	\begin{tabularx}{\textwidth}{@{}c|Y|Y|Y|Y|Y@{}}
-		Hit Source                & All  & Pion   & Proton & Electron & Cosmic--ray \\\hline
-		Shower Fraction MC (\%)   & 22.9 & 11.1   & 2.9    & 96.9     & 16.8 \\
-		Shower Fraction Data (\%) & 23.8 & 10.5   & 3.4    & 95.8     & 19.7 \\\hline
-		Data / MC                 & 1.04 & 0.94   & 1.18   & 0.99     & 1.18 \\
+	\begin{tabularx}{\textwidth}{@{}c|c|c|c@{}}
+		Hit Source  & Shower Fraction MC (\%) & Shower Fraction Data (\%) & Data / MC\\\hline
+		All         & 22.9                    & 23.8                      & 1.04 \\
+		Pion        & 11.1                    & 10.5                      & 0.94 \\
+		Proton      & 2.9                     & 3.4                       & 1.18 \\
+		Electron    & 96.9                    & 95.8                      & 0.99 \\
+		Cosmic--ray & 16.8                    & 19.7                      & 1.18
 	\end{tabularx}
 	\egroup
 	\caption
 	[Fraction of hits selected as showers for reconstructed particles in
 	\protodune{} data and simulation.]
-	{ Fraction of hits selected as showers for reconstructed particles in
-	\protodune{} data and simulation. }
+	{Fraction of hits selected as showers for reconstructed particles in
+	\protodune{} data and simulation.}
 	\label{tab:frac_selected}
 \end{table}
 
