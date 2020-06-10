@@ -318,9 +318,18 @@ algorithm is as follows,
 		\item Store the results for $\delta^l_j$, to use when calculating subsequent
 			layers.
 	\end{itemize}
-	\item Update the weights according to the update rule in Equation
+	\item Update the weights according to the update rule in Equation 
 		\ref{eq:delta_w}.
 \end{enumerate}
+
+The backpropagation algorithm is used to calculate the gradients in order to
+adjust weights in a neural network. There are a number of optimisation 
+algorithms for adjusting the weights, such as mini--batch stochastic gradient 
+descent (SGD)\cite{10.1145/2623330.2623612}, and Adaptive Momentum Estimation 
+(Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
+important for the discussion in this thesis, and therefore they will only be 
+mentioned in passing here, a review of gradient descent optimisation 
+algorithms can be found here \cite{ruder2016overview}.
 
 \bigskip
 

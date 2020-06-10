@@ -1,4 +1,4 @@
-\chapter{\label{ch:chargeid}Charge Identification with Convolutional Neural 
+\chapter{\label{ch:chargeid}Charge Classification with Convolutional Neural 
 Networks} 
 
 \minitoc
@@ -28,7 +28,7 @@ depositions with a convolutional neural network.  The performance of this
 approach will be analysed with ProtoDUNE--SP simulation and data in sections 
 \ref{cnn-perf-sim} and \ref{cnn-perf-data} respectively.
 
-\section{Hit Identification with Convolutional Neural Networks} \label{hit-id}
+\section{Hit Classification with Convolutional Neural Networks} \label{hit-id}
 
 Effective track shower separation forms the basis of many reconstruction
 challenges in DUNE and \protodune{}; it needed to define pure calibration
@@ -104,6 +104,8 @@ the electromagnetic energy loss in liquid argon for energies in the GeV range.
 
 \begin{table}
 	\centering
+	\bgroup
+	\def\arraystretch{1.5}
 	\begin{tabular}{c|c|c}
 		Ionisation Source & Track, shower, empty & Michel \\ \hline
 		Muons             & [1,0,0]              & [0]    \\
@@ -112,6 +114,7 @@ the electromagnetic energy loss in liquid argon for energies in the GeV range.
 		Other Electrons   & [0,1,0]              & [0]    \\
 		Noise             & [0,0,1]              & [0]    \\
 	\end{tabular}
+	\egroup
 	\caption
 	[Truth labels for different particles.]
 	{Truth labels for different particles.}
@@ -131,13 +134,16 @@ each type in these three datasets are detailed in Table \ref{tab:patches}.
 
 \begin{table}
 	\centering
-	\begin{tabular}{c|c|c|c|c|c}
+	\bgroup
+	\def\arraystretch{1.5}
+	\begin{tabularx}{\textwidth}{@{}c|Y|Y|Y|Y|Y@{}}
 		Dataset    & Shower     & Track      & Empty     & Michel  & Total      \\ \hline
 		Training   & 13,493,982 & 9,727,604  & 2,517,882 & 731,456 & 26,470,925 \\
 		Validation & 734,673    & 562,038    & 141,388   & 42,727  & 1,480,826  \\
 		Test       & 764,659    & 518,805    & 139,987   & 39,674  & 1,463,125  \\ \hline
 		Total      & 14,993,314 & 10,808,447 & 2,799,257 & 813,857 & 29,414,876
-	\end{tabular}
+	\end{tabularx}
+	\egroup
 	\caption
 	[Number of input images with each truth label.]
 	{Number of input images with each truth label.}
@@ -199,8 +205,8 @@ it is the mean squared error\cite{mse_springer},
 	L_{TSE} &= - \frac{1}{N} \sum_{j=1}^N \sum_{i=0}^2 (t_j)_i \log (p_j)_i, \\
 	L_M &= \frac{1}{N} \sum_{j=1}^N (t_j - p_j)^2
 \end{align*}
-where $t_j$ and $p_j$ are the truth and the prediction for the $j$ sample in the
-training batch, and $i$ sums over all outputs in the TSE branch. 
+where $t_j$ and $p_j$ are the truth and the prediction for the $j^{th}$ sample 
+in the training batch, and $i$ sums over all outputs in the TSE branch. 
 
 \subsection{Training and Validation}
 The TensorFlow\cite{45381} library and the Keras\cite{chollet2015keras} 
@@ -209,13 +215,11 @@ which was trained on a dedicated \protodune{} server at CERN, with an NVIDIA
 GTX 1080 GPU. The training was monitored using the TensorBoard visualisation 
 toolkit, which is part of the TensorFlow library. 
 
-% TODO, add a more in depth discussion of SGD to the NN chapter
-The CNN was trained using the stochastic gradient descent (SGD)
-algorithm, including both the momentum and decay 
-algorithms\cite{Reed1999}. The momentum algorithm reduces the oscillations of
-the weights during learning, while the decay of the learning rate allows for
-rapid learning during early stages of SGD, and increased precision as the model
-converges. 
+The CNN was trained using the mini--batch stochastic gradient descent (SGD)
+algorithm, including both the momentum and decay algorithms\cite{Reed1999}. 
+The momentum algorithm reduces the oscillations of the weights during 
+learning, while the decay of the learning rate allows for rapid learning 
+during early stages of SGD, and increased precision as the model converges. 
 
 During training the learning metrics where monitored with TensorBoard. The
 losses for each branch and the total loss were monitored for the training
@@ -277,7 +281,7 @@ precision and recall. The $F_1$ metric is given by,
 \begin{equation*}
 	\frac{1}{F_1} = \frac{1}{\mbox{precision}} + \frac{1}{\mbox{recall}},
 \end{equation*}
-where here the precision, is defined as the fraction of correctly identified 
+where here the precision, is defined as the fraction of correctly classified 
 showers hits in the sample of all selected showers hits, and recall is defined 
 as the fraction of all true showers hits which were selected as showers hits. 
 The $F_1$ score was calculated across a range of selection thresholds, this is 
@@ -377,12 +381,16 @@ For the CNN the average shower score for the hits in the particle was
 calculated and compared to a threshold of 0.72, based on the previous F1 score 
 calculation. Any particles with an average shower score above the threshold were
 classified as showers, and any with score below the threshold were classified 
-as tracks. The resulting classifications are shown in Figure 
-\ref{fig:track_show_pan_cnn}, which shows the fraction of each particle 
-species with a given classification for Pandora and the CNN.
+as tracks. 
+
+The particle classification by particle species based on the Pandora method and
+the CNN method are compared in \ref{fig:track_show_pan_cnn}, which shows the 
+fraction of each particle species classified as tracks and showers by Pandora
+and the CNN. We can see that CNN gives a stronger classification than Pandora 
+for all particle species. Electron and photons are more often classified as
+showers, and pions, muons, and protons are more often classified as tracks. 
 \begin{figure}
 	\centering
-	% TODO: remake me
 	\includegraphics[width=\textwidth]{figures/track_shower_labels.pdf}
 	\caption
 	[Comparison of track and shower classifications by Pandora and the CNN.]
@@ -390,23 +398,62 @@ species with a given classification for Pandora and the CNN.
 	\label{fig:track_show_pan_cnn}
 \end{figure}
 
-% TODO: change this chapter to correspond to new data.
-For all particle species the CNN provides a stronger classification than
-Pandora. For muons and pions only a modest improvement is seen, however, larger
-improvements are seen for electrons, protons, and photons. The largest 
-improvement is seen for the case of electrons, where the CNN selects 36 times 
-fewer electrons as tracks than Pandora. The stronger classification potential 
-from the CNN is being utilised in \protodune{} cross section analyses, some of 
-these analyses are mentioned briefly in Section \ref{cnn-appl}.
+The false positive rates (FPR) for Pandora and the CNN for each particle 
+species are given in Table \ref{tab:false_pos}, as well as their ratio.
+The CNN only gives a modest improvement over Pandora for pions, and muons. 
+However, there is a significant improvement in the false positive rate for 
+electrons, protons, and photons. The biggest improvement is for electrons, 
+where the CNN has a false positive rate 20 times lower than Pandora. 
+\begin{table}
+	\centering
+	\bgroup 
+	\def\arraystretch{1.5}
+	\begin{tabularx}{\textwidth}{@{}c|Y|Y|Y|Y|Y@{}}
+		Particle Species & Electron & Muon & Proton & Photon & Pion \\\hline
+		Pandora FPR (\%) & 13.4     & 33.6 & 23.4   & 14.0   & 13.0 \\
+		CNN FPR (\%)     & 0.7      & 30.5 & 5.7    & 1.7    & 11.9 \\\hline
+		Pandora / CNN    & 20.3     & 1.10 & 4.07   & 8.08   & 1.10 \\
+	\end{tabularx}
+	\egroup
+	\caption
+	[False positive rates for track shower classification with Pandora and the
+	CNN.]
+	{ False positive rates for track shower classification with Pandora and the
+	CNN. }
+	\label{tab:false_pos}
+\end{table}
 
-\section{Validation and Performance on \protodune{} Data} \label{cnn-perf-data}
+The stronger classification by the CNN gives supplementary information to
+Pandora, which can be used in analyses to improve event selection or background
+rejection. This information is being utilised in a number of \protodune{}
+analyses, some of these analyses are highlighted briefly in Section
+\ref{cnn-appl}.
+
+As well as providing supplementary information to Pandora for analysis, the CNN
+scores could be utilised during Pandora reconstruction as an additional guide
+for the reconstruction algorithms. This approach is being developed by Pandora
+for the DUNE far detector, based on a deep neural network for discriminating 
+tracks and showers\cite{TODO:Neutrino2020Poster}.
+
+\section{Validation on \protodune{} Data} \label{cnn-perf-data}
 
 For validation on real \protodune{} data three approaches were used: visual
 validation with event scans, comparisons of the overall score distributions, 
 and the comparison of score distributions for different particle species. Data 
 from \protodune{} runs 5387 and 5809 were used for these validations; the data 
 for these run was taken on under stable operating conditions, with an average 
-beam energy of 1 GeV.
+beam energy of 1 GeV. The beam composition in run 5387 was tuned to contain
+mostly hadrons, while in run 5809 it was tuned to have an enhanced electron
+component. The same operating conditions were used for the simulated data, in
+order to give the closest possible comparison between data and simulation.
+
+As discussed in Section \ref{cnn-perf-sim}, the sample of Michel electron hits
+is orders of magnitude smaller than the other hits. In order to make a
+meaningful validation of the performance of the Michel electron classifier on
+data, the fraction of Michel electron hits in the sample needs to be increased.
+Therefore, discussion of the validation of the Michel electron classifier will 
+be postponed until the Chapter \ref{ch:michel}, which will discuss Michel 
+electron event selection and reconstruction.
 
 Hand scans of the events show qualitatively that the performance on the data is
 good. Figure \ref{fig:real_event} shows and example of the track score for hits
@@ -427,19 +474,26 @@ track, which are from delta rays, are from electrons.
 	\label{fig:real_event}
 \end{figure}
 
-The overall score distribution for all hits is the gives an overall validation
-of the network performance between data and simulation. It is also the only
-method which remains decoupled from the Pandora reconstruction algorithm, and
-therefore it is independent of any differences between data and simulation which
-impact the results of Pandora. The remaining algorithms which this comparison
-relies on are the noise removal algorithms and the hit tagging algorithm. The
-overall shower score distribution for data and simulation is shown in Figure
-\ref{fig:cnn_overall_score}, which shows good agreement between data and
-simulation.
-\begin{figure}
-	% TODO
+The shower score distribution for all hits is the gives an overall validation
+of the network performance between data and simulation. It is the only
+quantitative validation method for the CNN, which remains decoupled from the 
+Pandora reconstruction algorithm. Therefore, it is independent of the 
+differences between data and simulation, which impact the results of Pandora. 
+The comparison is still dependent on the noise removal algorithm, the hit
+tagging algorithm, and the particle flux, which impact the input images to the 
+CNN.
+
+The overall shower score distribution for data and simulation is shown in 
+Figure \ref{fig:cnn_overall_score}, as well as the fractional residuals in 
+each bin. These distributions are normalised by the number of hits, allowing us
+to compare the shape of the score distribution in data and simulation.  
+Overall there is a good agreement between the data and the simulation, 
+however, the distribution in data has a slightly different shape at low CNN
+scores. This can be seen in the residuals, which have a negative slope for 
+hits with shower score less than around 0.2.
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/hit_cnn_all.pdf}
+	\includegraphics[width=0.97\textwidth]{figures/hit_cnn_all.pdf}
 	\caption
 	[Overall shower score distribution from the CNN for all hits in data and simulation.]
 	{Overall shower score distribution from the CNN for all hits in data and simulation.}
@@ -458,17 +512,9 @@ on how the differences between data and simulation affect Pandora.
 The shower classifier scores for the pion, proton, and electron test beam 
 samples are shown in Figure \ref{fig:cnn_scores_beam}. The data in the pion 
 and proton distributions was taken from \protodune{} run 5387, and the data in 
-the electron distribution was from run 5809, both of these runs had a beam 
-momentum of 1 GeV/c. The data in all of the shower classifier distributions 
-are normalised by the number of triggered beam particles of the given flavour.
-
-The shower score distributions for the beam particle samples show an overall
-good agreement between data and simulation. However, there are still some
-discrepancies, which highlights the differences between the data and the
-simulation. The difference is most pronounced for the electron sample, which
-gets more entries at low shower scores in data than simulation. In fact every
-bin in the electron sample has more entries in data, due to the fact that the
-electron showers in data contain more reconstructed hits than in simulation. 
+the electron distribution was from run 5809. The data in all of the shower 
+classifier distributions are normalised by the number of triggered beam 
+particles of the given flavour.
 \begin{figure}
 
 	\centering
@@ -502,12 +548,29 @@ electron showers in data contain more reconstructed hits than in simulation.
 
 \end{figure}
 
+The shower score distributions for the beam particle samples show an overall
+good agreement between data and simulation. However, there are still some
+discrepancies, which highlights the differences between the data and the
+simulation. The difference is most pronounced for the electron sample, which
+gets more entries at low shower scores in data than simulation. In fact every
+bin in the electron sample has more entries in data, due to the fact that the
+electron showers in data contain more reconstructed hits than in simulation. 
+
+The cosmic--ray sample was selected based on the cosmic--ray part of the
+Pandora reconstruction chain, discussed in Chapter \ref{ch:protodune}. Any
+reconstructed particles which have been labelled as both clear cosmic--rays
+and tracks by Pandora are included in the sample. The data in this sample was
+taken from run 5387; while a cosmic only run would be preferable, all of the
+\protodune{} simulations include test beam particles. Therefore, a test beam
+run was chosen in order to match as closely as possible to the simulation.
+
 The shower score distribution for cosmic--ray tracks is shown in Figure
-\ref{fig:cosmic_muon_cnn}. Again a good agreement is seen over the majority of
-the range, but in data there is an excess of hits with a high shower score. This
-could be due to the fact that Pandora sometimes includes delta rays and Michel
-electrons in reconstructed tracks, which may happen at different rates in data
-and simulation.
+\ref{fig:cosmic_muon_cnn}, the distributions here are normalised by the total
+number of reconstructed cosmic--rays. Again a good agreement is seen over the 
+majority of the range, but in data there is a prominent excess of hits with a 
+high shower score. The cause of this excess is not currently understood, a 
+possible cause is an increased rate of delta ray hits being included in tracks 
+in data.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/hit_cnn_cosmics.pdf}
@@ -517,13 +580,57 @@ and simulation.
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 
-\newpage
-\section{Application of CNN Scores in \protodune{} Analyses} \label{cnn-appl}
+In practice, the CNN will be used to select events based on choosing events
+whose hit scores are above some threshold. This could be based on an average
+over a number of hits, or on a hit by hit basis. The uncertainties involved with
+selecting hits in this way can be evaluated by considering the fraction of hits
+selected into the sample given a selection threshold. In Table
+\ref{tab:frac_selected}, we list the fraction of individual hits selected for 
+each sample distribution in data and simulation. The fractional difference 
+between the numbers in each case is a rough estimate of the uncertainty 
+associated with this simple selection algorithm. This can be considered as an
+upper--bound on event selection uncertainties in each sample, since it is based
+on the CNN scores alone. The overall uncertainty for all hits is on the order of
+4\%. The discrepancy between data and simulation varies depending on the 
+particle species, electrons have the smallest uncertainty at around 1\%, while
+protons and cosmic--rays have an uncertainty of 18\% based on this simple
+hit--by--hit algorithm.
+\begin{table}
+	\centering
+	\bgroup 
+	\def\arraystretch{1.5}
+	% TODO: neaten me up
+	\begin{tabularx}{\textwidth}{@{}c|Y|Y|Y|Y|Y@{}}
+		Hit Source                & All  & Pion   & Proton & Electron & Cosmic--ray \\\hline
+		Shower Fraction MC (\%)   & 22.9 & 11.1   & 2.9    & 96.9     & 16.8 \\
+		Shower Fraction Data (\%) & 23.8 & 10.5   & 3.4    & 95.8     & 19.7 \\\hline
+		Data / MC                 & 1.04 & 0.94   & 1.18   & 0.99     & 1.18 \\
+	\end{tabularx}
+	\egroup
+	\caption
+	[Fraction of hits selected as showers for reconstructed particles in
+	\protodune{} data and simulation.]
+	{ Fraction of hits selected as showers for reconstructed particles in
+	\protodune{} data and simulation. }
+	\label{tab:frac_selected}
+\end{table}
+
+Overall the CNN results have been shown to agree well with data accross a 
+range of particle types. The discrepancies seen are also connected to the 
+difference between data and simulation for the Pandora reconstruction 
+framework, which makes the cause of the discrepancies difficult to 
+disentangle. However, the general agreement between data and simulation is a 
+sign that the results from the CNN are sensible, and can be used in analyses.
+The discrepancies will impact each analysis differently, therefore the
+uncertainties involved with using the CNN classifier should evaluated on a 
+case--by--case basis.
+
+\section{Application in \protodune{} Analyses} \label{cnn-appl}
 The output of the CNN classifier has been applied in a number of \protodune{}
 analyses since it was developed. Chapter \ref{ch:michel} will detail one use of
-the network in a Michel electron analysis, this analysis was completed by the
-author. In addition, the network is being incorporated into analyses by other
-members of the \protodune{} experiment, including:
+the network in a Michel electron analysis. In addition, the network is being 
+incorporated into analyses by other members of the \protodune{} experiment, 
+including:
 \begin{itemize}
 	\item Selecting shower candidates for neutral pion event selection\cite{pi_0}.
 	\item Identifying charge exchange candidates in analyses of charged--pion

@@ -522,3 +522,7 @@
 
 %Quotes
 \usepackage{dirtytalk}
+
+% tables
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
