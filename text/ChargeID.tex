@@ -37,7 +37,7 @@ challenges in DUNE and \protodune{}; it is used to define pure calibration
 samples, such as minimum ionising muons and $\pi^0$ decays, and it is an
 important part of neutrino event reconstruction. Each event sample leaves a
 unique signature in the detector, but the first step in reconstructing these
-samples is the same, reconstructing tracks and showers which can be combined to
+samples is the same, reconstructing tracks and showers, which can be combined to
 build the final state. 
 
 In a LArTPC, tracks and showers are built from collections of hits, these hits
@@ -284,7 +284,7 @@ precision and recall. The $F_1$ metric is given by,
 \end{equation*}
 where we define the precision as the fraction of correctly classified shower 
 hits in the sample of all selected shower hits, and the recall as the fraction 
-of all true shower hits which were selected as shower hits. The $F_1$ score 
+of all true shower hits, which were selected as shower hits. The $F_1$ score 
 was calculated across a range of selection thresholds, this is shown in Figure 
 \ref{fig:show_output}. The score peaks at a threshold of 0.72 where,
 \begin{equation*}
@@ -297,7 +297,7 @@ was calculated across a range of selection thresholds, this is shown in Figure
 	\caption
 	[Shower score output distributions for the TSE classifier.]
 	{Shower score output distributions for the TSE classifier. Threshold 
-	optimisation was done using the F1 score metric which is also plotted.}
+	optimisation was done using the F1 score metric, which is also plotted.}
 	\label{fig:show_output}
 \end{figure}
 
@@ -305,8 +305,8 @@ The overall performance of the TSE classifier can also be evaluated with a
 receiver operating characteristic (ROC) curve\cite{Fawcett2006}. The ROC curve
 shows the true positive rate vs the false positive rate for the classifier, as
 the selection threshold is varied. Figure \ref{fig:show_roc} shows two ROC
-curves for the TSE classifier, one which is evaluated in simulation including
-the space charge effect (SCE), and the other which excludes the SCE. Both curves
+curves for the TSE classifier, one is evaluated in simulation including
+the space charge effect (SCE), and the other excludes the SCE. Both curves
 demonstrate that the network is capable of achieving high true positive rates,
 while maintaining low false positive rates. In addition, their is a very close
 agreement between the two curves, which suggests that the TSE classifier is
@@ -563,7 +563,7 @@ data than in simulation.
 
 The cosmic--ray sample was selected based on the cosmic--ray part of the
 Pandora reconstruction chain, discussed in Chapter \ref{ch:protodune}. Any
-reconstructed particles which have been labelled as both clear cosmic--rays
+reconstructed particles, which have been labelled as both clear cosmic--rays
 and tracks by Pandora are included in the sample. The data in this sample was
 taken from run 5387; while a cosmic only run would be preferable, all of the
 \protodune{} simulations include test beam particles. Therefore, a test beam
