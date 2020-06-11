@@ -142,19 +142,47 @@ image. The convolution operator is defined as,
 where x and y are discrete sequences. In the machine learning context, y
 represents the image, and x the convolutional kernel, which are both finite in
 extent. Therefore, they are defined to be zero outside of their boundaries, and
-the sum range can be reduced to $\[0, N\]$, where $N$ is the number of pixels in
-the kernel. The convolution operation is applied to all pixels in the input 
-image, which are replaced by the resulting convolution in the next layer of 
-the network. Many convolutional kernels are used in each layer of the network, 
-each producing an output image which is passed to the next layer. 
+the sum range can be reduced to $\left[0, N\right]$, where $N$ is the number 
+of pixels in the kernel. The convolution operation is applied to all pixels in 
+the input image, which are replaced by the resulting convolution in the next 
+layer of the network. Many convolutional kernels are used in each layer of the 
+network, each producing an output image which is passed to the next 
+layer. 
 
 Convolutional kernels are sometimes referred to as feature detectors, which 
 emphasises the fact that each kernel identifies a given feature in the data, 
 based on the weights in the kernel matrix. The output image from each kernel 
 is known as a feature map, reflecting the fact that they represent the spatial 
-distribution of the features learned by a given feature detector. 
+distribution of the features learned by a given feature detector. An example of
+a commonly used feature detector and the output feature map is given in Figure
+\ref{fig:edge_detector}. This feature map is the result of applying a Sobel edge
+detector\cite{kanopoulos1988design} to the input image.
+\begin{figure}
 
-% TODO: figure of feature detector.
+	\centering
+
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/ed_input.jpg}
+		\caption{Input Image.}
+		\label{fig:ed_input}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/ed_feature_map.jpg}
+		\caption{Feature Map.}
+		\label{fig:ed_feature_map}
+	\end{subfigure}
+
+	\caption
+	[Application of a Sobel edge detector to an image.]
+	{Application of a Sobel edge detector to an image. Images from
+	\cite{edge_detector}.}
+
+	\label{fig:edge_detector}
+
+\end{figure}
 
 \subsubsection*{Pooling}
 The use of images as network input typically drastically increases the number of
@@ -177,20 +205,14 @@ Therefore, after convolutions, data is typically flattened and passed through
 one or more dense layers in order to produce the classification prediction. A
 graphical representation of a typical CNN architecture is shown in Figure
 \ref{fig:cnn_layer}, it includes convolutional, pooling, and dense layers.
-
 \begin{figure}
-
 	\centering
-
 	\includegraphics[width = \textwidth]{figures/cnn_layer.png}
-
 	\caption
 	[A graphical representation of a convolutional neural network.]
 	{ A graphical representation of a convolutional neural network. Figure
 	generated with \cite{cnn_diagrams}.}
-
 	\label{fig:cnn_layer}
-
 \end{figure}
 
 \subsection{Residual Neural Networks}
@@ -210,20 +232,14 @@ each layer is combined with the results of the convolutions as part of the
 input to a future layer; in effect, the identity transformation has been added
 to the set of operations in the layer. An example of these shortcut connections 
 is shown in Figure \ref{fig:short_connect}\cite{He_2016_CVPR}. 
-
 \begin{figure}
-
 	\centering
-
 	\includegraphics[width = 0.6\textwidth]{figures/short_connect.pdf}
-
 	\caption
 	[An example of a shortcut connection in a convolutional neural network.]
 	{ An example of a shortcut connection in a convolutional neural network.
 	Figure from \cite{He_2016_CVPR}.}
-
 	\label{fig:short_connect}
-
 \end{figure}
 
 \section{Supervised Learning}
