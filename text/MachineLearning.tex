@@ -2,7 +2,7 @@
 
 \minitoc
 
-Machine Learning (ML) is a field of research which studies algorithms which 
+Machine Learning (ML) is a field of research, which studies algorithms that
 can learn to make predictions from data, i.e. predict a set of output variables,
 given a set of input variables. The algorithms typically take the form of a
 multivariate function, which is used to predict the output \cite{Reed1999}.
@@ -22,7 +22,7 @@ Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two
 examples of the application of Neural Networks (NN) for event reconstruction 
 in LArTPC data. These algorithms are classification algorithms based on the
 supervised learning approach. This chapter will not provide a full survey of
-the available ML techniques, which are both numerous and diverse, instead it 
+the available ML techniques, which are both numerous and diverse. Instead it 
 will briefly describe the theory behind NNs, as well as providing details of 
 the techniques used in the subsequent chapters. 
 
@@ -96,7 +96,7 @@ hyperbolic tangent, the rectified linear unit (ReLU), and the softmax function
 	\tag{Sigmoid} f(x) &= \frac{1}{1+e^x} \\
 	\tag{Tanh}    f(x) &= \frac{e^x - e^{-x}}{e^x+e^{-x}} \\
 	\tag{ReLU}    f(x) &= \mbox{max}\left( 0, x \right) \\
-	\tag{Softmax} f(x) &= \frac{e^{x_i}}{\displaystyle\sum_j e^{x_j}} \\
+	\tag{Softmax} f(x_i) &= \frac{e^{x_i}}{\displaystyle\sum_j e^{x_j}} \\
 	\label{eqn:losses}
 \end{align}
 In the softmax function, the index $i$ indicates the current node, and the index
@@ -140,18 +140,21 @@ image. The convolution operator is defined as,
 	\left( x * y \right)_i = \sum_{j = - \infty}^{\infty} x_j \; y_{i-j},
 \end{equation}
 where x and y are discrete sequences. In the machine learning context, y
-represents the image, and x the convolutional kernel, which are defined to be
-zero beyond the finite size of the filter or image. The convolution operation 
-is applied to all pixels in the input image, which are replaced by the 
-resulting convolution in the next layer of the network. Many convolutional 
-kernels are used in each layer of the network, each producing an output image 
-which is passed to the next layer. 
+represents the image, and x the convolutional kernel, which are both finite in
+extent. Therefore, they are defined to be zero outside of their boundaries, and
+the sum range can be reduced to $\[0, N\]$, where $N$ is the number of pixels in
+the kernel. The convolution operation is applied to all pixels in the input 
+image, which are replaced by the resulting convolution in the next layer of 
+the network. Many convolutional kernels are used in each layer of the network, 
+each producing an output image which is passed to the next layer. 
 
 Convolutional kernels are sometimes referred to as feature detectors, which 
 emphasises the fact that each kernel identifies a given feature in the data, 
 based on the weights in the kernel matrix. The output image from each kernel 
 is known as a feature map, reflecting the fact that they represent the spatial 
 distribution of the features learned by a given feature detector. 
+
+% TODO: figure of feature detector.
 
 \subsubsection*{Pooling}
 The use of images as network input typically drastically increases the number of
@@ -228,9 +231,9 @@ Supervised learning is the process of teaching a neural network to accurately
 predict the correct output, the ground truth, for a given input. The network is 
 optimised by minimising the loss function, which quantifies the difference 
 between the network output and the ground truth. The choice of loss function 
-is dependent on the problem being considered, specific examples will discussed 
-in subsequent chapters, which will detail the CNN algorithms developed as part 
-of this thesis.
+is dependent on the problem being considered, specific examples will be 
+discussed in subsequent chapters, which will detail the CNN algorithms 
+developed as part of this thesis.
 
 The output of a neural network, g(x), is the result of a chain of function 
 evaluations and matrix multiplication; for a network with $n$ layers,
@@ -329,7 +332,14 @@ descent (SGD)\cite{10.1145/2623330.2623612}, and Adaptive Momentum Estimation
 (Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
 important for the discussion in this thesis, and therefore they will only be 
 mentioned in passing here, a review of gradient descent optimisation 
-algorithms can be found here \cite{ruder2016overview}.
+algorithms can be found here \cite{ruder2016overview}. Some methodologies are
+common among many optimisation techniques, three important examples are the 
+ideas of mini--batches, training iterations, and training epochs. A mini--batch
+is a small sample of the input data, on which the backpropagation algorithm is
+applied simultaneously, this corresponds to one training iteration. A training
+epoch, which consists of a number of training iterations, refers to one cycle
+through the full training dataset, such that the network has been trained on 
+every training example exactly once.
 
 \bigskip
 
@@ -354,26 +364,29 @@ units have been found to outperform traditional sigmoid
 units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 
 \subsection{Regularisation}
-Regularisation refers to a set of techniques which are used to prevent
-over--fitting during the training of a NN. This ensures that the trained network
-can generalise well beyond the training data. A number of regularisation
-techniques can be used, such as applying penalty terms to the loss
-function which are proportional to the square of the weights, ensuring that 
-the weights stay relatively small. In this thesis we will make use of two 
-regularisation techniques, dropout\cite{Srivastava2014DropoutAS} and early
+Regularisation refers to a set of techniques, which are used to prevent
+over--fitting during the training of a NN. Over--fitting refers to the tendency
+of models with a high number of parameters to produce overly complex models,
+which fit the training data well but do not generalise to new data.  
+Regularisation ensures that the trained network can generalise well beyond the 
+training data. A number of regularisation techniques can be used, such as 
+applying penalty terms to the loss function, which are proportional to the 
+square of the weights, ensuring that the weights stay relatively small. In 
+this thesis we will make use of two regularisation techniques, 
+dropout\cite{Srivastava2014DropoutAS} and early 
 stopping\cite{OrrGenevieveB.1998NNTo}.
 
-In each training iteration, the dropout algorithm sets a subset of weights in
-each layer to zero. Each weight has a probability, $p$, of being set to zero for
-each iteration. The product of the remaining weights is scaled up by a factor 
-of $1/p$, which ensures that the size of the input to the activation function
-remains reasonably consistent. This reduced network is then trained using the
-backpropagation algorithm, and the non--zero weights are updated. During the
-next iteration, the set of non--zero weights is reselected, and a new reduced
-network is trained. Finally, after training, the final weights of the network
-are multiplied by $p$ to give the so--called model average of the reduced
-networks. The dropout algorithm with $p=0.5$, has proven to provide robust
-regularisation, and is a popular technique in the field\cite{Lecun2015}.
+The dropout algorithm sets a random subset of weights in each layer to zero for
+each training iteration. Each weight has a probability, $p$, of being set to 
+zero for each iteration. The product of the remaining weights is scaled up by 
+a factor of $1/p$, which ensures that the size of the input to the activation 
+function remains reasonably consistent.  This reduced network is then trained 
+using the backpropagation algorithm, and the non--zero weights are updated. 
+During the next iteration, the set of non--zero weights is reselected, and a 
+new reduced network is trained.  Finally, after training, the final weights of 
+the network are multiplied by $p$ to give the so--called model average of the 
+reduced networks. The dropout algorithm with $p=0.5$, has proven to provide 
+robust regularisation, and is a popular technique in the field\cite{Lecun2015}.
 
 \say{Early stopping (is) beautiful free lunch}, according to Geoff
 Hinton\cite{Hinton2015}. It refers to the act of monitoring the loss on the 
