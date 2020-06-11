@@ -44,9 +44,9 @@ energy loss per unit distance is described by the Bethe equation,
 The constants in this equation are detailed in reference
 \cite{PhysRevD.98.030001}. $Z$ and $A$ are the atomic number and mass number of
 the medium, $z$ is the charge of the scattering particle, $W_{max}$ is the 
-maximum energy transfer per collision, $I$ is the average excitation energy, 
-and $\delta$ is a density effect correction which is relevant in solids and 
-liquids. 
+maximum energy transfer possible in a single collision, $I$ is the average 
+ionisation energy, and $\delta$ is a density effect correction which is 
+relevant in solids and liquids. 
 
 Three important features of the energy loss in the Bethe formula are the minimum
 ionising region, the relativistic rise, and the Bragg peak, these regions can be
@@ -72,15 +72,15 @@ as a function of momentum.
 \subsubsection*{Delta Rays}
 Another feature of the electromagnetic energy loss of heavy particles that
 impacts reconstruction in LArTPCs is delta rays. Delta rays are energetic
-electrons which are knocked out of their atoms when they collide with the heavy
-particle, in liquid argon detectors these electrons are seen as small electron 
+electrons, which are knocked out of their atoms when they collide with the heavy
+particle. In liquid argon detectors these electrons are seen as small electron 
 tracks which protrude from muon tracks. 
 
 \subsection{Energy Loss for Electrons}
 Electrons and positrons undergo different electromagnetic scattering processes
 in matter, M{\o}ller scattering and Bhabha scattering respectively 
 \cite{TODO}. These processes, which dominate electron and positron energy loss 
-at low energies, have different cross sections which modify the energy loss in 
+at low energies, have different cross sections, which modify the energy loss in 
 each case. At higher energies, radiative processes such as bremsstrahlung 
 dominate. The two components of the electron stopping power are known as the 
 collision stopping power and the radiative stopping power.
@@ -120,10 +120,11 @@ where the terms have the same meanings as in Equation \ref{eq:mu_stop}
 Above a few tens of MeV, electrons lose most of their energy through the 
 emission of bremsstrahlung photons. Detailed discussion of the energy loss due
 to bremsstrahlung emission is beyond the scope of this thesis, detailed
-discussions are provided by \cite{PhysRevD.98.030001, Tsai:1973py}. Here, we 
-discuss a simplified model which highlights the important factors relevant for 
+discussions are provided in \cite{PhysRevD.98.030001, Tsai:1973py}. Here, we 
+discuss a simplified model, which highlights the important factors relevant for 
 the work in this thesis.
 
+% TODO: talk about this bit with Alfons
 At high energies, where the radiative energy loss is dominant, the energy of 
 the electron can be approximated as an exponential decay over a length scale 
 known as the radiation length, $X_0$,
@@ -261,7 +262,7 @@ The mean free path for photons in the MeV range is shown in Figure
 \end{figure}
 
 \subsection{Typical Interaction Signatures in \protodune{}}
-As a result of the differences in energy loss which depend on particle species
+As a result of the differences in energy loss, which depend on particle species
 and energy, different particles leave distinct signatures in the detector.  
 Figure \ref{fig:particle_signatures} shows the typical signatures of four 
 types of interaction in a liquid argon TPC for events from \protodune{} 
@@ -287,24 +288,26 @@ ionisation energy deposits due to radiated photons. A common source of these
 electrons in \protodune{} are Michel electrons, which are the electrons produced
 when a muon decays at rest in the detector. An example of a typical Michel
 electron event is shown in Figure \ref{fig:michel_signature}. The Michel 
-electron is accompanied by the incoming Muon in the image, which cannot be 
-separated in the ionisation signal due to the slow drift of the ionisation.
+electron is accompanied by the incoming Muon in the image, which is seen in the
+image because the lifetime of the muon is shorter than the time it takes for 
+the ionisation charge from the muon to drift away from the stationary muon.
 
 As with electrons, photon interactions in liquid argon have two distinct
 signatures at high and low energies. Low energy photons are typically produced
 by the interactions of low energy electrons in the liquid argon, such as the
 Michel electron interaction in Figure \ref{fig:michel_signature}. When these 
 photons interact they produce small isolated energy deposits, which are 
-created by the ionisation caused by the Compton scattered electron of electron 
+created by the ionisation from either Compton scattered electron or an electron 
 positron pair.
 
 At high energies, photons produce similar interactions to high energy electrons,
 which produce electromagnetic showers in the liquid argon. Their is a slight
-difference in the $dE/dx$ in the first few cm of these showers which can allow
-for electron and photon showers to be distinguished \cite{Acciarri:2016sli}. A 
-common source of photon showers in \protodune{} are $\pi^0$ decays, shown in 
-Figure \ref{fig:pi0_signature}, which produce a pair of photons.
-
+difference in the $dE/dx$ in the first few cm of electron and photon showers, 
+because the start of photon showers contain two electrons whereas the start of
+electron showers only have one. This difference can can allow for electron and 
+photon showers to be distinguished \cite{Acciarri:2016sli}. A common source of 
+photon showers in \protodune{} are $\pi^0$ decays, shown in Figure 
+\ref{fig:pi0_signature}, which produce a pair of photons.
 \begin{figure}
 
 	\centering
