@@ -66,7 +66,13 @@ will be used to test the performance of this technique and to provide an
 estimate of the energy uncertainty of LArTPC detectors for low--energy 
 electrons.
 
-\mccorrect{Chapter outline.}
+In this chapter Section \ref{ME_LAr} will discuss the signature left by Michel
+electrons in liquid argon, and the implications of this signature on
+reconstructing Michel electron events in \protodune{}. This will be followed by
+a discussion of the algorithm used to select Michel electron events in Section
+\ref{ME_ES}. The Michel electron event reconstruction will be discussed in
+Sections \ref{ME_R}. Finally, the results of this chapter and the implications
+for the DUNE far detector will be summarised in Section \ref{ME_EU}.
 
 \section{Michel Electrons in Liquid Argon} \label{ME_LAr}
 % \begin{mccorrection}
@@ -76,26 +82,40 @@ electrons.
 % 	\item Energy spectra
 % 	\end{itemize}
 % \end{mccorrection}
-
-Michel electrons are produced when a muon decays at rest. This decay gives rise
-to a characteristic energy spectrum which has a sharp cut--off at around 50 MeV,
-corresponding to half the muon mass. In matter it is also possible for $\mu^-$ 
-to be captured on nuclei before they decay, this causes a broadening of the 
-Michel electron spectrum for these events. A comparison of the Michel electron 
-energy spectrum for free $\mu^+$ and captured $\mu^-$ is given in Fig.
-\ref{fig:michel_spec}. The capture process occurs roughly 70\% of the time for
-negative muons in liquid argon and therefore in \protodune{} the observed energy
-spectrum is a combination of the two processes in roughly equal quantities.
-
+Michel electrons are produced when a muon decays at rest. In vacuum, this 
+decay gives rise to a characteristic energy spectrum which has a sharp 
+cut--off at around 50 MeV, corresponding to half the muon mass. In matter it 
+is also possible for $\mu^-$ to be captured on nuclei before they decay, this 
+causes a broadening of the Michel electron spectrum for these events. A 
+comparison of the Michel electron energy spectrum for free $\mu^+$ and 
+captured $\mu^-$ is given in Figure \ref{fig:michel_spec}. The capture process 
+occurs roughly 70\% of the time for negative muons in liquid argon, therefore, 
+in \protodune{} the observed Michel electron energy spectrum is a combination 
+of the two processes in roughly equal quantities.
 \begin{figure}
+
 	\centering
 	% TODO
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/michel_spectra.pdf}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/michel_spec_free.pdf}
+		\caption {Free Muons.}
+		\label{fig:michel_spec_free}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/michel_spec_cap.pdf}
+		\caption {Captured Muons.}
+		\label{fig:michel_spec_cap}
+	\end{subfigure}
+
 	\caption
-	[Michel electron energy spectra in Liquid Argon]
-	{Michel electron energy spectra in liquid argon. (a) free muons. (b) muon 
-	capture at rest.}
+	[Michel electron energy spectra in liquid argon.]
+	{Michel electron energy spectra in liquid argon.}
+
 	\label{fig:michel_spec}
+
 \end{figure}
 
 % \begin{mccorrection}
@@ -136,7 +156,7 @@ to successfully associate the radiated energy depositions back to the initial
 Michel electron once they have produced ionisation in the detector. Photons have
 a radiation length of around 20--30 cm in liquid argon which is many times
 larger than the size of the typical track--like part of the event, around 5 cm. 
-Fig. \ref{fig:photon_spec} shows the spectrum of radiated photons from Michel 
+Figure \ref{fig:photon_spec} shows the spectrum of radiated photons from Michel 
 electron events in \protodune{} simulation alongside the photon multiplicity 
 as a function of Michel electron energy. While most of the radiated photons 
 only carry a small fraction of the Michel electrons energy, in some cases a 
@@ -192,7 +212,7 @@ The energy which is lost into radiated photons is only visible once the photons
 interact in the argon to produce secondary electrons which then ionise the
 argon. These secondary electrons are scattered over large angles and distances
 in the detector when compared to the short Michel electron track, the spatial 
-distribution of secondary electrons is shown in Fig. \ref{fig:photon_geom}.
+distribution of secondary electrons is shown in Figure \ref{fig:photon_geom}.
 \mccorrect{TODO, analysis.}
 \begin{figure}
 	\centering
@@ -211,7 +231,7 @@ results of perfect energy reconstruction in two cases:
 	\item Considering all ionisation energy within some radius and angle of the 
 		Michel electron track.
 \end{itemize}
-Fig. \ref{fig:michel_track_only} illustrates the considerable increase in energy
+Figure \ref{fig:michel_track_only} illustrates the considerable increase in energy
 collected if radiated energy is considered, the distribution is significantly
 narrower and much more energy is recovered when considering the energy deposited
 within a cone of height 40cm and angle 30 \textdegree of the Michel electron
@@ -394,7 +414,7 @@ semantic segmentation of images \cite{TODO}. In semantic segmentation the goal
 of the network is to return a map of pixels which correspond to the areas of 
 interest; the output of the network is the same dimension as the input with a 
 one--to--one correspondence between input pixels and output pixels. The
-architecture used for the hit selection algorithm is shown in Fig.
+architecture used for the hit selection algorithm is shown in Figure
 \ref{fig:unet_arch}. During the first half of the network architecture the
 resolution of the output is decreases, this is analogous to many conventional
 CNN's and during this phase the network learns about the content of the image.
@@ -686,11 +706,9 @@ a given reconstructed ionisation energy,
 where $E_{michel}$ is the reconstructed Michel electron energy, $E_{ion}$ is the
 reconstructed ionisation energy, and a, b, and c are the parameters from the
 quadratic fit. The fit gives
-\begin{align}
-	a &= TODO, \\
-	b &= TODO, \\
-	c &= TODO.
-\end{align}
+\begin{equation}
+	a = TODO, \quad b = TODO, \quadjc = TODO.
+\end{equation}
 
 \begin{figure}
 	\centering

@@ -399,6 +399,7 @@ as tracks.
 	\label{fig:track_show_pan_cnn}
 \end{figure}
 
+% TODO: redo numbers with new data
 The false positive rates (FPR) for Pandora and the CNN for each particle 
 species are given in Table \ref{tab:false_pos}, as well as their ratio.
 The CNN only gives a modest improvement over Pandora for pions, and muons. 
@@ -434,7 +435,7 @@ As well as providing supplementary information to Pandora for analysis, the CNN
 scores could be utilised during Pandora reconstruction as an additional guide
 for the reconstruction algorithms. This approach is being developed by Pandora
 for the DUNE far detector, based on a similar deep neural network for 
-discriminating tracks and showers\cite{TODO:Neutrino2020Poster}.
+discriminating tracks and showers\cite{chappel_poster}.
 
 \section{Validation on \protodune{} Data} \label{cnn-perf-data}
 
@@ -483,6 +484,38 @@ between data and simulation, which impact the results of Pandora.  The
 comparison is still dependent on the noise removal algorithm, the hit tagging 
 algorithm, and the particle flux, which impact the input images to the CNN.
 
+In this comparison, and the following beam particle comparisons, a cut is made 
+on the reconstructed charge of each hit. This cuts out the excess of low 
+charge hits in data, as illustrated in Figure \ref{fig:charge_cuts}.  In 
+addition, all hits in the first 45 cm of the APA closest to the beam entry 
+point were removed. This region has a known issue in charge simulation, which 
+can be seen as a discontinuity in the reconstructed charge. This charge 
+discontinuity can be seen in in Figure \ref{fig:90_wires_charge}, which 
+demonstrates the discontinuity for a simulated proton beam sample.  
+
+\begin{figure}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.8\textwidth]{figures/charge_nocuts.pdf}
+		\caption {Charge Cut}
+		\label{fig:charge_cuts}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.8\textwidth]{figures/charge_discontinuity.pdf}
+		\caption {Charge Discontinuity}
+		\label{fig:90_wires_charge}
+	\end{subfigure}
+
+	\caption 
+	[ Quality cuts on reconstructed charge for CNN comparison. ]
+	{ Quality cuts on reconstructed charge for CNN comparison. }
+	\label{fig:cnn_cuts_charge}
+
+\end{figure}
+
 The overall shower score distribution for data and simulation is shown in 
 Figure \ref{fig:cnn_overall_score}, as well as the fractional residuals in 
 each bin. These distributions are normalised by the number of hits, allowing us
@@ -501,15 +534,56 @@ hits with shower score less than around 0.2.
 	\label{fig:cnn_overall_score}
 \end{figure}
 
-In the case of particles originating from the charged particle beam, the BI can
-be used to provide an effective truth source. This allows the results of the CNN
+We can also consider the comparison of the CNN to data for specific particle 
+species, such as beam particles and cosmic--rays.  The BI in \protodune{} 
+provides PID for beam particles with a very high purity. Therefore, in the 
+case of particles originating from the charged particle beam, the BI can be 
+used to provide an effective truth source. This allows the results of the CNN 
 to be compared between data and simulation for different particle species. Any 
 particles that arrive out--of--time with the beam can be assumed to be 
 cosmic--rays, and therefore form an additional truth source. The shower score 
-distributions for electrons, pions, protons, and muons are produced based on 
-these samples. It is important to note that the results for these true 
-particle samples will depend on how the differences between data and 
-simulation affect Pandora as well as the CNN.
+distributions for electrons, pions, protons, and cosmic--rays are produced 
+based on these samples. 
+
+It is important to note that the results for these true particle 
+samples rely on both Pandora and the CNN scores. Therefore, phase space cuts 
+were made, to select regions of the detector where Pandora has a good 
+agreement between data and simulation. The aim of these cuts was to to 
+minimise the impact of Pandora on the observed CNN score distributions. Cuts 
+on the start and end points of the reconstructed tracks were made, with the 
+same cuts being applied to both the start and end point of each track. These 
+cuts are illustrated for the end point of the tracks in Figure 
+\ref{fig:spatial_cuts}.  The reconstructed angular distributions for tracks 
+after these cuts are shown in Figure \ref{fig:angular_dist}.
+
+\begin{figure}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.49\textwidth]{figures/endX_nocuts.pdf}
+		\hfill
+		\includegraphics[width=0.49\textwidth]{figures/endY_nocuts.pdf}
+		\includegraphics[width=0.49\textwidth]{figures/endZ_nocuts.pdf}
+		\caption {Spatial cuts.}
+		\label{fig:spatial_cuts}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.49\textwidth]{figures/angXY_cuts.pdf}
+		\hfill
+		\includegraphics[width=0.49\textwidth]{figures/angXZ_cuts.pdf}
+		\includegraphics[width=0.49\textwidth]{figures/angYZ_cuts.pdf}
+		\caption {Angular distributions.}
+		\label{fig:angular_dist}
+	\end{subfigure}
+
+	\caption 
+	[ Data Quality Cuts for CNN Comparison. ]
+	{Data Quality Cuts for CNN Comparison.}
+	\label{fig:cnn_cuts_spatial}
+
+\end{figure}
 
 The shower classifier scores for the pion, proton, and electron test beam 
 samples are shown in Figure \ref{fig:cnn_scores_beam}. The data in the pion 
@@ -587,6 +661,8 @@ tracks in data than in simulation.
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 
+\bigskip
+\noindent
 In practice, the CNN will be used to select events based on choosing hits with 
 CNN scores above some threshold. This could be based on an average over a 
 number of hits, on a hit by hit basis, or something more complicated. For the
@@ -602,8 +678,8 @@ fractional difference between the numbers in each case is an estimate of the
 uncertainty associated with this simple selection algorithm. The difference 
 between data to simulation for all hits is on the order of 4\%. This varies 
 depending on the particle species, electrons have the smallest difference at 
-around 1\%, while protons and cosmic--rays have an difference of 18\% based on 
-this simple algorithm.  
+around 1\%, while pions have a 25\% lower shower classification rate in data
+based on this simple algorithm.  
 \begin{table}
 	\centering
 	\bgroup 
@@ -611,10 +687,10 @@ this simple algorithm.
 	\begin{tabularx}{\textwidth}{@{}c|c|c|c@{}}
 		Hit Source  & Shower Fraction MC (\%) & Shower Fraction Data (\%) & Data / MC\\\hline
 		All         & 22.9                    & 23.8                      & 1.04 \\
-		Pion        & 11.1                    & 10.5                      & 0.94 \\
+		Pion        & 6.2                     & 4.6                       & 0.75 \\
 		Proton      & 2.9                     & 3.4                       & 1.18 \\
 		Electron    & 96.9                    & 95.8                      & 0.99 \\
-		Cosmic--ray & 16.8                    & 19.7                      & 1.18
+		Cosmic--ray & 17.1                    & 19.7                      & 1.15
 	\end{tabularx}
 	\egroup
 	\caption
