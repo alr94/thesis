@@ -1,4 +1,4 @@
-\chapter{\label{ch:chargeid}Charge Classification with Convolutional Neural 
+\chapter{\label{ch:chargeid}Hit Classification with Convolutional Neural 
 Networks} 
 
 \minitoc
@@ -66,11 +66,10 @@ where $p_t$, $p_s$, $p_e$, and $p_m$, are the probabilities for track, shower,
 empty, and Michel electron classifications respectively. The empty category is
 included to ensure that the network doesn't learn to assign track--like or
 shower--like classifications to empty or noisy regions of the data. In addition,
-because the Michel electron category has an overlap with the track and shower
-categories, the Michel electron probability is decoupled from the other
-probabilities. The track, shower, and empty (TSE) probabilities are 
-constrained to sum to one, such that every hit is classified into one of these 
-categories.
+because the Michel electron category has an overlap with the shower category, 
+the Michel electron probability is decoupled from the other probabilities. The 
+track, shower, and empty (TSE) probabilities are constrained to sum to one, 
+such that every hit is classified into one of these categories.
 
 An input image was produced for every reconstructed hit, with the hit being
 classified at the centre of the image. These images were produced from the 
@@ -98,7 +97,7 @@ The true classification for each sample was obtained from the simulation, by
 associating the measured ionisation energy depositions to the corresponding
 simulated particle. If the reconstructed hit is not associated to a true
 particle, then this hit is due to noise and the true classification is empty.
-Additional images are produced in empty regions of the detector, in the 
+Additional images were produced in empty regions of the detector, in the 
 vicinity of charged particles, to increase the training sample for the empty 
 category. The truth vectors for different true particle sources are detailed 
 in Table \ref{tab:ground_truth}. These values were chosen based on the typical 
@@ -160,9 +159,10 @@ evaluation. This CNN is run on CPUs as part of the low level reconstruction
 chain for \protodune{}, and it's run time is required to be on the order of 10 
 seconds per event. In addition, the CNN should not increase the maximum memory 
 usage during reconstruction beyond around 4 GB. There is currently ongoing 
-work looking into using GPUs during the network evaluation, which would allow 
-more complex architectures to be used, and therefore potentially increase 
-performance.
+work looking into using GPUs during the network evaluation, which would decrease
+the evaluation time, and allow more complex architectures to be used. 
+Therefore, there is potential to increase performance of the method in the 
+future.
 
 The network architecture used is shown in Figure \ref{fig:arch}. The images
 are first processed by convolutional layer with 48 $5 \times 5$ filters, this
@@ -404,7 +404,7 @@ species are given in Table \ref{tab:false_pos}, as well as their ratio.
 The CNN only gives a modest improvement over Pandora for pions, and muons. 
 However, there is a significant improvement in the false positive rate for 
 electrons, photons, and protons. The biggest improvement is for photons, 
-where, for a sample of 694 photons, the CNN has a false positive rate of zero.
+where for a sample of 694 photons, the CNN has a false positive rate of zero.
 \begin{table}
 	\centering
 	\bgroup 
@@ -443,7 +443,7 @@ For validation on real \protodune{} data three approaches were used: visual
 validation with event scans, comparisons of the overall score distributions, 
 and the comparison of score distributions for different particle species. Data 
 from \protodune{} runs 5387 and 5809 were used for these validations; the data 
-for these run was taken on under stable operating conditions, with an average 
+for these run was taken under stable operating conditions, with an average 
 beam energy of 1 GeV. The beam composition in run 5387 was tuned to contain
 mostly hadrons, while in run 5809 it was tuned to have an enhanced electron
 component. The same operating conditions were used for the simulated data, in
@@ -458,7 +458,7 @@ be postponed until Chapter \ref{ch:michel}, which will discuss Michel electron
 event selection and reconstruction.
 
 Hand scans of the events show qualitatively that the performance on the data is
-good. Figure \ref{fig:real_event} shows and example of the track score for hits
+good. Figure \ref{fig:real_event} shows an example of the track score for hits
 in a reconstructed event from run 5387. The hits in this image are from the
 collection plane near the beam entry point, an electron shower tagged by the
 beam instrumentation (BI) can be seen near the centre of the image. In the event
