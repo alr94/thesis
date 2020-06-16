@@ -399,22 +399,22 @@ as tracks.
 	\label{fig:track_show_pan_cnn}
 \end{figure}
 
-% TODO: redo numbers with new data
 The false positive rates (FPR) for Pandora and the CNN for each particle 
 species are given in Table \ref{tab:false_pos}, as well as their ratio.
 The CNN only gives a modest improvement over Pandora for pions, and muons. 
 However, there is a significant improvement in the false positive rate for 
-electrons, protons, and photons. The biggest improvement is for electrons, 
-where the CNN has a false positive rate 20 times lower than Pandora. 
+electrons, photons, and protons. The biggest improvement is for photons, 
+where, for a sample of 694 photons, the CNN has a false positive rate of zero.
 \begin{table}
 	\centering
 	\bgroup 
 	\def\arraystretch{1.5}
 	\begin{tabularx}{\textwidth}{@{}c|Y|Y|Y|Y|Y@{}}
-		Particle Species & Electron & Muon & Proton & Photon & Pion \\\hline
-		Pandora FPR (\%) & 13.4     & 33.6 & 23.4   & 14.0   & 13.0 \\
-		CNN FPR (\%)     & 0.7      & 30.5 & 5.7    & 1.7    & 11.9 \\\hline
-		Pandora / CNN    & 20.3     & 1.10 & 4.07   & 8.08   & 1.10 \\
+		Particle Species & Electron & Photon & Muon  & Pion  & Proton \\\hline
+		Sample Size      & 10,581   & 694    & 1,728 & 1,240 & 2,049  \\\hline
+		Pandora FPR (\%) & 13.4     & 13.9   & 22.5  & 8.5   & 12.2   \\
+		CNN FPR (\%)     & 1.4      & 0.0    & 11.9  & 3.2   & 0.9    \\\hline
+		Pandora / CNN    & 9.53     & --     & 1.88  & 2.62  & 13.9   \\
 	\end{tabularx}
 	\egroup
 	\caption
@@ -469,7 +469,7 @@ track, which are from delta rays, are from electrons.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/run5387_tpc1_view2_128178.pdf}
+	\includegraphics[width=\textwidth]{figures/5387_image_tpc1_view2_128178.pdf}
 	\caption
 	[Track classifier scores for a reconstructed event in \protodune{} data.]
 	{Track classifier scores for a reconstructed event in \protodune{} data.}
@@ -526,8 +526,7 @@ scores. This can be seen in the residuals, which have a negative slope for
 hits with shower score less than around 0.2.
 \begin{figure}
 	\centering
-	% TODO: remake but hit by hit
-	\includegraphics[width=0.97\textwidth]{figures/hit_cnn_all.pdf}
+	\includegraphics[width=\textwidth]{figures/hit_cnn_all.pdf}
 	\caption
 	[Overall shower score distribution from the CNN for all hits in data and simulation.]
 	{Overall shower score distribution from the CNN for all hits in data and simulation.}
@@ -647,11 +646,12 @@ The shower score distribution for cosmic--ray tracks is shown in Figure
 \ref{fig:cosmic_muon_cnn}. These distributions are normalised by the total
 number of hits in each distribution, this is because there is a large difference
 in the average number of reconstructed hits in clear cosmic--rays from Pandora
-between data and simulation.  Again a good agreement is seen over the majority 
+between data and simulation. Again a good agreement is seen over the majority 
 of the range, but in data there is a prominent excess of hits with a high 
-shower score. The cause of this excess is not currently understood, the most 
-likely cause is that more delta rays are being reconstructed as part of a muon 
-tracks in data than in simulation.
+shower score. The cause of this excess is not currently understood, one
+possibility is that delta--rays are more often reconstructed as part of
+cosmic--ray tracks in data than in simulation.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/hit_cnn_cosmics.pdf}
@@ -673,24 +673,23 @@ considering the fraction of hits selected into the sample given a selection
 threshold. 
 
 In Table \ref{tab:frac_selected}, we list the fraction of individual hits 
-selected as shower--like for each sample in data and simulation. The 
-fractional difference between the numbers in each case is an estimate of the 
-uncertainty associated with this simple selection algorithm. The difference 
-between data to simulation for all hits is on the order of 4\%. This varies 
-depending on the particle species, electrons have the smallest difference at 
-around 1\%, while pions have a 25\% lower shower classification rate in data
-based on this simple algorithm.  
+selected into the appropriate category for each sample in data and simulation. 
+The fractional difference between the numbers in each case is an estimate of 
+the percentage uncertainty associated with this simple selection algorithm. 
+For the sample of all hits, the track category was used, and a fractional
+difference of 1\% was seen. This varies depending on the particle species, 
+with the largest difference being 3\% for the cosmic ray sample. 
 \begin{table}
 	\centering
 	\bgroup 
 	\def\arraystretch{1.5}
 	\begin{tabularx}{\textwidth}{@{}c|c|c|c@{}}
-		Hit Source  & Shower Fraction MC (\%) & Shower Fraction Data (\%) & Data / MC\\\hline
-		All         & 22.9                    & 23.8                      & 1.04 \\
-		Pion        & 6.2                     & 4.6                       & 0.75 \\
-		Proton      & 2.9                     & 3.4                       & 1.18 \\
-		Electron    & 96.9                    & 95.8                      & 0.99 \\
-		Cosmic--ray & 17.1                    & 19.7                      & 1.15
+		Hit Source  & Selected Fraction MC (\%) & Selected Fraction Data (\%) & Data / MC\\\hline
+		All         & 77.1                      & 76.2                        & 0.99     \\
+		Pion        & 93.8                      & 95.4                        & 1.02     \\
+		Proton      & 97.1                      & 96.6                        & 0.99     \\
+		Electron    & 96.9                      & 95.8                        & 0.99     \\
+		Cosmic--ray & 92.9                      & 90.3                        & 0.97
 	\end{tabularx}
 	\egroup
 	\caption
@@ -711,8 +710,8 @@ classification strength of the CNN over Pandora makes it a useful tool in
 analyses of the \protodune{} data. The discrepancies will impact each analysis 
 differently, therefore the uncertainties involved with using the CNN 
 classifier should evaluated on a case--by--case basis; for hit selection with 
-a simple hit--by--hit algorithm the uncertainties are on the order of 4\% when
-considering all hits.
+a simple hit--by--hit algorithm the uncertainties are on the order of 1-3\%
+depending on the particle species.
 
 \section{Application in \protodune{} Analyses} \label{cnn-appl}
 The output of the CNN classifier has been applied in a number of \protodune{}
