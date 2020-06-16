@@ -49,7 +49,7 @@
 % \end{figure}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\noindent
 Studying electrons in the tens of MeV energy range can provide valuable input 
 into reconstruction techniques and energy uncertainty for the measurement of
 astrophysical neutrinos from supernova bursts. Understanding the response of
@@ -58,13 +58,14 @@ scale LArTPC experiment wishing to study supernova bursts. At these energies
 electron interactions have large contributions from both ionisation energy loss
 and radiative energy loss and therefore they have a unique signature which is 
 neither track--like or shower--like. Low--energy electrons therefore require 
-unique reconstruction algorithms to maximise the overall reconstruction 
-performance. This chapter will discuss an approach to low--energy electron
-reconstruction in LArTPC detectors based on the use of convolutional neural
-networks and semantic segmentation. Michel electron events from \protodune{} 
-will be used to test the performance of this technique and to provide an 
-estimate of the energy uncertainty of LArTPC detectors for low--energy 
-electrons.
+unique reconstruction algorithms, to maximise the overall reconstruction 
+performance. 
+
+This chapter will discuss an approach to low--energy electron reconstruction 
+in LArTPC detectors based on the use of convolutional neural networks and 
+semantic segmentation. Michel electron events from \protodune{} will be used 
+to test the performance of this technique and to provide an estimate of the 
+energy uncertainty of LArTPC detectors for low--energy electrons.
 
 In this chapter Section \ref{ME_LAr} will discuss the signature left by Michel
 electrons in liquid argon, and the implications of this signature on
@@ -75,13 +76,6 @@ Sections \ref{ME_R}. Finally, the results of this chapter and the implications
 for the DUNE far detector will be summarised in Section \ref{ME_EU}.
 
 \section{Michel Electrons in Liquid Argon} \label{ME_LAr}
-% \begin{mccorrection}
-% 	Michel electrons
-% 	\begin{itemize}
-% 	\item Two types: at rest and captured
-% 	\item Energy spectra
-% 	\end{itemize}
-% \end{mccorrection}
 Michel electrons are produced when a muon decays at rest. In vacuum, this 
 decay gives rise to a characteristic energy spectrum which has a sharp 
 cut--off at around 50 MeV, corresponding to half the muon mass. In matter it 
@@ -118,19 +112,6 @@ of the two processes in roughly equal quantities.
 
 \end{figure}
 
-% \begin{mccorrection}
-% 	Electron and photon energy loss 
-% 	\begin{itemize}
-% 	\item Ionisation to radiative transition
-% 	\item Event signature
-% 	\item Example event
-% 	\item Photon radiation length
-% 	\item Photon spectrum
-% 	\item Photon multiplicity
-% 	\item Fractional energy loss vs energy
-% 	\end{itemize}
-% \end{mccorrection}
-
 As discussed in chapter \ref{ch:energyloss}, the energy loss for electrons in
 liquid argon passes from an ionisation dominated regime to a radiation dominated
 regime in the tens of MeV region. The crossover point for this transition occurs
@@ -143,7 +124,6 @@ features.
 
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/michel_candidate_labelled.pdf}
 	\caption
 	[Michel electron candidate event from ProtoDUNE--SP data.]
@@ -168,7 +148,6 @@ significant spread in the fraction of radiated energy for Michel electron
 events.
 
 \begin{figure}
-	% TODO: split into 2 figures
 
 	\centering
 
@@ -196,27 +175,18 @@ events.
 
 \end{figure}
 
-\mccorrect{Paragraph + figure on fraction of energy lost to radiation.}
-
-% \begin{mccorrection}
-% 	Impact on event geometry and energy reco
-% 	\begin{itemize}
-% 	\item Track only ionisation
-% 	\item Geometry of radiation
-% 	\item 40cm ionisation 
-% 	\item Need to collect radiative photons
-% 	\end{itemize}
-% \end{mccorrection}
-
 The energy which is lost into radiated photons is only visible once the photons
 interact in the argon to produce secondary electrons which then ionise the
 argon. These secondary electrons are scattered over large angles and distances
 in the detector when compared to the short Michel electron track, the spatial 
 distribution of secondary electrons is shown in Figure \ref{fig:photon_geom}.
-\mccorrect{TODO, analysis.}
+This shows that the radiated energy deposits are spread over a large area, when
+compared to the size of the initial Michel electron track. Therefore, any 
+reconstruction algorithm hoping to recover the radiated energy, will 
+need to use data from a relatively large volume in order to maximise energy
+recovery.
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/photon_geom.pdf}
 	\caption
 	[Spatial distribution of radiated ionisation deposits.]
@@ -232,19 +202,20 @@ results of perfect energy reconstruction in two cases:
 		Michel electron track.
 \end{itemize}
 Figure \ref{fig:michel_track_only} illustrates the considerable increase in energy
-collected if radiated energy is considered, the distribution is significantly
+collected if radiated energy is considered. The distribution is significantly
 narrower and much more energy is recovered when considering the energy deposited
-within a cone of height 40cm and angle 30 \textdegree of the Michel electron
-vertex. The average energy recovered is increased from \mccorrect{TODO \%} to
-\mccorrect{TODO \%} and the spread is reduced from \mccorrect{TODO \%} to
-\mccorrect{TODO \%}.
+within a sphere of height $40\mbox{ cm}$ and angle 30\textdegree of the Michel 
+electron vertex. In addition, the fraction of energy recovered as a function of
+Michel electron energy has a more linear distribution for a collection radius of
+40 cm.
 \begin{figure}
 	\centering
 
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/michel_track_only.pdf}
-		% \includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/track_frac.pdf}
-		\caption[Initial Michel electron track only.]{Initial Michel electron track only.}
+		\caption
+		[Initial Michel electron track only.]
+		{Initial Michel electron track only.}
 		\label{fig:track_only}
 	\end{subfigure}
 
@@ -252,8 +223,9 @@ vertex. The average energy recovered is increased from \mccorrect{TODO \%} to
 
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/cone_reco.pdf}
-		% \includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=0.49\textwidth]{figures/cone_frac.pdf}
-		\caption[Ionisation withing a 40cm cone at 6 \degree opening angle.]{Ionisation withing a 40cm cone at 6 \degree opening angle.}
+		\caption
+		[Ionisation withing a 40 cm cone at $30^\circ$ opening angle.]
+		{Ionisation withing a 40 cm cone at $30^\circ$ opening angle.}
 		\label{fig:cone_reco}
 	\end{subfigure}
 
@@ -265,16 +237,27 @@ vertex. The average energy recovered is increased from \mccorrect{TODO \%} to
 
 \end{figure}
 
-\mccorrect{TODO, figure and paragraph for energy fraction vs radius.}
+The average fractional energy recovery as a function of collection radius is
+shown in Figure \ref{fig:frac_v_radius}, where the error bars represent the RMS
+of the distribution. By increasing the collection radius from 0 cm to 40cm, 
+the average energy recovered is increased from 57\% to 87\%. The RMS of the
+fractional energy recovered reduces slightly from 20\% to 16\% across this
+range. Therefore, the spread in the fraction of energy recovered is reduced 
+from 35\% to 18\%. 
 \begin{figure}
 	\centering
-	% TODO: Make this plot.
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/frac_v_radius.pdf}
+	\includegraphics[width=\textwidth]{figures/energy_recovery_v_radius.pdf}
 	\caption
 	[Fraction of Michel electron energy collected vs collection radius.]
 	{Fraction of Michel electron energy collected vs collection radius.}
 	\label{fig:frac_v_radius}
 \end{figure}
+
+Increasing the collection radius beyond around 30--40 cm gives minimal
+improvement in the fractional energy recovery from ionisation. However, it is
+likely to impact the purity and efficiency of reconstruction algorithms.
+Therefore, the energy reconstruction algorithm discussed in this chapter
+considers a 40 cm collection radius when collecting radiated energy deposits.
 
 The MC study presented here highlights the importance of radiated energy
 deposits in Michel electron and other low--energy electron events. Based on
@@ -285,22 +268,12 @@ to tackle this problem, and it's application on Michel electron events in
 \protodune{} data.
 
 \section{Michel Electron Event Selection} \label{ME_ES}
-% \begin{mccorrection}
-% 	\begin{itemize}
-% 	\item Michel hit tagging CNN
-% 	\item Hit tagging + clustering explanation
-% 	\item Algorithm performance: purity and efficiency
-% 	\item Data v MC event selection distributions
-% 	\end{itemize}
-% \end{mccorrection}
-
 In order to select Michel electrons in \protodune{} data, an event selection
 algorithm was developed based on combining the results from the hit tagging CNN 
 from the previous chapter with clustering performed by the main \protodune{} 
-reconstruction framework, Pandora. The performance of the Michel electron 
-classifier in isolation are discussed in the previous chapter.
+reconstruction framework, Pandora. 
 
-The event selection algorithm proceeds in the following steps:
+The event selection algorithm has four steps:
 \begin{enumerate}
 	\item Start with all primary tracks from Pandora.
 	\item Define a set of Michel electron candidates from the list of all
@@ -311,32 +284,33 @@ The event selection algorithm proceeds in the following steps:
 		selection cuts.
 \end{enumerate}
 
-In the first step the initial sample of muon candidates is defined. All tracks
-from the Pandora reconstruction chain which have been labelled as primary tracks
-are considered.
+First, the initial sample of muon candidates is defined. All tracks from the 
+Pandora reconstruction chain which have been labelled as primary tracks are 
+considered.
 
-The second step defines a set of Michel electron candidates for each track in
-the sample. A Michel electron candidate is any daughter of the primary Pandora
+The second step defines a set of Michel electron candidates for each muon
+candidate. A Michel electron candidate is any daughter of the primary Pandora
 track which satisfies the following conditions:
 \begin{itemize}
 	\item Starts within 5 cm of the primary track endpoint.
-	\item Contains a minimum of 5 hits on the collection plane.
+	\item Contains a minimum of 5 reconstructed hits on the collection plane.
 \end{itemize}
 
-In the third step the Michel electron candidates are analysed in order to define
-the best Michel electron candidate for each track. The best Michel electron
-candidate is the Michel electron candidate with the largest fraction of
-Michel--like hits based on the output of the Michel electron score from the CNN
-with a threshold of 0.9. In the case of a tie the Michel electron candidate with
-the most hits is chosen.
+In the third step, the Michel electron candidates are analysed in order to 
+define the best Michel electron candidate for each muon candidate. The best 
+Michel electron candidate is the Michel electron candidate with the largest 
+fraction of Michel--like hits based on the output of the Michel electron score 
+from the CNN. A threshold of 0.9 is used to identify hits as Michel--like. In 
+the case of a tie the Michel electron candidate with the most hits is chosen.
 
 The fourth step is the final decision, which is based on the fraction of Michel
-like hits in the best Michel electron candidate. Figure 
-\ref{fig:michel_like_frac} shows a comparison of the fraction of Michel--like 
-hits for the best Michel electron candidate in \protodune{} data and 
-simulation. \mccorrect{TODO, analysis of fig.} Events are selected if the best Michel electron candidate is made 
-up of more than 80 \% of Michel--like hits then it is selected as a Michel 
-electron candidate.
+like hits in the best Michel electron candidate. Events are selected if the 
+best Michel electron candidate is made up of more than 80 \% of Michel--like 
+hits. Figure \ref{fig:michel_like_frac} shows a comparison of the fraction of 
+Michel--like hits in Michel electron candidates for \protodune{} data and 
+simulation. There is a good agreement between data and simulation. The pile--up
+of events at one corresponds to Michel electron candidates where all hits were 
+classified as Michel--like.
 \begin{figure}
 	\centering
 	% TODO: Remake this plot
@@ -357,14 +331,16 @@ electron energy. \mccorrect{TODO, analysis and figure.}
 	% TODO: Remake these plots.
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
-		\caption[Purity vs True Michel electron energy.]{Purity vs True Michel
-		electron energy.}
+		\caption
+		[Purity vs True Michel electron energy.]
+		{Purity vs True Michel electron energy.}
 		\label{fig:eff_v_energy}
 	\end{subfigure}
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[width=\textwidth]{figures/MC_purity_v_energy.png}
-		\caption[Efficiency vs True Michel electron energy.]{Efficiency vs True Michel
-		electron energy.}
+		\caption
+		[Efficiency vs True Michel electron energy.]
+		{Efficiency vs True Michel electron energy.}
 		\label{fig:pur_v_energy}
 	\end{subfigure}
 
