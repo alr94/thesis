@@ -89,15 +89,15 @@ of the two processes in roughly equal quantities.
 \begin{figure}
 
 	\centering
-	% TODO
-	\begin{subfigure}[b]{0.48\textwidth}
+	% TODO: make with more data
+	\centering
+	\begin{subfigure}[b]{0.7\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/michel_spec_free.pdf}
 		\caption {Free Muons.}
 		\label{fig:michel_spec_free}
 	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.48\textwidth}
+	\begin{subfigure}[b]{0.7\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/michel_spec_cap.pdf}
 		\caption {Captured Muons.}
@@ -313,7 +313,6 @@ of events at one corresponds to Michel electron candidates where all hits were
 classified as Michel--like.
 \begin{figure}
 	\centering
-	% TODO: Remake this plot
 	\includegraphics[width=\textwidth]{figures/michel_like_frac.png}
 	\caption
 	[Fraction of Michel--like hits in the best Michel electron candidate.]
@@ -321,40 +320,66 @@ classified as Michel--like.
 	\label{fig:michel_like_frac}
 \end{figure}
 
-Based on this algorithm Michel electron events are selected with an average
-purity of \mccorrect{TODO \%} and an average efficiency of \mccorrect{TODO \%} 
-in \protodune{} simulation. Figure \ref{fig:eff_and_pur} shows the
-distribution of event selection efficiency and purity as a function on Michel
-electron energy. \mccorrect{TODO, analysis and figure.}
+Based on this algorithm Michel electron events are selected with a
+purity of 98\% and an average efficiency of 6\% in \protodune{} simulation. 
+Figure \ref{fig:ev_sel_eff} shows the event selection efficiency as a 
+function on Michel electron energy. The efficiency is highest for Michel
+electrons in the range of 10--40 MeV, and lowest at both high and low 
+energies. At 40--50 MeV, around the peak of the Michel electron spectrum, the 
+efficiency is around 5\%.
 \begin{figure}
 	\centering
-	% TODO: Remake these plots.
-	\begin{subfigure}[b]{\textwidth}
-		\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
-		\caption
-		[Purity vs True Michel electron energy.]
-		{Purity vs True Michel electron energy.}
-		\label{fig:eff_v_energy}
-	\end{subfigure}
-	\begin{subfigure}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{figures/MC_purity_v_energy.png}
-		\caption
-		[Efficiency vs True Michel electron energy.]
-		{Efficiency vs True Michel electron energy.}
-		\label{fig:pur_v_energy}
-	\end{subfigure}
-
+	% TODO: make with more data.
+	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
 	\caption
-	[Purity and efficiency of Michel electron event selection as a function of
-	energy.]
-	{Purity and efficiency of Michel electron event selection as a function of
-	energy.}
-
-	\label{fig:eff_and_pur}
-
+	[Efficiency of Michel electron event selection as a function of energy.]
+	{Efficiency of Michel electron event selection as a function of energy.}
+	\label{fig:ev_sel_eff}
 \end{figure}
 
-\mccorrect{TODO, muon kinematic distributions.}
+To accurately estimate the energy of hits during energy reconstruction, the 
+true time of the Michel electron needs to be known. If the true time is not
+known, then the drift time of the charge is unknown, and the charge attenuation
+cannot be estimated. Therefore, only tracks with reconstructed true times were
+considered for the Michel electron analysis. The spatial and angular
+distributions of the primary muons, normalised by the number of selected 
+muons, are shown in Figure \ref{fig:muon_distributions}. There is a reasonable 
+agreement between data and simulation for both the spatial and angular
+distributions of the primary muons.
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.49\textwidth]{figures/DataVMC_primary_EndX.pdf}
+		\hfill
+		\includegraphics[width=0.49\textwidth]{figures/DataVMC_primary_EndY.pdf}
+		\includegraphics[width=0.49\textwidth]{figures/DataVMC_primary_EndZ.pdf}
+		\caption {Muon end--points.}
+		\label{fig:muon_endpoints}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.49\textwidth]{figures/DataVMC_angle_xy.pdf}
+		\hfill
+		\includegraphics[width=0.49\textwidth]{figures/DataVMC_angle_xz.pdf}
+		\includegraphics[width=0.49\textwidth]{figures/DataVMC_angle_yz.pdf}
+		\caption {Muon angular distributions.}
+		\label{fig:muon_angles}
+	\end{subfigure}
+	
+
+	\caption
+	[Spatial and angular distributions for primary muons associated with selected
+	Michel electrons.]
+	{ Spatial and angular distributions for primary muons associated with selected
+	Michel electrons. }
+
+	\label{fig:muon_distributions}
+
+\end{figure}
 
 \section{Michel Electron Energy Reconstruction} \label{ME_R} 
 % \begin{mccorrection}
@@ -386,7 +411,8 @@ reconstructed energy spectrum is used to estimate the energy resolution of
 \subsection{Michel Electron Hit Tagging with U-Nets}
 
 A U-Net is a type of convolutional neural network which is designed to perform
-semantic segmentation of images \cite{TODO}. In semantic segmentation the goal
+semantic segmentation of images, which was first developed for biomedical image
+segmentation\cite{ronneberger2015u}. In semantic segmentation the goal
 of the network is to return a map of pixels which correspond to the areas of 
 interest; the output of the network is the same dimension as the input with a 
 one--to--one correspondence between input pixels and output pixels. The
@@ -397,9 +423,7 @@ CNN's and during this phase the network learns about the content of the image.
 The second phase of the architecture allows the U-Net to rebuild the locations 
 of different features within the initial image, this is achieved by passing 
 the details of previous layers to the network as the resolution of the output 
-map is slowly increased back to the original resolution \cite{TODO}. 
-
-\mccorrect{TODO: improve the architecture description.}
+map is slowly increased back to the original resolution.
 
 In the Michel electron case, the goal of the network is to return a map of all
 ionisation energy deposits which come from the Michel electron, this includes
@@ -416,23 +440,24 @@ is defined as
 \begin{equation}
 	\mbox{IOU}(A, B) = \frac{|A \cap B|}{|A \cup B|}
 \end{equation}
-where $A$ is the set of all selected hits, and $B$ is the set of all true hits.
-This loss rewards the network for selecting as many correct hits as possible
-(high intersection), while penalising it for selecting more hits than it needs
-to (high union). The IOU score lies between 0 and 1, with a score of 1
-corresponding to a perfect match between the two sets and therefore perfect hit
-tagging in our Michel electron case.
+where $A$ is the set of all selected hits, and $B$ is the set of all true 
+hits\cite{rezatofighi2019generalized}. This loss rewards the network for 
+selecting as many correct hits as possible (high intersection), while 
+penalising it for selecting more hits than it needs to (high union). The IOU 
+score lies between 0 and 1, with a score of 1 corresponding to a perfect match 
+between the two sets and therefore perfect hit tagging in our Michel electron 
+case.
 
 The network architecture used for the Michel electron reconstruction is shown in
 Figure \ref{fig:unet_arch}. The network consists of a repeating structure which
 contains the following key components:
 \begin{itemize}
-	\item Convolutional layers in the form of inception units.
-	\item Pooling layers for downscaling.
-	\item Residual connections and up--sampling.
+	\item Convolutional layers.
+	\item Pooling layers for downscaling in the first half of the network.
+	\item Residual connections and up--sampling in the second half of the network.
 \end{itemize}
-FIXME. \mccorrect{Description}. As with the hit tagging CNN from the previous chapter, 
-both dropout and early--stopping are implemented to prevent over--fitting.
+\mccorrect{TODO. Description}. As with the CNN from the previous chapter, both 
+dropout and early--stopping are implemented to prevent over--fitting.
 \begin{figure}
 	\centering
 	% TODO: Make this plot.
@@ -458,7 +483,6 @@ Figure \ref{fig:unet_loss} shows the evolution of the loss over time, along with
 a vertical line representing the loss at which the weights were chosen.
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/unet_loss.png}
 	\caption
 	[U-Net training and validation loss as a function of epoch.]
@@ -471,7 +495,6 @@ A demonstration of the output of the U-Net is given in Figure
 event from \protodune{} simulation.
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/unet_example.pdf}
 	\caption
 	[Example input, true output, and prediction images for U-Net.]
@@ -491,12 +514,10 @@ distinct from all of them.
 The U-Net produces a sharply peaked output distribution in both data and
 simulation as seen in Figure \ref{fig:unet_pred_data}, which shows sharp peaks
 in the distribution at 0 and 1. The distribution has slightly sharper peaks in 
-simulation as with seen with the hit tagging CNN from the previous chapter, this
-is unsurprising due to the fact that the simulation does not perfectly match the
-data. \mccorrect{TODO. Is there a good way to mitigate this?}
+simulation such that the data has a tendency to be above the simulation,
+however, the distribution is sharply peaked in both cases.
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.png}
 	\caption
 	[U-Net Predicted Distribution.]
@@ -511,7 +532,6 @@ selected on average per event, with a slightly larger spread in data than in
 simulation.
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/mich_n_hits.png}
 	\caption
 	[Number of hits in Michel electron events.]
@@ -527,7 +547,7 @@ separation between true hits and false hits, which appear at high scores and low
 scores respectively.
 \begin{figure}
 	\centering
-	% TODO
+	% TODO: make residuals black
 	\includegraphics[width=\textwidth]{figures/unet_pred.pdf}
 	\caption
 	[U-Net output distribution.]
@@ -556,7 +576,6 @@ threshold makes little difference to the performance meaning that little can be
 done to optimise the performance by varying the threshold.
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.pdf}
 	\caption
 	[U-Net purity vs completeness.]
@@ -595,11 +614,11 @@ argon. Due to the shortness of Michel electron tracks and the other charge
 deposits it is challenging to assign $\frac{dE}{dx}$ on a hit--by--hit 
 basis for this sample, therefore, an average recombination factor is used for 
 all hits. The recombination factor is calculated using the box model 
-\cite{TODO} under \protodune{} operating conditions to be 0.69.
+\cite{Acciarri2013a} under \protodune{} operating conditions, which gives an
+average value of 0.69.
 
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/hit_ion_reco.png}
 	\caption
 	[Reconstructed Hit Ionisation Energy]
@@ -613,7 +632,6 @@ energy per hit. The distribution peaks at around 18 MeV and has a tail up to
 just under 50 MeV.
 \begin{figure}
 	\centering
-	% TODO
 	\includegraphics[width=\textwidth]{figures/michel_ion_reco.png}
 	\caption
 	[Reconstructed Michel Electron Ionisation Energy]
@@ -628,8 +646,8 @@ just under 50 MeV.
 	% TODO: Fix these images
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/reco_v_ion.png}
 	\caption
-	[Reconstucted Ionisation vs True Ionisation.]
-	{Reconstucted Ionisation vs True Ionisation.}
+	[Reconstructed Ionisation vs True Ionisation.]
+	{Reconstructed Ionisation vs True Ionisation.}
 	\label{fig:reco_v_ion}
 \end{figure}
 
