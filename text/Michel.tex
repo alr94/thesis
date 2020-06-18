@@ -89,7 +89,6 @@ of the two processes in roughly equal quantities.
 \begin{figure}
 
 	\centering
-	% TODO: make with more data
 	\centering
 	\begin{subfigure}[b]{0.7\textwidth}
 		\centering
@@ -254,10 +253,24 @@ from 35\% to 18\%.
 \end{figure}
 
 Increasing the collection radius beyond around 30--40 cm gives minimal
-improvement in the fractional energy recovery from ionisation. However, it is
-likely to impact the purity and efficiency of reconstruction algorithms.
-Therefore, the energy reconstruction algorithm discussed in this chapter
-considers a 40 cm collection radius when collecting radiated energy deposits.
+improvement in the fractional energy recovery from ionisation. This can been
+seen in Figure \ref{fig:40_v_80}, which shows the total true ionisation energy
+collected for the case of a 40 cm collection radius and an 80 cm collection
+radius. While increasing the collection radius does not significantly increase
+the collected ionisation, it is likely to impact the purity and efficiency of 
+reconstruction algorithms. Therefore, the energy reconstruction algorithm 
+discussed in this chapter considers a 40 cm collection radius when collecting 
+radiated energy deposits.
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figures/40_v_80.pdf}
+	\caption
+	[Total true ionisation energy recovered for a 40 cm collection radius, and an
+	80 cm collection radius.]
+	{ Total true ionisation energy recovered for a 40 cm collection radius, and an
+	80 cm collection radius. }
+	\label{fig:40_v_80}
+\end{figure}
 
 The MC study presented here highlights the importance of radiated energy
 deposits in Michel electron and other low--energy electron events. Based on
@@ -313,7 +326,7 @@ of events at one corresponds to Michel electron candidates where all hits were
 classified as Michel--like.
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/michel_like_frac.png}
+	\includegraphics[width=\textwidth]{figures/michel_like_frac.pdf}
 	\caption
 	[Fraction of Michel--like hits in the best Michel electron candidate.]
 	{Fraction of Michel--like hits in the best Michel electron candidate.}
@@ -321,15 +334,15 @@ classified as Michel--like.
 \end{figure}
 
 Based on this algorithm Michel electron events are selected with a
-purity of 98\% and an average efficiency of 6\% in \protodune{} simulation. 
+purity of 98\% and an overall efficiency of 6\% in \protodune{} simulation. 
 Figure \ref{fig:ev_sel_eff} shows the event selection efficiency as a 
-function on Michel electron energy. The efficiency is highest for Michel
-electrons in the range of 10--40 MeV, and lowest at both high and low 
-energies. At 40--50 MeV, around the peak of the Michel electron spectrum, the 
-efficiency is around 5\%.
+function on Michel electron energy. The efficiency is reasonably consistent
+across the energy range, however, there is a significant reduction for energies
+below 5 MeV. The efficiency is highest for Michel electrons in the range of 
+10--40 MeV, and reduces slightly at high energies. At 40--50 MeV, around the 
+peak of the Michel electron spectrum, the efficiency is around 5\%.
 \begin{figure}
 	\centering
-	% TODO: make with more data.
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
 	\caption
 	[Efficiency of Michel electron event selection as a function of energy.]
@@ -512,68 +525,46 @@ distinct from all of them.
 \subsubsection{Hit Selection}
 
 The U-Net produces a sharply peaked output distribution in both data and
-simulation as seen in Figure \ref{fig:unet_pred_data}, which shows sharp peaks
-in the distribution at 0 and 1. The distribution has slightly sharper peaks in 
-simulation such that the data has a tendency to be above the simulation,
-however, the distribution is sharply peaked in both cases.
+simulation as seen in Figure \ref{fig:unet_pred_data}, the histograms here are
+normalised by the number of entries. Both distributions show sharp peaks at zero
+and one, but the distribution has slightly sharper peaks in simulation, which 
+can be seen because the data has a tendency to be above the simulation for
+scores far from zero and one. Hits from the input images are selected as 
+Michel electron hits if their score exceed a selection threshold of 0.9. In 
+simulation 7.8\% of hits are selected, while in data the fraction selected is 
+8.0\%, therefore, there is a 2.5\% difference in the selected fraction between 
+data and simulation.  
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/unet_pred_data.png}
+	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
 	\caption
 	[U-Net Predicted Distribution.]
 	{U-Net Predicted Distribution.}
 	\label{fig:unet_pred_data}
 \end{figure}
 
-Hits from the input images are selected as Michel electron hits if their score
-exceed a selection threshold of 0.9. The number of hits selected per event for
-data and simulation is shown in figure \ref{fig:mich_n_hits}. Around 10 hits are
-selected on average per event, with a slightly larger spread in data than in
-simulation.
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{figures/mich_n_hits.png}
-	\caption
-	[Number of hits in Michel electron events.]
-	{Number of hits in Michel electron events.}
-	\label{fig:mich_n_hits}
-\end{figure}
-
 The performance of the hit tagging algorithm was analysed with the simulated
-sample. The U-Net output distribution for true Michel electron hits and falsely
-tagged hits is shown in Figure \ref{fig:unet_pred}, along with a ratio of the
-true and false hits as a function of energy. The ratio shows a strong
-separation between true hits and false hits, which appear at high scores and low
-scores respectively.
-\begin{figure}
-	\centering
-	% TODO: make residuals black
-	\includegraphics[width=\textwidth]{figures/unet_pred.pdf}
-	\caption
-	[U-Net output distribution.]
-	{U-Net output distribution.}
-	\label{fig:unet_pred}
-\end{figure}
-
-Based on the score distributions for true and false hits the precision and
-completeness of the hit tagging algorithm can be evaluated. The precision and
-completeness are defined as 
+sample. Based on the score distributions for true and false hits the precision 
+and completeness of the hit tagging algorithm can be evaluated. The precision 
+and completeness are defined as 
 \begin{align}
 	\mbox{Precision} \quad &= \quad  \frac{N_{TP}}{N_{TP} + N_{FP}} \\
 	\vspace{2mm}
 	\mbox{Completeness} \quad &= \quad \frac{N_{TP}}{N_{TP} + N_{FN}}
 \end{align}
-where $N_{TP}$, $N_{FP}$, and $N_{FN}$ are the number of true--positive,
-false--positive, and false--negative hits respectively. These parameters give a
+where $N_{TP}$, $N_{FP}$, and $N_{FN}$ are the number of true--positives,
+false--positives, and false--negatives respectively. These parameters give a
 quantitative evaluation of the performance of the hit tagging algorithm,
-allowing for comparison between different algorithms. The purity and
-completeness of the hit tagging was calculated for a range of selection
-thresholds in the range $[10^{-7}, 1 - 10^{-7}]$, Figure \ref{fig:unet_pur_comp}
-shows the purity against completeness for the values in this range. The hit
-tagging algorithm produces a high precision and completeness throughout range of
-thresholds, however the steepness of the distributions means that the choice of
-threshold makes little difference to the performance meaning that little can be
-done to optimise the performance by varying the threshold.
+allowing for comparison between different algorithms. 
+
+The purity and completeness of the hit tagging was calculated for a range of 
+selection thresholds in the range $[10^{-7}, 1 - 10^{-7}]$, Figure 
+\ref{fig:unet_pur_comp} shows the purity against completeness for the values 
+in this range. The hit tagging algorithm produces a high precision and 
+completeness throughout range of thresholds, however the steepness of the 
+score distributions means that the choice of threshold makes little difference 
+to the performance, meaning that little can be done to optimise the performance
+by varying the threshold.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.pdf}
@@ -581,6 +572,22 @@ done to optimise the performance by varying the threshold.
 	[U-Net purity vs completeness.]
 	{U-Net purity vs completeness.}
 	\label{fig:unet_pur_comp}
+\end{figure}
+
+The number of hits selected per event for data and simulation is shown in 
+figure \ref{fig:mich_n_hits}. Around 10 hits are selected on average per 
+event, with a tail extending up to around 30 hits. The distribution of the
+backgrounds follows a similar distribution to the true events. A good agreement
+is seen between the data and simulation for the number of selected hits, these
+hits are then used to reconstruct the deposited ionisation energy of the Michel
+electron.
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figures/mich_n_hits.pdf}
+	\caption
+	[Number of hits in Michel electron events.]
+	{Number of hits in Michel electron events.}
+	\label{fig:mich_n_hits}
 \end{figure}
 
 \subsubsection{Ionisation Energy Reconstruction}
@@ -603,17 +610,17 @@ recombination factor. The distribution of reconstructed hit energies in
 \protodune{} data and simulation is shown in Figure \ref{fig:hit_ion_reco}.
 
 The position dependent calibration matrices correct for non-uniformity in the
-detector response across the TPC. In the X direction the main contributing
-factors are attenuation due to electron absorption, and variations in the
+detector response across the TPC. In the X direction, the main contributing
+factors are attenuation due to electron absorption and variations in the
 electron drift velocity due to space charge effects. The main contributing
-factor for the YZ--correction matrix is wire--to--wire response variations.
+factor for the YZ--correction factor are wire--to--wire response variations.
 
-As discussed in chapter \ref{ch:energyloss} the recombination factor is a
-$\frac{dE}{dx}$ dependent factor which depends on the conditions in the liquid
-argon. Due to the shortness of Michel electron tracks and the other charge 
+As discussed in chapter \ref{ch:energyloss}, the recombination factor is a
+$\frac{dE}{dx}$ dependent factor, which depends on the conditions in the liquid
+argon. Due to the shortness of Michel electron tracks, and the other charge 
 deposits it is challenging to assign $\frac{dE}{dx}$ on a hit--by--hit 
-basis for this sample, therefore, an average recombination factor is used for 
-all hits. The recombination factor is calculated using the box model 
+basis for this sample. Therefore, an average recombination factor is used for 
+all hits. The recombination factor was calculated using the box model 
 \cite{Acciarri2013a} under \protodune{} operating conditions, which gives an
 average value of 0.69.
 
@@ -626,13 +633,16 @@ average value of 0.69.
 	\label{fig:hit_ion_reco}
 \end{figure}
 
-The reconstructed ionisation energy spectrum from Michel electron candidates is
-shown in Figure \ref{fig:michel_ion_reco} along with the average ionisation
-energy per hit. The distribution peaks at around 18 MeV and has a tail up to 
-just under 50 MeV.
+The reconstructed Michel electron energy is the sum of the reconstructed
+ionisation energy for all selected Michel electron hits. The reconstructed 
+ionisation energy spectrum for Michel electrons in \protodune{} is shown in Figure 
+\ref{fig:michel_ion_reco}. The distribution peaks at around 20 MeV and has a 
+tail up to just under 50 MeV, which is consistent with the true ionisation
+energy deposited by Michel electrons within a 40 cm radius, shown in Figure
+\ref{fig:40_v_80}.
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/michel_ion_reco.png}
+	\includegraphics[width=\textwidth]{figures/michel_ion_reco.pdf}
 	\caption
 	[Reconstructed Michel Electron Ionisation Energy]
 	{Reconstructed Michel Electron Ionisation Energy}
@@ -640,7 +650,12 @@ just under 50 MeV.
 \end{figure}
 
 \mccorrect{TODO: analysis of ionisation reconstruction performance.}
-
+The performance of the ionisation energy reconstruction was evaluated on the
+simulated Michel electron sample. The reconstructed ionisation was compare to
+the true ionisation energy, in order to estimate the uncertainty on the
+reconstructed ionisation energy. Figure \ref{fig:reco_v_ion} shows the
+reconstructed ionisation energy against the true ionisation energy for the
+simulated Michel electron events. 
 \begin{figure}
 	\centering
 	% TODO: Fix these images
@@ -679,50 +694,47 @@ just under 50 MeV.
 \subsubsection{Michel Electron Energy Reconstruction}
 
 The true Michel electron energy includes contributions from scintillation light
-as well as radiated ionisation energy which is not contained within the images
-used in reconstruction. To estimate the total Michel electron energy the
-reconstructed ionisation energy needs to be scaled to account for these losses.
-As shown in Figure \ref{fig:michel_track_only} there is a none--linear
-correlation between the true Michel electron energy and the available ionisation
-energy in reconstruction, therefore, a quadratic energy scaling factor was used
-to convert the reconstructed ionisation energy into a reconstructed Michel
-electron energy. 
+as well as radiated ionisation energy, which is not contained within the images
+used in reconstruction. In the noisy surface level environment of the
+\protodune{} TPC, it is not possible to reconstruct the scintillation light as
+part of the Michel electron events. Therefore, to estimate the total Michel 
+electron energy the reconstructed ionisation energy needs to be scaled to 
+account for these losses. As shown in Figure \ref{fig:michel_track_only},
+there is a none--linear correlation between the true Michel electron energy 
+and the available ionisation energy in reconstruction. Therefore, a quadratic 
+energy scaling factor was used to convert the reconstructed ionisation energy 
+into a reconstructed Michel electron energy. 
 
 The energy scaling factor was estimated by fitting the reconstructed ionisation
-energy as a function of true Michel electron energy in \protodune{} simulation
-with a quadratic correction as shown in Figure \ref{fig:quadratic_fit}. This 
-quadratic is then inverted to give the reconstructed Michel electron energy for 
-a given reconstructed ionisation energy, 
+energy as a function of true Michel electron energy, with a quadratic 
+correction as shown in Figure \ref{fig:quadratic_fit}. This quadratic is then 
+inverted to give the reconstructed Michel electron energy,
 \begin{equation}
 	E_{michel} = \left( \frac{E_{ion}}{a} - d \right)^{\frac{1}{2}} - \frac{b}{2a},
 	\quad d = \frac{c}{a} - \left( \frac{b}{2a} \right)^2 
 \end{equation}
 where $E_{michel}$ is the reconstructed Michel electron energy, $E_{ion}$ is the
 reconstructed ionisation energy, and a, b, and c are the parameters from the
-quadratic fit. The fit gives
+quadratic fit. The fit gives,
 \begin{equation}
-	a = TODO, \quad b = TODO, \quadjc = TODO.
+	a = TODO, \quad b = TODO, \quad c = TODO.
 \end{equation}
-
 \begin{figure}
 	\centering
 	% TODO
 	\includegraphics[width=\textwidth]{figures/reco_v_true.png}
 	\caption
-	[Quadratic Energy Scale Factor.]
-	{Quadratic Energy Scale Factor.}
+	[Quadratic fit of reconstructed ionisation energy vs true Michel electron
+	enegry.]
+	{Quadratic fit of reconstructed ionisation energy vs true Michel electron
+	energy, which is used to calculate a quadratic energy correction factor.}
 	\label{fig:quadratic_fit}
 \end{figure}
 
 The reconstructed Michel electron energy spectrum is shown in Figure
-\ref{fig:reco_v_mich}, alongside the true Michel electron energy spectrum from
-the simulation. There is a significant difference in the shape of the two
-spectra, this is due to the significant energy loss to scintillation and
-radiation that cannot collected in \protodune{} due to challenges in the
-reconstruction. 
+\ref{fig:reco_v_mich}. TODO.
 \begin{figure}
 	\centering
-	% TODO: make set of fits as a function of energy
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/reco_v_mich.png}
 	\caption
 	[Reconstructed Energy vs True Michel Electron Energy.]

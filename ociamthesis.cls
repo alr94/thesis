@@ -41,6 +41,7 @@
    \rule[5mm]{7mm}{1pt}\hspace{1em}%
    \begin{varwidth}{\textwidth}I hereby certify that this is entirely\\my own work unless otherwise stated.\end{varwidth}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % DECLARATIONS
 %
@@ -62,13 +63,14 @@
 \masterssubmissionfalse
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % CRESTS
 %
 
-\def\crest{{\includegraphics{figures/beltcrest.pdf}}}
+\def\crest{{\includegraphics[width=0.27\textwidth]{figures/ox_brand_cmyk_pos-eps-converted-to.pdf}}}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Define text area of page and margin offsets
 %
@@ -178,7 +180,7 @@
 \let\oldmtc@verse\mtc@verse
 \renewcommand{\mtc@verse}[1]{\oldmtc@verse{#1}\setlength{\baselineskip}{\z@}}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Environments
 %
@@ -240,7 +242,7 @@
 \end{alwayssingle}}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DEDICATION
 %
 % The dedication environment makes sure the dedication gets its
@@ -252,7 +254,7 @@
   \vspace*{\fill} \begin{center}}
 {\end{center}\vspace*{\fill}\vspace*{\fill} \end{alwayssingle}}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ACKNOWLEDGEMENTS
 %
 % The acknowledgements environment puts a large, bold, centered 
@@ -269,6 +271,7 @@
 {\end{alwayssingle}}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %ABSTRACT
 %
 %The abstract environment puts a large, bold, centered "Abstract" label at
@@ -313,6 +316,7 @@
 {\vfill\end{alwayssingle}\restoregeometry}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %ROMANPAGES
 %
 % The romanpages environment set the page numbering to lowercase roman one
@@ -326,6 +330,7 @@
 {\cleardoublepage\setcounter{page}{1}\renewcommand{\thepage}{\arabic{page}}}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Figure placement on page
 %
 %This is to help prevent too many figures on their own pages.  I got it from:
@@ -336,6 +341,7 @@
 \renewcommand{\floatpagefraction}{0.75}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % JEM: VERSE, QUOTATION, and QUOTE must be single-spaced.
 % These rename the internal commands for the \begin{...} and
 % \end{...} environment commands.
