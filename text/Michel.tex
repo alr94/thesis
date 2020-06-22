@@ -1,7 +1,5 @@
 \chapter{\label{ch:michel}Study of Michel Electrons in \protodune{}} 
 
-\minitoc
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FROM COS
 %
@@ -49,6 +47,9 @@
 % \end{figure}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\minitoc
+
 \noindent
 Studying electrons in the tens of MeV energy range can provide valuable input 
 into reconstruction techniques and energy uncertainty for the measurement of
@@ -469,15 +470,24 @@ contains the following key components:
 	\item Pooling layers for downscaling in the first half of the network.
 	\item Residual connections and up--sampling in the second half of the network.
 \end{itemize}
-\mccorrect{TODO. Description}. As with the CNN from the previous chapter, both 
-dropout and early--stopping are implemented to prevent over--fitting.
+The convolutional blocks each contain three convolutional layers, with Leaky 
+ReLU activation functions. During the first half of the network, maximum pooling
+is used to downsample the size of the feature maps, which reduce by a factor of
+two in each max pooling layer. Then, during the second half of the network, the
+up--sampling layers increase the resolution of the feature maps by a factor of
+two, such that the output of the network has the same resolution as the 
+input.  The residual connections from early layers, are combined with the
+up--sampled feature maps, to allow the network to reconstruct the location of 
+the learned features. As with the CNN from the previous chapter, both dropout 
+and early--stopping are implemented to prevent over--fitting.
 \begin{figure}
-	\centering
-	% TODO: Make this plot.
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/unet_arch.png}
+	%\centering
+	\hspace{0.40\textwidth}
+	\includegraphics[height=0.97\textheight]{figures/unet_arch.pdf}
 	\caption
 	[CNN architecture used to select ionisation energy deposits.]
-	{CNN architecture used to select ionisation energy deposits.}
+	{CNN architecture used to select ionisation energy deposits. Visualisation 
+	adapted from the Netron neural network viewer\cite{netron}.}
 	\label{fig:unet_arch}
 \end{figure}
 
