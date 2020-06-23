@@ -1,5 +1,7 @@
 \chapter{\label{ch:michel}Study of Michel Electrons in \protodune{}} 
 
+Random text.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FROM COS
 %
@@ -466,28 +468,55 @@ The network architecture used for the Michel electron reconstruction is shown in
 Figure \ref{fig:unet_arch}. The network consists of a repeating structure which
 contains the following key components:
 \begin{itemize}
-	\item Convolutional layers.
+	\item Convolutional blocks, which contain multiple convolutional layers.
 	\item Pooling layers for downscaling in the first half of the network.
 	\item Residual connections and up--sampling in the second half of the network.
 \end{itemize}
-The convolutional blocks each contain three convolutional layers, with Leaky 
-ReLU activation functions. During the first half of the network, maximum pooling
-is used to downsample the size of the feature maps, which reduce by a factor of
-two in each max pooling layer. Then, during the second half of the network, the
-up--sampling layers increase the resolution of the feature maps by a factor of
-two, such that the output of the network has the same resolution as the 
-input.  The residual connections from early layers, are combined with the
+The convolutional blocks each contain three convolutional layers. These take the
+form of inception units\cite{Szegedy2015} with Leaky ReLU activation 
+functions, a schematic of the inception units is shown in Figure
+\ref{fig:unet_inception}. During the first half of the network, maximum pooling is 
+used to downsample the size of the feature maps, which reduce by a factor of 
+two in each max pooling layer. Then, during the second half of the network, 
+the up--sampling layers increase the resolution of the feature maps by a 
+factor of two, such that the output of the network has the same resolution as 
+the input.  The residual connections from early layers, are combined with the 
 up--sampled feature maps, to allow the network to reconstruct the location of 
 the learned features. As with the CNN from the previous chapter, both dropout 
 and early--stopping are implemented to prevent over--fitting.
+
 \begin{figure}
-	%\centering
-	\hspace{0.40\textwidth}
-	\includegraphics[height=0.97\textheight]{figures/unet_arch.pdf}
+	\centering
+	\begin{tabularx}{\textwidth}{cX}
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[height=0.94\textheight]{figures/unet_arch.pdf}
+			\caption {Network structure.}
+			\label{fig:unet_structure}
+		\end{subfigure}
+		&
+		\begin{tabular}[b]{c}
+			\begin{subfigure}[b]{0.7\textwidth}
+				\centering
+				\includegraphics{figures/conv_block.pdf}
+				\caption {Convolutional block.}
+				\label{fig:conv_block}
+			\end{subfigure} \\ 
+			\vspace{10mm} \\
+			\begin{subfigure}[b]{0.7\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/inception_arch.pdf}
+				\caption {Inception unit.}
+				\label{fig:unet_inception}
+			\end{subfigure}
+		\end{tabular}
+	\end{tabularx}
+
 	\caption
 	[CNN architecture used to select ionisation energy deposits.]
 	{CNN architecture used to select ionisation energy deposits. Visualisation 
-	adapted from the Netron neural network viewer\cite{netron}.}
+	adapted from the output of the Netron neural network viewer\cite{netron}.}
+
 	\label{fig:unet_arch}
 \end{figure}
 
@@ -669,7 +698,7 @@ simulated Michel electron events.
 \begin{figure}
 	\centering
 	% TODO: Fix these images
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/reco_v_ion.png}
+	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Reconstructed Ionisation vs True Ionisation.]
 	{Reconstructed Ionisation vs True Ionisation.}
@@ -681,7 +710,7 @@ simulated Michel electron events.
 \begin{figure}
 	\centering
 	% TODO: make set of fits as a function of energy
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/frac_diff_v_ion.png}
+	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Fractional energy difference between reconstructed and true Michel electron
 	energy.]
@@ -693,7 +722,7 @@ simulated Michel electron events.
 \begin{figure}
 	\centering
 	% TODO: make set of fits as a function of energy
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/res_bias_v_ion.png}
+	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Energy resolution and bias as a function of true ionisation energy.]
 	{Energy resolution and bias as a function of true ionisation energy.}
@@ -745,7 +774,7 @@ The reconstructed Michel electron energy spectrum is shown in Figure
 \ref{fig:reco_v_mich}. TODO.
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/reco_v_mich.png}
+	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Reconstructed Energy vs True Michel Electron Energy.]
 	{Reconstructed Energy vs True Michel Electron Energy.}
@@ -768,7 +797,7 @@ true Michel electron energy.
 \begin{figure}
 	\centering
 	% TODO: make set of fits as a function of energy
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/frac_diff_v_energy.png}
+	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Fractional energy difference between reconstructed and true Michel electron
 	energy.]
@@ -784,7 +813,7 @@ Figure \ref{fig:res_and_bias_energy}. \mccorrect{TODO: analysis of results}.
 \begin{figure}
 	\centering
 	% TODO: make set of fits as a function of energy
-	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/res_bias_v_energy.png}
+	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Energy resolution and bias as a function of true Michel electron energy.]
 	{Energy resolution and bias as a function of true Michel electron energy.}

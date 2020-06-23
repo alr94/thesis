@@ -144,7 +144,7 @@ each detector, but broadly speaking LArTPC detectors can be split into two
 main categories: single--phase and dual--phase. In a single--phase detector the
 drifting ionisation electrons remain in the liquid argon and the signals are 
 typically read out on three anode wire planes, although pixel readout systems
-have also been developed \cite{TODO}. A dual--phase LArTPC contains an
+have also been developed \citetemp{TODO}. A dual--phase LArTPC contains an
 additional region of gaseous argon in which a high electric field, known as the
 extraction field, is applied to extract the ionisation from the liquid into the
 gas before it is amplified and collected on a pair of anode wire planes 
@@ -409,7 +409,7 @@ Table \ref{tab:beam_runs}.
 
 	\caption
 	[Summary of beam triggers in \protodune{}.]
-	{ Summary of beam triggers in \protodune{}. Data from \cite{TODO}.}
+	{ Summary of beam triggers in \protodune{}. Data from \citetemp{TODO}.}
 
 	\label{tab:beam_runs}
 
@@ -709,7 +709,7 @@ being labelled as clear cosmic--rays. These hits are formed into 3D slices which
 contain all the hits from a single parent particle and it's daughters. The
 slices are reconstructed under both the cosmic--ray and beam particle
 hypothesis, and a boosted decision tree (BDT) is used to determine whether a 
-given slice is consistent with being a beam particle \cite{TODO}. 
+given slice is consistent with being a beam particle \citetemp{TODO}. 
 
 Under the beam particle hypothesis a more complex chain of algorithms is used to
 reconstruct a given slice, these algorithms are capable of reconstructing the
@@ -763,8 +763,8 @@ $dQ/dx$ distribution in each location. The distribution is then normalised to
 the average value at the anode plane, where the effects of the X corrections are
 expected to be negligible. The corrected $dQ/dx$ is given by
 \begin{equation}
-	\left( dQ/dx \right)_{\mbox{corrected}} = N_Q C_{yz}(y, z) C_x(x) \left( dQ/dx
-	\right)_{\mbox{reconstructed}},
+	\left( dQ/dx \right)_{corr} = N_Q \; C_{yz}(y, z) \; C_x(x) \; \left( dQ/dx
+	\right)_{reco},
 \end{equation}
 where $N_Q$ normalises the median of the distributions to the median value at
 the anode, and $C_{yz}$ and $C_{x}$ are the calibration factors for the YZ and 
@@ -783,7 +783,7 @@ ArgoNeuT experiment \cite{Acciarri2013a}. The reconstructed $dE/dx$ is
 where $C_{cal}$ is a calibration constant used to convert ADC to electrons,
 $W_{ion}$ is the work function of argon, $\epsilon$ is the local electric field,
 $\rho$ is the liquid argon density, and \(\alpha = 0.93\) and 
-\(\beta\prime = 0.212 \mbox{ (kV/cm)(g/cm}^3)} / \mbox{MeV}\) are the box model 
+\(\beta^\prime = 0.212 \mbox{ (kV/cm)(g/cm}^3)} / \mbox{MeV}\) are the box model 
 parameters as measured by ArgoNeuT. The calibration constant, $C_{cal}$ is 
 calculated by fitting the most probable value of the reconstructed $dE/dx$ 
 distribution as a function of range to the theoretical prediction for $dE/dx$ 

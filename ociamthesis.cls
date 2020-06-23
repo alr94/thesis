@@ -532,3 +532,6 @@
 % tables
 \usepackage{tabularx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% temporary citations
+\newcommand{\citetemp}[1]{[#1]}
