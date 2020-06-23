@@ -167,8 +167,7 @@
 \hypersetup{
 	colorlinks=true,
 	linkcolor=blue,
-	citecolor=red,
-	pdfpagelabels
+	citecolor=red
 }
 % for linking between references, figures, TOC, etc in the pdf document
 
@@ -419,7 +418,7 @@
 \usepackage{lmodern}
 \usepackage[LGR,TS1,T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[greek,latin,english]{babel}
+\usepackage[greek,english]{babel}
 \usepackage{csquotes}
 \hyphenpenalty=500
 \def\longs{{\fontencoding{TS1}\selectfont s}}
@@ -504,7 +503,7 @@
 \usepackage{float}
 
 % feynman
-\usepackage[compat=1.1.0]{tikz-feynman}
+% \usepackage[compat=1.1.0]{tikz-feynman}
 
 % subfigures
 \usepackage[subrefformat=parens]{subcaption}
@@ -535,3 +534,6 @@
 
 % temporary citations
 \newcommand{\citetemp}[1]{[#1]}
+
+% supress page group errors
+\pdfsuppresswarningpagegroup=1
