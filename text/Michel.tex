@@ -107,8 +107,8 @@ of the two processes in roughly equal quantities.
 	\end{subfigure}
 
 	\caption
-	[Michel electron energy spectra in liquid argon.]
-	{Michel electron energy spectra in liquid argon.}
+	[Michel electron energy spectra in liquid argon from \protodune{} simulation.]
+	{Michel electron energy spectra in liquid argon from \protodune{} simulation.}
 
 	\label{fig:michel_spec}
 
@@ -129,7 +129,10 @@ features.
 	\includegraphics[width=\textwidth]{figures/michel_candidate_labelled.pdf}
 	\caption
 	[Michel electron candidate event from ProtoDUNE--SP data.]
-	{Michel electron candidate event from ProtoDUNE--SP data.}
+	{Michel electron candidate event from ProtoDUNE--SP data. The wire vs time
+	data in the region of the Michel electron event is shown.  The incoming muon,
+	initial Michel electron track, and energy depositions from radiated photons
+	have been labelled.}
 	\label{fig:michel_event}
 \end{figure}
 
@@ -155,7 +158,7 @@ events.
 
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[width=\textwidth]{figures/photon_spec.pdf}
-		\caption[Photon energy spectrum.]{Photon energy spectrum.}
+		\caption{Energy spectrum of radiated photons from Michel electron events.}
 		\label{fig:photon_spec}
 	\end{subfigure}
 
@@ -163,8 +166,9 @@ events.
 
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[width=\textwidth]{figures/photon_mult.pdf}
-		\caption[Photon multiplicity.]{Photon multiplicity as a function of true
-		Michel electron energy.}
+		\caption{Photon multiplicity as a function of true Michel electron energy.
+		The distribution is overlaid with a profile of the mean of the distribution,
+		the error bars on the profile represent the width of the distribution.}
 		\label{fig:photon_mult}
 	\end{subfigure}
 
@@ -192,7 +196,9 @@ recovery.
 	\includegraphics[width=\textwidth]{figures/photon_geom.pdf}
 	\caption
 	[Spatial distribution of radiated ionisation deposits.]
-	{Spatial distribution of radiated ionisation deposits.}
+	{Spatial distribution of radiated ionisation deposits. This plot shows a
+	2D histogram of the distance and angle of each radiated energy deposition 
+	from the primary Michel electron track.}
 	\label{fig:photon_geom}
 \end{figure}
 
@@ -217,7 +223,8 @@ Michel electron energy has a more linear distribution for a collection radius of
 		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/michel_track_only.pdf}
 		\caption
 		[Initial Michel electron track only.]
-		{Initial Michel electron track only.}
+		{True collected ionisation energy from the initial Michel electron track
+		only.}
 		\label{fig:track_only}
 	\end{subfigure}
 
@@ -227,13 +234,16 @@ Michel electron energy has a more linear distribution for a collection radius of
 		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/cone_reco.pdf}
 		\caption
 		[Ionisation withing a 40 cm cone at $30^\circ$ opening angle.]
-		{Ionisation withing a 40 cm cone at $30^\circ$ opening angle.}
+		{True collected ionisation energy from the initial Michel electron track,
+		and any radiated ionisation within a 40 cm cone at a $30^\circ$ opening
+		angle of the initial Michel electron track.}
 		\label{fig:cone_reco}
 	\end{subfigure}
 
 	\caption
 	[Available ionisation energy vs true Michel electron energy.]
-	{Available ionisation energy vs true Michel electron energy.}
+	{2D histograms of the true collected ionisation energy vs the true Michel
+	electron energy in \protodune{} simulation.}
 
 	\label{fig:michel_track_only}
 
@@ -251,7 +261,8 @@ from 35\% to 18\%.
 	\includegraphics[width=\textwidth]{figures/energy_recovery_v_radius.pdf}
 	\caption
 	[Fraction of Michel electron energy collected vs collection radius.]
-	{Fraction of Michel electron energy collected vs collection radius.}
+	{Fraction of Michel electron energy collected as ionisation vs collection 
+	radius.}
 	\label{fig:frac_v_radius}
 \end{figure}
 
@@ -332,7 +343,11 @@ classified as Michel--like.
 	\includegraphics[width=\textwidth]{figures/michel_like_frac.pdf}
 	\caption
 	[Fraction of Michel--like hits in the best Michel electron candidate.]
-	{Fraction of Michel--like hits in the best Michel electron candidate.}
+	{Fraction of Michel--like hits in the best Michel electron candidate in data
+	and simulation. The red line is the total distribution in simulation, and the 
+	solid red region represents the predicted background in simulation. The black
+	distribution is the results in data, where the error bars are statistical 
+	only.}
 	\label{fig:michel_like_frac}
 \end{figure}
 
@@ -349,7 +364,8 @@ peak of the Michel electron spectrum, the efficiency is around 5\%.
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
 	\caption
 	[Efficiency of Michel electron event selection as a function of energy.]
-	{Efficiency of Michel electron event selection as a function of energy.}
+	{Efficiency of Michel electron event selection as a function of true Michel
+	electron energy in \protodune{} simulation.}
 	\label{fig:ev_sel_eff}
 \end{figure}
 
@@ -372,17 +388,18 @@ distributions of the primary muons.
 		\hfill
 		\includegraphics[width=0.49\textwidth]{figures/DataVMC_primary_EndY.pdf}
 		\includegraphics[width=0.49\textwidth]{figures/DataVMC_primary_EndZ.pdf}
-		\caption {Muon end--points.}
+		\caption {Primary muon end--points.}
 		\label{fig:muon_endpoints}
 	\end{subfigure}
 
 	\begin{subfigure}[b]{\textwidth}
 		\centering
+		\vspace{1cm}
 		\includegraphics[width=0.49\textwidth]{figures/DataVMC_angle_xy.pdf}
 		\hfill
 		\includegraphics[width=0.49\textwidth]{figures/DataVMC_angle_xz.pdf}
 		\includegraphics[width=0.49\textwidth]{figures/DataVMC_angle_yz.pdf}
-		\caption {Muon angular distributions.}
+		\caption {Primary muon angular distributions.}
 		\label{fig:muon_angles}
 	\end{subfigure}
 	
@@ -390,8 +407,8 @@ distributions of the primary muons.
 	\caption
 	[Spatial and angular distributions for primary muons associated with selected
 	Michel electrons.]
-	{ Spatial and angular distributions for primary muons associated with selected
-	Michel electrons. }
+	{Spatial and angular distributions for primary muons associated with selected
+	Michel electrons.}
 
 	\label{fig:muon_distributions}
 
@@ -472,18 +489,19 @@ contains the following key components:
 	\item Pooling layers for downscaling in the first half of the network.
 	\item Residual connections and up--sampling in the second half of the network.
 \end{itemize}
-The convolutional blocks each contain three convolutional layers. These take the
-form of inception units\cite{Szegedy2015} with Leaky ReLU activation 
-functions, a schematic of the inception units is shown in Figure
-\ref{fig:unet_inception}. During the first half of the network, maximum pooling is 
-used to downsample the size of the feature maps, which reduce by a factor of 
-two in each max pooling layer. Then, during the second half of the network, 
-the up--sampling layers increase the resolution of the feature maps by a 
-factor of two, such that the output of the network has the same resolution as 
-the input.  The residual connections from early layers, are combined with the 
-up--sampled feature maps, to allow the network to reconstruct the location of 
-the learned features. As with the CNN from the previous chapter, both dropout 
-and early--stopping are implemented to prevent over--fitting.
+The convolutional blocks each contain three convolutional layers, which is 
+shown in Figure \ref{fig:conv_block}. These take the form of inception 
+units\cite{Szegedy2015} with Leaky ReLU activation functions, a schematic of 
+the inception units is shown in Figure \ref{fig:unet_inception}. During the 
+first half of the network, maximum pooling is used to downsample the size of 
+the feature maps, which reduce by a factor of two in each max pooling layer. 
+Then, during the second half of the network, the up--sampling layers increase 
+the resolution of the feature maps by a factor of two, such that the output of 
+the network has the same resolution as the input.  The residual connections 
+from early layers, are combined with the up--sampled feature maps, to allow 
+the network to reconstruct the location of the learned features. As with the 
+CNN from the previous chapter, both dropout and early--stopping are 
+implemented to prevent over--fitting.
 
 \begin{figure}
 
@@ -493,7 +511,7 @@ and early--stopping are implemented to prevent over--fitting.
 		\begin{subfigure}[b]{0.40\textwidth}
 			\centering
 			\includegraphics[height=0.90\textheight]{figures/unet_arch.pdf}
-			\caption {Network structure.}
+			\caption {Overall structure.}
 			\label{fig:unet_structure}
 		\end{subfigure}
 		&
@@ -515,15 +533,16 @@ and early--stopping are implemented to prevent over--fitting.
 	\end{tabularx}
 
 	\caption
-	[CNN architecture used to select ionisation energy deposits.]
-	{CNN architecture used to select ionisation energy deposits. Visualisation 
-	adapted from the output of the Netron neural network viewer\cite{netron}.}
+	[U--Net CNN architecture used to select ionisation energy deposits.]
+	{U--Net CNN architecture used to select ionisation energy deposits. 
+	Visualisation adapted from the output of the Netron neural network 
+	viewer\cite{netron}.}
 
 	\label{fig:unet_arch}
 \end{figure}
 
 The datasets for the training process were generated from a full simulation of 
-the \protodune{} detector under beam operation including both cosmic ray and
+the \protodune{} detector under beam operation including both cosmic--ray and
 beam particles. The images produced contain the location and integrated charge
 for each hit within the image window. The training data is split into training, 
 test, and validation sets in the ratio 80:10:10. In total around 40,000 
@@ -540,7 +559,9 @@ a vertical line representing the loss at which the weights were chosen.
 	\includegraphics[width=\textwidth]{figures/unet_loss.png}
 	\caption
 	[U-Net training and validation loss as a function of epoch.]
-	{U-Net training and validation loss as a function of epoch.}
+	{U-Net training and validation loss as a function of epoch. The weights were
+	frozen based on an early stopping algorithm, which is demonstrated by the
+	vertical black line.}
 	\label{fig:unet_loss}
 \end{figure}
 
@@ -549,10 +570,11 @@ A demonstration of the output of the U-Net is given in Figure
 event from \protodune{} simulation.
 \begin{figure}
 	\centering
+	% TODO make me 3 images in sub figures
 	\includegraphics[width=\textwidth]{figures/unet_example.pdf}
 	\caption
 	[Example input, true output, and prediction images for U-Net.]
-	{Example input, true output, and prediction images for U-Net. Left: Input
+	{Example input, truth, and prediction images for U-Net. Left: Input
 	image. Top Right: True Output. Bottom Right: U-Net Prediction.}
 	\label{fig:unet_example}
 \end{figure}
@@ -577,10 +599,13 @@ simulation 7.8\% of hits are selected, while in data the fraction selected is
 data and simulation.  
 \begin{figure}
 	\centering
+	% TODO make line red
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
 	\caption
 	[U-Net Predicted Distribution.]
-	{U-Net Predicted Distribution.}
+	{U--Net predicted distribution for hits in images. The simulated results are
+	shown by the red line, with the backgrounds as a shaded red region. The data 
+	is shown in black, with statistical error bars.}
 	\label{fig:unet_pred_data}
 \end{figure}
 
@@ -611,7 +636,8 @@ by varying the threshold.
 	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.pdf}
 	\caption
 	[U-Net purity vs completeness.]
-	{U-Net purity vs completeness.}
+	{Hit tagging purity vs completeness for the U--Net algorithm on \protodune{}
+	simulation.}
 	\label{fig:unet_pur_comp}
 \end{figure}
 
@@ -627,7 +653,8 @@ electron.
 	\includegraphics[width=\textwidth]{figures/mich_n_hits.pdf}
 	\caption
 	[Number of hits in Michel electron events.]
-	{Number of hits in Michel electron events.}
+	{Number of hits selected by the U--Net for Michel electron candidate events in
+	data and simulation.}
 	\label{fig:mich_n_hits}
 \end{figure}
 
@@ -669,8 +696,9 @@ average value of 0.69.
 	\centering
 	\includegraphics[width=\textwidth]{figures/hit_ion_reco.png}
 	\caption
-	[Reconstructed Hit Ionisation Energy]
-	{Reconstructed Hit Ionisation Energy}
+	[Reconstructed Hit Ionisation Energy.]
+	{Reconstructed Hit Ionisation Energy for hits in Michel electron U--Net input 
+	images in data and simulation.}
 	\label{fig:hit_ion_reco}
 \end{figure}
 
@@ -685,8 +713,8 @@ energy deposited by Michel electrons within a 40 cm radius, shown in Figure
 	\centering
 	\includegraphics[width=\textwidth]{figures/michel_ion_reco.pdf}
 	\caption
-	[Reconstructed Michel Electron Ionisation Energy]
-	{Reconstructed Michel Electron Ionisation Energy}
+	[Reconstructed Michel Electron Ionisation Energy.]
+	{Reconstructed Michel electron ionisation energy in data and simulation.}
 	\label{fig:michel_ion_reco}
 \end{figure}
 
@@ -763,7 +791,7 @@ quadratic fit. The fit gives,
 \begin{figure}
 	\centering
 	% TODO
-	\includegraphics[width=\textwidth]{figures/reco_v_true.png}
+	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Quadratic fit of reconstructed ionisation energy vs true Michel electron
 	enegry.]

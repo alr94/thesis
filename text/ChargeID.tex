@@ -89,7 +89,10 @@ demonstrates the relationship between the images and the detector readout.
 	\includegraphics[width=\textwidth]{figures/patch_zoom.pdf}  
 	\caption
 	[Example CNN input images for each class.]
-	{Example CNN input images for each class.}
+	{Example CNN input images for each class. The input images are $48 \times 48$
+	pixel images, which are taken from regions of the full detector readout. In
+	the diagram, one example of each image class is displayed. The white outlines
+	demonstrate the location of each input image in the full readout.}
 	\label{fig:patches}
 \end{figure}
 
@@ -117,8 +120,8 @@ the electromagnetic energy loss in liquid argon for energies in the GeV range.
 	\end{tabular}
 	\egroup
 	\caption
-	[Truth labels for different particles.]
-	{Truth labels for different particles.}
+	[Truth labels for the CNN output for different particle species.]
+	{Truth labels for the CNN output for different particle species.}
 	\label{tab:ground_truth}
 \end{table}
 
@@ -147,7 +150,8 @@ each type in these three datasets are detailed in Table \ref{tab:patches}.
 	\egroup
 	\caption
 	[Number of input images with each truth label.]
-	{Number of input images with each truth label.}
+	{Number of input images with each truth label in the training, validation, and
+	test sets.}
 	\label{tab:patches}
 \end{table}
 
@@ -239,9 +243,14 @@ in Figure \ref{fig:training}.
 	\centering
 	\includegraphics[width=\textwidth]{figures/losses_prelu.pdf}
 	\caption
-	[Validation and training set losses.]
+	[Evolution of the validation and training set losses during the training 
+	process.]
 	{Evolution of the validation and training set losses during the training 
-	process.} 
+	process. The losses for the TSE branch and the Michel electron branch are
+	shown, as well as the total loss. The weights were frozen based on an early 
+	stopping algorithm, focussing on the loss in the TSE branch. The losses with
+	the weights chosen by the early stopping algorithm are indicated by a vertical
+	dashed line on each diagram.} 
 	\label{fig:training}
 \end{figure}
 
@@ -298,19 +307,21 @@ was calculated across a range of selection thresholds, this is shown in Figure
 	\includegraphics[width=0.9\textwidth]{figures/shower_combined.pdf} 
 	\caption
 	[Shower score output distributions for the TSE classifier.]
-	{Shower score output distributions for the TSE classifier. Threshold 
-	optimisation was done using the F1 score metric, which is also plotted.}
+	{Shower score output distributions for the TSE classifier. The score
+	distributions for true shower hits and all other hits are shown in red and
+	blue respectively. Threshold optimisation was done using the F1 score metric, 
+	which is also plotted as a function of the classification threshold.}
 	\label{fig:show_output}
 \end{figure}
 
 The overall performance of the TSE classifier can also be evaluated with a
 receiver operating characteristic (ROC) curve\cite{Fawcett2006}. The ROC curve
-shows the true positive rate vs the false positive rate for the classifier, as
+shows the true--positive rate vs the false--positive rate for the classifier, as
 the selection threshold is varied. Figure \ref{fig:show_roc} shows two ROC
 curves for the TSE classifier, one is evaluated in simulation including
 the space charge effect (SCE), and the other excludes the SCE. Both curves
-demonstrate that the network is capable of achieving high true positive rates,
-while maintaining low false positive rates. In addition, their is a very close
+demonstrate that the network is capable of achieving high true--positive rates,
+while maintaining low false--positive rates. In addition, their is a very close
 agreement between the two curves, which suggests that the TSE classifier is
 robust to changes in the SCE model.
 
@@ -319,7 +330,11 @@ robust to changes in the SCE model.
 	\includegraphics[width=0.9\textwidth]{figures/show_roc_comparison.pdf}
 	\caption
 	[ROC curves for the shower score from the TSE classifier.]
-	{ROC curves for the shower score from the TSE classifier.}
+	{ROC curves for the shower score from the TSE classifier. These curves show
+	the true--positive rate vs the false--positive rate for varying classification
+	thresholds. The ROC curves for the \protodune{} simulation including SCE and
+	excluding SCE are shown in red and blue respectively. The ROC curve in the
+	presence of SCE is concealed by the curve without SCE.}
 	\label{fig:show_roc}
 \end{figure}
 
@@ -338,10 +353,12 @@ selected by searching for clusters of hits with high Michel electron scores.
 	\includegraphics[width=0.9\textwidth]{figures/michel_combined.pdf} 
 	\caption
 	[Michel electron score distributions for the Michel electron classifier.]
-	{Michel electron score distributions for the Michel electron classifier. 
-	The F1 score metric was used to assist threshold selection, and is also
-	plotted. The final threshold was modified when combined with a clustering
-	algorithm, see the analysis in Chapter \ref{ch:michel}}
+	{Michel electron score distributions for the Michel electron classifier. The
+	score distributions for true Michel electron hits and all other hits are shown
+	in red and blue respectively. The F1 score metric was used to assist 
+	threshold selection, and is also plotted as a function of selection 
+	threshold. The final threshold was modified when combined with a clustering 
+	algorithm, see the analysis in Chapter \ref{ch:michel}.}
 	\label{fig:michel_output}
 \end{figure}
 
@@ -351,8 +368,8 @@ Michel electron classifier than the score distribution and F1 score. The ROC
 curves for the Michel electron classifier are shown in Figure 
 \ref{fig:michel_roc}, where both SCE and no SCE samples are shown. The jitter 
 in the lines is due to the smaller sample size in this case. In both cases the 
-Michel electron classifier is able to achieve a true positive rate of over 90\%,
-while maintaining a false positive rate of less than 2.5\%. There is a larger 
+Michel electron classifier is able to achieve a true--positive rate of over 90\%,
+while maintaining a false--positive rate of less than 2.5\%. There is a larger 
 difference between the SCE and no SCE curves for the Michel electron sample,
 however, the difference is still no bigger than 4\%.
 
@@ -361,7 +378,10 @@ however, the difference is still no bigger than 4\%.
 	\includegraphics[width=0.9\textwidth]{figures/michel_roc_comparison.pdf}
 	\caption
 	[ROC curves for the Michel electron classifier.]
-	{ROC curves for the Michel electron classifier.}
+	{ROC curves for the Michel electron classifier. These curves show
+	the true--positive rate vs the false--positive rate for varying classification
+	thresholds. The ROC curves for the \protodune{} simulation including SCE and
+	excluding SCE are shown in red and blue respectively.}
 	\label{fig:michel_roc}
 \end{figure}
 
@@ -397,16 +417,20 @@ as tracks.
 	\includegraphics[width=\textwidth]{figures/track_shower_labels.pdf}
 	\caption
 	[Comparison of track and shower classifications by Pandora and the CNN.]
-	{Comparison of track and shower classifications by Pandora and the CNN.}
+	{Comparison of track and shower classifications by Pandora and the CNN. For
+	each true particle species the fraction of events classified as tracks and
+	showers is shown, for Pandora and the CNN. Each bar is labelled with the 
+	number of events, for example, the CNN classified 149 electron events as 
+	tracks and 10432 electron events as showers.}
 	\label{fig:track_show_pan_cnn}
 \end{figure}
 
-The false positive rates (FPR) for Pandora and the CNN for each particle 
+The false--positive rates (FPR) for Pandora and the CNN for each particle 
 species are given in Table \ref{tab:false_pos}, as well as their ratio.
 The CNN only gives a modest improvement over Pandora for pions, and muons. 
-However, there is a significant improvement in the false positive rate for 
+However, there is a significant improvement in the false--positive rate for 
 electrons, photons, and protons. The biggest improvement is for photons, 
-where for a sample of 694 photons, the CNN has a false positive rate of zero.
+where for a sample of 694 photons, the CNN has a false--positive rate of zero.
 \begin{table}
 	\centering
 	\bgroup 
@@ -420,10 +444,13 @@ where for a sample of 694 photons, the CNN has a false positive rate of zero.
 	\end{tabularx}
 	\egroup
 	\caption
-	[False positive rates for track shower classification with Pandora and the
+	[False--positive rates for track shower classification with Pandora and the
 	CNN.]
-	{ False positive rates for track shower classification with Pandora and the
-	CNN. }
+	{False--positive rates for track shower classification with Pandora and the
+	CNN. The false--positive rates for both the CNN and Pandora are given for
+	different particle species. In addition, the sample size for each particle
+	species, and the ratio of the false positive rate of Pandora to the 
+	CNN are given whenever possible.}
 	\label{tab:false_pos}
 \end{table}
 
@@ -474,7 +501,9 @@ track, which are from delta rays, are from electrons.
 	\includegraphics[width=\textwidth]{figures/5387_image_tpc1_view2_128178.pdf}
 	\caption
 	[Track classifier scores for a reconstructed event in \protodune{} data.]
-	{Track classifier scores for a reconstructed event in \protodune{} data.}
+	{Track classifier scores for a reconstructed event in \protodune{} data. Each
+	reconstructed hit is labelled with its track classifier score, and located at
+	the reconstructed wire and time coordinates.}
 	\label{fig:real_event}
 \end{figure}
 
@@ -500,20 +529,22 @@ demonstrates the discontinuity for a simulated proton beam sample.
 	\begin{subfigure}[b]{\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{figures/charge_nocuts.pdf}
-		\caption {Charge Cut}
+		% TODO: label x-axis
+		\caption {Cut on the reconstructed hit charge.}
 		\label{fig:charge_cuts}
 	\end{subfigure}
 
 	\begin{subfigure}[b]{\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{figures/charge_discontinuity.pdf}
-		\caption {Charge Discontinuity}
+		\caption {Cut on the reconstructed wire, due to a charge discontinuity in
+		simulation.}
 		\label{fig:90_wires_charge}
 	\end{subfigure}
 
 	\caption 
-	[ Quality cuts on reconstructed charge for CNN comparison. ]
-	{ Quality cuts on reconstructed charge for CNN comparison. }
+	[ Quality cuts on reconstructed hits for CNN comparison. ]
+	{ Quality cuts on reconstructed hits for CNN comparison. }
 	\label{fig:cnn_cuts_charge}
 
 \end{figure}
@@ -531,7 +562,10 @@ hits with shower score less than around 0.2.
 	\includegraphics[width=\textwidth]{figures/hit_cnn_all.pdf}
 	\caption
 	[Overall shower score distribution from the CNN for all hits in data and simulation.]
-	{Overall shower score distribution from the CNN for all hits in data and simulation.}
+	{Overall shower score distribution from the CNN for all hits in data and
+	simulation. The top panel shows the shower score distribution for all hits in
+	data and simulation, normalised by the number of hits. The fractional 
+	residuals in each bin are shown in the bottom plot.}
 	\label{fig:cnn_overall_score}
 \end{figure}
 
@@ -565,22 +599,24 @@ after these cuts are shown in Figure \ref{fig:angular_dist}.
 		\hfill
 		\includegraphics[width=0.49\textwidth]{figures/endY_nocuts.pdf}
 		\includegraphics[width=0.49\textwidth]{figures/endZ_nocuts.pdf}
-		\caption {Spatial cuts.}
+		\caption {An example of spatial cuts applied to the X, Y, and Z coordinates
+		of the track endpoint.}
 		\label{fig:spatial_cuts}
 	\end{subfigure}
-
 	\begin{subfigure}[b]{\textwidth}
 		\centering
+		\vspace{1.5cm}
 		\includegraphics[width=0.49\textwidth]{figures/angXY_cuts.pdf}
 		\hfill
 		\includegraphics[width=0.49\textwidth]{figures/angXZ_cuts.pdf}
 		\includegraphics[width=0.49\textwidth]{figures/angYZ_cuts.pdf}
-		\caption {Angular distributions.}
+		\caption {Track angular distributions after spatial cuts in 
+		\subref{fig:spatial_cuts} applied.}
 		\label{fig:angular_dist}
 	\end{subfigure}
 
 	\caption 
-	[ Data Quality Cuts for CNN Comparison. ]
+	[Data Quality Cuts for CNN Comparison.]
 	{Data Quality Cuts for CNN Comparison.}
 	\label{fig:cnn_cuts_spatial}
 
@@ -618,9 +654,10 @@ beam particles of the given flavour.
 	\end{subfigure}
 
 	\caption
-	[Shower classifier scores for particles from the \protodune{} beam.]
-	{Shower classifier scores for particles from the \protodune{} beam.}
-
+	[Shower classifier scores for different particle species from the \protodune{} 
+	beam.]
+	{Shower classifier scores for different particle species from the \protodune{} 
+	beam, in data and simulation.}
 	\label{fig:cnn_scores_beam}
 
 \end{figure}
@@ -640,8 +677,8 @@ The cosmic--ray sample was selected based on the cosmic--ray part of the
 Pandora reconstruction chain, discussed in Chapter \ref{ch:protodune}. Any
 reconstructed particles, which have been labelled as both clear cosmic--rays
 and tracks by Pandora are included in the sample. The data in this sample was
-taken from run 5387; while a cosmic only run would be preferable, all of the
-\protodune{} simulations include test beam particles. Therefore, a test beam
+taken from run 5387; while a cosmic--ray only run would be preferable, all of 
+the \protodune{} simulations include test beam particles. Therefore, a test beam
 run was chosen in order to match as closely as possible to the simulation.
 
 The shower score distribution for cosmic--ray tracks is shown in Figure
@@ -659,7 +696,8 @@ cosmic--ray tracks in data than in simulation.
 	\includegraphics[width=\textwidth]{figures/hit_cnn_cosmics.pdf}
 	\caption
 	[Shower classifier score for hits from cosmic--rays.]
-	{Shower classifier score for hits from cosmic--rays.}
+	{Shower classifier score for hits from reconstructed cosmic--rays, in data and
+	simulation.}
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 
@@ -680,24 +718,24 @@ The fractional difference between the numbers in each case is an estimate of
 the percentage uncertainty associated with this simple selection algorithm. 
 For the sample of all hits, the track category was used, and a fractional
 difference of 1\% was seen. This varies depending on the particle species, 
-with the largest difference being 3\% for the cosmic ray sample. 
+with the largest difference being 3\% for the cosmic--ray sample. 
 \begin{table}
 	\centering
 	\bgroup 
 	\def\arraystretch{1.5}
-	\begin{tabularx}{\textwidth}{@{}c|Y|Y|Y@{}}
-		Hit Source  & MC Fraction (\%) & Data Fraction (\%) & Data / MC\\\hline
-		All         & 77.1             & 76.2               & 0.99     \\
-		Pion        & 93.8             & 95.4               & 1.02     \\
-		Proton      & 97.1             & 96.6               & 0.99     \\
-		Electron    & 96.9             & 95.8               & 0.99     \\
-		Cosmic--ray & 92.9             & 90.3               & 0.97
+	\begin{tabularx}{\textwidth}{@{}c|c|Y|Y|c@{}}
+		Hit Source  & Class  & MC Fraction (\%) & Data Fraction (\%) & Data / MC\\\hline
+		All         & Track  & 77.1             & 76.2               & 0.99     \\
+		Pion        & Track  & 93.8             & 95.4               & 1.02     \\
+		Proton      & Track  & 97.1             & 96.6               & 0.99     \\
+		Electron    & Shower & 96.9             & 95.8               & 0.99     \\
+		Cosmic--ray & Track  & 92.9             & 90.3               & 0.97
 	\end{tabularx}
 	\egroup
 	\caption
-	[Fraction of hits selected for reconstructed particles in \protodune{} data 
+	[Fraction of hits in correct class for different samples in \protodune{} data 
 	and simulation.] 
-	{Fraction of hits selected for reconstructed particles in \protodune{} data 
+	{Fraction of hits in correct class for different samples in \protodune{} data 
 	and simulation.}
 	\label{tab:frac_selected}
 \end{table}
