@@ -54,19 +54,13 @@ seen in Figure \ref{fig:muon_dedx} which shows the $dE/dx$ for muons in argon
 as a function of momentum. 
 
 \begin{figure}
-
 	\centering
-
-	% TODO: make me nicer, and label me
 	\includegraphics[width=\textwidth]{figures/muon_dedx_argon.pdf}
-
 	\caption
 	[Stopping power as a function of energy for muons in liquid argon.]
 	{ Stopping power as a function of energy for muons in liquid argon. Data from
 	\cite{pdg_atomictables}.}
-
 	\label{fig:muon_dedx}
-
 \end{figure}
 
 \subsubsection*{Delta Rays}
@@ -79,11 +73,12 @@ tracks which protrude from muon tracks.
 \subsection{Energy Loss for Electrons}
 Electrons and positrons undergo different electromagnetic scattering processes
 in matter, M{\o}ller scattering and Bhabha scattering respectively 
-\citetemp{TODO}. These processes, which dominate electron and positron energy loss 
-at low energies, have different cross sections, which modify the energy loss in 
-each case. At higher energies, radiative processes such as bremsstrahlung 
-dominate. The two components of the electron stopping power are known as the 
-collision stopping power and the radiative stopping power.
+\cite{10.2307/96528, 10.2307/96479}. These processes, which dominate electron 
+and positron energy loss at low energies, have different cross sections, which 
+modify the energy loss in each case. At higher energies, radiative processes 
+such as bremsstrahlung dominate. The two components of the electron stopping 
+power are known as the collision stopping power and the radiative stopping 
+power.
 
 \subsubsection*{Collision Stopping Power}
 The collision stopping power of electrons and positrons is calculated with a
@@ -124,15 +119,10 @@ discussions are provided in \cite{PhysRevD.98.030001, Tsai:1973py}. Here, we
 discuss a simplified model, which highlights the important factors relevant for 
 the work in this thesis.
 
-% TODO: talk about this bit with Alfons
-At high energies, where the radiative energy loss is dominant, the energy of 
-the electron can be approximated as an exponential decay over a length scale 
-known as the radiation length, $X_0$,
-\begin{equation*}
-	E = E_0 \; e^{-x/X_0}.
-\end{equation*}
-In this approximation, the energy loss per unit distance due to bremsstrahlung 
-is, 
+At high energies, where the radiative energy loss is dominant, the energy loss
+of electrons can be approximated as energy loss over a length scale, $X_0$,  
+known as the radiation length.  In this approximation, the energy loss per 
+unit distance due to bremsstrahlung is, 
 \begin{equation*}
 	- \left( \frac{dE}{dx} \right)_{brem} = \frac{E}{X_0}.
 \end{equation*}

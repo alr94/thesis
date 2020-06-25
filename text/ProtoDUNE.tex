@@ -131,6 +131,7 @@ reconstruction of interactions in the LArTPC, it can be used to determine the
 time of an interaction to within a few nanoseconds.
 
 % TODO: explain position offset a little more
+% TODO: I need a discussion of what t_0 really is somewhere
 In a LArTPC interactions play out much quicker than the detector is able to 
 record them; as such each event actually integrates over a large number of 
 interactions within the readout window. The true time, $t_0$, of the 
@@ -141,13 +142,12 @@ combined with the arrival time of drifting electrons to reconstruct the true
 drift distance, without an accurate $t_0$ the reconstructed drift distance 
 will be too long.
 
-% TODO: cite argoncube
 The details of the charge readout and photon detection systems are specific to 
 each detector, but broadly speaking LArTPC detectors can be split into two 
 main categories: single--phase and dual--phase. In a single--phase detector the
 drifting ionisation electrons remain in the liquid argon and the signals are 
 typically read out on three anode wire planes, although pixel readout systems
-have also been developed \citetemp{TODO}. A dual--phase LArTPC contains an
+have also been developed \cite{argoncube}. A dual--phase LArTPC contains an
 additional region of gaseous argon in which a high electric field, known as the
 extraction field, is applied to extract the ionisation from the liquid into the
 gas before it is amplified and collected on a pair of anode wire planes 
@@ -424,7 +424,7 @@ Table \ref{tab:beam_runs}.
 	of expected triggers represents the number of triggers expected in the initial
 	\protodune{} run plan, which are exceeded at every energy. The breakdown of
 	expected triggers by particle species is based on simulations of the
-	H4 beam--line. Data from \citetemp{TODO}.}
+	H4 beam--line. Data from \cite{Spanu_2019}.}
 
 	\label{tab:beam_runs}
 
@@ -574,13 +574,11 @@ particles in small steps; the step size, $300 \mu m$, is chosen to be much
 smaller then the spatial resolution of the detector to allow for small--scale 
 processes like showering to be accurately simulated. 
 
-% TODO: check these numbers somewhere.
 Particles which propagate through the detector, during the propagation phase of
 the simulation, leave energy deposits in the form of ionisation electrons and
-scintillation photons. It takes 23.6 eV to ionise a single argon atom and 
-around 19.5 eV to produce a single scintillation photon, as such a 
-minimum--ionising particle (MIP), which deposits around 2 MeV/cm
-in liquid argon, will produce tens of thousands of electrons and photons per cm.
+scintillation photons. A minimum--ionising particle (MIP), which deposits 
+around 2 MeV/cm in liquid argon, will produce tens of thousands of electrons 
+and photons per cm.
 
 The detector simulation is responsible for drifting the ionisation electrons 
 towards the collection wires, propagating the simulated photons to the photon 
@@ -604,17 +602,12 @@ and analogue to digital conversion. The simulated waveforms produced by the
 
 \section{Reconstruction} \label{sec:reconstruction}
 
-% \subsection{Optical Reconstruction} \label{sec:op_reco}
-% \mccorrect{TODO.}
-% \subsection{TPC Reconstruction} \label{sec:tpc_reco}
-
 An event consists of a synchronised set of waveforms from all of the TPC 
 channels, with each event corresponding to 3 ms or 6000 samples. The particle
 interactions within each event are reconstructed into objects like tracks and
 showers which can be used for physics analyses, this sections provides a brief 
 summary of the steps involved in this reconstruction.
 
-% TODO: be prepared to talk about the possible artefacts here.
 First, the TPC waveforms are passed through a set of filtering algorithms which
 are designed to reduce the noise on the waveforms, as well as to mitigate 
 electronics effects such as sticky--codes and undershooting. An additional step
@@ -697,7 +690,6 @@ connected through parent--daughter relationships, which define the particle flow
 in the interaction. Pandora reconstruction proceeds in two stages: a cosmic 
 pass and a beam pass. 
 
-% TODO: I need a discussion of what t_0 really is somewhere
 
 First the cosmic pass reconstructs the event with algorithms designed to 
 reconstruct track--like particles. Track stitching algorithms can be used to
@@ -737,7 +729,7 @@ being labelled as clear cosmic--rays. These hits are formed into 3D slices which
 contain all the hits from a single parent particle and it's daughters. The
 slices are reconstructed under both the cosmic--ray and beam particle
 hypothesis, and a boosted decision tree (BDT) is used to determine whether a 
-given slice is consistent with being a beam particle \citetemp{TODO}. 
+given slice is consistent with being a beam particle \cite{protoduneperf}. 
 
 Under the beam particle hypothesis a more complex chain of algorithms is used to
 reconstruct a given slice, these algorithms are capable of reconstructing the
@@ -766,7 +758,6 @@ from a \protodune{} beam event is shown in Figure \ref{fig:pandora_pfp}.
 
 \end{figure}
 
-% TODO: think about whether to make this a new section.
 % TODO: need to define dQ/dx
 % TODO: be careful to make well defined use of dQ/dx
 As well as precise spatial reconstruction, LArTPCs provide excellent
@@ -869,11 +860,8 @@ summary of these stages, as well as examples of the plots, which are produced in
 the OM.
 
 \begin{figure}
-
 	\centering
-	% TODO: colours.
-	\includegraphics[width=\textwidth]{figures/om_flow.png}
-
+	\includegraphics[width=\textwidth]{figures/om_flow.pdf}
 	\caption
 	[A diagram representing the data flow in the \protodune{} online monitoring system.]
 	{A diagram representing the data flow in the \protodune{} online monitoring
@@ -881,9 +869,7 @@ the OM.
 	before being analysed. The results of the analyses are merged, along with data
 	from external detector systems, before being sent to the display server to be
 	viewed by the shifters.}
-
 	\label{fig:om_flow}
-
 \end{figure}
 
 \subsection{Data Processing}
@@ -1036,7 +1022,6 @@ monitoring plots are shown in Figure \ref{fig:pds_om}.
 
 	\centering
 
-	% TODO: remake plot to reduce page loadtime
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
 		\vspace{3mm}
