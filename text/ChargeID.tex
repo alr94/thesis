@@ -71,18 +71,25 @@ the Michel electron probability is decoupled from the other probabilities. The
 track, shower, and empty (TSE) probabilities are constrained to sum to one, 
 such that every hit is classified into one of these categories.
 
-An input image was produced for every reconstructed hit, with the hit being
+The input data for the CNN was made using a \emph{small--patch approach}, in
+which a small input image is made for each reconstructed hit. This approach was
+chosen based on the CPU time and memory requirements for the CNN, when run 
+during the \protodune{} reconstruction chain. Another approach would be to 
+create a single large input image for each wire plane and perform semantic 
+segmentation, which would trade a higher memory usage for a lower CPU time.
+
+An input image was produced for every reconstructed hit, with the hit being 
 classified at the centre of the image. These images were produced from the 
 wire readout data, after the noise removal and 2D deconvolution steps 
-described in Chapter \ref{ch:protodune}. Each input image is $48 \times 48$
-pixels, with each pixel being filled with the ADC value from the wire readout
-data.  The width of the image corresponds to one wire per pixel, and 
-the height is the time coordinate. The time data is downsampled, using an 
-average over time samples, such that the spatial dimensions of the image are 
-the same in both directions. Therefore, each image represents around $24 
-\times 24 \mbox{ cm}^2$ of wire data. Examples of an input image from each 
-none empty class are shown in Figure \ref{fig:patches}, which also 
-demonstrates the relationship between the images and the detector readout.
+described in Chapter \ref{ch:protodune}. Each input image is $48 \times 48$ 
+pixels, with each pixel being filled with the ADC value from the wire readout 
+data. The width of the image corresponds to one wire per pixel, and the height 
+is the time coordinate. The time data is downsampled, using an average over 
+time samples, such that the spatial dimensions of the image are the same in 
+both directions.  Therefore, each image represents around $24 \times 24 \mbox{ 
+cm}^2$ of wire data. Examples of an input image from each none empty class are 
+shown in Figure \ref{fig:patches}, which also demonstrates the relationship 
+between the images and the detector readout.
 
 \begin{figure}
 	\centering

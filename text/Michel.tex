@@ -92,7 +92,6 @@ of the two processes in roughly equal quantities.
 \begin{figure}
 
 	\centering
-	\centering
 	\begin{subfigure}[b]{0.7\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/michel_spec_free.pdf}
@@ -546,7 +545,7 @@ The datasets for the training process were generated from a full simulation of
 the \protodune{} detector under beam operation including both cosmic--ray and
 beam particles. The images produced contain the location and integrated charge
 for each hit within the image window. The training data is split into training, 
-test, and validation sets in the ratio TODO:TODO:TODO. In total around 40,000 
+test, and validation sets in the ratio \mccorrect{TODO:TODO:TODO}. In total around 40,000 
 images were generated for the training, test, and validation datasets.
 
 As with the hit tagging CNN from the previous chapter, the training and
@@ -557,7 +556,7 @@ Figure \ref{fig:unet_loss} shows the evolution of the loss over time, along with
 a vertical line representing the loss at which the weights were chosen.
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/placeholder.png}
+	\includegraphics[width=\textwidth]{figures/unet_loss.pdf}
 	\caption
 	[U-Net training and validation loss as a function of epoch.]
 	{U-Net training and validation loss as a function of epoch. The weights were
@@ -741,6 +740,8 @@ energy deposited by Michel electrons within a 40 cm radius, shown in Figure
 \end{figure}
 
 \mccorrect{TODO: analysis of ionisation reconstruction performance.}
+\mccorrect{TODO: add fits in Appendix} \ref{ch:energyfits}.
+
 The performance of the ionisation energy reconstruction was evaluated on the
 simulated Michel electron sample. The reconstructed ionisation was compare to
 the true ionisation energy, in order to estimate the uncertainty on the
@@ -749,7 +750,6 @@ reconstructed ionisation energy against the true ionisation energy for the
 simulated Michel electron events. 
 \begin{figure}
 	\centering
-	% TODO: Fix these images
 	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Reconstructed Ionisation vs True Ionisation.]
@@ -757,11 +757,9 @@ simulated Michel electron events.
 	\label{fig:reco_v_ion}
 \end{figure}
 
-\mccorrect{TODO: Energy resolution fits vs energy.}
-
 \begin{figure}
 	\centering
-	% TODO: make set of fits as a function of energy
+	% TODO:overall energy uncertainty and bias
 	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
 	[Fractional energy difference between reconstructed and true Michel electron
@@ -776,13 +774,41 @@ simulated Michel electron events.
 	% TODO: make set of fits as a function of energy
 	\includegraphics[width=\textwidth]{figures/placeholder.png}
 	\caption
-	[Energy resolution and bias as a function of true ionisation energy.]
-	{Energy resolution and bias as a function of true ionisation energy.}
+	[Energy resolution and bias as a function of true ionisation energy deposition.]
+	{Energy resolution and bias as a function of true ionisation energy deposition.}
 	\label{fig:res_and_bias_ion}
 \end{figure}
 
+\subsubsection*{Contributions to Ionisation Energy Resolution}
 
-\subsubsection{Michel Electron Energy Reconstruction}
+The ionisation energy resolution has contributions from the reconstructed energy
+resolution for hits, and the spread due to imperfect hit tagging. The
+contribution from the reconstructed hit energy resolution can be estimated by
+considering the fractional energy resolution in the case of perfect hit tagging.
+The fractional energy difference between the reconstructed ionisation energy and
+the true ionisation energy for the case of perfect hit tagging is shown in
+Figure \ref{fig:michel_hit_res}.
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figures/michel_hit_energy_resolution.pdf}
+	\caption
+	[Energy uncertainty contribution from hit energy reconstruction.]
+	{The fractional difference between the true ionisation energy deposition and
+	the reconstructed ionisation energy deposition for Michel electron
+	reconstructed with perfect hit tagging. The distribution is fit with a 
+	gaussian, which is shown in red, and the fit parameters are shown in the top 
+	right corner.}
+	\label{fig:michel_hit_res}
+\end{figure}
+
+Based on the gaussian fit to the fractional difference, the contribution of the
+hit tagging to the energy resolution can be estimated. The fit has a mean of
+$0.0288 \pm 0.0012$ and a sigma of $0.0756 \pm 0.0011$, suggesting that the 
+energy resolution for reconstructed hits contributes around 8\% to the Michel 
+electron energy resolution. The remaining uncertainty comes from the purity 
+and efficiency of the hit tagging algorithm.
+
+\subsubsection{Michel Electron Energy Reconstruction} \label{sec:michel_energy}
 
 The true Michel electron energy includes contributions from scintillation light
 as well as radiated ionisation energy, which is not contained within the images
@@ -823,7 +849,7 @@ quadratic fit. The fit gives,
 \end{figure}
 
 The reconstructed Michel electron energy spectrum is shown in Figure
-\ref{fig:reco_v_mich}. TODO.
+\ref{fig:reco_v_mich}. \mccorrect{TODO.}
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/placeholder.png}
@@ -833,8 +859,6 @@ The reconstructed Michel electron energy spectrum is shown in Figure
 	\label{fig:reco_v_mich}
 \end{figure}
 
-\mccorrect{TODO: Energy resolution fits vs energy.}
-
 The energy uncertainty and bias are estimated by fitting the fractional energy 
 difference between the reconstructed and true Michel electron energies as a 
 function of true Michel electron energy. The fractional energy difference, 
@@ -843,9 +867,9 @@ defined as
 	\Delta = \frac{E_{reco} - E_{true}}{E_{true}},
 \end{equation}
 is considered in bins of true Michel electron energy which are plotted in Figure
-\ref{fig:frac_diff_energy}. This difference is fit with a gaussian distribution in each
-bin in order to estimate the energy uncertainty and bias as a function of the 
-true Michel electron energy.
+\ref{fig:frac_diff_energy}. This difference is fit with a gaussian 
+distribution in each bin in order to estimate the energy uncertainty and bias 
+as a function of the true Michel electron energy.
 \begin{figure}
 	\centering
 	% TODO: make set of fits as a function of energy
@@ -872,11 +896,12 @@ Figure \ref{fig:res_and_bias_energy}. \mccorrect{TODO: analysis of results}.
 	\label{fig:res_and_bias_energy}
 \end{figure}
 
-\section{Conclusions} \label{ME_EU}
+\section{Implications for DUNE} \label{ME_EU}
 \begin{mccorrection}
 	\begin{itemize}
-		\item Reco energy scaling
-		\item Uncertainty vs energy
-		\item Differences in dune far detector
+		\item Comparison to MicroBooNE, LArIAT, and ICARUS
+		\item Compare res to proposed SN nu 
+		\item Differences in dune far detector and need to collect scintillation
+			energy.
 	\end{itemize}
 \end{mccorrection}
