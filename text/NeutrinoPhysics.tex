@@ -288,7 +288,6 @@ leptons. Their interactions with other particles in the standard model is
 determined by the electroweak (EW) theory, which is derived from the $SU(2)
 \times U(1)$ gauge group. The neutrino fields enter into the SM Lagrangian in
 the CC and NC interactions:
-%TODO: check the implications of these equation changes.
 \begin{align}
 	\label{eqn:cc_lag}
 	\mathcal{L}^{CC} &= -\frac{g_W}{\sqrt{2}}\; j^{CC}_\alpha(x)\; W^\alpha(x)\; +\; h.c. \\
@@ -333,15 +332,10 @@ including both Dirac and Majorana components is
 
 \section{Neutrino Oscillations} \label{nu_osc}
 
-% TODO: Alfons wants to discuss this, follow up afterwards.
 Neutrino oscillations are a result of quantum mechanical interference between
-different massive neutrino eigenstates. The mass eigenstates are produced and 
-measured coherently because the energy and momenta of the neutrino states are
-not measured with enough precision to distinguish the mass eigenstate of the
-neutrino.
-
-Neutrinos are produced in a state of definite flavour, \(\alpha = e, \mu, \tau\), in 
-charged current (CC) and neutral current (NC) weak interactions, 
+different massive neutrino eigenstates. Neutrinos are produced in a state of 
+definite flavour, \(\alpha = e, \mu, \tau\), in charged current (CC) and 
+neutral current (NC) weak interactions, 
 \begin{equation}
 	W^+ \rightarrow l_\alpha^+ \nu_\alpha, \quad  W^- \rightarrow l^-_\alpha \nu_\alpha, \quad  Z   \rightarrow \nu_\alpha \xoverline{\nu_\alpha}.
 \end{equation}
@@ -603,37 +597,34 @@ NEXT\cite{Alvarez2012}, and SNO+\cite{Andringa2016}. The question of the
 nature of neutrinos has implications on neutrino mass generation, as mentioned 
 in Equation \ref{eqn:m_dirac_majorana}.
 
-% TODO: cite nufit instead
 A large number of neutrino oscillation measurements have now been made by
 solar, reactor, atmospheric, and accelerator neutrino experiments. When combined
 the results of these experiments give us our best estimates of neutrino 
-oscillation parameters. The current combined results, from the 2018 
-Review of Particle Physics by the Particle Data Group \cite{PhysRevD.98.030001},
-along with the major contributing experiments for each measurement are 
-summarised below.
+oscillation parameters. The current combined results, from the 2019 Nu--Fit
+global neutrino oscillation analysis \cite{Esteban:2018azc} including the solar
+neutrino data from Super Kamiokande, along with the major contributing 
+experiments for each measurements are summarised below. Each measurement is 
+given for both the normal hierarchy and the inverted hierarchy.
 
 \subsubsection*{$\boldsymbol{\theta_{12}}$}
 
 The constraints on the solar mixing angle $\theta_{12}$ are dominated by a
 combination of data from solar neutrino experiments (e.g. SNO \cite{Ahmad2002}
 and Super Kamiokande \cite{PhysRevLett.86.5651}) with data from the KamLAND 
-experiment \cite{Araki2005}. The current constraint,
-\begin{equation}
-	\label{eqn:theta_12}
-	\sin^2(\theta_{12}) = 0.297 \mbox{ } \substack{+ 0.017 \\ - 0.016},
-\end{equation}
-comes from a three neutrino fit to the solar and KamLAND data 
-\cite{Capozzi:2016rtj}.
+experiment \cite{Araki2005}. The current constraint is,
+\begin{align*}
+	\sin^2(\theta_{12}) &= 0.310 \mbox{ } \substack{+ 0.013 \\ - 0.012} \quad \mbox{(NO)} \\
+	                    &= 0.310 \mbox{ } \substack{+ 0.013 \\ - 0.012} \quad \mbox{(IO)}
+\end{align*}
 
 \subsubsection*{$\boldsymbol{\Delta m^2_{21}}$}
 
-The best measurement of $\Delta m^2_{21}$ comes from the same combined fit to 
-the solar neutrino and KamLAND data \cite{Capozzi:2016rtj}. The measured value
-is
-\begin{equation}
-	\label{eqn:delta_m_21}
-	\Delta m^2_{21} = (7.37 \mbox{ } \substack{+ 0.17 \\ - 0.16}) \times 10^{-5} \mbox{  eV}^2.
-\end{equation}
+The best measurement of $\Delta m^2_{21}$ is also dominated by a combination of
+solar neutrino data with the results from KamLAND. The measured value is,
+\begin{align*}
+	\Delta m^2_{21} &= (7.39 \mbox{ } \substack{+ 0.21 \\ - 0.20}) \times 10^{-5} \mbox{  eV}^2 \quad \mbox{(NO)} \\
+	                &= (7.39 \mbox{ } \substack{+ 0.21 \\ - 0.20}) \times 10^{-5} \mbox{  eV}^2 \quad \mbox{(IO)} \\
+\end{align*}
 
 \subsubsection*{$\boldsymbol{\theta_{23}}$ and $\boldsymbol{\Delta m^2_{32}}$}
 
@@ -644,16 +635,16 @@ contours for $\sin^2 (\theta_{23})$--$\Delta m^2_{32}$, with the tightest error
 bands coming from long baseline accelerator experiments such as T2K, MINOS, and 
 \nova{} \cite{PhysRevD.96.092006, PhysRevLett.112.191801,
 PhysRevLett.123.151803}. The results are dependent on the neutrino mass
-ordering, based on a global three neutrino oscillation analysis 
-\cite{Capozzi:2016rtj}, 
+ordering, based on the Nu--Fit global three neutrino oscillation analysis 
+\cite{Esteban:2018azc}, 
 \begin{align*}
-	|\Delta m^2_{32}| &= (2.46 \mbox{ } \substack{+ 0.04 \\ - 0.04}) \times 10^{-3} \mbox{  eV}^2 \quad \mbox{(NO)}  \nonumber\\
-	                  &= (2.50 \mbox{ } \substack{+ 0.05 \\ - 0.04}) \times 10^{-3} \mbox{  eV}^2 \quad \mbox{(IO)},
+	|\Delta m^2_{32}| &= (+ 2.525 \mbox{ } \substack{+ 0.033 \\ - 0.031}) \times 10^{-3} \mbox{  eV}^2 \quad \mbox{(NO)} \\
+	                  &= (- 2.512 \mbox{ } \substack{+ 0.034 \\ - 0.031}) \times 10^{-3} \mbox{  eV}^2 \quad \mbox{(IO)},
 \end{align*}
 and 
 \begin{align*}
-	\sin^2(\theta_{23}) &= 0.437 \mbox{  } \substack{+ 0.033 \\ - 0.020} \quad \mbox{(NO)} \nonumber \\
-	                    &= 0.569 \mbox{  } \substack{+ 0.028 \\ - 0.051} \quad \mbox{(IO)}.
+	\sin^2(\theta_{23}) &= 0.582 \mbox{  } \substack{+ 0.015 \\ - 0.019} \quad \mbox{(NO)} \nonumber \\
+	                    &= 0.582 \mbox{  } \substack{+ 0.015 \\ - 0.018} \quad \mbox{(IO)}.
 \end{align*}
 
 \begin{figure}
@@ -671,18 +662,21 @@ and
 \end{figure}
 
 \subsubsection*{$\boldsymbol{\theta_{13}}$}
-
-% TODO: include T2K and nova here.
 Reactor neutrino experiments such as Daya Bay \cite{An:2012eh}, Double Chooz
-\cite{Abe:2013sxa}, and RENO \cite{Ahn:2012nd} have made the most precise measurements of
-$\theta_{13}$. A three neutrino global fit to the reactor data gives 
-\cite{Capozzi:2016rtj}
-\begin{equation}
-	\sin^2 \theta_{13} = (2.15 \pm 0.07) \times 10^{-2}.
-	\label{eqn:theta_13}
-\end{equation}
+\cite{Abe:2013sxa}, and RENO \cite{Ahn:2012nd} have made precise measurements of
+$\theta_{13}$, as well as some long baseline oscillation experiments, such as 
+T2K and \nova. The Nu--Fit three neutrino global fit to the reactor data gives,
+\begin{align*}
+	\sin^2 \theta_{13} &= 0.02240 \substack{+ 0.00065 \\ - 0.00066} \quad \mbox{(NO)} \\ .
+	                   &= 0.02263 \substack{+ 0.00065 \\ - 0.00066} \quad \mbox{(IO)}  
+\end{align*}
 
-% TODO: add mass ordering section.
+\subsubsection*{Mass Ordering}
+The long baseline oscillation experiments T2K and \nova have both shown a
+preference for normal mass ordering 
+\citetemp{PhysRevD.96.092006,PhysRevLett.123.151803}. When these results are 
+combined in the Nu--Fit three--neutrino oscillation analysis, inverted 
+ordering is currently disfavoured with a $\Delta \chi^2 = 9.3$.
 
 \subsubsection*{$\boldsymbol{\delta_{CP}}$}
 While there are no accurate measurements of \dcp{} there are some hints that it
@@ -739,25 +733,6 @@ need for further study of CP--violation in neutrino oscillations
 	}
 	\label{fig:nova_cp}
 \end{figure}
-
-\bigskip 
-\noindent
-% TODO: think about where to put this.
-Neutrino oscillations are currently the only measured effect that is not
-explained in the SM, and their observation proves that neutrinos are massive.
-However, the absolute mass of neutrinos is still unknown. The question of 
-absolute neutrino mass, is one of a number of open questions in neutrino 
-physics. At the time of writing, the main open questions in neutrino physics
-are:
-\begin{itemize}
-	\item What are the absolute masses of the neutrinos?
-	\item What is the mass ordering of the neutrino mass eigenstates?
-	\item Is there CP violation in the neutrino sector?
-	\item Are neutrinos Dirac ($\nu \ne \xoverline{\nu}$) or Majorana 
-		($\nu = \xoverline{\nu}$) particles?
-	\item Are there any sterile neutrino states?
-\end{itemize}
-
 
 \section{Neutrino Interactions} \label{nu_prod}
 
@@ -821,9 +796,7 @@ the composition of the final state is essential to the neutrino oscillation
 analysis. Part of this thesis, Chapter \ref{ch:chargeid}, looks at
 the identification of charge deposits in a liquid argon TPC. The results 
 provide input in the analysis of \protodune{} data, and the methods used could 
-be adapted and developed for application in the identification and
-reconstruction of final state particles in neutrino interaction in DUNE.
-% TODO: what do I mean here. E.g. muon pion separation...
+be adapted and developed for application in DUNE. 
 
 \section{Supernova Neutrinos} \label{nu_sn}
 

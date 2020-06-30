@@ -259,7 +259,7 @@ The mean free path for photons in the MeV range is shown in Figure
 
 \end{figure}
 
-\subsection{Typical Interaction Signatures in \protodune{}}
+\section{Interaction Signatures in \protodune{}}
 As a result of the differences in energy loss, which depend on particle species
 and energy, different particles leave distinct signatures in the detector.  
 Figure \ref{fig:particle_signatures} shows the typical signatures of four 
@@ -309,12 +309,11 @@ photon showers in \protodune{} are $\pi^0$ decays, shown in Figure
 \begin{figure}
 
 	\centering
-	% TODO: make these plots nicer
 
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/muon_signature.png}
-		\caption{Muon track with delta ray.}
+		\caption{Muon track with delta rays.}
 		\label{fig:muon_signature}
 	\end{subfigure}
 	\hfill
@@ -326,13 +325,15 @@ photon showers in \protodune{} are $\pi^0$ decays, shown in Figure
 	\end{subfigure}
 
 	\begin{subfigure}[b]{0.49\textwidth}
+		\vspace{5mm}
 		\centering
-		\includegraphics[width=\textwidth]{figures/michel_candidate.pdf}
+		\includegraphics[width=\textwidth]{figures/michel_signature.png}
 		\caption{Michel electron.}
 		\label{fig:michel_signature}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.49\textwidth}
+		\vspace{5mm}
 		\centering
 		\includegraphics[width=\textwidth]{figures/pi0_signature.png}
 		\caption{Photon showers from a $\pi^0$ decay.}
@@ -340,9 +341,31 @@ photon showers in \protodune{} are $\pi^0$ decays, shown in Figure
 	\end{subfigure}
 
 	\caption
-	[Typical particle interactions in \protodune{} for different particle species.]
-	{Typical particle interactions in \protodune{} for different particle species.}
+	[Typical particle interactions in \protodune{} for different particle 
+	species.]
+	{Typical particle interactions in \protodune{} data for candidate particles
+	from different particle species. These images are made from the raw detector
+	readout on the collection plane, before noise filtering and deconvolution are 
+	applied. }
 
 	\label{fig:particle_signatures}
 
 \end{figure}
+
+\section{Scintillation Light in Liquid Argon}
+The second source of electromagnetic energy loss in liquid argon is due to the
+production of scintillation light. The work in this thesis does not make
+use of the scintillation energy depositions, therefore, the mechanisms involved
+in the production of scintillation light will only be briefly summarised here 
+for completeness.
+
+Scintillation light in liquid argon is produced by radiative decay of excited
+argon dimers (or eximers), which are produced when excited argon atoms combine
+with a ground state argon atom to form an excited $\mbox{Ar}_2$ molecule. Two 
+excited dimer states contribute to the scintillation light production, a 
+singlet and a triplet, with lifetimes of $6 \mbox{ ns}$ and $1.5 \mbox{ } \mu 
+\mbox{s}$ respectively \cite{Lippincott:2008ad}. When the dimers decay they 
+produce two ground state argon atoms, and release scintillation light 
+isotropically in the form of $128 \mbox{ nm}$ photons. Argon is transparent to 
+these photons, and therefore, the scintillation light can travel large 
+distances before being collected by a photon detection system.

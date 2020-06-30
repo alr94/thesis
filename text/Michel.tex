@@ -1,7 +1,5 @@
 \chapter{\label{ch:michel}Study of Michel Electrons in \protodune{}} 
 
-% Random text.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FROM COS
 %
@@ -785,9 +783,10 @@ The ionisation energy resolution has contributions from the reconstructed energy
 resolution for hits, and the spread due to imperfect hit tagging. The
 contribution from the reconstructed hit energy resolution can be estimated by
 considering the fractional energy resolution in the case of perfect hit tagging.
-The fractional energy difference between the reconstructed ionisation energy and
-the true ionisation energy for the case of perfect hit tagging is shown in
-Figure \ref{fig:michel_hit_res}.
+This can be tested with the simulated data by using the MC truth information to
+select the correct hits within the images.  The fractional energy difference 
+between the reconstructed ionisation energy and the true ionisation energy for 
+the case of perfect hit tagging is shown in Figure \ref{fig:michel_hit_res}.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/michel_hit_energy_resolution.pdf}
@@ -797,14 +796,14 @@ Figure \ref{fig:michel_hit_res}.
 	the reconstructed ionisation energy deposition for Michel electron
 	reconstructed with perfect hit tagging. The distribution is fit with a 
 	gaussian, which is shown in red, and the fit parameters are shown in the top 
-	right corner.}
+	right corner. The error bars are statistical.}
 	\label{fig:michel_hit_res}
 \end{figure}
 
 Based on the gaussian fit to the fractional difference, the contribution of the
 hit tagging to the energy resolution can be estimated. The fit has a mean of
 $0.0288 \pm 0.0012$ and a sigma of $0.0756 \pm 0.0011$, suggesting that the 
-energy resolution for reconstructed hits contributes around 8\% to the Michel 
+energy resolution for reconstructed hits contributes around 7--8\% to the Michel
 electron energy resolution. The remaining uncertainty comes from the purity 
 and efficiency of the hit tagging algorithm.
 
@@ -897,7 +896,9 @@ Figure \ref{fig:res_and_bias_energy}. \mccorrect{TODO: analysis of results}.
 \end{figure}
 
 \section{Implications for DUNE} \label{ME_EU}
+
 \begin{mccorrection}
+	TODO
 	\begin{itemize}
 		\item Comparison to MicroBooNE, LArIAT, and ICARUS
 		\item Compare res to proposed SN nu 

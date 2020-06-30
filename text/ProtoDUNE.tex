@@ -90,16 +90,14 @@ research and development ongoing to validate and characterise the performance
 of the technology for DUNE. 
 
 \subsection{Liquid Argon Time Projection Chambers}
-% TODO: clarify scintillation production
-% TODO: clarify scintillation scattering and absorption
 A LArTPC consists of a large volume of highly--purified liquid argon subject to
 an electric field. Charged particles traversing the liquid argon produce two
 primary energy depositions, a trail of ionisation electrons along their path,
 and prompt ultra--violet scintillation photons. After creation the ionisation
 electrons drift in the electric field toward the charge readout plane where they
 induce electrical signals. Liquid argon is transparent to its own scintillation
-light and therefore the scintillation photons can travel through the argon to be
-collected in a photon detection system.The LArTPC detection principal is 
+light, therefore the scintillation photons can travel through the argon to be
+collected in a photon detection system. The LArTPC detection principal is 
 illustrated in Figure \ref{fig:lartpc}. 
 
 \begin{figure}
@@ -130,17 +128,16 @@ plane. This scintillation light plays an important role in the accurate 3D
 reconstruction of interactions in the LArTPC, it can be used to determine the
 time of an interaction to within a few nanoseconds.
 
-% TODO: explain position offset a little more
-% TODO: I need a discussion of what t_0 really is somewhere
 In a LArTPC interactions play out much quicker than the detector is able to 
 record them; as such each event actually integrates over a large number of 
-interactions within the readout window. The true time, $t_0$, of the 
-interactions in the event cannot be reconstructed from the ionisation signals 
-alone; by utilising the much faster scintillation signals the time of 
-interactions can be calculated with much higher precision.  This data can be 
-combined with the arrival time of drifting electrons to reconstruct the true 
-drift distance, without an accurate $t_0$ the reconstructed drift distance 
-will be too long.
+interactions within the readout window. The true time, often referred to as 
+the $t_0$, of the interactions in the event cannot be reconstructed from the 
+ionisation signals alone; by utilising the much faster scintillation signals 
+the time of interactions can be calculated with much higher precision.  This 
+data can be combined with the arrival time of drifting electrons to reconstruct 
+the true drift distance. Without an accurate $t_0$, the reconstructed drift 
+distance will wrong, and as a result, the predicted charge attenuation
+will be incorrect.
 
 The details of the charge readout and photon detection systems are specific to 
 each detector, but broadly speaking LArTPC detectors can be split into two 
@@ -758,15 +755,18 @@ from a \protodune{} beam event is shown in Figure \ref{fig:pandora_pfp}.
 
 \end{figure}
 
-% TODO: need to define dQ/dx
-% TODO: be careful to make well defined use of dQ/dx
 As well as precise spatial reconstruction, LArTPCs provide excellent
-calorimetric information. To convert the measured charge of each hit into a
-reconstructed energy a number of spatial and $dQ/dx$ dependent factors need to
-be taken into account. The reconstructed charge of each hit is given by the
-integrated area under the gaussian fit to that hit. The $dx$ for each hit varies
-based on the direction of the track with respect to the wires, it is equal to
-the wire spacing divided by the sine of the angle between the wire and the 2D
+calorimetric information. Each reconsted hit has an associated charge, $Q$, and
+energy $E$, which measure the amount of energy deposited by the charged particle
+in that small energy depositon. The measured charge in ADC depends on the
+spatial location of the hit within the TPC, as well as the local ionisation
+density, or $dQ/dx$, in the region of the associated energy deposition.  
+Therefore, to convert the measured charge of each hit into a reconstructed 
+energy, a number of spatial and $dQ/dx$ dependent factors need to be taken 
+into account.  The reconstructed charge of each hit is given by the integrated 
+area under the gaussian fit to that hit. The $dx$ for each hit varies based on 
+the direction of the track with respect to the wires, it is equal to the wire 
+spacing divided by the sine of the angle between the wire and the 2D 
 projection of the track onto the anode plane.
 
 A number of factors affect the measured $dQ/dx$, these effects need to be 
@@ -1280,7 +1280,7 @@ of the larger plots such as event displays, it would take minutes to render a
 single event display. By improving the efficiency of the data transfer from ROOT
 to Bokeh, the rendering time was reduced to around 4 seconds per event display.
 
-\section{System Performance and Possible Improvements}
+\subsection{System Performance and Possible Improvements}
 In the \protodune{} Technical Design Report \cite{Abi2017}, the proposed online
 monitoring system was described as being able to \say{provide data quality 
 assurance in real--time}, in practice the response time is around one minute.
