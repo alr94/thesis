@@ -44,39 +44,52 @@ identify the low energy electrons produced in supernova neutrino interactions, a
 detector with low thresholds and low backgrounds is required. The Deep
 Underground Neutrino Experiment (DUNE) aims to tackle these challenges by
 utilising the Liquid Argon Time Projection Chamber (LArTPC) technology, whose
-high spatial and calorimetric resolution allows for more accurate topological
+high spatial and calorimetric resolution allows for more accurate geometric
 classification of neutrino interactions \cite{Acciarri:2016crz}. To achieve
 these goals, a significant programme of LArTPC research is ongoing with
 construction, reconstruction, and analysis methods all under development in a
 number of LArTPC based experiments \cite{Acciarri:2016smi, Cavanna:2014iqa,
 Antonello:2015lea, Abi:2017aow}. 
 
-This thesis presents an analysis of charged particle interactions in the
-ProtoDUNE--SP LArTPC detector. A hit classification algorithm is developed and a
-sample of Michel electrons is used to provide a measurement of electron energy
-bias for low energy electrons. The analysis described in this thesis uses data
-collected with the ProtoDUNE--SP detector between August and November 2018.
+This thesis presents analyses of charged particle interactions in the
+\protodune{} LArTPC detector, using data collected during a test beam run of the
+detector between August and November 2018. Hit classification and Michel 
+electron reconstruction are investigated, and a sample of Michel electrons is 
+used to provide a measurement of the energy resolution and bias for low energy 
+electrons in \protodune{}.
 
-Michel electrons have an energy spectrum spanning 0--60 MeV; understanding
-electrons in this energy range is important as they are the same energy as those
-produced when neutrinos from supernova bursts interact. In a LArTPC at these
-energies, the energy deposition of electrons transitions between ionisation
-dominated and radiation dominated regimes making for a particularly complicated
-combined event topology \cite{Acciarri:2017sjy}. The work presented here details
-a reconstruction strategy based on augmenting hit identification from a
-convolution neural network with simple clustering to identify and reconstruct
-Michel electron events. Analysis of these Michel electron events in
-ProtoDUNE--SP data and simulation quantifies the energy scale and energy scale
-bias for low energy electrons in a surface level LArTPC detector; this
-measurement can provide valuable input to studies of supernova burst neutrinos
-in LArTPC detectors.
+Particle classification plays an important role in event reconstruction in 
+LArTPC detectors. In particular, the clustering of hits into tracks and 
+showers is an important step in reconstructing events in a LArTPC. After tracks
+and showers have been reconstructed, they can be combined to build up a picture
+of the full particle interaction. In this thesis, we present the results of the 
+development of a hit classification algorithm based on convolutional neural
+networks. The primary goal of this algorithm is to classify hits as 
+track--like or shower--like on a hit--by--hit basis. The output from the hit 
+classification has been applied to analyses of beam particle interactions, 
+such as pion cross--section analyses, and cosmic--ray interactions, which 
+are used to calibrate the \protodune{} detector. It is also used to select a 
+sample of Michel electron candidates, which are analysed in this thesis.
 
-Chapter \ref{ch:neutrinophysics} provides a theoretical overview of neutrinos
-within the standard model. Interactions, oscillations, and production will be
-discussed summarising the current knowledge in the field, as well as open
-questions which will be studied in ongoing and upcoming experiments. The role of
-neutrinos in supernova bursts and the detection of such neutrinos in a LArTPC
-detector will be discussed in more detail.
+Michel electrons have an energy spectrum spanning 0--60 MeV. Understanding
+electrons in this energy range is important, as they have a similar energy to 
+the electrons produced when neutrinos from supernova bursts interact. In a 
+LArTPC at these energies, the energy deposition of electrons transitions 
+between ionisation dominated and radiation dominated regimes, making for a 
+unique event signature \cite{Acciarri:2017sjy}. The work presented in this 
+thesis details the selection and reconstruction of Michel electron events in 
+\protodune{}, based on machine learning algorithms. Analysis of the 
+reconstructed Michel electron events will be used to quantify the energy 
+resolution and bias for low energy electrons in \protodune{} based on this 
+approach. The results of this analysis provide valuable input to studies of 
+supernova burst neutrinos in LArTPC detectors.
+
+In this thesis, chapter \ref{ch:neutrinophysics} provides a theoretical 
+overview of neutrinos within the standard model. Interactions, oscillations, 
+and production will be discussed summarising the current knowledge in the 
+field, as well as open questions which will be studied in ongoing and upcoming 
+experiments. The role of neutrinos in supernova bursts and the detection of 
+such neutrinos in a LArTPC detector will be discussed in more detail.
 
 The ProtoDUNE--SP experiment is described in Chapter \ref{ch:protodune},
 including details of the beam line, detector, cosmic--ray flux, and simulations.
@@ -96,7 +109,7 @@ relevant details of neural network algorithms.
 
 The main analysis of this thesis will be described in Chapters
 \ref{ch:chargeid} and \ref{ch:michel}. Details of a hit classification
-algorithm based on convolutional neural networks will be given and Michel
+algorithm based on convolutional neural networks will be given, and Michel
 electron reconstruction will be highlighted as an example use for the output of
 this algorithm. Michel electron production and energy loss in liquid argon will
 be discussed. This will be followed by details of the reconstruction strategy
