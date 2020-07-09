@@ -48,6 +48,98 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: temporarily removed
+% \subsubsection{Michel Electron Energy Reconstruction} \label{sec:michel_energy}
+% TODO: decide if I want this.
+
+% The true Michel electron energy includes contributions from scintillation light
+% as well as radiated ionisation energy, which is not contained within the images
+% used in reconstruction. In the noisy surface level environment of the
+% \protodune{} TPC, it is not possible to reconstruct the scintillation light as
+% part of the Michel electron events. Therefore, to estimate the total Michel 
+% electron energy the reconstructed ionisation energy needs to be scaled to 
+% account for these losses. As shown in Figure \ref{fig:michel_track_only},
+% there is a none--linear correlation between the true Michel electron energy 
+% and the available ionisation energy in reconstruction. Therefore, a quadratic 
+% energy scaling factor was used to convert the reconstructed ionisation energy 
+% into a reconstructed Michel electron energy. 
+% 
+% The energy scaling factor was estimated by fitting the reconstructed ionisation
+% energy as a function of true Michel electron energy, with a quadratic 
+% correction as shown in Figure \ref{fig:quadratic_fit}. This quadratic is then 
+% inverted to give the reconstructed Michel electron energy,
+% \begin{equation}
+% 	E_{michel} = \left( \frac{E_{ion}}{a} - d \right)^{\frac{1}{2}} - \frac{b}{2a},
+% 	\quad d = \frac{c}{a} - \left( \frac{b}{2a} \right)^2 
+% \end{equation}
+% where $E_{michel}$ is the reconstructed Michel electron energy, $E_{ion}$ is the
+% reconstructed ionisation energy, and a, b, and c are the parameters from the
+% quadratic fit. The fit gives,
+% \begin{equation}
+% 	a = TODO, \quad b = TODO, \quad c = TODO.
+% \end{equation}
+% \begin{figure}
+% 	\centering
+% 	% TODO
+% 	\includegraphics[width=\textwidth]{figures/placeholder.png}
+% 	\caption
+% 	[Quadratic fit of reconstructed ionisation energy vs true Michel electron
+% 	enegry.]
+% 	{Quadratic fit of reconstructed ionisation energy vs true Michel electron
+% 	energy, which is used to calculate a quadratic energy correction factor.}
+% 	\label{fig:quadratic_fit}
+% \end{figure}
+% 
+% The reconstructed Michel electron energy spectrum is shown in Figure
+% \ref{fig:reco_v_mich}. \mccorrect{TODO.}
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=\textwidth]{figures/placeholder.png}
+% 	\caption
+% 	[Reconstructed Energy vs True Michel Electron Energy.]
+% 	{Reconstructed Energy vs True Michel Electron Energy.}
+% 	\label{fig:reco_v_mich}
+% \end{figure}
+% 
+% The energy uncertainty and bias are estimated by fitting the fractional energy 
+% difference between the reconstructed and true Michel electron energies as a 
+% function of true Michel electron energy. The fractional energy difference, 
+% defined as 
+% \begin{equation}
+% 	\Delta = \frac{E_{reco} - E_{true}}{E_{true}},
+% \end{equation}
+% is considered in bins of true Michel electron energy which are plotted in Figure
+% \ref{fig:frac_diff_energy}. This difference is fit with a gaussian 
+% distribution in each bin in order to estimate the energy uncertainty and bias 
+% as a function of the true Michel electron energy.
+% \begin{figure}
+% 	\centering
+% 	% TODO: make set of fits as a function of energy
+% 	\includegraphics[width=\textwidth]{figures/placeholder.png}
+% 	\caption
+% 	[Fractional energy difference between reconstructed and true Michel electron
+% 	energy.]
+% 	{Fractional energy difference between reconstructed and true Michel electron
+% 	energy.}
+% 	\label{fig:frac_diff_energy}
+% \end{figure}
+% 
+% The energy resolution and bias as a function of true Michel electron energy are 
+% estimated as the standard deviation and mean of the gaussian fit to the
+% fractional energy difference in each energy bin, these values are plotted in
+% Figure \ref{fig:res_and_bias_energy}. \mccorrect{TODO: analysis of results}.
+% \begin{figure}
+% 	\centering
+% 	% TODO: make set of fits as a function of energy
+% 	\includegraphics[width=\textwidth]{figures/placeholder.png}
+% 	\caption
+% 	[Energy resolution and bias as a function of true Michel electron energy.]
+% 	{Energy resolution and bias as a function of true Michel electron energy.}
+% 	\label{fig:res_and_bias_energy}
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \minitoc
 
 \noindent
@@ -465,18 +557,21 @@ the outputs the pixels have an amplitude of 1 if they contain a Michel electron
 hit, and 0 otherwise. Only data from the collection plane is used because there 
 is a higher signal to noise ratio on these wires. 
 
-Intersection--over--union was used as the loss function for the U-Net. This loss
-is defined as 
+The $F_\beta$ metric was used as the loss function for the U--Net. This loss is
+a generalised version of the $F_1$ metric discussed in Chapter
+\ref{ch:chargeid}, which allows for the relative importance of precision and
+recall to be tuned,
 \begin{equation}
-	\mbox{IOU}(A, B) = \frac{|A \cap B|}{|A \cup B|}
+	F_\beta = \left( 1 + \beta^2\right) \frac{precision \cdot
+	recall}{\left(\beta^2 \cdot precision\right) + recall}.
 \end{equation}
-where $A$ is the set of all selected hits, and $B$ is the set of all true 
-hits\cite{rezatofighi2019generalized}. This loss rewards the network for 
-selecting as many correct hits as possible (high intersection), while 
-penalising it for selecting more hits than it needs to (high union). The IOU 
-score lies between 0 and 1, with a score of 1 corresponding to a perfect match 
-between the two sets and therefore perfect hit tagging in our Michel electron 
-case. 
+This loss rewards the network for selecting as many correct hits as possible
+(high recall), while penalising it for selecting more hits that necessary (low
+precision). The $F_\beta$ score lies between 0 and 1, with a score of 1
+corresponding to a perfect match. The \beta parameter was chosen to be 2, such 
+that recall was considered to be more important than precision. This was found
+to improve the performance, however, no rigorous optimisation of $\beta$ was
+performed.
 
 The network architecture used for the Michel electron reconstruction is shown in
 Figure \ref{fig:unet_arch}. The network consists of a repeating structure which
@@ -538,14 +633,12 @@ implemented to prevent over--fitting.
 	\label{fig:unet_arch}
 \end{figure}
 
-% TODO: talk about flattening of training distribution
 The datasets for the training process were generated from a full simulation of 
 the \protodune{} detector under beam operation including both cosmic--ray and
 beam particles. The images produced contain the location and integrated charge
-for each hit within the image window. The training data is split into training, 
-test, and validation sets in the ratio \mccorrect{80:10:10}. In total 
-around 15,000 images were generated for the training, test, and validation 
-datasets. 
+for each hit within the image window. The training data is split into 
+training, test, and validation sets in the ratio 80:10:10. In total around 
+15,000 images used in the training, test, and validation datasets. 
 
 As with the hit tagging CNN from the previous chapter, the training and
 validation scores were monitored throughout training using TensorFlow. The
@@ -745,13 +838,17 @@ in Figure \ref{fig:40_v_80}.
 \end{figure}
 
 The performance of the ionisation energy reconstruction was evaluated with the
-simulated Michel electron sample. The reconstructed ionisation was compared to
-the true ionisation energy, in order to estimate the uncertainty on the
-reconstructed ionisation energy. Figure \ref{fig:reco_v_ion} shows the
-reconstructed ionisation energy against the true ionisation energy for the
-simulated Michel electron events. A linear scaling factor was used to correct 
-the reconstructed energy, this was based on a linear fit to the reconstructed 
-vs true ionisation energy distribution.
+simulated Michel electron sample. First, the reconstructed ionisation energy was
+compared to the true ionisation energy, and a linear scaling factor was
+calculated to correct for any energy offset. The correction factor was
+calculated based on a liner fit to the distribution of reconstructed energy
+against true energy, which is shown in Figure \ref{fig:reco_v_ion}. The
+reconstructed energy was corrected based on this linear fit, 
+\begin{equation*}
+	E_{corr} = \frac{E_{reco}  - 0.808 \mbox{ MeV}}{0.9567},
+\end{equation*}
+and the corrected energy was used to estimate the energy resolution and bias of
+the Michel electron energy reconstruction.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/reco_v_true_ion.pdf}
@@ -761,19 +858,23 @@ vs true ionisation energy distribution.
 	\label{fig:reco_v_ion}
 \end{figure}
 
-After scaling the reconstructed energy with a linear scaling factor, the energy
-resolution and bias of the energy reconstruction were estimated. The overall
-energy resolution and bias were estimated by fitting a gaussian to the 
-fractional difference between the reconstructed ionisation energy and the true 
-ionisation energy, which we define as
+To estimate the resolution and bias of the ionisation energy reconstruction, the
+fractional difference between the reconstructed and true ionisation energy was
+considered. We define the fractional difference as,
 \begin{equation*}
-	\mbox{Fractional Difference} = \frac{E_{reco} - E_{true}}{E_{true}}.
+	\mbox{Fractional Difference} = \frac{E_{corr} - E_{true}}{E_{true}},
 \end{equation*}
-The distribution of fractional differences is shown in Figure
-\ref{fig:frac_diff_ion}, along with the gaussian fit, which was restricted to
-the central region. Based on this fit, the overall energy resolution was
-estimated to be on the order of 10\%, and the bias was estimated to be on the
-order of 1\%. 
+such that the spread of the distribution is a measure of the fractional
+uncertainty of the reconstructed energy. The energy resolution and bias were
+estimate by fitting a gaussian to the fractional difference distribution; the
+standard deviation of the gaussian was taken to be an estimate of the energy
+resolution, and the mean of the gaussian was taken to be an estimate of the
+bias. The distribution of the fractional difference for all events, and the 
+associated gaussian fit, are shown in Figure \ref{fig:frac_diff_ion}. Based on
+this fit the energy resolution was estimated to be around 10\% and the bias 
+around 1\%. However, it is worth noting that the fractional difference
+distribution has a fairly significant tail for negative fractional differences,
+and therefore the fit was restricted to the central region of the distribution.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/frac_diff_ion.pdf}
@@ -785,29 +886,26 @@ order of 1\%.
 	\label{fig:frac_diff_ion}
 \end{figure}
 
-The distribution fractional energy difference shown in Figure
-\ref{fig:frac_diff_ion}, has a significant tail corresponding to under
-reconstructing the Michel electron energy. In order to investigate this tail
-further, the energy resolution and bias as a function of the true Michel
-electron ionisation energy were calculated. This was based on the same method
-used to predict the overall energy resolution and bias, but the events were
-binned in terms of their true ionisation energy. The reconstructed energy
-resolution and bias as a function of true ionisation energy are shown in Figure
-\ref{fig:res_and_bias_ion}, where the values are based on the fits shown in 
-Appendix \ref{ch:energyfits}. 
-
+Studies into the energy resolution and bias as a function of energy gave
+insights into the source of the tail in Figure \ref{fig:frac_diff_ion}. These
+were investigated by binning the fractional energy difference distribution in
+terms of true ionisation energy, and performing the same gaussian fit to the
+fractional difference distribution for each energy bin, to estimate the energy
+resolution and bias. The measured energy resolution and bias as a function of 
+true ionisation energy are shown in Figure \ref{fig:res_and_bias_ion}, the 
+associated fits are given in Appendix \ref{ch:energyfits}.
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/res_v_energy_ion.pdf}
+		\includegraphics[width=0.95\textwidth]{figures/res_v_energy_ion.pdf}
 		\caption {Resolution.}
 		\label{fig:res_ion}
 	\end{subfigure}
 	\begin{subfigure}[b]{\textwidth}
 		\centering
 		\vspace{5mm}
-		\includegraphics[width=0.9\textwidth]{figures/bias_v_energy_ion.pdf}
+		\includegraphics[width=0.95\textwidth]{figures/bias_v_energy_ion.pdf}
 		\caption {Bias.}
 		\label{fig:bias_ion}
 	\end{subfigure}
@@ -817,30 +915,52 @@ Appendix \ref{ch:energyfits}.
 	\label{fig:res_and_bias_ion}
 \end{figure}
 
-Overall, the Michel electron reconstruction shows good performance in terms of
-energy resolution and bias, however, in the high energy tail of the distribution
-there is a significant increase in bias. This tail is due to a reduction in 
-hit selection efficiency at high energies, which leads to less of the Michel 
-electron ionisation energy being reconstructed. This effect begins to impact 
-the fractional difference distribution in the 25--35 MeV bin, and becomes 
-dominant above 35 MeV. This leads to a significant tail in the fractional 
-difference distribution for the 25--35 MeV bin, seen in Appendix 
-\ref{ch:energyfits}. No attempt was made to fit this tail, and therefore the 
-estimated energy resolution and bias in the 25 -- 35 MeV bin overstates the 
-performance in this region. A more conservative estimate, based on the mean and 
-standard deviation of the distribution, gives a bias of $-5\%$ and a resolution 
-of $16\%$.
+% FIXME: you were here.
+The energy resolution and bias as a function of energy demonstrates that the
+energy reconstruction algorithm is capable of good energy reconstruction
+performance. However, it is important to note that above around 25 MeV there is
+significant tail for negative fractional differences. This is due to a reduction
+in the hit tagging efficiency in the high energy region, which causes less of
+the initial Michel electron energy to be collected by the CNN. No attempt was
+made to fit this tail, and therefore the estimated energy resolution and bias
+based on the gaussian fits, used to populate Figure \ref{fig:res_and_bias_ion},
+overstate the performance in the high energy region. A more conservative 
+estimate can be made by considering the mean and RMS of the distribution. 
+Table \ref{tab:gaus_v_mean} gives a comparison between the estimated bias and 
+resolution based on these two methods.
+\begin{table}
+	\centering
+	\bgroup
+	\def\arraystretch{1.5}
+	\begin{tabular}{c|c|c|c|c}
+		Energy Bin & Gaussian Mean & Gaussian Sigma & Mean    & RMS    \\ \hline
+		0--15 MeV  & 0.0033        & 0.1206         & 0.0082  & 0.1501 \\
+		15--20 MeV & 0.0175        & 0.1099         & 0.0176  & 0.1472 \\
+		20--25 MeV & 0.0093        & 0.1065         & 0.0003  & 0.1452 \\
+		25--30 MeV & -0.0010       & 0.0945         & -0.0338 & 0.1485 \\
+		30--50 MeV & -0.02943      & 0.0997         & -0.0859 & 0.1603 \\
+	\end{tabular}
+	\egroup
+	\caption
+	[Comparison of energy resolution estimates for Michel electron ionisation
+	energy.]
+	{ Comparison of energy resolution estimates for Michel electron ionisation
+	energy. }
+	\label{tab:gaus_v_mean}
+\end{table}
 
 \subsubsection*{Contributions to Ionisation Energy Resolution}
-
-The ionisation energy resolution has contributions from the reconstructed energy
-resolution for hits, and the spread due to imperfect hit tagging. The
-contribution from the reconstructed hit energy resolution can be estimated by
-considering the fractional energy resolution in the case of perfect hit tagging.
-This can be tested with the simulated data by using the truth information to
-select the correct hits within the images. The fractional energy difference 
-between the reconstructed ionisation energy and the true ionisation energy for 
-the case of perfect hit tagging is shown in Figure \ref{fig:michel_hit_res}.
+The ionisation energy resolution is made up of a combination of the hit--by--hit
+energy resolution, and the spread introduced due to imperfect hit tagging. The
+contribution from the hit--by--hit energy resolution can be estimated by
+considering the fractional energy difference in the case of perfect hit tagging,
+which sums up the reconstructed energy of all the true Michel electron hits in
+the image. The sum over the hits in each image is considered because this
+allows the error in the hit--by--hit recombination factor, which arises due to
+the use of an average recombination factor during reconstruction, to be 
+averaged over the hits in the image. The fractional energy difference in this
+case is fit with a gaussian distribution, which is shown in Figure
+\ref{fig:michel_hit_res}. 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/michel_hit_energy_resolution.pdf}
@@ -854,152 +974,82 @@ the case of perfect hit tagging is shown in Figure \ref{fig:michel_hit_res}.
 	\label{fig:michel_hit_res}
 \end{figure}
 
-Based on the gaussian fit to the fractional difference, the contribution of the
-hit tagging to the energy resolution can be estimated. The fit has a mean of
-$0.0288 \pm 0.0012$ and a standard deviation of $0.0756 \pm 0.0011$, 
-suggesting that the energy resolution for reconstructed hits contributes 
-around 7--8\% to the Michel electron energy resolution. The remaining 
-uncertainty comes from the purity and efficiency of the hit tagging algorithm.
+The contribution to the ionisation energy resolution due to the hit energy
+reconstruction was estimated based on the parameters from the gaussian fit in
+Figure \ref{fig:michel_hit_res}. The bias in the hit energy reconstruction was 
+estimated to be around 3\%, and the resolution was estimated to be 
+approximately 8\%. The remaining energy resolution and bias seen in the Michel 
+electron ionisation energy reconstruction is a result of the spread due to 
+imperfect hit tagging.
 
-\subsubsection{Michel Electron Energy Reconstruction} \label{sec:michel_energy}
-% TODO: decide if I want this.
+\subsubsection*{Comparison to Other LArTPC Experiments} \label{ME_COMP}
 
-The true Michel electron energy includes contributions from scintillation light
-as well as radiated ionisation energy, which is not contained within the images
-used in reconstruction. In the noisy surface level environment of the
-\protodune{} TPC, it is not possible to reconstruct the scintillation light as
-part of the Michel electron events. Therefore, to estimate the total Michel 
-electron energy the reconstructed ionisation energy needs to be scaled to 
-account for these losses. As shown in Figure \ref{fig:michel_track_only},
-there is a none--linear correlation between the true Michel electron energy 
-and the available ionisation energy in reconstruction. Therefore, a quadratic 
-energy scaling factor was used to convert the reconstructed ionisation energy 
-into a reconstructed Michel electron energy. 
+In order to put the performance of the Michel electron energy
+reconstruction into context, it is useful to compare the results presented 
+here with those from other LArTPC experiments. We will restrict the 
+comparisons here to the 0--30 MeV region for this comparison, recognising that 
+improvements are still required in order to reduce the tail for higher energy 
+ionisation energies.  The closest comparison is against the MicroBooNE 
+experiment, which is a surface level LArTPC which used ionisation energy for 
+the reconstruction\cite{Acciarri2017}. LArIAT and ICARUS have also performed 
+Michel electron reconstruction\citetemp{Amoruso:2003sw,Foreman_2016}, however, 
+LArIAT used the scintillation light for reconstruction, and ICARUS is deep 
+underground and therefore has significantly less backgrounds.
 
-The energy scaling factor was estimated by fitting the reconstructed ionisation
-energy as a function of true Michel electron energy, with a quadratic 
-correction as shown in Figure \ref{fig:quadratic_fit}. This quadratic is then 
-inverted to give the reconstructed Michel electron energy,
-\begin{equation}
-	E_{michel} = \left( \frac{E_{ion}}{a} - d \right)^{\frac{1}{2}} - \frac{b}{2a},
-	\quad d = \frac{c}{a} - \left( \frac{b}{2a} \right)^2 
-\end{equation}
-where $E_{michel}$ is the reconstructed Michel electron energy, $E_{ion}$ is the
-reconstructed ionisation energy, and a, b, and c are the parameters from the
-quadratic fit. The fit gives,
-\begin{equation}
-	a = TODO, \quad b = TODO, \quad c = TODO.
-\end{equation}
-\begin{figure}
-	\centering
-	% TODO
-	\includegraphics[width=\textwidth]{figures/placeholder.png}
-	\caption
-	[Quadratic fit of reconstructed ionisation energy vs true Michel electron
-	enegry.]
-	{Quadratic fit of reconstructed ionisation energy vs true Michel electron
-	energy, which is used to calculate a quadratic energy correction factor.}
-	\label{fig:quadratic_fit}
-\end{figure}
+The closest comparison for Michel electron energy reconstruction comes from the
+MicroBooNE LArTPC; both MicroBooNE and \protodune{} are surface level TPCs, and
+they both use ionisation energy for Michel electron reconstruction. In
+MicroBooNE, the ionisation energy resolution for Michel electrons was found to
+be between 15--25\% in the 0--30 MeV region\cite{Acciarri2017}. In this region
+the algorithm developed here gives an improved energy resolution of around
+10\%, which highlights the potential of the semantic segmentation approach if
+the bias at higher energies can be improved.
 
-The reconstructed Michel electron energy spectrum is shown in Figure
-\ref{fig:reco_v_mich}. \mccorrect{TODO.}
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{figures/placeholder.png}
-	\caption
-	[Reconstructed Energy vs True Michel Electron Energy.]
-	{Reconstructed Energy vs True Michel Electron Energy.}
-	\label{fig:reco_v_mich}
-\end{figure}
+ICARUS also used ionisation energy for Michel electron reconstruction, however,
+the ICARUS detector was located deep underground, and therefore they were
+subject to much lower backgrounds. In ICARUS the ionisation energy resolution 
+was measured to be in the range of 3--8\%\cite{Amoruso:2003sw}, however, these
+results did not take into account any radiated energy deposits, which form an
+important part of the Michel electron signature. Therefore, the results from
+ICARUS are not directly comparable to the measured energy resolution presented
+here.
 
-The energy uncertainty and bias are estimated by fitting the fractional energy 
-difference between the reconstructed and true Michel electron energies as a 
-function of true Michel electron energy. The fractional energy difference, 
-defined as 
-\begin{equation}
-	\Delta = \frac{E_{reco} - E_{true}}{E_{true}},
-\end{equation}
-is considered in bins of true Michel electron energy which are plotted in Figure
-\ref{fig:frac_diff_energy}. This difference is fit with a gaussian 
-distribution in each bin in order to estimate the energy uncertainty and bias 
-as a function of the true Michel electron energy.
-\begin{figure}
-	\centering
-	% TODO: make set of fits as a function of energy
-	\includegraphics[width=\textwidth]{figures/placeholder.png}
-	\caption
-	[Fractional energy difference between reconstructed and true Michel electron
-	energy.]
-	{Fractional energy difference between reconstructed and true Michel electron
-	energy.}
-	\label{fig:frac_diff_energy}
-\end{figure}
+LArIAT is a significantly smaller TPC than \protodune{}, and therefore, despite
+being at surface level, there is a sufficiently low rate of cosmic rays that the
+photon detection system could be used to tag and measure Michel electron events.
+LArIAT measured an energy resolution on the order of 20\% for Michel electrons 
+based on the scintillation light signal\cite{Foreman_2016}. 
 
-The energy resolution and bias as a function of true Michel electron energy are 
-estimated as the standard deviation and mean of the gaussian fit to the
-fractional energy difference in each energy bin, these values are plotted in
-Figure \ref{fig:res_and_bias_energy}. \mccorrect{TODO: analysis of results}.
-\begin{figure}
-	\centering
-	% TODO: make set of fits as a function of energy
-	\includegraphics[width=\textwidth]{figures/placeholder.png}
-	\caption
-	[Energy resolution and bias as a function of true Michel electron energy.]
-	{Energy resolution and bias as a function of true Michel electron energy.}
-	\label{fig:res_and_bias_energy}
-\end{figure}
+In DUNE, TODO.
 
-\section{Implications for DUNE} \label{ME_EU}
+\section{Conclusion} \label{ME_EU}
 
 In the energy regime of Michel electrons, and supernova neutrinos, the
 electromagnetic energy deposition of electrons moves from a ionisation dominated
 to a radiation dominated region. As such, these events have a signature which
-contains both track--like and a shower--like components, which require a unique
-reconstruction algorithm in order to maximise the energy collected from the
-events. This chapter has discussed the development of a Michel electron 
-reconstruction algorithm, which is based on semantic segmentation of images 
-with a convolutional neural network. This is the first time this type of
-algorithm has been applied to Michel electron reconstruction in a LArTPC, and it
-shows promising results. However, the significant bias introduced ionisation
-energies above around 30 MeV limit the applicability of the algorithm. In this
-section we will compare the results from this section to those from other LArTPC
-experiments, and discuss the implications of the results of this chapter for 
-DUNE.
+contains both track--like and a shower--like components, and therefore they 
+require a unique reconstruction algorithm in order to maximise the energy 
+collected from the events. 
 
-The closest comparison for Michel electron reconstruction comes from the
-MicroBooNE LArTPC\citetemp{TODO}; both MicroBooNE and \protodune{} are surface level TPCs, and
-the Michel electron energy reconstruction was based on ionisation energy only.
-In MicroBooNE the ionisation energy resolution for Michel electrons was found 
-to be between 15--25\% in the 0--30 MeV region\cite{Acciarri2017}, which is 
-improved to around 10\% with the algorithm developed here. 
+In this chapter we have presented a novel Michel electron reconstruction
+algorithm based on machine learning techniques. A sample of Michel electrons was
+selected in \protodune{} data with a purity of over 98\% and an overall
+efficiency of around 5\%. The ionisation energy of these events was
+reconstructed based on a semantic segmentation algorithm, which uses a U--Net
+CNN architecture. The performance of this algorithm shows an improvement in
+energy resolution over similar experiments, with an ionisation energy resolution
+of around 10-15\%. However, there is still need for improvement, particularly 
+in the high energy region where a large tail is seen in the fractional 
+difference distribution. 
 
-LArIAT\citetemp{TODO} is another surface level LArTPC, however they used
-scintillation light to measure the Michel electron energy spectra. TODO.
-
-The final comparison with other LArTPCs comes from ICARUS\citetemp{TODO}, 
-which was a deep underground detector, and therefore had significantly lower 
-backgrounds than in \protodune{}. In ICARUS, TODO.
-
+% FIXME: you were here.
 The promising results in the low energy region based on this method, suggest
 that with further study the semantic segmentation approach could prove to be an
 effective algorithm for reconstructing low energy particles in LArTPCs. However,
 more work is required to ensure good performance across the desired energy
 range. In order to increase the performance in the high energy region, we could 
-consider increasing the amount of high energy training data, or modifying the 
-loss function to place a larger emphasis on efficiency rather than purity. A 
-possible modification to the loss function would be to use the $F_\beta$ 
-function discussed in Chapter \ref{ch:chargeid}, and tune $\beta$ to favour 
-hit tagging efficiency over purity.
-
-In the DUNE far detector, TODO.
-
-\begin{mccorrection}
-	TODO
-	\begin{itemize}
-		\item Comparison to MicroBooNE, LArIAT, and ICARUS
-		\item Compare res to proposed SN nu 
-		\item Differences in dune far detector and need to collect scintillation
-			energy.
-	\end{itemize}
-\end{mccorrection}
+consider increasing the amount of training data in the high energy region. At
+the time of writing, there is currently insufficient \protodune{} simulation,
+to produce a training sample which is flat across the full Michel electron energy range. Therefore,
+this remains as a possible future study into improving the performance of this
+algorithm.
