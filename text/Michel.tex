@@ -504,20 +504,6 @@ distributions of the primary muons.
 \end{figure}
 
 \section{Michel Electron Energy Reconstruction} \label{ME_R} 
-% \begin{mccorrection}
-% 	\begin{itemize} 
-% 	\item U-Nets and semantic segmentation
-% 	\item Algorithm outline
-% 	\item Details of my U-Net
-% 	\item Architecture plot
-% 	\item Map examples
-% 	\item Data v MC score distribution
-% 	\item Reco spectrum
-% 	\item NHits
-% 	\item Energy per hit
-% 	\item Reco geometry variables
-% 	\end{itemize}
-% \end{mccorrection}
 
 To reconstruct the energy of Michel electrons in liquid argon the relevant hits
 must first be selected. Once the hits are selected the ionisation energy
@@ -633,6 +619,7 @@ implemented to prevent over--fitting.
 	\label{fig:unet_arch}
 \end{figure}
 
+% TODO: mention flattening attempts.
 The datasets for the training process were generated from a full simulation of 
 the \protodune{} detector under beam operation including both cosmic--ray and
 beam particles. The images produced contain the location and integrated charge
@@ -1042,14 +1029,14 @@ of around 10-15\%. However, there is still need for improvement, particularly
 in the high energy region where a large tail is seen in the fractional 
 difference distribution. 
 
-% FIXME: you were here.
 The promising results in the low energy region based on this method, suggest
 that with further study the semantic segmentation approach could prove to be an
 effective algorithm for reconstructing low energy particles in LArTPCs. However,
 more work is required to ensure good performance across the desired energy
-range. In order to increase the performance in the high energy region, we could 
+range. In order to increase the performance in the high energy region, we could
 consider increasing the amount of training data in the high energy region. At
-the time of writing, there is currently insufficient \protodune{} simulation,
-to produce a training sample which is flat across the full Michel electron energy range. Therefore,
-this remains as a possible future study into improving the performance of this
-algorithm.
+the time of writing, there is insufficient \protodune{} simulation to produce 
+a sufficiently large and flat training sample. Therefore, this remains as a 
+possible future study into improving the performance of this algorithm.
+
+% FIXME: you were here.
