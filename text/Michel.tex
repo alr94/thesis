@@ -619,7 +619,6 @@ implemented to prevent over--fitting.
 	\label{fig:unet_arch}
 \end{figure}
 
-% TODO: mention flattening attempts.
 The datasets for the training process were generated from a full simulation of 
 the \protodune{} detector under beam operation including both cosmic--ray and
 beam particles. The images produced contain the location and integrated charge
@@ -1007,7 +1006,17 @@ photon detection system could be used to tag and measure Michel electron events.
 LArIAT measured an energy resolution on the order of 20\% for Michel electrons 
 based on the scintillation light signal\cite{Foreman_2016}. 
 
-In DUNE, TODO.
+In DUNE, both the ionisation energy and scintillation light will be used to
+reconstruct supernova neutrinos. The results in the DUNE Technical Design
+Report are based on energy resolution estimates from the standard
+LArSoft reconstruction framework, which give an ionisation energy resolution of
+around 20\%, and a scintillation light energy resolution in the range of
+10-20\%\cite{Abi:2020evt}. Therefore, if the tail at high energy can be 
+improved, a semantic segmentation algorithm, similar to the one presented 
+here, may be able to improve the energy reconstruction performance for 
+supernova neutrinos in the DUNE far detector. This is an important factor in
+many supernova neutrino physics studies, in which the mean neutrino energy is an
+important parameter\cite{Abi:2020evt}.
 
 \section{Conclusion} \label{ME_EU}
 
@@ -1036,7 +1045,5 @@ more work is required to ensure good performance across the desired energy
 range. In order to increase the performance in the high energy region, we could
 consider increasing the amount of training data in the high energy region. At
 the time of writing, there is insufficient \protodune{} simulation to produce 
-a sufficiently large and flat training sample. Therefore, this remains as a 
+a flat training sample with sufficient data. Therefore, this remains as a 
 possible future study into improving the performance of this algorithm.
-
-% FIXME: you were here.
