@@ -20,44 +20,63 @@ interactions to be determined. This thesis presented the results of the
 development of two reconstruction algorithms in the \protodune{} detector, which
 is a surface level proto--type for the DUNE far detector modules. 
 
-The development of a hit tagging algorithm for track, shower, and Michel
-electron hit classification was discussed in Chapter \ref{ch:chargeid}. This 
-algorithm is based on convolution neural networks, with a small patch 
-approach. In terms of track--shower discrimination, the algorithm was shown 
-to reduce the false--positive rate for all particle species, with a reduction 
-of more than a factor of 10 in some cases. In addition it was shown to have a 
-small discrepancy, of around 1-3\%, for hit--by--hit selection. This algorithm 
-is now seeing significant use within ongoing \protodune{} data analyses. 
+In this thesis, the development of a hit tagging algorithm for track, shower, 
+and Michel electron hit classification was discussed in Chapter 
+\ref{ch:chargeid}. This algorithm is based on convolution neural networks, 
+with a small patch approach. In terms of track--shower discrimination, the 
+algorithm was shown to reduce the false--positive rate for all particle 
+species, with a reduction of more than a factor of 10 in some cases. In 
+addition, this algorithm was shown to give a good agreement, of around 
+1--3\%, between data and simulation for hit--by--hit event selection. This 
+algorithm is now seeing significant use within ongoing \protodune{} data 
+analyses, including pion cross--section analyses and detector calibrations. 
+Additionally, this network was used as part of the Michel electron event 
+selection algorithm, which was discussed in Chapter \ref{ch:michel} of this 
+thesis.
 
-% TODO: Discuss MicroBooNE \cite{Acciarri2017}, ICARUS \cite{Amoruso:2003sw}, 
-% and LArIAT \cite{Foreman_2016} results somewhere
+A sample of Michel electrons from the \protodune{} detector was used to study
+Michel electron reconstruction in LArTPCs, and to estimate the energy resolution
+and bias of \protodune{} for electrons in the tens of MeV range. Michel electron
+events where selected based on a new algorithm, which combined the clustering of
+Pandora with the output of the hit classification CNN to select clusters with a
+high fraction of Michel--like hits. This algorithm was shown to agree well
+between data and simulation, with around a 2\% difference between the selected
+fraction in data and simulation. The simulation was used to estimate the purity
+and efficiency of the event selection algorithm, which were found to be around
+98\% and 6\% respectively. This represents an improvement in both purity and
+efficiency over similar LArTPC Michel electron studies from other experiments,
+such as MicroBooNE.
 
-A sample of Michel electrons was used to analyse the low energy electron 
-reconstruction capabilities of the \protodune{} detector. A sample of Michel
-electrons was selected with over 98\% purity, and around 6\% efficiency, by
-selecting clusters of hits with a high Michel electron score from the neural
-network discussed in Chapter \ref{ch:chargeid}.  
+The Michel electron sample was used to investigate a novel reconstruction
+technique, which was based on the semantic segmentation of images with a
+convolutional neural network. A U--Net architecture was used to perform the
+segmentation, and the results were promising, however, more work is required to
+improve the performance of this algorithm across the whole energy range. 
 
-The selected Michel electron events, were reconstructed with a convolutional
-neural network designed to perform semantic segmentation on the input images. 
-This network demonstrated a high hit tagging purity and completeness of
-\mccorrect{TODO\%} and \mccorrect{TODO\%} respectively, which is a marginal 
-improvement over the Michel electron reconstruction algorithm developed for 
-the MicroBooNE experiment. 
+In the 0--25 MeV region, where the performance of the U--Net algorithm was 
+good, the ionisation energy resolution for Michel electrons based on this 
+algorithm was found to be around 10--12\%, and the bias was less than 
+5\%. This represents an improvement over the measured Michel electron ionisation
+energy resolution of MicroBooNE, which is the closest comparison to \protodune{}
+in terms of Michel electron reconstruction. Above 25 MeV, the reconstruction 
+algorithm began to develop as significant tail in the fractional difference 
+distribution. This tail represents the tendency of the algorithm to 
+under--reconstruct the Michel electron ionisation energy, and is a result of a 
+drop in hit selection efficiency above 25 MeV. Therefore, some additional work
+is required to improve the performance of this algorithm, but the excellent
+performance in the low energy region shows that this is a promising approach. A
+similar approach could be developed for other low--energy reconstruction tasks
+in LArTPCs, such as the reconstruction of supernova neutrinos in the DUNE far
+detector.
 
-The reconstructed Michel electron properties were compared between data and 
-simulation, and the Michel electron energy resolution and bias were estimated 
-to be \mccorrect{TODO\%} and \mccorrect{TODO\%}. The measured energy resolution
-and bias are \mccorrect{TODO} to 
-Michel electron analyses in MicroBooNE, \mccorrect{TODO}. 
-
-The measured energy resolution for Michel electrons, is significantly lower than
-the proposed supernova neutrino energy resolution for the DUNE far detector. In
-addition, the maximum possible theoretical energy resolution based on ionisation
-energy deposition was investigated, which was found to be \mccorrect{TODO\%} 
-based on \protodune{} simulation. Therefore, it is clear that, in order to 
-achieve the proposed energy resolution for low energy electrons, the 
-ionisation energy alone in insufficient, and additional energy needs to be 
-recovered. TODO.
-
-\mccorrect{TODO: Future improvements.}
+The DUNE experiment will use a liquid argon time projection chamber to make
+precision studies of neutrino oscillations, supernova neutrinos, and beyond the
+standard model phenomena. The development of effective reconstruction algorithms
+and understanding the detector response are both crucial components of 
+understanding particle interactions in the DUNE detector. In this thesis we have
+presented the results of various studies into electromagnetic interactions in
+the \protodune{} detector, focussing on the application of convolutional neural
+networks to event reconstruction in LArTPCs. The results of these analyses are
+being used to assist in physics measurements based on \protodune{} data, and can
+also be used to guide further development of reconstruction strategies for 
+LArTPC detectors.
