@@ -600,7 +600,7 @@ and analogue to digital conversion. The simulated waveforms produced by the
 An event consists of a synchronised set of waveforms from all of the TPC 
 channels, with each event corresponding to 3 ms or 6000 samples. The particle
 interactions within each event are reconstructed into objects like tracks and
-showers which can be used for physics analyses, this sections provides a brief 
+showers which can be used for physics analyses, this section provides a brief 
 summary of the steps involved in this reconstruction.
 
 First, the TPC waveforms are passed through a set of filtering algorithms which
@@ -1052,9 +1052,9 @@ monitoring is related. Some examples of useful timing and trigger plots include
 time--stamp difference distributions, and trigger records. The time--stamp delta
 plots show the difference in time--stamp between consecutive events, this
 distribution can be used to monitor the stability of the trigger rate during
-triggered operation. Trigger records are 2D histograms which details of
-the time and type of trigger issued by the trigger board. Figure
-\ref{fig:timing_OM} contains examples of these two plots.
+triggered operation. Trigger records are 2D histograms which detail the time 
+and type of trigger issued by the trigger board. Figure \ref{fig:timing_OM} 
+contains examples of these two plots.
 
 \begin{figure}
 
@@ -1282,8 +1282,8 @@ to Bokeh, the rendering time was reduced to around 4 seconds per event display.
 In the \protodune{} Technical Design Report\cite{Abi:2017aow}, the proposed 
 online monitoring system was described as being able to \say{provide data 
 quality assurance in real--time}, in practice the response time is around one 
-minute.  During this time each set of plots will have contain data from 10 
-events, however, the Event Displays and TPC FFTs each contain data from one 
+minute.  During this time 10 events will have been processed for each set of 
+plots, however, the Event Displays and TPC FFTs only contain data from one 
 event.
 
 The performance of the OM was found to be satisfactory for the operation of the
