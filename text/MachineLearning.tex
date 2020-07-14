@@ -5,7 +5,7 @@
 Machine Learning (ML) is a field of research, which studies algorithms that
 can learn to make predictions from data, i.e. predict a set of output variables,
 given a set of input variables. The algorithms typically take the form of a
-multivariate function, which is used to predict the output \cite{Reed1999}.
+multivariate function, which is used to predict the output\cite{Reed1999}.
 
 ML algorithms are often classified into four groups based on two distinctions: 
 regression or classification, and supervised or unsupervised. The first
@@ -90,8 +90,8 @@ $y$, which is part of the input for the next layer,
 \end{equation*}
 
 Some common choices for the activation function are the sigmoid function, the
-hyperbolic tangent, the rectified linear unit (ReLU), and the softmax function
-\cite{Lecun2015, He2015, Szegedy2015}.
+hyperbolic tangent, the rectified linear unit (ReLU), and the softmax 
+function\cite{Lecun2015, He2015, Szegedy2015}.
 \begin{align}
 	\tag{Sigmoid} f(x) &= \frac{1}{1+e^x} \\
 	\tag{Tanh}    f(x) &= \frac{e^x - e^{-x}}{e^x+e^{-x}} \\
@@ -113,17 +113,17 @@ output nodes as there are classes, with output values in the range zero to one.
 The output value of a classification network, quantifies how well the image
 represents each class, based on the networks prediction. In principle, MLPs 
 are able to approximate any function to arbitrary precision with a 
-single hidden layer \cite{Cybenko1989ApproximationBS}; however, there is no 
+single hidden layer\cite{Cybenko1989ApproximationBS}; however, there is no 
 limit on the number of nodes required in order to achieve a good 
 approximation. In practice, networks with additional hidden layers can reach 
 the required precision with fewer nodes than a network with a single hidden 
-layer, but there are diminishing returns with more than a few hidden layers 
-\cite{Reed1999, Lecun2015}.
+layer, but there are diminishing returns with more than a few hidden 
+layers\cite{Reed1999, Lecun2015}.
 
 \subsection{Convolutional Neural Networks}
 An extension of the MLP with considerable success, particularly in image 
-classification tasks, is the convolutional neural network (CNN) 
-\cite{Jackel2008, Szegedy2015, 5537907}, which addresses some of the drawbacks 
+classification tasks, is the convolutional neural network 
+(CNN)\cite{Jackel2008, Szegedy2015, 5537907}, which addresses some of the drawbacks 
 of the traditional MLP. In particular, when evaluating data with a high 
 dimensional input, having a fully connected network architecture leads to a 
 large number of neurons and high computational cost. In addition, for 
@@ -188,8 +188,8 @@ detector\cite{kanopoulos1988design} to the input image.
 The use of images as network input typically drastically increases the number of
 input parameters for a network, when combined with a large number of
 convolutional filters this can lead to a dramatic increase in the computational
-cost of training a network. Pooling \cite{5537907} is a downsampling technique 
-designed to reduce the number of parameters in the network, and therefore 
+cost of training a network. Pooling\cite{5537907} is a downsampling technique 
+designed to reduce the number of parameters in the network and ,therefore, 
 reduce the computational cost of making predictions. In pooling algorithms
 the data from each $m \times n$ region of the input is downsampled to a single 
 value, the downsampled image is used as the input for the next layer of the 
@@ -320,7 +320,7 @@ response function to simplify this further,
 		\left( \sum^{n^l}_{p=1} W^{l+1}_{pk} f(a^l_p) \right) \\ 
 		&= W^{l+1}_{jk} \; f^\prime(a^l_j)
 \end{align*}
-where $f$ is the activation function. The error is therefore,
+where $f$ is the activation function. The error is, therefore,
 \begin{equation*}
 	\delta^l_j = \sum^{n^{l+1}}_{k=1} \delta^{l+1}_k W^{l+1}_{jk} f^\prime(a^l_j),
 \end{equation*}
@@ -346,7 +346,7 @@ adjust weights in a neural network. There are a number of optimisation
 algorithms for adjusting the weights, such as mini--batch stochastic gradient 
 descent (SGD)\cite{10.1145/2623330.2623612}, and Adaptive Momentum Estimation 
 (Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
-important for the discussion in this thesis, and therefore they will only be 
+important for the discussion in this thesis and, therefore, they will only be 
 mentioned in passing here, a review of gradient descent optimisation 
 algorithms can be found here \cite{ruder2016overview}. Some methodologies are
 common among many optimisation techniques, three important examples are the 
@@ -375,7 +375,7 @@ The ReLU activation function is much cheaper to compute, and while the
 gradient is undefined at zero, in practice this is not a problem. One issue 
 with ReLU units, is the vanishing gradient in the negative region. This issue 
 can be resolved by implementing a small negative gradient below zero, which is 
-known as a Leaky ReLU or Parametric ReLU \cite{He2015}. In practice, ReLU 
+known as a Leaky ReLU or Parametric ReLU\cite{He2015}. In practice, ReLU 
 units have been found to outperform traditional sigmoid 
 units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 

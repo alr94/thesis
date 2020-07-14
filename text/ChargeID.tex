@@ -86,7 +86,7 @@ pixels, with each pixel being filled with the ADC value from the wire readout
 data. The width of the image corresponds to one wire per pixel, and the height 
 is the time coordinate. The time data is downsampled, using an average over 
 time samples, such that the spatial dimensions of the image are the same in 
-both directions.  Therefore, each image represents around $24 \times 24 \mbox{ 
+both directions. Therefore, each image represents around $24 \times 24 \mbox{ 
 cm}^2$ of wire data. Examples of an input image from each none empty class are 
 shown in Figure \ref{fig:patches}, which also demonstrates the relationship 
 between the images and the detector readout.
@@ -134,7 +134,7 @@ the electromagnetic energy loss in liquid argon for energies in the GeV range.
 
 The training data for the CNN was built using simulations of the \protodune{}
 detector in the LArSoft framework; the simulations used were under beam
-operating conditions, and therefore included simulations of cosmic--rays, and
+operating conditions and, therefore, included simulations of cosmic--rays, and
 test beam particles in the range of 1--7 GeV. Around 29 million input images
 were produced in total for the training. This sample was split into three
 datasets, the training, validation, and test sets. The training set is used to
@@ -368,7 +368,7 @@ selected by searching for clusters of hits with high Michel electron scores.
 	\label{fig:michel_output}
 \end{figure}
 
-The ROC curve is independent of the relevant size of each true sample, and
+The ROC curve is independent of the relevant size of each true sample and,
 therefore, it provides a more instructive evaluation of the performance of the
 Michel electron classifier than the score distribution and F1 score. The ROC 
 curves for the Michel electron classifier are shown in Figure 
@@ -581,7 +581,7 @@ case of particles originating from the charged particle beam, the BI can be
 used to provide an effective truth source. This allows the results of the CNN 
 to be compared between data and simulation for different particle species. Any 
 particles that arrive out--of--time with the beam can be assumed to be 
-cosmic--rays, and therefore form an additional truth source. The shower score 
+cosmic--rays and, therefore, form an additional truth source. The shower score 
 distributions for electrons, pions, protons, and cosmic--rays are produced 
 based on these samples. 
 
@@ -753,7 +753,7 @@ disentangle. However, the general agreement between data and simulation is a
 sign that the results from the CNN are sensible, and the additional 
 classification strength of the CNN over Pandora makes it a useful tool in 
 analyses of the \protodune{} data. The discrepancies will impact each analysis 
-differently, therefore the uncertainties involved with using the CNN 
+differently, therefore, the uncertainties involved with using the CNN 
 classifier should evaluated on a case--by--case basis; for hit selection with 
 a simple hit--by--hit algorithm the uncertainties are on the order of 1-3\%
 depending on the particle species.
@@ -767,7 +767,7 @@ network are being incorporated into analyses by other members of the
 \begin{itemize}
 	\item Selecting shower candidates for neutral--pion event selection\cite{pi_0}.
 	\item Identifying charge exchange candidates in charged--pion cross section 
-		analyses \cite{pion_exchange}.
+		analyses\cite{pion_exchange}.
 	\item Identifying Michel electron contaminated tracks for stopping muon
 		calibration\cite{fabio_muon}.
 \end{itemize}

@@ -461,14 +461,13 @@ around the peak of the Michel electron spectrum, the efficiency is around 5\%.
 \end{figure}
 
 To accurately estimate the energy of hits during energy reconstruction, the 
-true time of the Michel electron needs to be known. If the true time is not
-known, then the drift time of the charge is unknown, and the charge attenuation
-cannot be estimated. Therefore, only tracks with reconstructed true times were
-considered for the Michel electron analysis. The spatial and angular
-distributions of the primary muons, normalised by the number of selected 
-muons, are shown in Figure \ref{fig:muon_distributions}. There is a reasonable 
-agreement between data and simulation for both the spatial and angular
-distributions of the primary muons.
+$t_0$ of the Michel electron needs to be known. If not, then the drift time of 
+the charge is unknown, and the charge attenuation cannot be estimated. 
+Therefore, only tracks with reconstructed $t_0$ were considered for the Michel 
+electron analysis. The spatial and angular distributions of the primary muons, 
+normalised by the number of selected muons, are shown in Figure 
+\ref{fig:muon_distributions}. There is a reasonable agreement between data and 
+simulation for both the spatial and angular distributions of the primary muons.
 \begin{figure}
 
 	\centering
@@ -984,7 +983,7 @@ comparisons here to the 0--30 MeV region for this comparison, recognising that
 improvements are still required in order to reduce the tail for higher energy 
 ionisation energies.  The closest comparison is against the MicroBooNE 
 experiment, which is a surface level LArTPC that used ionisation energy for 
-the reconstruction\cite{Acciarri2017}. LArIAT and ICARUS have also performed 
+the reconstruction\cite{Acciarri:2017sjy}. LArIAT and ICARUS have also performed 
 Michel electron reconstruction\cite{Amoruso:2003sw,Foreman_2016}, however, 
 LArIAT used the scintillation light for reconstruction, and ICARUS is deep 
 underground and, therefore, has significantly less backgrounds.
@@ -993,7 +992,7 @@ The closest comparison for Michel electron energy reconstruction comes from the
 MicroBooNE LArTPC; both MicroBooNE and \protodune{} are surface level TPCs, and
 they both use ionisation energy for Michel electron reconstruction. In
 MicroBooNE, the ionisation energy resolution for Michel electrons was found to
-be between 15--25\% in the 0--30 MeV region\cite{Acciarri2017}. In this region
+be between 15--25\% in the 0--30 MeV region\cite{Acciarri:2017sjy}. In this region
 the algorithm developed here gives an improved energy resolution of around
 10--12\%, which highlights the potential of the semantic segmentation approach 
 if the bias at higher energies can be improved.
@@ -1008,7 +1007,7 @@ ICARUS are not directly comparable to the measured energy resolution presented
 here.
 
 LArIAT is a significantly smaller TPC than \protodune{} and, therefore, despite
-being at surface level, there is a sufficiently low rate of cosmic rays that the
+being at surface level, there is a sufficiently low rate of cosmic--rays that the
 photon detection system could be used to tag and measure Michel electron events.
 LArIAT measured an energy resolution on the order of 20\% for Michel electrons 
 based on the scintillation light signal\cite{Foreman_2016}. 
