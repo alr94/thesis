@@ -22,7 +22,7 @@
 \protodune{} is one of two prototypes for the DUNE far detector modules that has
 been operating at the Neutrino Platform at CERN since the summer of 2018. The
 experiment collected data from a charged particle beam for approximately 3 
-months before Long Shutdown 2 of the Large Hadron Collider. Since then a 
+months before Long Shutdown 2 of the Large Hadron Collider (LHC). Since then a 
 programme of cosmic--ray data collection has been ongoing.
 
 This chapter will outline the technical details of the \protodune{} experiment.
@@ -30,7 +30,7 @@ Section \ref{sec:pdsp_dune} will outline the role of \protodune{} in the context
 of the DUNE experiment. This will be followed by a discussion of the main
 elements of the \protodune{} detector systems and the H4 beamline, in Sections 
 \ref{sec:pdsp_detector} and \ref{sec:h4} respectively. The tagging of 
-cosmic--ray muons for calibration is done by the Cosmic--Ray Tagger which will 
+cosmic--ray muons for calibration is done by the Cosmic--Ray Tagger (CRT) which will 
 be discussed in Section \ref{sec:pdsp_cosmic}. Sections \ref{sec:simulation} 
 and \ref{sec:reconstruction} will then discuss the simulation and 
 reconstruction of \protodune{} data. Finally Section \ref{sec:pdsp_om} will 
@@ -58,8 +58,8 @@ significant body of work over 12 months.
 The DUNE experiment will be a next generation neutrino physics and nucleon decay
 experiment consisting of three principal components; an intense broad band 
 neutrino beam and precise near detector complex based at the Fermilab National 
-Accelerator Laboratory near Chicago, and a far detector at Sanford Underground 
-Research Facility in South Dakota, approximately 1300 km away from the 
+Accelerator Laboratory (FNAL) near Chicago, and a far detector at Sanford Underground 
+Research Facility (SURF) in South Dakota, approximately 1300 km away from the 
 neutrino source, as in Figure \ref{fig:dune_baseline}. The DUNE experiment 
 identifies three primary scientific goals\cite{Abi:2020evt}:
 \begin{itemize}
@@ -186,7 +186,7 @@ are illustrated in Figure \ref{fig:pdsp_tpc}:
 	\item A cathode plane constructed of modular Cathode Plane Assemblies (CPA).
 	\item Two anode planes constructed of modular Anode Plane Assemblies (APA).
 	\item A photon detection system (PDS) which is integrated into the APAs.
-	\item A field cage (FC), beam plug, and high voltage systems (HV).
+	\item A field cage, beam plug, and high voltage systems.
 	\item Readout electronics and Data Acquisition System (DAQ).
 \end{itemize}
 The detector components are designed to be an almost exact replica of the final 
@@ -723,7 +723,7 @@ Beam particle reconstruction considers only the hits that were not removed by
 being labelled as clear cosmic--rays. These hits are formed into 3D slices which
 contain all the hits from a single parent particle and it's daughters. The
 slices are reconstructed under both the cosmic--ray and beam particle
-hypothesis, and a boosted decision tree (BDT) is used to determine whether a 
+hypothesis, and a boosted decision tree is used to determine whether a 
 given slice is consistent with being a beam particle\cite{protoduneperf}. 
 
 Under the beam particle hypothesis a more complex chain of algorithms is used to
@@ -916,11 +916,11 @@ events.
 The pedestals and noise are continually evaluated by the online monitoring, this
 data is displayed in the control room and used later in the monitoring chain to
 flatten the background in the event displays. Basic hit removal is used to 
-ensure that the pedestals and RMS are only calculated in the regions of the 
-readout corresponding to noise signals. The RMS of all channels can be
-represented on a single plot by arranging the channels into a 2D grid and
-displaying the RMS as the colour scale on a 2D histogram, an example of this
-plot is shown in Figure \ref{fig:ped_noise}.
+ensure that the pedestals and root mean square deviation (RMS) are only 
+calculated in the regions of the readout corresponding to noise signals. The 
+RMS of all channels can be represented on a single plot by arranging the 
+channels into a 2D grid and displaying the RMS as the colour scale on a 2D 
+histogram, an example of this plot is shown in Figure \ref{fig:ped_noise}.
 
 To identify noise sources in the APA it is useful to study the Fourier transform
 of the signal distribution, this allows the frequencies to be identified and the

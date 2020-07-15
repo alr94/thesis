@@ -272,7 +272,7 @@ events.
 
 \end{figure}
 
-The energy is lost into radiated photons is only visible once the photons
+The energy that is lost into radiated photons is only visible once the photons
 interact in the argon to produce secondary electrons, which then ionise the
 argon. These secondary electrons are scattered over large angles and distances
 in the detector when compared to the short Michel electron track, the spatial 
@@ -304,8 +304,8 @@ Figure \ref{fig:michel_track_only} illustrates the considerable increase in
 energy collected if radiated energy is considered. The distribution is 
 significantly narrower, and much more energy is recovered when considering the 
 energy deposited within a sphere of height $40\mbox{ cm}$ and angle 
-30\textdegree of the Michel electron vertex. In addition, the fraction of 
-energy recovered as a function of Michel electron energy has a more linear 
+$30^\circ$ of the Michel electron vertex. In addition, the fraction of energy 
+recovered as a function of Michel electron energy has a more linear 
 distribution for a collection radius of 40 cm.
 \begin{figure}
 	\centering
@@ -520,14 +520,14 @@ reconstructed energy spectrum is used to estimate the energy resolution of
 \subsection{Michel Electron Hit Tagging with U-Nets}
 
 A U-Net is a type of convolutional neural network which is designed to perform
-semantic segmentation of images. The U--Net network architecture was first 
+semantic segmentation of images. The U--ResNet network architecture was first 
 developed for biomedical image segmentation\cite{ronneberger2015u}. In 
 semantic segmentation the goal is to return a map of pixels which correspond 
 to the areas of interest; the output of the network is the same dimension as 
 the input with a one--to--one correspondence between input pixels and output 
 pixels. The architecture used for the hit selection algorithm is shown in 
 Figure \ref{fig:unet_arch}. During the first half of the network architecture 
-the resolution of the output is decreases, this is analogous to many 
+the resolution of the output is decreased, this is analogous to many 
 conventional CNNs, and during this phase the network learns about the content 
 of the image. The second phase of the architecture allows the U-Net to 
 rebuild the locations of different learned features within the initial image, 
@@ -545,7 +545,7 @@ the true output images the pixels have an amplitude of 1 if they contain a
 Michel electron hit, and 0 otherwise. Only data from the collection plane is 
 used, because there is a higher signal to noise ratio on these wires. 
 
-The $F_\beta$ metric was used as the loss function for the U--Net. This loss is
+The $F_\beta$ metric was used as the loss function for the U--ResNet. This loss is
 a generalised version of the $F_1$ metric discussed in Chapter
 \ref{ch:chargeid}, which allows for the relative importance of precision and
 recall to be tuned,
@@ -613,8 +613,8 @@ implemented to prevent over--fitting.
 	\end{tabularx}
 
 	\caption
-	[U--Net CNN architecture used to select ionisation energy deposits.]
-	{U--Net CNN architecture used to select ionisation energy deposits. 
+	[U--ResNet CNN architecture used to select ionisation energy deposits.]
+	{U--ResNet CNN architecture used to select ionisation energy deposits. 
 	Visualisation adapted from the output of the Netron neural network 
 	viewer\cite{netron}.}
 
@@ -708,7 +708,7 @@ simulation for the event selection algorithm.
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
 	\caption
 	[U-Net Predicted Distribution.]
-	{U--Net predicted distribution for hits in images. The simulated results are
+	{U--ResNet predicted distribution for hits in images. The simulated results are
 	shown by the red line, with the backgrounds as a shaded red region. The data 
 	is shown in black, with statistical error bars.}
 	\label{fig:unet_pred_data}
@@ -740,7 +740,7 @@ by varying the threshold.
 	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.pdf}
 	\caption
 	[U-Net purity vs completeness.]
-	{Hit tagging purity vs completeness for the U--Net algorithm on \protodune{}
+	{Hit tagging purity vs completeness for the U--ResNet algorithm on \protodune{}
 	simulation.}
 	\label{fig:unet_pur_comp}
 \end{figure}
@@ -757,7 +757,7 @@ electron.
 	\includegraphics[width=\textwidth]{figures/mich_n_hits.pdf}
 	\caption
 	[Number of hits in Michel electron events.]
-	{Number of hits selected by the U--Net for Michel electron candidate events in
+	{Number of hits selected by the U--ResNet for Michel electron candidate events in
 	data and simulation.}
 	\label{fig:mich_n_hits}
 \end{figure}
@@ -1037,7 +1037,7 @@ In this chapter we have presented a novel Michel electron reconstruction
 algorithm based on machine learning techniques. A sample of Michel electrons was
 selected in \protodune{} data with a purity of over 98\% and an overall
 efficiency of around 5\%. The ionisation energy of these events was
-reconstructed based on a semantic segmentation algorithm, which uses a U--Net
+reconstructed based on a semantic segmentation algorithm, which uses a U--ResNet
 CNN architecture. The performance of this algorithm shows an improvement in
 energy resolution over similar experiments, with an ionisation energy resolution
 of around 10-15\%. However, there is still need for improvement, particularly 
