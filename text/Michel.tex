@@ -199,8 +199,8 @@ of the two processes in roughly equal quantities.
 
 	\caption
 	[Michel electron energy spectra in liquid argon from \protodune{} simulation.]
-	{Michel electron energy spectra in liquid argon from \protodune{} simulation.}
-
+	{Michel electron energy spectra for free muons and captured muons in liquid 
+	argon from \protodune{} simulation.}
 	\label{fig:michel_spec}
 
 \end{figure}
@@ -221,7 +221,7 @@ features.
 	\caption
 	[Michel electron candidate event from ProtoDUNE--SP data.]
 	{Michel electron candidate event from ProtoDUNE--SP data. The wire vs time
-	data in the region of the Michel electron event is shown.  The incoming muon,
+	data in the region of the Michel electron event is shown. The incoming muon,
 	initial Michel electron track, and energy depositions from radiated photons
 	have been labelled.}
 	\label{fig:michel_event}
@@ -286,10 +286,10 @@ recovery.
 	\centering
 	\includegraphics[width=\textwidth]{figures/photon_geom.pdf}
 	\caption
-	[Spatial distribution of radiated ionisation deposits.]
-	{Spatial distribution of radiated ionisation deposits. This plot shows a
-	2D histogram of the distance and angle of each radiated energy deposition 
-	from the primary Michel electron track.}
+	[Spatial distribution of radiated ionisation deposits from Michel electrons.]
+	{Spatial distribution of radiated ionisation deposits from Michel electrons. 
+	This plot shows a 2D histogram of the distance and angle of each radiated 
+	energy deposition from the primary Michel electron track.}
 	\label{fig:photon_geom}
 \end{figure}
 
@@ -313,7 +313,6 @@ distribution for a collection radius of 40 cm.
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/michel_track_only.pdf}
 		\caption
-		[Initial Michel electron track only.]
 		{True collected ionisation energy from the initial Michel electron track
 		only.}
 		\label{fig:track_only}
@@ -324,7 +323,6 @@ distribution for a collection radius of 40 cm.
 	\begin{subfigure}[b]{\textwidth}
 		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/cone_reco.pdf}
 		\caption
-		[Ionisation withing a 40 cm cone at $30^\circ$ opening angle.]
 		{True collected ionisation energy from the initial Michel electron track,
 		and any radiated ionisation within a 40 cm cone at a $30^\circ$ opening
 		angle of the initial Michel electron track.}
@@ -332,9 +330,11 @@ distribution for a collection radius of 40 cm.
 	\end{subfigure}
 
 	\caption
-	[Available ionisation energy vs true Michel electron energy.]
+	[Available ionisation energy vs true Michel electron energy for two different
+	collection radii.]
 	{2D histograms of the true collected ionisation energy vs the true Michel
-	electron energy in \protodune{} simulation.}
+	electron energy in \protodune{} simulation based on two different collection
+	radii.}
 
 	\label{fig:michel_track_only}
 
@@ -351,9 +351,10 @@ from 35\% to 18\%.
 	\centering
 	\includegraphics[width=\textwidth]{figures/energy_recovery_v_radius.pdf}
 	\caption
-	[Fraction of Michel electron energy collected vs collection radius.]
+	[Fraction of Michel electron energy collected as ionisation vs collection 
+	radius.]
 	{Fraction of Michel electron energy collected as ionisation vs collection 
-	radius.}
+	radius. The error bars here represent the RMS spread of the distribution. }
 	\label{fig:frac_v_radius}
 \end{figure}
 
@@ -372,8 +373,8 @@ radiated energy deposits.
 	\caption
 	[Total true ionisation energy recovered for a 40 cm collection radius, and an
 	80 cm collection radius.]
-	{ Total true ionisation energy recovered for a 40 cm collection radius, and an
-	80 cm collection radius. }
+	{Total true ionisation energy recovered for a 40 cm collection radius, and an
+	80 cm collection radius, in red and black respectively.}
 	\label{fig:40_v_80}
 \end{figure}
 
@@ -434,10 +435,9 @@ hits were classified as Michel--like.
 	\caption
 	[Fraction of Michel--like hits in the best Michel electron candidate.]
 	{Fraction of Michel--like hits in the best Michel electron candidate in data
-	and simulation. The red line is the total distribution in simulation, and the 
+	and simulation. The red line is the full distribution in simulation, and the 
 	solid red region represents the predicted background in simulation. The black
-	distribution is the results in data, where the error bars are statistical 
-	only.}
+	points are the results in data, with statistical error bars only.}
 	\label{fig:michel_like_frac}
 \end{figure}
 
@@ -456,7 +456,7 @@ around the peak of the Michel electron spectrum, the efficiency is around 5\%.
 	\caption
 	[Efficiency of Michel electron event selection as a function of energy.]
 	{Efficiency of Michel electron event selection as a function of true Michel
-	electron energy in \protodune{} simulation.}
+	electron energy in \protodune{} simulation, with statistical error bars.}
 	\label{fig:ev_sel_eff}
 \end{figure}
 
@@ -498,7 +498,7 @@ simulation for both the spatial and angular distributions of the primary muons.
 	[Spatial and angular distributions for primary muons associated with selected
 	Michel electrons.]
 	{Spatial and angular distributions for primary muons associated with selected
-	Michel electrons.}
+	Michel electrons, with statistical error bars.}
 
 	\label{fig:muon_distributions}
 
@@ -511,15 +511,15 @@ must first be selected. Once the hits are selected the ionisation energy
 deposited by each hit is then reconstructed, the reconstructed energy of the 
 Michel electron is the sum of the reconstructed energy of all relevant hits. In
 this section we will detail a hit selection algorithm based on a type of
-convolutional neural network called a U-Net, which returns hit selection maps 
+convolutional neural network called a U--ResNet, which returns hit selection maps 
 for the Michel electron energy reconstruction. This algorithm is used to select 
 Michel electron hits with a high purity and efficiency, the resulting 
 reconstructed energy spectrum is used to estimate the energy resolution of 
 \protodune{} for electrons in the tens of MeV range.
 
-\subsection{Michel Electron Hit Tagging with U-Nets}
+\subsection{Michel Electron Hit Tagging with a U--ResNet}
 
-A U-Net is a type of convolutional neural network which is designed to perform
+A U--ResNet is a type of convolutional neural network which is designed to perform
 semantic segmentation of images. The U--ResNet network architecture was first 
 developed for biomedical image segmentation\cite{ronneberger2015u}. In 
 semantic segmentation the goal is to return a map of pixels which correspond 
@@ -529,7 +529,7 @@ pixels. The architecture used for the hit selection algorithm is shown in
 Figure \ref{fig:unet_arch}. During the first half of the network architecture 
 the resolution of the output is decreased, this is analogous to many 
 conventional CNNs, and during this phase the network learns about the content 
-of the image. The second phase of the architecture allows the U-Net to 
+of the image. The second phase of the architecture allows the U--ResNet to 
 rebuild the locations of different learned features within the initial image, 
 this is achieved by passing the details of previous layers to the network,
 allowing the resolution of the output map to be slowly increased back to the 
@@ -638,14 +638,14 @@ a vertical line representing the loss at which the weights were chosen.
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_loss.pdf}
 	\caption
-	[U-Net training and validation loss as a function of epoch.]
-	{U-Net training and validation loss as a function of epoch. The weights were
+	[U--ResNet training and validation loss as a function of epoch.]
+	{U--ResNet training and validation loss as a function of epoch. The weights were
 	frozen based on an early stopping algorithm, which is demonstrated by the
 	vertical black line.}
 	\label{fig:unet_loss}
 \end{figure}
 
-A demonstration of the output of the U-Net is given in Figure 
+A demonstration of the output of the U--ResNet is given in Figure 
 \ref{fig:unet_example} which shows the input, output, and truth images for an 
 event from \protodune{} simulation.
 \begin{figure}
@@ -676,8 +676,8 @@ event from \protodune{} simulation.
 	\end{tabularx}
 
 	\caption
-	[Example input, true output, and prediction images for U-Net.]
-	{Example input, truth, and prediction images for U-Net.}
+	[Example input, true output, and prediction images for U--ResNet.]
+	{Example input, truth, and prediction images for U--ResNet.}
 	\label{fig:unet_example}
 \end{figure}
 
@@ -692,7 +692,7 @@ which the energy calibration constants have been calculated.
 
 \subsubsection{Hit Selection}
 
-The U-Net produces a sharply peaked output distribution in both data and
+The U--ResNet produces a sharply peaked output distribution in both data and
 simulation, as seen in Figure \ref{fig:unet_pred_data}. The histograms here are
 normalised by the number of entries. Both distributions show sharp peaks at zero
 and one, but the distribution has slightly sharper peaks in simulation, which 
@@ -707,7 +707,7 @@ simulation for the event selection algorithm.
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
 	\caption
-	[U-Net Predicted Distribution.]
+	[U--ResNet Predicted Distribution.]
 	{U--ResNet predicted distribution for hits in images. The simulated results are
 	shown by the red line, with the backgrounds as a shaded red region. The data 
 	is shown in black, with statistical error bars.}
@@ -739,9 +739,9 @@ by varying the threshold.
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.pdf}
 	\caption
-	[U-Net purity vs completeness.]
-	{Hit tagging purity vs completeness for the U--ResNet algorithm on \protodune{}
-	simulation.}
+	[Hit tagging purity and completeness for the U--ResNet algorithm.]
+	{Hit tagging purity vs completeness for the U--ResNet algorithm on 
+	\protodune{} simulation.}
 	\label{fig:unet_pur_comp}
 \end{figure}
 
@@ -756,16 +756,17 @@ electron.
 	\centering
 	\includegraphics[width=\textwidth]{figures/mich_n_hits.pdf}
 	\caption
-	[Number of hits in Michel electron events.]
-	{Number of hits selected by the U--ResNet for Michel electron candidate events in
-	data and simulation.}
+	[Number of selected hits in reconstructed Michel electron events.]
+	{Number of hits selected by the U--ResNet for Michel electron candidate 
+	events in data and simulation. The distribution in data includes statistical
+	error bars.}
 	\label{fig:mich_n_hits}
 \end{figure}
 
 \subsubsection{Ionisation Energy Reconstruction}
 
 The total ionisation energy is reconstructed by summing the hit--by--hit
-ionisation energy for all hits selected by the U-Net. The ionisation energy for
+ionisation energy for all hits selected by the U--ResNet. The ionisation energy for
 each hit is reconstructed from the hit integral in ADC as 
 \begin{equation}
 	E_{hit} = \frac{I_{hit} \times C_X \times C_{YZ} \times N \times W_{ion}}{C \times R}\mbox{,}
@@ -807,9 +808,10 @@ time in simulation, and only 1\% in data.
 	\centering
 	\includegraphics[width=\textwidth]{figures/hit_ion_reco.png}
 	\caption
-	[Reconstructed Hit Ionisation Energy.]
-	{Reconstructed Hit Ionisation Energy for hits in Michel electron input images 
-	in data and simulation.}
+	[Reconstructed hit ionisation energy for hits in U--ResNet input images.]
+	{Reconstructed hit ionisation Energy for hits in U--ResNet input images 
+	in data and simulation. The distribution in data includes statistical error
+	bars.}
 	\label{fig:hit_ion_reco}
 \end{figure}
 
@@ -826,8 +828,11 @@ data and simulation is a slightly longer tail at high energy in data.
 	\centering
 	\includegraphics[width=\textwidth]{figures/michel_ion_reco.pdf}
 	\caption
-	[Reconstructed Michel Electron Ionisation Energy.]
-	{Reconstructed Michel electron ionisation energy in data and simulation.}
+	[Reconstructed ionisation energy for Michel electron candidates in
+	\protodune{} data and simulation.]
+	{ Reconstructed ionisation energy for Michel electron candidates in
+	\protodune{} data and simulation. The distribution in data includes
+	statistical error bars. }
 	\label{fig:michel_ion_reco}
 \end{figure}
 
@@ -847,8 +852,10 @@ the Michel electron energy reconstruction.
 	\centering
 	\includegraphics[width=\textwidth]{figures/reco_v_true_ion.pdf}
 	\caption
-	[Reconstructed Ionisation vs True Ionisation.]
-	{Reconstructed Ionisation vs True Ionisation.}
+	[Reconstructed ionisation energy vs total deposited ionisation energy for
+	Michel electron events in \protodune{} simulation.]
+	{ Reconstructed ionisation energy vs total deposited ionisation energy for
+	Michel electron events in \protodune{} simulation. }
 	\label{fig:reco_v_ion}
 \end{figure}
 
@@ -876,7 +883,7 @@ and, therefore, the fit was restricted to the central region of the distribution
 	[Fractional energy difference between reconstructed and true Michel electron
 	energy.]
 	{Fractional energy difference between reconstructed and true Michel electron
-	energy.}
+	ionisation energy in \protodune{} simulation, with statistical error bars.}
 	\label{fig:frac_diff_ion}
 \end{figure}
 
@@ -904,8 +911,11 @@ associated fits are given in Appendix \ref{ch:energyfits}.
 		\label{fig:bias_ion}
 	\end{subfigure}
 	\caption
-	[Energy resolution and bias as a function of true ionisation energy deposition.]
-	{Energy resolution and bias as a function of true ionisation energy deposition.}
+	[Energy resolution and bias for Michel electrons as a function of true 
+	ionisation energy deposition.]
+	{Energy resolution and bias for Michel electrons as a function of true 
+	ionisation energy deposition in \protodune{} simulation. The error bars
+	represent the statistical uncertainty only.}
 	\label{fig:res_and_bias_ion}
 \end{figure}
 
@@ -937,7 +947,7 @@ estimated bias and resolution based on these two methods.
 	[Comparison of energy resolution estimates for Michel electron ionisation
 	energy.]
 	{ Comparison of energy resolution estimates for Michel electron ionisation
-	energy. }
+	energy from \protodune{} simulation. }
 	\label{tab:gaus_v_mean}
 \end{table}
 
@@ -960,9 +970,9 @@ case is fit with a gaussian distribution, which is shown in Figure
 	[Energy uncertainty contribution from hit energy reconstruction.]
 	{The fractional difference between the true ionisation energy deposition and
 	the reconstructed ionisation energy deposition for Michel electron
-	reconstructed with perfect hit tagging. The distribution is fit with a 
-	gaussian, which is shown in red, and the fit parameters are shown in the top 
-	right corner. The error bars are statistical.}
+	reconstructed with perfect hit tagging, with statistical error bars. The 
+	distribution is fit with a gaussian, which is shown in red, and the fit 
+	parameters are shown in the top right corner.}
 	\label{fig:michel_hit_res}
 \end{figure}
 

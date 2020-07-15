@@ -1,5 +1,4 @@
-\chapter{\label{ch:chargeid}Hit Classification with Convolutional Neural 
-Networks} 
+\chapter{\label{ch:chargeid}Hit Classification with Convolutional Neural Networks} 
 
 \minitoc
 
@@ -95,11 +94,12 @@ between the images and the detector readout.
 	\centering
 	\includegraphics[width=\textwidth]{figures/patch_zoom.pdf}  
 	\caption
-	[Example CNN input images for each class.]
-	{Example CNN input images for each class. The input images are $48 \times 48$
-	pixel images, which are taken from regions of the full detector readout. In
-	the diagram, one example of each image class is displayed. The white outlines
-	demonstrate the location of each input image in the full readout.}
+	[Example CNN input images for the track, shower, and Michel classes.]
+	{Example CNN input images for the track, shower, and Michel classes. The 
+	input images are $48 \times 48$ pixel images, which are taken from regions of 
+	the full readout from a single APA. In the diagram, one example of each image 
+	class is displayed. The white outlines demonstrate the location of each input 
+	image in the APA readout.}
 	\label{fig:patches}
 \end{figure}
 
@@ -569,8 +569,9 @@ hits with shower score less than around 0.2.
 	[Overall shower score distribution from the CNN for all hits in data and simulation.]
 	{Overall shower score distribution from the CNN for all hits in data and
 	simulation. The top panel shows the shower score distribution for all hits in
-	data and simulation, normalised by the number of hits. The fractional 
-	residuals in each bin are shown in the bottom plot.}
+	data and simulation, normalised by the number of hits, and including
+	statistical error bars. The fractional residuals in each bin are shown in the 
+	bottom plot.}
 	\label{fig:cnn_overall_score}
 \end{figure}
 
@@ -598,6 +599,7 @@ after these cuts are shown in Figure \ref{fig:angular_dist}.
 
 \begin{figure}
 
+	% TODO: better caption
 	\begin{subfigure}[b]{\textwidth}
 		\centering
 		\includegraphics[width=0.49\textwidth]{figures/endX_nocuts.pdf}
@@ -608,6 +610,7 @@ after these cuts are shown in Figure \ref{fig:angular_dist}.
 		of the track endpoint.}
 		\label{fig:spatial_cuts}
 	\end{subfigure}
+
 	\begin{subfigure}[b]{\textwidth}
 		\centering
 		\vspace{1.5cm}
@@ -621,8 +624,9 @@ after these cuts are shown in Figure \ref{fig:angular_dist}.
 	\end{subfigure}
 
 	\caption 
-	[Data Quality Cuts for CNN Comparison.]
-	{Data Quality Cuts for CNN Comparison.}
+	[Data quality cuts for CNN comparison.]
+	{Data quality cuts for CNN comparison, and the resulting muon angular
+	distributions after the quality cuts.}
 	\label{fig:cnn_cuts_spatial}
 
 \end{figure}
@@ -662,7 +666,7 @@ beam particles of the given flavour.
 	[Shower classifier scores for different particle species from the \protodune{} 
 	beam.]
 	{Shower classifier scores for different particle species from the \protodune{} 
-	beam, in data and simulation.}
+	beam, in data and simulation, with statistical error bars for the data.}
 	\label{fig:cnn_scores_beam}
 
 \end{figure}
@@ -702,7 +706,7 @@ cosmic--ray tracks in data than in simulation.
 	\caption
 	[Shower classifier score for hits from cosmic--rays.]
 	{Shower classifier score for hits from reconstructed cosmic--rays, in data and
-	simulation.}
+	simulation, with statistical error bars for the data.}
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 

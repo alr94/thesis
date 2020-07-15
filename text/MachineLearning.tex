@@ -92,13 +92,12 @@ $y$, which is part of the input for the next layer,
 Some common choices for the activation function are the sigmoid function, the
 hyperbolic tangent, the rectified linear unit (ReLU), and the softmax 
 function\cite{Lecun2015, He2015, Szegedy2015}.
-\begin{align}
+\begin{align*}
 	\tag{Sigmoid} f(x) &= \frac{1}{1+e^x} \\
 	\tag{Tanh}    f(x) &= \frac{e^x - e^{-x}}{e^x+e^{-x}} \\
 	\tag{ReLU}    f(x) &= \mbox{max}\left( 0, x \right) \\
-	\tag{Softmax} f(x_i) &= \frac{e^{x_i}}{\displaystyle\sum_j e^{x_j}} \\
-	\label{eqn:losses}
-\end{align}
+	\tag{Softmax} f(x_i) &= \frac{e^{x_i}}{\displaystyle\sum_j e^{x_j}}
+\end{align*}
 In the softmax function, the index $i$ indicates the current node, and the index
 $j$ includes all nodes in the current layer. This construction ensures that 
 the outputs from a softmax layer sum to one, and as such this unit is commonly 
@@ -123,10 +122,10 @@ layers\cite{Reed1999, Lecun2015}.
 \subsection{Convolutional Neural Networks}
 An extension of the MLP with considerable success, particularly in image 
 classification tasks, is the convolutional neural network 
-(CNN)\cite{Jackel2008, Szegedy2015, 5537907}, which addresses some of the drawbacks 
-of the traditional MLP. In particular, when evaluating data with a high 
-dimensional input, having a fully connected network architecture leads to a 
-large number of neurons and high computational cost. In addition, for 
+(CNN)\cite{Jackel2008, Szegedy2015, 5537907}, which addresses some of the 
+drawbacks of the traditional MLP. In particular, when evaluating data with a 
+high dimensional input, having a fully connected network architecture leads to 
+a large number of neurons and high computational cost. In addition, for 
 spatially correlated data, such an architecture does not take into account the 
 local spatial structure of the data, instead focussing on all the data at 
 once. A CNN attempts to resolve these issues by exploiting the local spatial 
@@ -136,9 +135,9 @@ In a CNN the singular input neutrons of a traditional MLP are replaced by
 convolutional kernels. A convolutional kernel is a matrix containing a set of 
 weights, which are multiplied pixel--by--pixel with small regions of the input 
 image. The convolution operator is defined as, 
-\begin{equation}
+\begin{equation*}
 	\left( x * y \right)_i = \sum_{j = - \infty}^{\infty} x_j \; y_{i-j},
-\end{equation}
+\end{equation*}
 where x and y are discrete sequences. In the machine learning context, y
 represents the image, and x the convolutional kernel, which are both finite in
 extent. Therefore, they are defined to be zero outside of their boundaries, and

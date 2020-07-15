@@ -112,7 +112,7 @@ illustrated in Figure \ref{fig:lartpc}.
 	argon, ionisation electrons and scintillation light. The ionisation electrons
 	are drifted in the applied electric field and collected on a set of sense
 	wires which record the signal. The scintillation photons are collected by 
-	photon detectors, not depicted. Figure from \cite{Abi:2020loh}.}
+	photon detectors, which are not depicted. Figure from \cite{Abi:2020loh}.}
 
 	\label{fig:lartpc}
 
@@ -203,7 +203,7 @@ mass\cite{Abi:2017aow}.
 	\caption
 	[A 3D rendering of the main components of the \protodune{} TPC.]
 	{A 3D rendering of the main components of the \protodune{} TPC, with the main
-	components labelled on the image. Figure from \cite{Abi:2017aow}.}
+	components labelled. Figure from \cite{Abi:2017aow}.}
 
 	\label{fig:pdsp_tpc}
 
@@ -452,7 +452,7 @@ time coincidence requirement the trajectories of tracks can be reconstructed.
 
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[width=0.6\textwidth]{figures/crt_side.pdf}
+		\includegraphics[width=0.9\textwidth]{figures/crt_side.pdf}
 		\label{fig:crt_side}
 		\caption{Side view.}
 	\end{subfigure}
@@ -461,7 +461,7 @@ time coincidence requirement the trajectories of tracks can be reconstructed.
 
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[width=0.6\textwidth]{figures/crt_top.pdf}
+		\includegraphics[width=0.9\textwidth]{figures/crt_top.pdf}
 		\label{fig:crt_top}
 		\caption{Top view.}
 	\end{subfigure}
@@ -819,10 +819,9 @@ vs range for a sample of stopping muons, as shown in figure \ref{fig:dedx_v_rr}.
 	\caption
 	[$dE/dx$ vs residual range for a stopping muon sample in \protodune{} data.]
 	{$dE/dx$ vs residual range for a stopping muon sample in \protodune{} data.
-	The coloured histogram represents the reconstructed $de/dx$ in \protodune{}
+	The coloured histogram represents the reconstructed $dE/dx$ in \protodune{}
 	data, and the black line is the most probable value of the theoretical 
-	$dE/dx$ distribution for stopping muons as a function of residual range.  
-	Figure from \cite{protoduneperf}.}
+	distribution. Figure from \cite{protoduneperf}.}
 
 	\label{fig:dedx_v_rr}
 
@@ -939,7 +938,7 @@ APA, an example of the FFT for a single FEMB is shown in Figure
 		\includegraphics[width=\textwidth]{figures/active_femb.pdf}
 		\caption {Number of events recorded by each FEMB on APA 6. 10 events are
 		processed for each OM file, therefore, the histogram should be filled to 10
-		for every FEMB.}
+		for every FEMB, if not there has been an issue.}
 		\label{fig:active_femb}
 	\end{subfigure}
 
@@ -947,7 +946,7 @@ APA, an example of the FFT for a single FEMB is shown in Figure
 		\centering
 		\vspace{3mm}
 		\includegraphics[width=\textwidth]{figures/tpc_fft.pdf}
-		\caption {The average FFT from all channels from a single FEMB.}
+		\caption {The profiled FFT from all channels from a single FEMB.}
 		\label{fig:TPC_FFT}
 	\end{subfigure}
 
@@ -955,9 +954,9 @@ APA, an example of the FFT for a single FEMB is shown in Figure
 		\centering
 		\vspace{3mm}
 		\includegraphics[width=\textwidth]{figures/all_chan_rms.png}
-		\caption {RMS for all channels displayed on a single histogram. The mean RMS
-		for every TPC channel is plotted. The channels are organised by APA and wire
-		plane.} 
+		\caption {RMS for all channels displayed \emph{pseudo--geometrically} on a 
+		single histogram. The RMS for every TPC channel is plotted, and the channels 
+		are organised by APA and wire plane.} 
 		\label{fig:ped_noise}
 	\end{subfigure}
 
@@ -1001,9 +1000,9 @@ reconstruction.
 	monitoring system.]
 	{An example of a beam window event display from the \protodune{} online
 	monitoring system. The measured signal on the collection plane wires in ADC 
-	is displayed on wire vs time axes, for region where the beam enters the TPC. 
-	An example of a data defect which was discovered in the OM can be seen on the 
-	left of the plot, this timing issue was mitigated during offline
+	is displayed on wire vs time axes, for the region where the beam enters the 
+	TPC. An example of a data defect which was discovered in the OM can be seen 
+	on the left side of the plot, this timing issue was mitigated during offline
 	reconstruction.}
 
 	\label{fig:beam_evd}
@@ -1139,7 +1138,7 @@ for each channel, and the mean ADC for each channel, these are shown in Figure
 		\centering
 		\vspace{3mm}
 		\includegraphics[width=\textwidth]{figures/crt_rate_om.pdf}
-		\caption {Number of hits measured by each CRT channel. The channels are
+		\caption {Rate of hits measured by each CRT channel. The channels are
 		arranged into a 2D histogram based on the module number and the channel
 		number within each module.}
 		\label{fig:crt_rate_om}
@@ -1193,10 +1192,10 @@ plots and displaying them to the user.
 	\caption
 	[Data flow diagram for the web interface in the \protodune{} online 
 	monitoring system.] 
-	{ Data flow diagram for the web interface in the \protodune{} online 
+	{Data flow diagram for the web interface in the \protodune{} online 
 	monitoring system. The display server is responsible for handling user
 	requests by communicating with the histogram database and rendering server,
-	which returns plots to display plots to the user.} 
+	which collect plots from the monitoring files to display to the user.} 
 	\label{fig:monet_flow}
 
 \end{figure}
