@@ -545,14 +545,14 @@ the true output images the pixels have an amplitude of 1 if they contain a
 Michel electron hit, and 0 otherwise. Only data from the collection plane is 
 used, because there is a higher signal to noise ratio on these wires. 
 
-The $F_\beta$ metric was used as the loss function for the U--ResNet. This loss is
-a generalised version of the $F_1$ metric discussed in Chapter
-\ref{ch:chargeid}, which allows for the relative importance of precision and
-recall to be tuned,
-\begin{equation}
+The $F_\beta$ metric\cite{VanRijsbergenC.J.1975Ir} was used as the loss 
+function for the U--ResNet.  This loss is a generalised version of the $F_1$ 
+metric discussed in Chapter \ref{ch:chargeid}, which allows for the relative 
+importance of precision and recall to be tuned,
+\begin{equation*}
 	F_\beta = \left( 1 + \beta^2\right) \frac{precision \cdot
 	recall}{\left(\beta^2 \cdot precision\right) + recall}.
-\end{equation}
+\end{equation*}
 This loss rewards the network for selecting as many correct hits as possible
 (high recall), while penalising it for selecting more hits that necessary (low
 precision). The $F_\beta$ score lies between 0 and 1, with a score of 1
@@ -718,11 +718,11 @@ The performance of the hit tagging algorithm was analysed with the simulated
 sample. Based on the score distributions for true and false hits, the precision 
 and completeness of the hit tagging algorithm can be evaluated. The precision 
 and completeness are defined as 
-\begin{align}
+\begin{align*}
 	\mbox{Precision} \quad &= \quad  \frac{N_{TP}}{N_{TP} + N_{FP}} \\
 	\vspace{2mm}
 	\mbox{Completeness} \quad &= \quad \frac{N_{TP}}{N_{TP} + N_{FN}}
-\end{align}
+\end{align*}
 where $N_{TP}$, $N_{FP}$, and $N_{FN}$ are the number of true--positives,
 false--positives, and false--negatives respectively. These parameters give a
 quantitative evaluation of the performance of the hit tagging algorithm.
@@ -768,9 +768,9 @@ electron.
 The total ionisation energy is reconstructed by summing the hit--by--hit
 ionisation energy for all hits selected by the U--ResNet. The ionisation energy for
 each hit is reconstructed from the hit integral in ADC as 
-\begin{equation}
+\begin{equation*}
 	E_{hit} = \frac{I_{hit} \times C_X \times C_{YZ} \times N \times W_{ion}}{C \times R}\mbox{,}
-\end{equation}
+\end{equation*}
 where $E_{hit}$ is the reconstructed hit energy in MeV, $I_{hit}$ is the
 integrated hit charge in ADC, $C_X$ is the X--correction factor which is
 dependent on the X coordinate of the hit within the TPC, $C_{YZ}$ is the 

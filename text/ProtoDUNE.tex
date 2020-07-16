@@ -783,10 +783,10 @@ normalise the response over the TPC volume based on the median of the measured
 $dQ/dx$ distribution in each location. The distribution is then normalised to 
 the average value at the anode plane, where the effects of the X corrections are
 expected to be negligible. The corrected $dQ/dx$ is given by
-\begin{equation}
+\begin{equation*}
 	\left( dQ/dx \right)_{corr} = N_Q \; C_{yz}(y, z) \; C_x(x) \; \left( dQ/dx
 	\right)_{reco},
-\end{equation}
+\end{equation*}
 where $N_Q$ normalises the median of the distributions to the median value at
 the anode, and $C_{yz}$ and $C_{x}$ are the calibration factors for the YZ and 
 X corrections respectively.
@@ -796,11 +796,11 @@ a reconstructed $dE/dx$, this involves accounting for electron--ion
 recombination at the source. The modified box model is used to model the
 recombination correction, this model has been studied in a LArTPC by the 
 ArgoNeuT experiment\cite{Acciarri2013a}. The reconstructed $dE/dx$ is 
-\begin{equation}
+\begin{equation*}
 	\frac{dE}{dx} = \left( \exp \left( \frac{\frac{dQ}{dx}}{C_{cal}} \frac{\beta^\prime
 	W_{ion}}{\rho \epsilon} \right) - \alpha \right)
 	\left( \frac{\rho \epsilon}{\beta^\prime} \right)
-\end{equation}
+\end{equation*}
 where $C_{cal}$ is a calibration constant used to convert ADC to electrons,
 $W_{ion}$ is the work function of argon, $\epsilon$ is the local electric field,
 $\rho$ is the liquid argon density, and \(\alpha = 0.93\) and 
