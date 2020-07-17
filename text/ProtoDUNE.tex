@@ -19,10 +19,10 @@
 
 \minitoc
 
-\protodune{} is one of two prototypes for the DUNE far detector modules that has
-been operating at the Neutrino Platform at CERN since the summer of 2018. The
-experiment collected data from a charged particle beam for approximately 3 
-months before Long Shutdown 2 of the Large Hadron Collider (LHC). Since then a 
+\protodune{} is one of two prototypes for the DUNE far detector modules, which 
+has been operating at the Neutrino Platform at CERN since the summer of 2018. 
+The experiment collected data from a charged particle beam for approximately 3 
+months before Long Shutdown 2 of the Large Hadron Collider (LHC). Since then, a 
 programme of cosmic--ray data collection has been ongoing.
 
 This chapter will outline the technical details of the \protodune{} experiment.
@@ -30,14 +30,15 @@ Section \ref{sec:pdsp_dune} will outline the role of \protodune{} in the context
 of the DUNE experiment. This will be followed by a discussion of the main
 elements of the \protodune{} detector systems and the H4 beamline, in Sections 
 \ref{sec:pdsp_detector} and \ref{sec:h4} respectively. The tagging of 
-cosmic--ray muons for calibration is done by the Cosmic--Ray Tagger (CRT) which will 
-be discussed in Section \ref{sec:pdsp_cosmic}. Sections \ref{sec:simulation} 
-and \ref{sec:reconstruction} will then discuss the simulation and 
-reconstruction of \protodune{} data. Finally Section \ref{sec:pdsp_om} will 
-cover details of the online monitoring system in \protodune{}; as the primary 
-developer and expert on the \protodune{} online monitoring system during my 
-time at CERN, the development and maintenance of this system represent a 
-significant body of work over 12 months.  
+cosmic--ray muons for calibration is done by the Cosmic--Ray Tagger (CRT), 
+which will be discussed in Section \ref{sec:pdsp_cosmic}. Sections 
+\ref{sec:simulation} and \ref{sec:reconstruction} will then discuss the 
+simulation and reconstruction of \protodune{} data. Finally Section 
+\ref{sec:pdsp_om} will cover details of the online monitoring system in 
+\protodune{}; as the primary developer and expert on the \protodune{} online 
+monitoring system during my time at CERN, the development and maintenance of 
+this system represents a significant body of work over a 12 month period, as 
+well as ongoing maintenance work throughout the following 2 years.
 
 \section{\protodune{} in the Context of DUNE} \label{sec:pdsp_dune}
 
@@ -57,11 +58,11 @@ significant body of work over 12 months.
 
 The DUNE experiment will be a next generation neutrino physics and nucleon decay
 experiment consisting of three principal components; an intense broad band 
-neutrino beam and precise near detector complex based at the Fermilab National 
-Accelerator Laboratory (FNAL) near Chicago, and a far detector at Sanford Underground 
-Research Facility (SURF) in South Dakota, approximately 1300 km away from the 
-neutrino source, as in Figure \ref{fig:dune_baseline}. The DUNE experiment 
-identifies three primary scientific goals\cite{Abi:2020evt}:
+neutrino beam and precise near detector complex, based at the Fermilab National 
+Accelerator Laboratory (FNAL) near Chicago, and a far detector, at Sanford 
+Underground Research Facility (SURF) in South Dakota, approximately 1300 km 
+away from the neutrino source, as shown in Figure \ref{fig:dune_baseline}. The 
+DUNE experiment identifies three primary scientific goals\cite{Abi:2020evt}:
 \begin{itemize}
 	\item Perform a comprehensive programme of neutrino oscillation measurements
 		including measurements of \dcp{}, neutrino mass ordering, and $\theta_{23}$.
@@ -80,24 +81,24 @@ secondary science goals:
 		detector.
 \end{itemize}
 
-To achieve these goals DUNE has opted to base the near and far detector designs
+To achieve these goals, DUNE has opted to base the near and far detector designs
 on the liquid argon time projection chamber (LArTPC) technology. The DUNE
 far detector will eventually consist of four LArTPC detectors each with 10 kt 
 of active liquid argon mass. This technology will have never before been used 
 on this scale and, therefore, there has been a significant programme of LArTPC 
-research and development ongoing to validate and characterise the performance 
+research and development ongoing, to validate and characterise the performance 
 of the technology for DUNE. 
 
 \subsection{Liquid Argon Time Projection Chambers}
 A LArTPC consists of a large volume of highly--purified liquid argon subject to
 an electric field. Charged particles traversing the liquid argon produce two
 primary energy depositions, a trail of ionisation electrons along their path,
-and prompt ultra--violet scintillation photons. After creation the ionisation
-electrons drift in the electric field toward the charge readout plane where they
-induce electrical signals. Liquid argon is transparent to its own scintillation
-light, therefore, the scintillation photons can travel through the argon to be
-collected in a photon detection system. The LArTPC detection principal is 
-illustrated in Figure \ref{fig:lartpc}. 
+and prompt ultra--violet scintillation photons. After creation, the ionisation
+electrons drift in the electric field toward the charge readout plane, where 
+they induce electrical signals. Liquid argon is transparent to its own 
+scintillation light, therefore, the scintillation photons can travel through 
+the argon to be collected in a photon detection system. The LArTPC detection 
+principal is illustrated in Figure \ref{fig:lartpc}. 
 
 \begin{figure}
 
@@ -127,11 +128,11 @@ plane. This scintillation light plays an important role in the accurate 3D
 reconstruction of interactions in the LArTPC, it can be used to determine the
 time of an interaction to within a few nanoseconds.
 
-In a LArTPC interactions play out much quicker than the detector is able to 
+In a LArTPC, interactions play out much quicker than the detector is able to 
 record them; as such each event actually integrates over a large number of 
 interactions within the readout window. The true time, often referred to as 
 the $t_0$, of the interactions in the event cannot be reconstructed from the 
-ionisation signals alone; by utilising the much faster scintillation signals 
+ionisation signals alone; by utilising the much faster scintillation signals,
 the time of interactions can be calculated with much higher precision.  This 
 data can be combined with the arrival time of drifting electrons to reconstruct 
 the true drift distance. Without an accurate $t_0$, the reconstructed drift 
@@ -140,11 +141,11 @@ will be incorrect.
 
 The details of the charge readout and photon detection systems are specific to 
 each detector, but broadly speaking LArTPC detectors can be split into two 
-main categories: single--phase and dual--phase. In a single--phase detector the
+main categories: single--phase and dual--phase. In a single--phase detector, the
 drifting ionisation electrons remain in the liquid argon and the signals are 
 typically read out on three anode wire planes, although pixel readout systems
 have also been developed\cite{argoncube}. A dual--phase LArTPC contains an
-additional region of gaseous argon in which a high electric field, known as the
+additional region of gaseous argon, in which a high electric field, known as the
 extraction field, is applied to extract the ionisation from the liquid into the
 gas before it is amplified and collected on a pair of anode wire 
 planes\cite{Abi:2020wmh}.
@@ -185,7 +186,7 @@ are illustrated in Figure \ref{fig:pdsp_tpc}:
 \begin{itemize}
 	\item A cathode plane constructed of modular Cathode Plane Assemblies (CPA).
 	\item Two anode planes constructed of modular Anode Plane Assemblies (APA).
-	\item A photon detection system (PDS) which is integrated into the APAs.
+	\item A photon detection system (PDS), which is integrated into the APAs.
 	\item A field cage, beam plug, and high voltage systems.
 	\item Readout electronics and Data Acquisition System (DAQ).
 \end{itemize}
@@ -213,11 +214,11 @@ mass\cite{Abi:2017aow}.
 
 The \protodune{} TPC has an active volume of 6 m (height) $\times$ 7.2 m (width,
 drift direction) $\times$ 7 m (length, approximate beam direction). The cathode 
-plane at the center of the active width is flanked by two anode planes which 
+plane at the center of the active width is flanked by two anode planes, which 
 define two 3.6 m drift volumes. The field cage around these two drift volumes
 helps to ensure a uniform electric field within the drift region.
 
-Each anode plane is modularly constructed from three APAs which have dimensions
+Each anode plane is modularly constructed from three APAs, which have dimensions
 6 m (height) $\times$ 2.3 m (width). The APA frame holds three sets of parallel
 wires on the inward and outward facing sides, these are oriented at different 
 angles to enable 3D reconstruction. The outer two sets of wires are induction
@@ -225,25 +226,25 @@ wires, these are biased such that they are electrically transparent to the
 drifting ionisation. Ionisation passing the induction wires causes an induced 
 bi--polar signal. The third set of wires are known as collection wires, these
 wires are not biased. When drifting ionisation approaches the collection wires 
-it is absorbed producing a uni--polar signal. In \protodune{} each set of 
+it is absorbed producing a uni--polar signal. In \protodune{}, each set of 
 induction wires contains 800 wires at a 4.67 mm spacing, and each set of 
 collection wires contains 480 wires at a 4.79 mm spacing. 
 
-The wire planes from each APA are read out by electronics boards (FEMB) 
-mounted on the APA frame; the FEMBs are submerged in the liquid argon 
-and, therefore, also referred to as cold electronics (CE). A total of 2560 
-electronics channels are used to read out the data from each APA, with each
-readout window corresponding to 3 ms, which is 6000 time samples. The CE 
-amplify, shape, and digitise the signals from the wires before transmitting 
-them outside the TPC to the Warm Interface Boards (WIB). The WIBs collate the 
-data from the CE boards and pass the data onto the Data Acquisition System 
-(DAQ).
+The wire planes from each APA are read out by electronics boards, known as
+Front--end Mother Boards (FEMB), which are mounted on the APA frame. The FEMBs 
+are submerged in the liquid argon and, therefore, also referred to as cold 
+electronics (CE). A total of 2560 electronics channels are used to read out 
+the data from each APA, with each readout window corresponding to 3 ms, which 
+is 6000 time samples. The CE amplify, shape, and digitise the signals from the 
+wires before transmitting them outside the TPC to the Warm Interface Boards 
+(WIB). The WIBs collate the data from the CE boards and pass the data onto the 
+Data Acquisition System (DAQ).
 
 The cathode plane in \protodune{} consists of an array of 18 CPA modules, 2 m 
 (height) $\times$ 1.2 m (width). The cathode plane is held at -180 kV to 
 provide a 500 $\mbox{V/cm}$ drift field in each of the drift volumes. The 
 field cage surrounding the drift regions ensures that the electric field is 
-uniform across the detector volume by providing the necessary electrical
+uniform across the detector volume, by providing the necessary electrical
 boundary conditions.
 
 One area in which the design of \protodune{} differs from the far detector is
@@ -368,7 +369,7 @@ the H4 beamline to \protodune{}. A schematic of the beamline instrumentation
 \end{figure}
 
 By combining momentum measurements from the profile monitors with time of flight
-(TOF) and Cerenkov measurements the beam momentum and composition can be 
+(TOF) and Cerenkov measurements, the beam momentum and composition can be 
 measured. The predicted and measured distribution of TOF vs momentum for data 
 from a number of runs at different momenta is shown in Figure \ref{fig:h4_tof}.
 This information is used to trigger the detector during beam running, and is
@@ -428,14 +429,14 @@ Table \ref{tab:beam_runs}.
 \section{The Cosmic--Ray Tagger} \label{sec:pdsp_cosmic}
 
 As a surface level detector with no overburden \protodune{} measures a
-significant rate, on the order of 20 kHz, of cosmic--ray muons, corresponding 
+significant rate, on the order of 20 kHz, of cosmic--ray muons. This corresponds
 to an average of 60 muons per 3 ms readout window. These muons provide a 
 useful source of calibration data in the form of long tracks and stopping 
 muons.  The Cosmic--Ray Tagger (CRT) in \protodune{} was installed on the 
-upstream and downstream faces of the TPC to trigger the detector for 
+upstream and downstream faces of the TPC, to trigger the detector for 
 cosmic--ray muons which travel parallel to the anode plane. In addition the 
-CRT, can provide accurate timing information for any tracks which can be matched
-between the TPC and CRT.
+CRT, can provide accurate timing information for any tracks which are
+successfully matched between the TPC and CRT.
 
 The CRT consists of four parts, two upstream assemblies and two downstream
 assemblies, the locations of the CRT assemblies is illustrated in Figure
@@ -443,8 +444,8 @@ assemblies, the locations of the CRT assemblies is illustrated in Figure
 scintillation counters, which cover an area 6.8 m high and 3.65 m wide. 
 Scintillation strips of length 365 cm and width 5 cm are placed in 
 perpendicular arrays to give two--dimensional reconstruction within each CRT 
-assembly. By combining data from upstream and downstream CRT assemblies with a 
-time coincidence requirement the trajectories of tracks can be reconstructed.
+assembly. By combining data from upstream and downstream CRT assemblies, with a 
+time coincidence requirement, the trajectories of tracks can be reconstructed.
 
 \begin{figure}
 
@@ -509,7 +510,7 @@ data from the BI and CRT\cite{Abi:2017aow}.
 \end{figure}
 
 The \protodune{} TPC contains a total of 15,360 wires spread across the six
-APAs, the wires are digitized at a rate of 2 MHz resulting in an overall data
+APAs. The wires are digitized at a rate of 2 MHz, resulting in an overall data
 flow of around 480 $\mbox{Gb/s}$ from the TPC electronics. An event in
 \protodune{} corresponds to a continuous readout of the detector for 3 ms,
 resulting in 6000 samples from each wire; data is buffered such that the readout
@@ -537,7 +538,7 @@ be discussed in Section \ref{sec:pdsp_om}.
 
 Simulation and reconstruction of \protodune{} data takes place in the LArSoft
 framework\cite{Snider2017}. LArSoft is a software suite for simulating and
-reconstructing data collected by LArTPC detectors based on the art event 
+reconstructing data collected by LArTPC detectors, based on the art event 
 framework from Fermilab\cite{Green:2012gv}. LArSoft is under active use and
 development by a number of participating LArTPC based experiments, with each
 experiment making use of its core functionality as well as experiment specific
@@ -600,7 +601,7 @@ and analogue to digital conversion. The simulated waveforms produced by the
 An event consists of a synchronised set of waveforms from all of the TPC 
 channels, with each event corresponding to 3 ms or 6000 samples. The particle
 interactions within each event are reconstructed into objects like tracks and
-showers which can be used for physics analyses, this section provides a brief 
+showers, which can be used for physics analyses, this section provides a brief 
 summary of the steps involved in this reconstruction.
 
 First, the TPC waveforms are passed through a set of filtering algorithms which
@@ -651,7 +652,7 @@ applied to a 7 GeV test beam event in \protodune{} data is given in Figure
 Once the deconvoluted waveforms have been calculated, regions of interest (ROI) 
 are defined, these are regions of high amplitude in which charge deposition is
 likely to have occurred. Reconstructed hits are found within each region of
-interest by fitting gaussian peaks to the peaks within the region; most hits
+interest by fitting gaussian peaks to the pulses within the region; most hits
 consist of a single gaussian peak, however in busy regions of the detector
 multiple gaussian peaks may be used to fit a single pulse. Each reconstructed
 hit will have an associated peak time, width, and integral, these objects form
@@ -690,12 +691,12 @@ First the cosmic pass reconstructs the event with algorithms designed to
 reconstruct track--like particles. Track stitching algorithms can be used to
 predict the true interaction time for tracks during this stage. Any track which 
 crosses either a CPA or APA will produce track segments on either side of the 
-boundary, these segments point in the same direction but will have been 
+boundary, these segments point in the same direction, but will have been 
 displaced from each other in the drift direction based on the arrival time of 
 the corresponding particle. The $t_0$ for that track is equal to half the time 
 shift required to realign the two segments into a continuous track, a visual
 representation of this algorithm is show in Figure \ref{fig:track_stitching}. 
-After the cosmic pass any clear cosmic--ray candidates are removed under the 
+After the cosmic pass, any clear cosmic--ray candidates are removed under the 
 following conditions\cite{protoduneperf}:
 \begin{itemize}
 	\item The particle travels through both the top and bottom of the detector.
@@ -726,13 +727,14 @@ slices are reconstructed under both the cosmic--ray and beam particle
 hypothesis, and a boosted decision tree is used to determine whether a 
 given slice is consistent with being a beam particle\cite{protoduneperf}. 
 
-Under the beam particle hypothesis a more complex chain of algorithms is used to
-reconstruct a given slice, these algorithms are capable of reconstructing the
-particle hierarchies seen in the complex hadronic interactions from the
-\protodune{} beam. These algorithms return the particle flow of the interactions
-in the form of PFParticles as well as the reconstructed interaction vertex for
-the primary beam particle. An example of the reconstructed particle hierarchy
-from a \protodune{} beam event is shown in Figure \ref{fig:pandora_pfp}.
+Under the beam particle hypothesis, a more complex chain of algorithms is used 
+to reconstruct a given slice. These algorithms are capable of reconstructing 
+the particle hierarchies seen in the complex hadronic interactions from the 
+\protodune{} beam. These algorithms return the particle flow of the 
+interactions in the form of PFParticles as well as the reconstructed 
+interaction vertex for the primary beam particle. An example of the 
+reconstructed particle hierarchy from a \protodune{} beam event is shown in 
+Figure \ref{fig:pandora_pfp}.
 
 \begin{figure}
 
@@ -849,11 +851,11 @@ event was triggered. It consists of three main components:
 An overview of the data flow in the OM is shown in Figure \ref{fig:om_flow}. 
 Data from the detector is first filtered before being run in any OM processes. 
 The data which is passed onto the OM processes is then split up and decoded by 
-the relevant RawDecoder which reformats the data ready for analysis. A number 
+the relevant RawDecoder, which reformats the data ready for analysis. A number 
 of Analyser Modules then make use of this data to make plots, which are merged 
 along with plots from external systems, and sent to a web interface to be 
 displayed in the control room. The following sections will provide a brief 
-summary of these stages, as well as examples of the plots, which are produced in
+summary of these stages, as well as examples of the plots which are produced in
 the OM.
 
 \begin{figure}
@@ -879,11 +881,12 @@ plots after data processing.
 The first step of the data processing is event filtering, the main purpose of
 this step is to control the flow of data into the OM. Two types of filtering
 take place sequentially; first a random filter is used to cut the data rate into
-the OM to a manageable level, then a second filter which aims to increase the 
-likelihood that processed events were triggered by the beam instrumentation or 
-cosmic--ray tagger. Different OM processes take different amount of
-processing time per event, therefore, multiple filters are used, which control 
-the data rate into each process separately.
+the OM to a manageable level, then a second filter is used, which aims to 
+increase the likelihood that processed events were triggered by the beam 
+instrumentation or cosmic--ray tagger, as opposed to a random software generated
+trigger. Different OM processes take a different amount of processing time per 
+event, therefore, multiple filters are used, which control the data rate into 
+each process separately.
 
 After filtering the events are ready to be processed. The data coming into the
 OM system is in its raw form. It arrives in small pieces known as Fragments,
@@ -892,8 +895,8 @@ are responsible for interpreting the headers and data streams from each
 detector component, and restructuring the data ready for processing. The 
 details of the decoding vary based on the readout system under consideration. 
 Each readout system defines a class, which details the contents of each
-fragment. The RawDecoders use the contents of this class to decode the fragments
-to prepare the data for processing.
+fragment. The RawDecoders use the contents of this class to decode the
+fragments, to prepare the data for processing.
 
 After the data has been decoded it is ready to be analysed. This is done by a
 number of Analyser Modules, which analyse the data from different detector
@@ -922,11 +925,11 @@ channels into a 2D grid and displaying the RMS as the colour scale on a 2D
 histogram, an example of this plot is shown in Figure \ref{fig:ped_noise}.
 
 To identify noise sources in the APA it is useful to study the Fourier transform
-of the signal distribution, this allows the frequencies to be identified and the
-Fourier distributions can be studied under different conditions to identify
-noise sources; the cameras in the TPC where identified as a noise source in
-this way. The OM, therefore, provides fast Fourier transforms (FFT) for each
-APA, an example of the FFT for a single FEMB is shown in Figure
+of the signal distribution. This allows the noisy frequencies to be identified,
+and by studying the Fourier distributions under different conditions noise
+sources can be identified; the cameras in the TPC where identified as a noise 
+source in this way. The OM, therefore, provides Fast Fourier Transforms (FFT) 
+for each APA, an example of the FFT for a single FEMB is shown in Figure 
 \ref{fig:TPC_FFT}.
 
 \begin{figure}
@@ -967,15 +970,15 @@ APA, an example of the FFT for a single FEMB is shown in Figure
 
 \end{figure}
 
-The Event Displays display all the data from all the TPC readout channels
-simultaneously, and as such they provide the most general check of TPC 
-performance in the OM. During the beam run of \protodune{} a number of issues in
-the data were first identified in the event display, for example issues in the 
-channel mapping and timing synchronisation. They are also particularly useful 
-for checking that the beam trigger results in beam particles in the TPC. As 
-a result a significant effort was made to make event displays available in 
-the \protodune{} OM system. In particular, changes to the display server 
-were required, these changes are discussed later. 
+Event Displays display all the data from all the TPC readout channels
+simultaneously and, as such, they provide the most general check of TPC 
+performance in the OM. During the beam run of \protodune{}, a number of issues 
+in the data were first identified in the event display, for example, issues in 
+the channel mapping and timing synchronisation. They are also particularly 
+useful for checking that the beam trigger results in beam particles in the 
+TPC. As a result a significant effort was made to make event displays 
+available in the \protodune{} OM system. In particular, changes to the display 
+server were required, these changes are discussed later. 
 
 Event Displays were offered for all views in all APAs. In addition, a special 
 Beam--window Event Display, which focussed on the data in the beam window, and 
@@ -1010,8 +1013,8 @@ reconstruction.
 \end{figure}
 
 \subsubsection*{Photon Detection System}
-Similarly to the TPC data the PDS data is analysed for pedestal, RMS, and FFTs;
-in addition the raw waveforms for each channel are accumulated over a number of
+Similarly to the TPC data, the PDS data is analysed for pedestal, RMS, and FFTs;
+in addition, the raw waveforms for each channel are accumulated over a number of
 events and displayed in the online monitoring. Examples of some of the PDS 
 monitoring plots are shown in Figure \ref{fig:pds_om}.
 
@@ -1046,14 +1049,14 @@ monitoring plots are shown in Figure \ref{fig:pds_om}.
 
 \subsubsection*{Trigger and Timing}
 The trigger and timing systems share much of the same data, because the timing
-system is used to distribute the triggers from the trigger system, so their
-monitoring is related. Some examples of useful timing and trigger plots include
-time--stamp difference distributions, and trigger records. The time--stamp delta
-plots show the difference in time--stamp between consecutive events, this
-distribution can be used to monitor the stability of the trigger rate during
-triggered operation. Trigger records are 2D histograms which detail the time 
-and type of trigger issued by the trigger board. Figure \ref{fig:timing_OM} 
-contains examples of these two plots.
+system is used to distribute the triggers from the trigger system, therefore, 
+their monitoring is related. Some examples of useful timing and trigger plots 
+include time--stamp difference distributions, and trigger records. The 
+time--stamp delta plots show the difference in time--stamp between consecutive 
+events, this distribution can be used to monitor the stability of the trigger 
+rate during triggered operation. Trigger records are 2D histograms which 
+detail the time and type of trigger issued by the trigger board. Figure 
+\ref{fig:timing_OM} contains examples of these two plots.
 
 \begin{figure}
 
@@ -1086,12 +1089,12 @@ contains examples of these two plots.
 
 \subsubsection*{Beam Instrumentation}
 The beamline instrumentation was monitored by CERN, who produced beamline
-monitoring plots\cite{Booth:2019brj}. The plots where continually overwritten 
+monitoring plots\cite{Booth:2019brj}. The plots were continually overwritten 
 on a time schedule which was decoupled from the \protodune{} running schedule, 
 the OM was responsible for collating the output of these plots in sync with 
 the \protodune{} run schedule, such that the collated beam information for 
 each run could be monitored. After collation the beam instrumentation plots 
-where merged with the rest of the OM plots. The beam instrumentation plots 
+were merged with the rest of the OM plots. The beam instrumentation plots 
 included momentum, and time of flight, examples of which are shown in 
 Figure \ref{fig:beam_OM}.
 
@@ -1126,8 +1129,8 @@ Figure \ref{fig:beam_OM}.
 A bug in the DAQ meant that the CRT was run separately during the main beam 
 run. Therefore, the CRT data was analysed separately from the rest of the 
 \protodune{} systems and merged in the OM similarly to the beam instrumentation 
-data. Some examples of CRT monitoring plots include plots of the rate of hits
-for each channel, and the mean ADC for each channel, these are shown in Figure
+data. Some examples of CRT monitoring plots include the rate of hits for each 
+channel and the mean ADC for each channel, these are shown in Figure 
 \ref{fig:crt_OM}.
 
 \begin{figure}
@@ -1171,7 +1174,7 @@ NumPy\cite{numpy} are used to process the monitoring data in preparation for
 display.
 
 Two important modifications were made to Monet for \protodune{}: efficiency 
-improvements which were required to handle the large amounts of data in the 
+improvements, which were required to handle the large amounts of data in the 
 event displays, and the addition of a separate rendering server with 
 additional capabilities. 
 
@@ -1179,7 +1182,7 @@ The components of the web interface, and their connections, are outlined in
 Figure \ref{fig:monet_flow}. When a user makes a request, which could be a
 request to open a new page of plots or a request to interact with a plot, the 
 request is sent to the display server which decides what to do with it.
-Depending on the nature of the request the display server will then interact
+Depending on the nature of the request, the display server will then interact
 with the histogram database and/or the rendering server, before updating the
 plots and displaying them to the user. 
 
@@ -1234,9 +1237,9 @@ advantage of the rendering server was that it enabled the OM to utilise a
 dynamic binning algorithm to scale the resolution of the displayed images in 
 response to user interaction. This is mainly used for the event displays; the 
 event display is initially loaded in a low resolution, but if a user is 
-interested in a specific region of the event display then they can zoom in on 
+interested in a specific region of the event display they can zoom in on 
 the region of interest, which is then displayed at a higher resolution by the 
-dynamic binning algorithm, as demonstrated in Figure \ref{fig:dynamic_binning}.
+dynamic binning algorithm as demonstrated in Figure \ref{fig:dynamic_binning}.
 
 \begin{figure}
 
@@ -1280,16 +1283,16 @@ to Bokeh, the rendering time was reduced to around 4 seconds per event display.
 \subsection{System Performance and Possible Improvements}
 In the \protodune{} Technical Design Report\cite{Abi:2017aow}, the proposed 
 online monitoring system was described as being able to \say{provide data 
-quality assurance in real--time}, in practice the response time is around one 
-minute.  During this time 10 events will have been processed for each set of 
+quality assurance in real--time}. In practice, the response time is around one 
+minute. During this time, 10 events will have been processed for each set of 
 plots, however, the Event Displays and TPC FFTs only contain data from one 
 event.
 
 The performance of the OM was found to be satisfactory for the operation of the
 \protodune{} detector during the beam runs in 2018. However, there is room for
-improvement, particularly in terms of turnaround between the data readout and
-plots being available in the OM. In the current system the latency is made up 
-of four primary components:
+improvement, particularly in terms of the turnaround between the data readout 
+and plots being available in the OM. In the current system the latency is made 
+up of four primary components:
 \begin{itemize}
 	\item Waiting for the input data file containing the events to be closed.
 	\item Processing the data with the Analyser Modules.
@@ -1302,15 +1305,15 @@ The latency introduced by each of these components have an approximate ratio of
 Input file closure currently makes up the most significant portion 
 of the latency. In the current system, the OM processes have to wait for the 
 Event Builders to finish processing a batch of 100 events and close the output 
-file before they can access the data, which introduces a data file closure 
-time. A shared memory system was proposed to tackle this problem, in this 
-system the OM and Event Builders can simultaneously process the data as it 
-leaves the detector.  This would reduce the latency in the OM, by allowing it 
-to analyse the data promptly as it is read out by the detector. Unfortunately, 
-this system wasn't successfully implemented during the first beam run of 
-\protodune{}, but it remains as a possible improvement to the monitoring 
-system for any future \protodune{} runs, and for the DUNE far detector 
-monitoring.
+file before they can access the data, which introduces a delay while the system
+waits for the data file to be closed. A shared memory system was proposed to 
+tackle this problem, in this system the OM and Event Builders can 
+simultaneously process the data as it leaves the detector.  This would reduce 
+the latency in the OM, by allowing it to analyse the data promptly as it is 
+read out by the detector. Unfortunately, this system wasn't successfully 
+implemented during the first beam run of \protodune{}, but it remains as a 
+possible improvement to the monitoring system for any future \protodune{} 
+runs, and for the DUNE far detector monitoring.
 
 Additional improvements could be made to the latency, through using different
 computing hardware and improving the efficiency of the code. However, at the

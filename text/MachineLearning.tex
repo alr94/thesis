@@ -13,7 +13,7 @@ distinction is based on the nature of the output distribution expected from the
 network; regression algorithms are designed to predict the outputs of a 
 continuous function, whereas classification algorithms aim to separate data 
 into groups. The distinction between supervised and unsupervised algorithms is 
-based on the outputs used during training; in a supervised algorithm the true 
+based on the inputs used during training; in a supervised algorithm the true 
 output is known, and the network's goal is to predict the true output, while 
 in an unsupervised algorithm the output is unknown, and the networks goal is 
 to extract meaningful structure from the data\cite{Lecun2015}.
@@ -22,7 +22,7 @@ Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two
 examples of the application of Neural Networks (NN) for event reconstruction 
 in LArTPC data. These algorithms are classification algorithms based on the
 supervised learning approach. This chapter will not provide a full survey of
-the available ML techniques, which are both numerous and diverse. Instead it 
+the available ML techniques, which are both numerous and diverse. Instead, it 
 will briefly describe the theory behind NNs, as well as providing details of 
 the techniques used in the subsequent chapters. 
 
@@ -55,10 +55,10 @@ One of the most widely used ANNs is the multi--layer perceptron
 (MLP)\cite{Reed1999}; this class of network consists of at least three layers 
 of nodes: an input layer, one or more hidden layers, and an output layer. The 
 layers are connected in a feedforward configuration, such that the graph of 
-nodes contains no cycles. The layers of an MLP are often fully connected or 
-dense, meaning that the output of every node is connected to the input of 
-every node in the next layer of the network. An example of a fully connected 
-MLP, with two hidden layers, is shown in Figure \ref{fig:mlp}. 
+nodes contains no cycles. The layers of an MLP are often \emph{fully 
+connected} or \emph{dense}, meaning that the output of every node is connected 
+to the input of every node in the next layer of the network. An example of a 
+fully connected MLP, with two hidden layers, is shown in Figure \ref{fig:mlp}. 
 
 \begin{figure}
 
@@ -109,7 +109,7 @@ with the backpropagation algorithm.
 The weights and biases of the nodes in an MLP can be adjusted to make accurate 
 predictions of data. For a classification task, there are typically as many
 output nodes as there are classes, with output values in the range zero to one. 
-The output value of a classification network, quantifies how well the image
+The output value of a classification network, quantifies how well the input
 represents each class, based on the networks prediction. In principle, MLPs 
 are able to approximate any function to arbitrary precision with a 
 single hidden layer\cite{Cybenko1989ApproximationBS}; however, there is no 
@@ -152,10 +152,11 @@ Convolutional kernels are sometimes referred to as feature detectors, which
 emphasises the fact that each kernel identifies a given feature in the data, 
 based on the weights in the kernel matrix. The output image from each kernel 
 is known as a feature map, reflecting the fact that they represent the spatial 
-distribution of the features learned by a given feature detector. An example of
-a commonly used feature detector and the output feature map is given in Figure
-\ref{fig:edge_detector}. This feature map is the result of applying a Sobel edge
-detector\cite{kanopoulos1988design} to the input image.
+distribution of the features learned by a given feature detector. A common type
+of feature detector is the edge detector, such as the Sobel edge 
+detector\cite{kanopoulos1988design}. Figure \ref{fig:edge_detector} shows an
+example of the feature map produced when a Sobel edge detector is applied to an
+image.
 \begin{figure}
 
 	\centering
@@ -188,7 +189,7 @@ The use of images as network input typically drastically increases the number of
 input parameters for a network, when combined with a large number of
 convolutional filters this can lead to a dramatic increase in the computational
 cost of training a network. Pooling\cite{5537907} is a downsampling technique 
-designed to reduce the number of parameters in the network and ,therefore, 
+designed to reduce the number of parameters in the network and, therefore, 
 reduce the computational cost of making predictions. In pooling algorithms
 the data from each $m \times n$ region of the input is downsampled to a single 
 value, the downsampled image is used as the input for the next layer of the 
@@ -269,8 +270,8 @@ algorithm\cite{Rumelhart1986} is currently the most widely used algorithm for
 minimising the loss function by adjusting the weights and biases in the network.
 
 Consider the weight for the $j^{th}$ node in the $l^{th}$ layer of a network for
-and incoming connection from the $i^{th}$ node from the previous layer, 
-$W^l_{ij}$, the loss function varies with respect to these weights as 
+an incoming connection from the $i^{th}$ node from the previous layer, 
+$W^l_{ij}$. The loss function varies with respect to these weights as 
 $\partial L/\partial W^l_{ ij }$. If we modify the weights with, 
 \begin{equation} 
 	\Delta W^l_{ ij } = -\eta \frac{\partial L}{\partial W^l_{ ij }},
@@ -333,8 +334,8 @@ algorithm is as follows,
 	\item Starting at the output layer, calculate the derivatives, going backwards
 		through the network. 
 	\begin{itemize}
-		\item Store the results for $\delta^l_j$, to use when calculating subsequent
-			layers.
+		\item Store the results for $\delta^l_j$ from each layer, to use when 
+			calculating subsequent layers.
 	\end{itemize}
 	\item Update the weights according to the update rule in Equation 
 		\ref{eq:delta_w}.
@@ -343,7 +344,7 @@ algorithm is as follows,
 The backpropagation algorithm is used to calculate the gradients in order to
 adjust weights in a neural network. There are a number of optimisation 
 algorithms for adjusting the weights, such as mini--batch stochastic gradient 
-descent (SGD)\cite{10.1145/2623330.2623612}, and Adaptive Momentum Estimation 
+descent (SGD)\cite{10.1145/2623330.2623612} and Adaptive Momentum Estimation 
 (Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
 important for the discussion in this thesis and, therefore, they will only be 
 mentioned in passing here, a review of gradient descent optimisation 

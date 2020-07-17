@@ -18,7 +18,8 @@ reconstruction of different particles in a LArTPC, and will be relevant for the
 reconstruction algorithms developed in Chapters \ref{ch:chargeid} and 
 \ref{ch:michel} of  this thesis. This chapter will cover in more detail the 
 theory of electromagnetic energy loss in liquid argon, highlighting the 
-important features of the energy loss for muons, electrons, and photons.
+important features of the energy loss for muons, electrons, and photons. The
+discussion here closely follows the discussion in \cite{PhysRevD.98.030001}.
 
 \section{Electromagnetic Energy Loss in Matter}
 In matter, charged particles lose energy through a number of small successive
@@ -33,7 +34,7 @@ MeV\cite{PhysRevD.98.030001}. As a result, different theories are used to
 describe the energy loss of heavy particles and electrons in matter.
 
 \subsection{Energy Loss for Heavy Charged Particles}
-For heavy particles such as muons at moderate energies, the mean rate of 
+For heavy particles, such as muons, at moderate energies, the mean rate of 
 energy loss per unit distance is described by the Bethe equation,
 \begin{equation}
 	- \left< \frac{dE}{dx}\right> = K z^2 \frac{Z}{A} \frac{1}{\beta^2} 
@@ -67,7 +68,7 @@ as a function of momentum.
 Another feature of the electromagnetic energy loss of heavy particles that
 impacts reconstruction in LArTPCs is delta rays. Delta rays are energetic
 electrons, which are knocked out of their atoms when they collide with the heavy
-particle. In liquid argon detectors these electrons are seen as small electron 
+particle. In liquid argon detectors, these electrons are seen as small electron 
 tracks which protrude from muon tracks. 
 
 \subsection{Energy Loss for Electrons}
@@ -85,12 +86,12 @@ The collision stopping power of electrons and positrons is calculated with a
 similar method to the heavy particle stopping power, where individual collisions
 are considered in succession. The main difference in the calculations is the
 cross sections used in the calculations, for electrons the M{\o}ller scattering
-cross section is used, and for positrons Bhabha scattering is considered. Due to
-the electrons and positrons having the same mass as their targets, the maximum 
-energy transfer in a single collision, $W_{max}$, is the total kinetic energy. 
-However, this value is halved for the case of electrons, due to the convention 
-of calculating the stopping power for the final state electron with higher 
-kinetic energy.
+cross section is used, and for positrons the Bhabha scattering cross section. 
+Due to the electrons and positrons having the same mass as their targets, the 
+maximum energy transfer in a single collision, $W_{max}$, is the total kinetic 
+energy.  However, this value is halved for the case of electrons, due to the 
+convention of calculating the stopping power for the final state electron with 
+higher kinetic energy.
 
 The stopping power based on M{\o}ller scattering of electrons gives,
 \begin{align*}
@@ -124,6 +125,7 @@ of electrons can be approximated as energy loss over a length scale, $X_0$,
 known as the radiation length.  In this approximation, the energy loss per 
 unit distance due to bremsstrahlung is, 
 \begin{equation*}
+	\label{eq:rossi}
 	- \left( \frac{dE}{dx} \right)_{brem} = \frac{E}{X_0}.
 \end{equation*}
 The radiation length, $X_0$, can be parametrised as,
@@ -147,9 +149,10 @@ radiative stopping power are equivalent, other definitions are also used, such
 as the definition by Rossi, the energy where the ionisation loss per
 radiation length is equal to the electron energy\cite{Rossi:1952kt}. Rossi's 
 definition is equivalent to using the approximate $dE/dx$ calculated 
-above\cite{PhysRevD.98.030001}. The value of the critical energy has important 
-implications for reconstruction algorithms, because different approaches are 
-often required above and below the critical energy. 
+above, in equation \ref{eq:rossi}\cite{PhysRevD.98.030001}. The value of the 
+critical energy has important implications for reconstruction algorithms, 
+because different approaches are often required above and below the critical 
+energy. 
 
 The critical energy is slightly different for electrons and positrons, in 
 liquid argon they are both around 32 MeV, based on the Rossi 
@@ -231,16 +234,17 @@ production cross section dominates.
 \end{figure}
 
 \subsubsection*{Photon Mean Free Path}
-The mean free path of a photon is defined as the distance travelled by the
-photon before it interacts with the material. The mean free path for photons
-has two main components for photons in the MeV range, which are due to Compton
-scattering and pair production. The mean free path is given by $\lambda = 1 / (n
-\sigma)$, where $n$ is the number density of targets and $\sigma$ is the cross
-section per target. The contribution to the mean free path from pair production
-is related to the radiation length for electrons, $X_0$ from Equation
-\ref{eq:rad_length}, by $\lambda_{PP} = (9/7) \; X_0$\cite{PhysRevD.98.030001}.
-The mean free path for photons in the MeV range is shown in Figure
-\ref{fig:photon_mfp}, along with the main contributing cross sections. 
+The mean free path of a photon is defined as the average distance travelled by 
+the photon before it interacts with the material. The mean free path for 
+photons has two main components for photons in the MeV range, which are due to 
+Compton scattering and pair production. The mean free path is given by 
+$\lambda = 1 / (n \sigma)$, where $n$ is the number density of targets and 
+$\sigma$ is the cross section per target. The contribution to the mean free 
+path from pair production is related to the radiation length for electrons, 
+$X_0$ from Equation \ref{eq:rad_length}, by $\lambda_{PP} = (9/7) \; 
+X_0$\cite{PhysRevD.98.030001}.  The mean free path for photons in the MeV 
+range is shown in Figure \ref{fig:photon_mfp}, along with the main 
+contributing cross sections. 
 
 \begin{figure}
 
@@ -263,7 +267,7 @@ The mean free path for photons in the MeV range is shown in Figure
 As a result of the differences in energy loss, which depend on particle species
 and energy, different particles leave distinct signatures in the detector.  
 Figure \ref{fig:particle_signatures} shows the typical signatures of four 
-types of interaction in a liquid argon TPC for events from \protodune{} 
+types of interaction in a liquid argon TPC, for events from \protodune{} 
 data.
 
 The most common interaction in \protodune{} is that of a cosmic--ray muon, seen
@@ -341,9 +345,9 @@ photon showers in \protodune{} are $\pi^0$ decays, shown in Figure
 	\end{subfigure}
 
 	\caption
-	[Typical particle interactions in \protodune{} for different particle 
+	[Typical particle signatures in \protodune{} for different particle 
 	species.]
-	{Typical particle interactions in \protodune{} data for candidate particles
+	{Typical particle signatures in \protodune{} data for candidate particles
 	from different particle species. These images are made from the raw detector
 	readout on the collection plane, before noise filtering and deconvolution are 
 	applied. }

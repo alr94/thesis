@@ -205,6 +205,7 @@ Two dropout layers are used in the network, these layers are used as part of the
 regularisation of the network. A dropout probability of 0.5 is used in both of
 the dropout layers. The dropout algorithm is discussed in Chapter \ref{ch:ml}.
 
+% TODO: explain choice of loss
 The loss of the network was the weighted sum of the losses for the two output
 branches,
 \begin{equation*}
@@ -238,25 +239,24 @@ during early stages of SGD, and increased precision as the model converges.
 During training the learning metrics where monitored with TensorBoard. The
 losses for each branch and the total loss were monitored for the training
 and validation datasets. The validation loss was calculated once per training
-epoch, which is one iteration through the full training dataset, and the
-training loss is averaged at the end of each epoch. The training and validation
-losses as a function of training epoch are shown in Figure \ref{fig:training}.
-The weights of the network were saved at the end of each epoch. The final
-weights were chosen based on the early stopping algorithm discussed in Chapter
-\ref{ch:ml}, focussing on the TSE branch of the network, this is highlighted 
-in Figure \ref{fig:training}.
+epoch, and the training loss is averaged at the end of each epoch. The 
+training and validation losses as a function of training epoch are shown in 
+Figure \ref{fig:training}.  The weights of the network were saved at the end 
+of each epoch, and the final weights were chosen based on the early stopping 
+algorithm discussed in Chapter \ref{ch:ml}, focussing on the TSE branch of the 
+network, this is highlighted in Figure \ref{fig:training}.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/losses_prelu.pdf}
 	\caption
 	[Evolution of the validation and training set losses during the training 
-	process.]
+	process for the hit tagging CNN.]
 	{Evolution of the validation and training set losses during the training 
-	process. The losses for the TSE branch and the Michel electron branch are
-	shown, as well as the total loss. The weights were frozen based on an early 
-	stopping algorithm, focussing on the loss in the TSE branch. The losses with
-	the weights chosen by the early stopping algorithm are indicated by a vertical
-	dashed line on each diagram.} 
+	process for the hit tagging CNN. The losses for the TSE branch and the Michel 
+	electron branch are shown, as well as the total loss. The weights were frozen 
+	based on an early stopping algorithm, focussing on the loss in the TSE 
+	branch. The losses with the weights chosen by the early stopping algorithm 
+	are indicated by a vertical dashed line on each diagram.} 
 	\label{fig:training}
 \end{figure}
 
@@ -265,11 +265,9 @@ which suggests that the dropout algorithm was successful in preventing
 over--fitting. After training, the networks performance was verified against 
 the test set, which found that the test set losses were compatible with the 
 validation set loss. The final test set losses were, 
-\begin{align*}
-	L &       = 0.033, \\
-	L_{TSE} & = 0.155, \\
-	L_M &     = 0.017.
-\end{align*}
+\begin{equation*}
+	L = 0.033, \, L_{TSE} = 0.155, \, L_M = 0.017.
+\end{equation*}
 
 \section{Performance on ProtoDUNE--SP Simulation} \label{cnn-perf-sim}
 
@@ -301,7 +299,7 @@ precision and recall. The $F_1$ metric is given by,
 \end{equation*}
 where we define the precision as the fraction of correctly classified shower 
 hits in the sample of all selected shower hits, and the recall as the fraction 
-of all true shower hits, which were selected as shower hits. The $F_1$ score 
+of all true shower hits which were selected as shower hits. The $F_1$ score 
 was calculated across a range of selection thresholds, this is shown in Figure 
 \ref{fig:show_output}. The score peaks at a threshold of 0.72 where,
 \begin{equation*}
@@ -327,7 +325,7 @@ the selection threshold is varied. Figure \ref{fig:show_roc} shows two ROC
 curves for the TSE classifier, one is evaluated in simulation including
 the space charge effect (SCE), and the other excludes the SCE. Both curves
 demonstrate that the network is capable of achieving high true--positive rates,
-while maintaining low false--positive rates. In addition, their is a very close
+while maintaining low false--positive rates. In addition, there is a very close
 agreement between the two curves, which suggests that the TSE classifier is
 robust to changes in the SCE model.
 
@@ -348,7 +346,7 @@ The performance of the Michel electron classifier was analysed with the same
 methods as the shower classifier. The Michel electron score distribution for
 true Michel electron hits and all other hits is shown in Figure
 \ref{fig:michel_output}. In this case the large discrepancy in sample size
-between Michel electron hits and other hits, leads to a low F1 score of around
+between Michel electron hits and other hits leads to a low F1 score of around
 0.2 when considering the performance on a hit--by--hit basis. However, in
 Chapter \ref{ch:michel}, we will see that despite the low performance of the
 classifier for individual hits, a pure sample of Michel electron events can be
@@ -435,8 +433,8 @@ The false--positive rates (FPR) for Pandora and the CNN for each particle
 species are given in Table \ref{tab:false_pos}, as well as their ratio.
 The CNN only gives a modest improvement over Pandora for pions, and muons. 
 However, there is a significant improvement in the false--positive rate for 
-electrons, photons, and protons. The biggest improvement is for photons, 
-where for a sample of 694 photons, the CNN has a false--positive rate of zero.
+electrons, photons, and protons. The biggest improvement is for photons 
+where, for a sample of 694 photons, the CNN has a false--positive rate of zero.
 \begin{table}
 	\centering
 	\bgroup 
@@ -516,10 +514,10 @@ track, which are from delta rays, are from electrons.
 The shower score distribution for all hits gives an overall validation of the 
 network performance between data and simulation. It is the only quantitative 
 validation method for the CNN, which remains decoupled from the Pandora 
-reconstruction algorithm. Therefore, it is independent of the differences 
-between data and simulation, which impact the results of Pandora.  The 
-comparison is still dependent on the noise removal algorithm, the hit tagging 
-algorithm, and the particle flux, which impact the input images to the CNN.
+reconstruction algorithm. Therefore, it is independent of the changes to 
+Pandora between data and simulation. The comparison is still dependent on the 
+noise removal algorithm, the hit tagging algorithm, and the particle flux, 
+which impact the input images to the CNN.
 
 In this comparison, and the following beam particle comparisons, a cut is made 
 on the reconstructed charge of each hit. This cuts out the excess of low 

@@ -198,7 +198,8 @@ of the two processes in roughly equal quantities.
 	\end{subfigure}
 
 	\caption
-	[Michel electron energy spectra in liquid argon from \protodune{} simulation.]
+	[Michel electron energy spectra for free muons and captured muons in liquid 
+	argon from \protodune{} simulation.]
 	{Michel electron energy spectra for free muons and captured muons in liquid 
 	argon from \protodune{} simulation.}
 	\label{fig:michel_spec}
@@ -208,7 +209,7 @@ of the two processes in roughly equal quantities.
 As discussed in Chapter \ref{ch:energyloss}, the energy loss for electrons in
 liquid argon passes from an ionisation dominated regime to a radiation dominated
 regime in the tens of MeV region. The crossover point for this transition occurs
-at around 45 MeV, very close to the peak of the Michel electron spectrum. This
+at around 30 MeV, close to the peak of the Michel electron spectrum. This
 leads to a unique signature for Michel electrons in liquid argon detectors: a
 short ($\sim$ 5 cm) track segment is surrounded by a number of small radiated 
 energy deposits. Figure \ref{fig:michel_event} shows an example of a Michel 
@@ -408,7 +409,7 @@ from the Pandora reconstruction chain are considered.
 
 The second step defines a set of Michel electron candidates for each muon
 candidate. A Michel electron candidate is any daughter of the primary Pandora
-track, which satisfies the following conditions:
+track which satisfies the following conditions:
 \begin{itemize}
 	\item Starts within 5 cm of the primary track endpoint.
 	\item Contains a minimum of 5 reconstructed hits on the collection plane.
@@ -532,8 +533,8 @@ conventional CNNs, and during this phase the network learns about the content
 of the image. The second phase of the architecture allows the U--ResNet to 
 rebuild the locations of different learned features within the initial image, 
 this is achieved by passing the details of previous layers to the network,
-allowing the resolution of the output map to be slowly increased back to the 
-original resolution.
+through residual connections, allowing the resolution of the output map to be 
+slowly increased back to the original resolution.
 
 In the Michel electron case, the goal of the network is to return a map of all
 ionisation energy deposits from the Michel electron, including the initial 
@@ -613,9 +614,10 @@ implemented to prevent over--fitting.
 	\end{tabularx}
 
 	\caption
-	[U--ResNet CNN architecture used to select ionisation energy deposits.]
-	{U--ResNet CNN architecture used to select ionisation energy deposits. 
-	Visualisation adapted from the output of the Netron neural network 
+	[U--ResNet CNN architecture used to select Michel electron ionisation energy 
+	deposits.]
+	{U--ResNet CNN architecture used to select Michel electron ionisation energy 
+	deposits.  Visualisation adapted from the output of the Netron neural network 
 	viewer\cite{netron}.}
 
 	\label{fig:unet_arch}
@@ -676,8 +678,8 @@ event from \protodune{} simulation.
 	\end{tabularx}
 
 	\caption
-	[Example input, true output, and prediction images for U--ResNet.]
-	{Example input, truth, and prediction images for U--ResNet.}
+	[Example input, truth, and predicted images for U--ResNet.]
+	{Example input, truth, and predicted images for U--ResNet.}
 	\label{fig:unet_example}
 \end{figure}
 
@@ -702,15 +704,17 @@ Michel electron hits if their score exceed a selection threshold of 0.9. In
 simulation 7.8\% of hits are selected, while in data the fraction selected is 
 8.0\%. Therefore, there is a 2.5\% difference in the selected fraction between 
 data and simulation, which shows that there is a good agreement between data and
-simulation for the event selection algorithm.
+simulation for the hit selection algorithm.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
 	\caption
-	[U--ResNet Predicted Distribution.]
-	{U--ResNet predicted distribution for hits in images. The simulated results are
-	shown by the red line, with the backgrounds as a shaded red region. The data 
-	is shown in black, with statistical error bars.}
+	[U--ResNet predicted score distribution for hits in Michel electron ionisation
+	images.]
+	{U--ResNet predicted score distribution for hits in Michel electron 
+	ionisation images. The simulated results are shown by the red line, with the 
+	backgrounds as a shaded red region. The data is shown in black, with 
+	statistical error bars.}
 	\label{fig:unet_pred_data}
 \end{figure}
 
@@ -791,9 +795,9 @@ effects. The main contributing factor for the YZ--correction factor is
 wire--to--wire response variations. 
 
 As discussed in Chapter \ref{ch:energyloss}, the recombination factor is a
-$dE/dx$ dependent factor, which depends on the conditions in the liquid
+$dQ/dx$ dependent factor, which depends on the conditions in the liquid
 argon. Due to the shortness of Michel electron tracks and the other charge 
-deposits, it is challenging to assign $dE/dx$ on a hit--by--hit basis for this 
+deposits, it is challenging to assign $dQ/dx$ on a hit--by--hit basis for this 
 sample. Therefore, an average recombination factor is used for all hits. The 
 recombination factor was calculated using the box model\cite{Acciarri2013a} 
 under \protodune{} operating conditions, which gives an average value of 0.69.
@@ -808,8 +812,8 @@ time in simulation, and only 1\% in data.
 	\centering
 	\includegraphics[width=\textwidth]{figures/hit_ion_reco.png}
 	\caption
-	[Reconstructed hit ionisation energy for hits in U--ResNet input images.]
-	{Reconstructed hit ionisation Energy for hits in U--ResNet input images 
+	[Reconstructed ionisation energy for hits in U--ResNet input images.]
+	{Reconstructed ionisation energy for hits in U--ResNet input images 
 	in data and simulation. The distribution in data includes statistical error
 	bars.}
 	\label{fig:hit_ion_reco}
@@ -891,10 +895,10 @@ Studies into the energy resolution and bias as a function of energy gave
 insights into the source of the tail in Figure \ref{fig:frac_diff_ion}. These
 were investigated by binning the fractional energy difference distribution in
 terms of true ionisation energy, and performing the same gaussian fit to the
-fractional difference distribution for each energy bin, to estimate the energy
-resolution and bias. The measured energy resolution and bias as a function of 
-true ionisation energy are shown in Figure \ref{fig:res_and_bias_ion}, the 
-associated fits are given in Appendix \ref{ch:energyfits}.
+fractional difference distribution for each energy bin. The measured energy 
+resolution and bias as a function of true ionisation energy are shown in 
+Figure \ref{fig:res_and_bias_ion}, the associated fits are given in Appendix 
+\ref{ch:energyfits}.
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{\textwidth}
@@ -967,7 +971,8 @@ case is fit with a gaussian distribution, which is shown in Figure
 	\centering
 	\includegraphics[width=\textwidth]{figures/michel_hit_energy_resolution.pdf}
 	\caption
-	[Energy uncertainty contribution from hit energy reconstruction.]
+	[Energy uncertainty contribution from hit energy reconstruction for Michel
+	electron ionisation energy reconstruction.]
 	{The fractional difference between the true ionisation energy deposition and
 	the reconstructed ionisation energy deposition for Michel electron
 	reconstructed with perfect hit tagging, with statistical error bars. The 
@@ -1046,7 +1051,7 @@ collected from the events.
 In this chapter we have presented a novel Michel electron reconstruction
 algorithm based on machine learning techniques. A sample of Michel electrons was
 selected in \protodune{} data with a purity of over 98\% and an overall
-efficiency of around 5\%. The ionisation energy of these events was
+efficiency of around 6\%. The ionisation energy of these events was
 reconstructed based on a semantic segmentation algorithm, which uses a U--ResNet
 CNN architecture. The performance of this algorithm shows an improvement in
 energy resolution over similar experiments, with an ionisation energy resolution

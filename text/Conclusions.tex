@@ -25,14 +25,14 @@ and Michel electron hit classification was discussed in Chapter
 \ref{ch:chargeid}. This algorithm is based on convolution neural networks, 
 with a small patch approach. In terms of track--shower discrimination, the 
 algorithm was shown to reduce the false--positive rate for all particle 
-species, with a reduction of more than a factor of 10 in some cases. In 
-addition, this algorithm was shown to give a good agreement, of around 
-1--3\%, between data and simulation for hit--by--hit event selection. This 
-algorithm is now seeing significant use within ongoing \protodune{} data 
-analyses, including pion cross--section analyses and detector calibrations. 
-Additionally, this network was used as part of the Michel electron event 
-selection algorithm, which was discussed in Chapter \ref{ch:michel} of this 
-thesis.
+species, with a reduction of more than a factor of 10 in some cases, when
+compared to the previous algorithm. In addition, this algorithm was shown to 
+give a good agreement, of around 1--3\%, between data and simulation for 
+hit--by--hit event selection. This algorithm is now seeing significant use 
+within ongoing \protodune{} data analyses, including pion cross--section 
+analyses and detector calibrations.  Additionally, this network was used as 
+part of the Michel electron event selection algorithm, which was discussed in 
+Chapter \ref{ch:michel} of this thesis.
 
 A sample of Michel electrons from the \protodune{} detector was used to study
 Michel electron reconstruction in LArTPCs, and to estimate the energy resolution
@@ -49,11 +49,11 @@ such as MicroBooNE.
 
 The Michel electron sample was used to investigate a novel reconstruction
 technique, which was based on the semantic segmentation of images with a
-convolutional neural network. A U--Net architecture was used to perform the
+convolutional neural network. A U--ResNet architecture was used to perform the
 segmentation, and the results were promising, however, more work is required to
 improve the performance of this algorithm across the whole energy range. 
 
-In the 0--25 MeV region, where the performance of the U--Net algorithm was 
+In the 0--25 MeV region, where the performance of the U--ResNet algorithm was 
 good, the ionisation energy resolution for Michel electrons based on this 
 algorithm was found to be around 10--12\%, and the bias was less than 
 5\%. This represents an improvement over the measured Michel electron ionisation
