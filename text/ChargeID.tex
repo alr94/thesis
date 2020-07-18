@@ -48,16 +48,17 @@ algorithms.
 
 In addition to track and shower objects, Michel electrons are a useful 
 calibration sample in LArTPCs. Michel electrons are electrons produced when a 
-muon decays at rest, which have an energy spectrum in the range of 1--50 MeV. 
+muon decays at rest, which have an energy spectrum in the range of 0--50 MeV. 
 As discussed in Chapter \ref{ch:energyloss}, the critical energy for electrons 
-in liquid argon is at around 30 MeV. Therefore, Michel electrons have a unique 
-signature in LArTPCs, and they were included as a unique category in the 
-classification algorithm.
+in liquid argon is at around 30 MeV, at this point the collection energy
+deposition and the radiative energy deposition are equal. Therefore, Michel 
+electrons have a unique signature in LArTPCs, and they were included as a 
+unique category in the classification algorithm.
 
 \subsection{Data Preparation}
 
-A CNN was designed for the hit classification, the network was trained to
-predict,
+A CNN was designed to classify hits by using images of the detector readout
+around the reconstructed hits. The network was trained to predict,
 \begin{equation*}
 	\left[ p_t, p_s, p_e \right] \mbox{ and } \left[ p_m \right]
 \end{equation*}
@@ -65,10 +66,11 @@ where $p_t$, $p_s$, $p_e$, and $p_m$, are the probabilities for track, shower,
 empty, and Michel electron classifications respectively. The empty category is
 included to ensure that the network doesn't learn to assign track--like or
 shower--like classifications to empty or noisy regions of the data. In addition,
-because the Michel electron category has an overlap with the shower category, 
-the Michel electron probability is decoupled from the other probabilities. The 
-track, shower, and empty (TSE) probabilities are constrained to sum to one, 
-such that every hit is classified into one of these categories.
+because the Michel electron category has an overlap with the shower and track
+categories, the Michel electron probability is decoupled from the other 
+probabilities. The track, shower, and empty (TSE) probabilities are 
+constrained to sum to one, such that every hit is classified into one of these 
+categories.
 
 The input data for the CNN was made using a \emph{small--patch approach}, in
 which a small input image is made for each reconstructed hit. This approach was
@@ -167,7 +169,7 @@ each type in these three datasets are detailed in Table \ref{tab:patches}.
 The network architecture for this CNN was designed to provide the best possible
 performance given constraints on running time and memory usage during network
 evaluation. This CNN is run on CPUs as part of the low level reconstruction 
-chain for \protodune{}, and it's run time is required to be on the order of 10 
+chain for \protodune{}, and it's run time is required to be no more than 10 
 seconds per event. In addition, the CNN should not increase the maximum memory 
 usage during reconstruction beyond around 4 GB. There is currently ongoing 
 work looking into using GPUs during the network evaluation, which would decrease
@@ -175,21 +177,23 @@ the evaluation time, and allow more complex architectures to be used.
 Therefore, there is potential to increase performance of the method in the 
 future.
 
-The network architecture used is shown in Figure \ref{fig:arch}. The images
-are first processed by convolutional layer with 48 $5 \times 5$ filters, this
-layer extracts feature maps from the data. The responses from the 
-convolutional layer are passed through the Leaky ReLU activation function, which
-is discussed in Chapter \ref{ch:ml}, before being processed by the dense 
-layers. The feature maps are processed by a pair of dense layers, with 128 and 
-32 nodes respectively. These layers also use the Leaky ReLU activation
-function. After the second dense layer the network is split into two branches in
-order to make it's prediction. The first branch returns the prediction for the 
-TSE categories, and the second branch for the Michel electron category. The 
-first branch uses a Softmax activation function, which ensures that the scores 
-for the TSE categories sum to one.  The second branch uses a Sigmoid 
-activation function, which ensures that the Michel electron scores are bounded 
-between zero and one. The choice of activation functions in the output layers 
-allows for a pseudo--probabilistic interpretation of the scores from the CNN.
+The network architecture used is shown in Figure \ref{fig:arch}, the choice of
+architecture is simple, which was necessary in order to meet the current running
+requirements. The images are first processed by convolutional layer with 48 $5 
+\times 5$ filters, this layer extracts feature maps from the data. The 
+responses from the convolutional layer are passed through the Leaky ReLU 
+activation function, which is discussed in Chapter \ref{ch:ml}, before being 
+processed by the dense layers. The feature maps are processed by a pair of 
+dense layers, with 128 and 32 nodes respectively. These layers also use the 
+Leaky ReLU activation function. After the second dense layer the network is 
+split into two branches in order to make it's prediction. The first branch 
+returns the prediction for the TSE categories, and the second branch for the 
+Michel electron category. The first branch uses a Softmax activation function, 
+which ensures that the scores for the TSE categories sum to one.  The second 
+branch uses a Sigmoid activation function, which ensures that the Michel 
+electron scores are bounded between zero and one. The choice of activation 
+functions in the output layers allows for a pseudo--probabilistic 
+interpretation of the scores from the CNN.
 
 \begin{figure}
 	\centering
@@ -205,7 +209,6 @@ Two dropout layers are used in the network, these layers are used as part of the
 regularisation of the network. A dropout probability of 0.5 is used in both of
 the dropout layers. The dropout algorithm is discussed in Chapter \ref{ch:ml}.
 
-% TODO: explain choice of loss
 The loss of the network was the weighted sum of the losses for the two output
 branches,
 \begin{equation*}
@@ -221,7 +224,11 @@ it is the mean squared error\cite{mse_springer},
 	L_M &= \frac{1}{N} \sum_{j=1}^N (t_j - p_j)^2
 \end{align*}
 where $t_j$ and $p_j$ are the truth and the prediction for the $j^{th}$ sample 
-in the training batch, and $i$ sums over all outputs in the TSE branch. 
+in the training batch, and $i$ sums over all outputs in the TSE branch. These
+losses are commonly used for classification tasks within the field of Machine 
+learning, the categorical cross entropy is related to the negative
+log--likelihood between the true distribution and the predictions from the 
+CNN\cite{GoodfellowIan2016Dl}. 
 
 \subsection{Training and Validation}
 The TensorFlow\cite{45381} library and the Keras\cite{chollet2015keras} 
@@ -264,10 +271,11 @@ During training, the validation loss remains stable over a number of epochs,
 which suggests that the dropout algorithm was successful in preventing 
 over--fitting. After training, the networks performance was verified against 
 the test set, which found that the test set losses were compatible with the 
-validation set loss. The final test set losses were, 
-\begin{equation*}
-	L = 0.033, \, L_{TSE} = 0.155, \, L_M = 0.017.
-\end{equation*}
+validation set loss. 
+% The final test set losses were, 
+% \begin{equation*}
+% 	L = 0.033, \, L_{TSE} = 0.155, \, L_M = 0.017.
+% \end{equation*}
 
 \section{Performance on ProtoDUNE--SP Simulation} \label{cnn-perf-sim}
 
@@ -293,17 +301,17 @@ a case by case basis, however, for this study a simple optimisation strategy
 is presented in order to quantify the basic network performance. This is based
 on the $F_1$ metric, a specific case of the $F_\beta$ 
 metric\cite{VanRijsbergenC.J.1975Ir}, which places equal importance on 
-precision and recall. The $F_1$ metric is given by, 
+purity and efficiency. The $F_1$ metric is given by, 
 \begin{equation*}
-	\frac{1}{F_1} = \frac{1}{\mbox{precision}} + \frac{1}{\mbox{recall}},
+	\frac{1}{F_1} = \frac{1}{\mbox{purity}} + \frac{1}{\mbox{efficiency}},
 \end{equation*}
-where we define the precision as the fraction of correctly classified shower 
-hits in the sample of all selected shower hits, and the recall as the fraction 
-of all true shower hits which were selected as shower hits. The $F_1$ score 
-was calculated across a range of selection thresholds, this is shown in Figure 
-\ref{fig:show_output}. The score peaks at a threshold of 0.72 where,
-\begin{equation*}
-	F_1 = \mbox{precision} = \mbox{recall} = 0.863.
+where we define the purity as the fraction of correctly classified shower 
+hits in the sample of all selected shower hits, and the efficiency as the 
+fraction of all true shower hits which were selected as shower hits. The $F_1$ 
+score was calculated across a range of selection thresholds, this is shown in 
+Figure \ref{fig:show_output}. The score peaks at a threshold of 0.72 where, 
+\begin{equation*} 
+	F_1 = \mbox{purity} = \mbox{efficiency} = 0.863.  
 \end{equation*}
 
 \begin{figure}
@@ -313,8 +321,8 @@ was calculated across a range of selection thresholds, this is shown in Figure
 	[Shower score output distributions for the TSE classifier.]
 	{Shower score output distributions for the TSE classifier. The score
 	distributions for true shower hits and all other hits are shown in red and
-	blue respectively. Threshold optimisation was done using the F1 score metric, 
-	which is also plotted as a function of the classification threshold.}
+	blue respectively. Threshold optimisation was done using the $F_1$ score 
+	metric, which is also plotted as a function of the classification threshold.}
 	\label{fig:show_output}
 \end{figure}
 
@@ -345,8 +353,8 @@ robust to changes in the SCE model.
 The performance of the Michel electron classifier was analysed with the same
 methods as the shower classifier. The Michel electron score distribution for
 true Michel electron hits and all other hits is shown in Figure
-\ref{fig:michel_output}. In this case the large discrepancy in sample size
-between Michel electron hits and other hits leads to a low F1 score of around
+\ref{fig:michel_output}. In this case, the large discrepancy in sample size
+between Michel electron hits and other hits leads to a low $F_1$ score of around
 0.2 when considering the performance on a hit--by--hit basis. However, in
 Chapter \ref{ch:michel}, we will see that despite the low performance of the
 classifier for individual hits, a pure sample of Michel electron events can be
@@ -372,10 +380,17 @@ Michel electron classifier than the score distribution and F1 score. The ROC
 curves for the Michel electron classifier are shown in Figure 
 \ref{fig:michel_roc}, where both SCE and no SCE samples are shown. The jitter 
 in the lines is due to the smaller sample size in this case. In both cases the 
-Michel electron classifier is able to achieve a true--positive rate of over 90\%,
-while maintaining a false--positive rate of less than 2.5\%. There is a larger 
-difference between the SCE and no SCE curves for the Michel electron sample,
-however, the difference is still no bigger than 4\%.
+Michel electron classifier is able to achieve a true--positive rate of over 
+90\%, while maintaining a false--positive rate of less than 2.5\%. There is a 
+difference between the SCE and no SCE curves for the Michel electron sample, 
+however, the difference is no bigger than 4\% and is not currently 
+understood.  Therefore, it is important to validate the performance of the 
+Michel electron classifier in data, where space charge distortions are 
+present. Possible causes of the discrepancy include, distortion of images due 
+to space charge effects, which could lead to energy depositions near the 
+boundary of images to be included in the SCE sample but not in the no SCE 
+sample, or differences in the recombination correction between the SCE and no 
+SCE samples.
 
 \begin{figure}
 	\centering
@@ -558,7 +573,7 @@ each bin. These distributions are normalised by the number of hits, allowing us
 to compare the shape of the score distribution in data and simulation.  
 Overall there is a good agreement between the data and the simulation, 
 however, the distribution in data has a slightly different shape at low CNN
-scores. This can be seen in the residuals, which have a negative slope for 
+scores. This can be seen in the residuals, which are consistently negative for
 hits with shower score less than around 0.2.
 \begin{figure}
 	\centering
@@ -574,26 +589,27 @@ hits with shower score less than around 0.2.
 \end{figure}
 
 We can also consider the comparison of the CNN to data for specific particle 
-species, such as beam particles and cosmic--rays.  The BI in \protodune{} 
-provides particle identification (PID) for beam particles with a very high 
-purity. Therefore, in the case of particles originating from the charged 
-particle beam, the BI can be used to provide an effective truth source. This 
-allows the results of the CNN to be compared between data and simulation for 
-different particle species. Any particles that arrive out--of--time with the 
-beam can be assumed to be cosmic--rays and, therefore, form an additional 
-truth source. The shower score distributions for electrons, pions, protons, 
-and cosmic--rays are produced based on these samples. 
+species, such as beam particles and cosmic--rays.  The beam instrumentation 
+(BI) in \protodune{} provides particle identification (PID) for beam particles 
+with a very high purity. Therefore, in the case of particles originating from 
+the charged particle beam, the BI can be used to provide an effective truth 
+source. This allows the results of the CNN to be compared between data and 
+simulation for different particle species. Any particles that arrive 
+out--of--time with the beam can be assumed to be cosmic--rays and, therefore, 
+form an additional truth source. The shower score distributions for electrons, 
+pions, protons, and cosmic--rays are produced based on these samples. 
 
 It is important to note that the results for these true particle 
-samples rely on both Pandora and the CNN scores. Therefore, phase space cuts 
-were made, to select regions of the detector where Pandora has a good 
-agreement between data and simulation. The aim of these cuts was to to 
-minimise the impact of Pandora on the observed CNN score distributions. Cuts 
-on the start and end points of the reconstructed tracks were made, with the 
-same cuts being applied to both the start and end point of each track. These 
-cuts are illustrated for the end point of the tracks in Figure 
-\ref{fig:spatial_cuts}.  The reconstructed angular distributions for tracks 
-after these cuts are shown in Figure \ref{fig:angular_dist}.
+samples rely on both Pandora and the CNN scores, because the clustering from
+Pandora is used to select the appropriate hits within each particle. 
+Therefore, phase space cuts were made, to select regions of the detector where 
+Pandora has a good agreement between data and simulation. The aim of these 
+cuts was to to minimise the impact of Pandora on the observed CNN score 
+distributions. Cuts on the start and end points of the reconstructed tracks 
+were made, with the same cuts being applied to both the start and end point of 
+each track. These cuts are illustrated for the end point of the tracks in 
+Figure \ref{fig:spatial_cuts}. The reconstructed angular distributions for 
+tracks after these cuts are shown in Figure \ref{fig:angular_dist}.
 
 \begin{figure}
 
