@@ -260,7 +260,7 @@ events.
 		\includegraphics[width=\textwidth]{figures/photon_mult.pdf}
 		\caption{Photon multiplicity as a function of true Michel electron energy.
 		The distribution is overlaid with a profile of the mean of the distribution,
-		the error bars on the profile represent the width of the distribution.}
+		the error bars on the profile represent the RMS of the distribution.}
 		\label{fig:photon_mult}
 	\end{subfigure}
 
@@ -346,8 +346,8 @@ shown in Figure \ref{fig:frac_v_radius}, where the error bars represent the RMS
 of the distribution. By increasing the collection radius from 0 cm to 40cm, 
 the average energy recovered is increased from 57\% to 87\%. The RMS of the
 fractional energy recovered reduces slightly from 20\% to 16\% across this
-range. Therefore, the spread in the fraction of energy recovered is reduced 
-from 35\% to 18\%. 
+range. Therefore, the relative RMS in the fraction of energy recovered is 
+reduced from 35\% to 18\% of the total. 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/energy_recovery_v_radius.pdf}
@@ -431,6 +431,7 @@ simulation, which shows a good agreement between data and simulation. The
 pile--up of events at one corresponds to Michel electron candidates where all 
 hits were classified as Michel--like.
 \begin{figure}
+	% TODO: make this over the full range.
 	\centering
 	\includegraphics[width=\textwidth]{figures/michel_like_frac.pdf}
 	\caption
@@ -536,6 +537,28 @@ this is achieved by passing the details of previous layers to the network,
 through residual connections, allowing the resolution of the output map to be 
 slowly increased back to the original resolution.
 
+The network architecture used for the Michel electron reconstruction is shown in
+Figure \ref{fig:unet_arch}. The network consists of a repeating structure, which
+contains the following key components:
+\begin{itemize}
+	\item Convolutional blocks, which contain multiple convolutional layers.
+	\item Pooling layers for downscaling in the first half of the network.
+	\item Residual connections and up--sampling in the second half of the network.
+\end{itemize}
+The convolutional blocks each contain three convolutional layers, which is 
+shown in Figure \ref{fig:conv_block}. These take the form of inception 
+units\cite{Szegedy2015} with Leaky ReLU activation functions, a schematic of 
+the inception units is shown in Figure \ref{fig:unet_inception}. During the 
+first half of the network, maximum pooling is used to downsample the size of 
+the feature maps, which reduce by a factor of two in each max pooling layer. 
+Then, during the second half of the network, the up--sampling layers increase 
+the resolution of the feature maps by a factor of two, such that the output of 
+the network has the same resolution as the input.  The residual connections 
+from early layers, are combined with the up--sampled feature maps, to allow 
+the network to reconstruct the location of the learned features. As with the 
+CNN from the previous chapter, both dropout and early--stopping are 
+implemented to prevent over--fitting.
+
 In the Michel electron case, the goal of the network is to return a map of all
 ionisation energy deposits from the Michel electron, including the initial 
 track and any secondary deposits from radiated photons. The inputs and outputs 
@@ -561,28 +584,6 @@ corresponding to a perfect match. The $\beta$ parameter was chosen to be 2,
 such that recall was considered to be more important than precision. This was 
 found to improve the performance, however, no extensive optimisation of $\beta$ 
 was performed.
-
-The network architecture used for the Michel electron reconstruction is shown in
-Figure \ref{fig:unet_arch}. The network consists of a repeating structure, which
-contains the following key components:
-\begin{itemize}
-	\item Convolutional blocks, which contain multiple convolutional layers.
-	\item Pooling layers for downscaling in the first half of the network.
-	\item Residual connections and up--sampling in the second half of the network.
-\end{itemize}
-The convolutional blocks each contain three convolutional layers, which is 
-shown in Figure \ref{fig:conv_block}. These take the form of inception 
-units\cite{Szegedy2015} with Leaky ReLU activation functions, a schematic of 
-the inception units is shown in Figure \ref{fig:unet_inception}. During the 
-first half of the network, maximum pooling is used to downsample the size of 
-the feature maps, which reduce by a factor of two in each max pooling layer. 
-Then, during the second half of the network, the up--sampling layers increase 
-the resolution of the feature maps by a factor of two, such that the output of 
-the network has the same resolution as the input.  The residual connections 
-from early layers, are combined with the up--sampled feature maps, to allow 
-the network to reconstruct the location of the learned features. As with the 
-CNN from the previous chapter, both dropout and early--stopping are 
-implemented to prevent over--fitting.
 
 \begin{figure}
 
@@ -633,7 +634,7 @@ training, test, and validation sets in the ratio 80:10:10. In total around
 As with the hit tagging CNN from the Chapter \ref{ch:chargeid}, the training and
 validation scores were monitored throughout training using TensorBoard. The
 weights of the network were saved after each epoch, and the final weights were
-those from the epoch before the epoch when the validation score first decreased.
+those from the epoch before the epoch when the validation score first increased.
 Figure \ref{fig:unet_loss} shows the evolution of the loss over time, along with
 a vertical line representing the loss at which the weights were chosen.
 \begin{figure}
@@ -703,8 +704,7 @@ scores far from zero and one. Hits from the input images are selected as
 Michel electron hits if their score exceed a selection threshold of 0.9. In 
 simulation 7.8\% of hits are selected, while in data the fraction selected is 
 8.0\%. Therefore, there is a 2.5\% difference in the selected fraction between 
-data and simulation, which shows that there is a good agreement between data and
-simulation for the hit selection algorithm.
+data and simulation.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
@@ -732,22 +732,15 @@ false--positives, and false--negatives respectively. These parameters give a
 quantitative evaluation of the performance of the hit tagging algorithm.
 
 The purity and completeness of the hit tagging was calculated for a range of 
-selection thresholds in the range $[10^{-7}, 1 - 10^{-7}]$. Figure 
-\ref{fig:unet_pur_comp} shows the purity against completeness for the values 
-in this range. The hit tagging algorithm produces a high precision and 
-completeness throughout the range of thresholds, however the steepness of the 
-score distributions means that the choice of threshold makes little difference 
-to the performance, meaning that little can be done to optimise the performance
-by varying the threshold.
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{figures/unet_pur_v_comp.pdf}
-	\caption
-	[Hit tagging purity and completeness for the U--ResNet algorithm.]
-	{Hit tagging purity vs completeness for the U--ResNet algorithm on 
-	\protodune{} simulation.}
-	\label{fig:unet_pur_comp}
-\end{figure}
+selection thresholds in the range $[10^{-7}, 1 - 10^{-7}]$, which returned
+purities in the range 0.91--0.93, and completeness in the range 0.94--0.96. For
+thresholds outside of this range the purity and completeness remained constant,
+except for at thresholds of 0 and 1, this is due to the underlying precision in
+Keras, which is sets the smallest non--zero float to be $10^{-7}$. The hit 
+tagging algorithm produces a high precision and completeness throughout the 
+range of thresholds, however, the combination of the steep score distribution
+with the underlying precision in Keras means that little can be done to optimise
+the performance by varying the threshold in this case. 
 
 The number of hits selected per event for data and simulation is shown in 
 figure \ref{fig:mich_n_hits}. Around 10 hits are selected per event, with a 
@@ -847,6 +840,7 @@ calculated to correct for any energy offset. The correction factor was
 calculated based on a linear fit to the distribution of reconstructed energy
 against true energy, which is shown in Figure \ref{fig:reco_v_ion}. The
 reconstructed energy was corrected based on this linear fit, 
+% TODO: think about Alfons comment here.
 \begin{equation*}
 	E_{corr} = \frac{E_{reco}  - 0.808 \mbox{ MeV}}{0.9567},
 \end{equation*}
@@ -939,6 +933,7 @@ estimated bias and resolution based on these two methods.
 	\bgroup
 	\def\arraystretch{1.5}
 	\begin{tabular}{c|c|c|c|c}
+		% TODO: add errors
 		Energy Bin & Gaussian Mean & Gaussian Sigma & Mean    & RMS    \\ \hline
 		0--15 MeV  & 0.0033        & 0.1206         & 0.0082  & 0.1501 \\
 		15--20 MeV & 0.0175        & 0.1099         & 0.0176  & 0.1472 \\
