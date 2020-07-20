@@ -341,7 +341,7 @@ simulation for both the spatial and angular distributions.
 		\hfill
 		\includegraphics[width=0.49\textwidth]{figures/DataVMC_primary_EndY.pdf}
 		\includegraphics[width=0.49\textwidth]{figures/DataVMC_primary_EndZ.pdf}
-		\caption {Primary muon end--points.}
+		\caption {Primary muon end--points: X (drift), Y (vertical), Z (beam).}
 		\label{fig:muon_endpoints}
 	\end{subfigure}
 
@@ -631,14 +631,14 @@ each hit is reconstructed from the hit integral in ADC as
 \end{equation*}
 where $E_{hit}$ is the reconstructed hit energy in MeV, $I_{hit}$ is the
 integrated hit charge in ADC, $C_X$ is the X--correction factor which is
-dependent on the X coordinate of the hit within the TPC, $C_{YZ}$ is the
-YZ--correction factor which is dependent on the Y and Z coordinates
-of the hit within the TPC, $N$ is a dimensionless normalisation factor which
-normalises the data and MC distributions to give the same magnitude, $W_{ion}$
-is the ionisation energy of argon in MeV per electron, $C$ is a constant
-conversion factor which has units ADC per electron, and $R$ is the
-recombination factor. The distribution of reconstructed hit energies in
-\protodune{} data and simulation is shown in Figure \ref{fig:hit_ion_reco},
+dependent on the X (drift) coordinate of the hit within the TPC, $C_{YZ}$ is the
+YZ--correction factor which is dependent on the Y (vertical) and Z (beam) 
+coordinates of the hit within the TPC, $N$ is a dimensionless normalisation 
+factor which normalises the data and MC distributions to give the same 
+magnitude, $W_{ion}$ is the ionisation energy of argon in MeV per electron, 
+$C$ is a constant conversion factor which has units ADC per electron, and $R$ 
+is the recombination factor. The distribution of reconstructed hit energies in 
+\protodune{} data and simulation is shown in Figure \ref{fig:hit_ion_reco}, 
 which shows a good agreement between data and simulation.
 
 The position dependent calibration matrices correct for non-uniformity in the
