@@ -724,8 +724,7 @@ cosmic--ray tracks in data than in simulation.
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 
-\bigskip
-\noindent
+\medskip\noindent
 In practice, the CNN will be used to select events based on choosing hits with 
 CNN scores above some threshold. This could be based on an average over a 
 number of hits, on a hit by hit basis, or something more complicated. For the
@@ -789,5 +788,30 @@ network are being incorporated into analyses by other members of the
 	\item Identifying Michel electron contaminated tracks for stopping muon
 		calibration\cite{fabio_muon}.
 \end{itemize}
+
+\medskip
+In the neutral pion analysis, the CNN score is being used as part of the 
+sample selection algorithm, which is used to select a sample of events with
+pairs of secondary photons. An example of the CNN shower score distribution for
+secondary particles in this sample is shown in Figure \ref{fig:milo_pi0}, 
+demonstrating the breakdown of the CNN score by particle species for candidates
+in this sample. An example of a neutral pion candidate selected with this
+algorithm is shown in Figure \ref{fig:pi0_signature} in Chapter 
+\ref{ch:energyloss}. These plots are courtesy of Milo Vermeulen, who 
+developed the neutral pion event selection algorithm in \protodune{}\cite{pi_0}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figures/cnn_pi_0.pdf}  
+	\caption
+	[CNN shower score distribution for secondary particles in neutral pion event
+	selection sample.]
+	{CNN shower score distribution for secondary particles in neutral pion event
+	selection sample. The coloured distributions represent different true particle
+	species in \protodune{} simulation, and the black points represent the
+	distribution in \protodune{} data. Figure courtesy of Milo
+	Vermeulen\cite{pi_0}.}
+	\label{fig:milo_pi0}
+\end{figure}
 
 % TODO: add Milo's plot here.
