@@ -314,6 +314,18 @@
    \setlength{\baselineskip}{\z@}}
 {\vfill\end{alwayssingle}\restoregeometry}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Statement of Originality 
+% 
+% ALR: copied abstract environment for SOO
+
+\newenvironment{soo}%
+{   \begin{alwayssingle}\chapter*{Statement of Originality}
+    \thispagestyle{empty}
+    \pagestyle{empty}
+   \setlength{\baselineskip}{\frontmatterbaselineskip}}
+{\end{alwayssingle}}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %ROMANPAGES
