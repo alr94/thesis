@@ -1,25 +1,8 @@
 \chapter{\label{ch:protodune}The ProtoDUNE--SP Experiment} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% From COS
-%
-% This chapter will discuss the ProtoDUNE--SP experiment and it's role in the
-% development of the proposed DUNE experiment. The LArTPC technology will be
-% detailed in the general case and then the specifics of the ProtoDUNE--SP
-% detector will be given. Details of the major particle fluxes in ProtoDUNE--SP
-% will be outlined, along with a discussion of the simulation and reconstruction
-% of each flux. Finally, as my main contribution to detector operations during
-% data taking was developing for the ProtoDUNE--SP online monitoring system, this
-% will be discussed in more depth. 
-% 
-% The work for the online monitoring subsection has been completed as part of my
-% duties as an on--site expert at CERN. I expect to be able to complete the rest
-% of the work by the end of December 2019 alongside the other analysis work.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \minitoc
 
-\protodune{} is one of two prototypes for the DUNE far detector modules, which 
+\protodune{} is one of two prototypes for the DUNE Far Detector modules, which 
 has been operating at the Neutrino Platform at CERN since the summer of 2018. 
 The experiment collected data from a charged particle beam for approximately 3 
 months before Long Shutdown 2 of the Large Hadron Collider (LHC). Since then, a 
@@ -35,8 +18,8 @@ which will be discussed in Section \ref{sec:pdsp_cosmic}. Sections
 \ref{sec:simulation} and \ref{sec:reconstruction} will then discuss the 
 simulation and reconstruction of \protodune{} data. Finally Section 
 \ref{sec:pdsp_om} will cover details of the online monitoring system in 
-\protodune{}; as the primary developer and expert on the \protodune{} online 
-monitoring system during my time at CERN, the development and maintenance of 
+\protodune{}. During my time at CERN I was the primary developer and expert on
+the \protodune{} online monitoring system. The development and maintenance of 
 this system represents a significant body of work over a 12 month period, as 
 well as ongoing maintenance work throughout the following 2 years.
 
@@ -58,11 +41,14 @@ well as ongoing maintenance work throughout the following 2 years.
 
 The DUNE experiment will be a next generation neutrino physics and nucleon decay
 experiment consisting of three principal components; an intense broad band 
-neutrino beam and precise near detector complex, based at the Fermilab National 
-Accelerator Laboratory (FNAL) near Chicago, and a far detector, at Sanford 
-Underground Research Facility (SURF) in South Dakota, approximately 1300 km 
-away from the neutrino source, as shown in Figure \ref{fig:dune_baseline}. The 
-DUNE experiment identifies three primary scientific goals\cite{Abi:2020evt}:
+neutrino beam, a precise Near Detector complex, and a Far Detector. The neutrino
+beam and Near Detector complex will be based at the Fermilab National 
+Accelerator Laboratory (FNAL) near Chicago, and the Far Detector will be based 
+at Sanford Underground Research Facility (SURF) in South Dakota, approximately 
+1300 km away from the neutrino source. The experimental setup is shown in Figure
+\ref{fig:dune_baseline}. 
+
+The DUNE experiment identifies three primary scientific goals\cite{Abi:2020evt}:
 \begin{itemize}
 	\item Perform a comprehensive programme of neutrino oscillation measurements
 		including measurements of \dcp{}, neutrino mass ordering, and $\theta_{23}$.
@@ -76,29 +62,29 @@ secondary science goals:
 	\item Other accelerator based neutrino physics, such as non--standard
 		interactions, sterile neutrinos, and CPT violation.
 	\item Measurements of neutrino properties using atmospheric neutrinos.
-	\item Dark matter searches in both the near and far detectors.
-	\item A programme of neutrino interaction physics studies in the DUNE near
-		detector.
+	\item Dark matter searches in both the Near and Far Detectors.
+	\item A programme of neutrino interaction physics studies in the DUNE Near
+		Detector.
 \end{itemize}
 
-To achieve these goals, DUNE has opted to base the near and far detector designs
+To achieve these goals, DUNE has opted to base the Near and Far Detector designs
 on the liquid argon time projection chamber (LArTPC) technology. The DUNE
-far detector will eventually consist of four LArTPC detectors each with 10 kt 
+Far Detector will eventually consist of four LArTPC detectors each with 10 kt 
 of active liquid argon mass. This technology will have never before been used 
-on this scale and, therefore, there has been a significant programme of LArTPC 
-research and development ongoing, to validate and characterise the performance 
+on this scale and, therefore, there has been a significant ongoing programme 
+of LArTPC research and development, to validate and characterise the performance
 of the technology for DUNE. 
 
 \subsection{Liquid Argon Time Projection Chambers}
-A LArTPC consists of a large volume of highly--purified liquid argon subject to
-an electric field. Charged particles traversing the liquid argon produce two
-primary energy depositions, a trail of ionisation electrons along their path,
-and prompt ultra--violet scintillation photons. After creation, the ionisation
-electrons drift in the electric field toward the charge readout plane, where 
-they induce electrical signals. Liquid argon is transparent to its own 
-scintillation light, therefore, the scintillation photons can travel through 
-the argon to be collected in a photon detection system. The LArTPC detection 
-principal is illustrated in Figure \ref{fig:lartpc}. 
+A LArTPC consists of a large volume of highly--purified liquid argon, which is
+subjected to an electric field. Charged particles traversing the liquid argon 
+produce two primary energy depositions, a trail of ionisation electrons along 
+their path, and prompt ultra--violet scintillation photons. After creation, 
+the ionisation electrons drift in the electric field toward the charge readout 
+plane, where they induce electrical signals. Liquid argon is transparent to 
+its own scintillation light, therefore, the scintillation photons can travel 
+through the argon to be collected in a photon detection system. The LArTPC 
+detection principal is illustrated in Figure \ref{fig:lartpc}. 
 
 \begin{figure}
 
@@ -123,65 +109,63 @@ principal is illustrated in Figure \ref{fig:lartpc}.
 
 The ionisation signals in a LArTPC are slow, it takes electrons milliseconds to
 travel from the cathode plane to the anode plane. In contrast, scintillation 
-photons only take on the order of nanoseconds to reach the closest anode 
-plane. This scintillation light plays an important role in the accurate 3D 
-reconstruction of interactions in the LArTPC, it can be used to determine the
-time of an interaction to within a few nanoseconds.
+photons only take nanoseconds to reach the closest anode plane. This 
+scintillation light plays an important role in the accurate 3D reconstruction 
+of interactions in the LArTPC, as it can be used to determine the time of an 
+interaction to within a few nanoseconds.
 
-In a LArTPC, interactions play out much quicker than the detector is able to 
-record them; as such each event actually integrates over a large number of 
+In a LArTPC, interactions play out much more quickly than the detector is able 
+to record them, and each event actually integrates over a large number of 
 interactions within the readout window. The true time, often referred to as 
-the $t_0$, of the interactions in the event cannot be reconstructed from the 
-ionisation signals alone; by utilising the much faster scintillation signals,
-the time of interactions can be calculated with much higher precision.  This 
-data can be combined with the arrival time of drifting electrons to reconstruct 
-the true drift distance. Without an accurate $t_0$, the reconstructed drift 
-distance will be wrong, and as a result, the predicted charge attenuation
-will be incorrect.
+the $t_0$, of the interactions in the event cannot be accurately reconstructed 
+from the ionisation signals alone; by utilising the much faster scintillation 
+signals, the time of interactions can be calculated with much higher 
+precision.  This data can be combined with the arrival time of drifting 
+electrons to reconstruct the true drift distance. Without an accurate $t_0$, 
+the reconstructed drift distance will be incorrect, and as a result, the 
+predicted charge attenuation will also be incorrect.
 
-The details of the charge readout and photon detection systems are specific to 
-each detector, but broadly speaking LArTPC detectors can be split into two 
-main categories: single--phase and dual--phase. In a single--phase detector, the
-drifting ionisation electrons remain in the liquid argon and the signals are 
-typically read out on three anode wire planes, although pixel readout systems
-have also been developed\cite{argoncube}. A dual--phase LArTPC contains an
-additional region of gaseous argon, in which a high electric field, known as the
-extraction field, is applied to extract the ionisation from the liquid into the
-gas before it is amplified and collected on a pair of anode wire 
+Whilst the details of the charge readout and photon detection systems are unique
+in each detector, LArTPC detectors can be split into two main categories: 
+single--phase and dual--phase. In a single--phase detector, the drifting 
+ionisation electrons remain in the liquid argon and the signals are usually 
+read out on three anode wire planes, although pixel readout systems have also 
+been developed\cite{argoncube}. A dual--phase LArTPC contains an additional 
+region of gaseous argon, in which a high electric field, known as the 
+extraction field, is applied to extract the ionisation from the liquid into 
+the gas before it is amplified and collected on a pair of anode wire 
 planes\cite{Abi:2020wmh}.
 
-\bigskip
-\noindent
-\protodune{} is one of two large scale prototypes for the DUNE far detector
-modules, which focusses on the single--phase LArTPC technology. The DUNE far
-detector modules feature a modular design in which each module is built up of a
-number of identical components, \protodune{} was designed to prototype the
-design of many of these components at a 1:1 scale, including the anode planes,
-cathode plane, and photon detectors. The \protodune{} experiment has four 
-primary goals, as outlined in the Technical Design Report\cite{Abi:2017aow}:
+\bigskip\noindent
+\protodune{} is one of two large scale prototypes for the DUNE Far Detector
+modules, which focusses on the single--phase LArTPC technology. The DUNE Far
+Detector is designed such that each module is built up of a number of 
+identical components. \protodune{} was designed to prototype the design of 
+many of these components at a 1:1 scale, including the anode planes, cathode 
+plane, and photon detectors. The \protodune{} experiment has four primary 
+goals, as outlined in the Technical Design Report\cite{Abi:2017aow}:
 \begin{itemize}
 	\item Prototype the production and installation procedures for the
-		single--phase far detector design.
-	\item Validate the design from the perspective of basic detector performance;
-		this can be achieved with cosmic-ray data. 
+		single--phase Far Detector design.
+	\item Validate the design from the perspective of basic detector performance; this can be achieved with cosmic-ray data. 
 	\item Accumulate large samples of test-beam data to understand/calibrate the
 		response of the detector to different particle species.
 	\item Demonstrate the long-term operational stability of the detector as part
 		of the risk mitigation program ahead of the construction of the first 10 kt
-		far detector module.
+		Far Detector module.
 \end{itemize}
 As such, \protodune{} represents a significant milestone in the development of
-the far detector for the DUNE experiment. Its successful operation, both in a 
+the Far Detector for the DUNE experiment. Its successful operation, both in a 
 test beam and with cosmic--rays, provides valuable data with which to understand
-reconstruction and analysis of the data that will be collected by the DUNE far 
-detector.
+reconstruction and analysis of the data that will be collected by the DUNE Far 
+Detector.
 
 \section{The \protodune{} Detector} \label{sec:pdsp_detector}
 
 The \protodune{} detector is located at the Neutrino Platform at CERN along the
 H4 beamline. It is a single--phase LArTPC detector with a total liquid argon 
 mass of 0.77 kt, making it the largest monolithic single--phase liquid argon TPC
-to be built to date. The TPC comprises the following major components, which 
+at the time of writing. The TPC comprises the following major components, which 
 are illustrated in Figure \ref{fig:pdsp_tpc}:
 \begin{itemize}
 	\item A cathode plane constructed of modular Cathode Plane Assemblies (CPA).
@@ -191,7 +175,7 @@ are illustrated in Figure \ref{fig:pdsp_tpc}:
 	\item Readout electronics and Data Acquisition System (DAQ).
 \end{itemize}
 The detector components are designed to be an almost exact replica of the final 
-single--phase far detector modules, but the detector has an overall scaling 
+single--phase Far Detector modules, but the detector has an overall scaling 
 factor of approximately $1:20$ in terms of total liquid argon 
 mass\cite{Abi:2017aow}.
 
@@ -227,18 +211,18 @@ drifting ionisation. Ionisation passing the induction wires causes an induced
 bi--polar signal. The third set of wires are known as collection wires, these
 wires are not biased. When drifting ionisation approaches the collection wires 
 it is absorbed producing a uni--polar signal. In \protodune{}, each set of 
-induction wires contains 800 wires at a 4.67 mm spacing, and each set of 
-collection wires contains 480 wires at a 4.79 mm spacing. 
+induction wires contains 800 wires at a spacing of 4.67 mm, and each set of 
+collection wires contains 480 wires at a spacing of 4.79 mm. 
 
 The wire planes from each APA are read out by electronics boards, known as
 Front--end Mother Boards (FEMB), which are mounted on the APA frame. The FEMBs 
-are submerged in the liquid argon and, therefore, also referred to as cold 
-electronics (CE). A total of 2560 electronics channels are used to read out 
-the data from each APA, with each readout window corresponding to 3 ms, which 
-is 6000 time samples. The CE amplify, shape, and digitise the signals from the 
-wires before transmitting them outside the TPC to the Warm Interface Boards 
-(WIB). The WIBs collate the data from the CE boards and pass the data onto the 
-Data Acquisition System (DAQ).
+are submerged in the liquid argon and, therefore, they are also referred to as 
+cold electronics (CE). A total of 2560 electronics channels are used to read 
+out the data from each APA, with each readout window corresponding to 3 ms, 
+which is 6000 time samples. The CE amplify, shape, and digitise the signals 
+from the wires before transmitting them outside the TPC to the Warm Interface 
+Boards (WIB). The WIBs collate the data from the CE boards and pass the data 
+onto the Data Acquisition System (DAQ).
 
 The cathode plane in \protodune{} consists of an array of 18 CPA modules, 2 m 
 (height) $\times$ 1.2 m (width). The cathode plane is held at -180 kV to 
@@ -247,10 +231,10 @@ field cage surrounding the drift regions ensures that the electric field is
 uniform across the detector volume, by providing the necessary electrical
 boundary conditions.
 
-One area in which the design of \protodune{} differs from the far detector is
+One area in which the design of \protodune{} differs from the Far Detector is
 the inclusion of the beam plug. This is necessary to minimize interactions
 between the charged particle test beam and the cryostat before the beam enters 
-the active region of the detector. A cylindrical beam plug, containing 
+the active region of the detector. A cylindrical beam plug, which contains 
 nitrogen gas, penetrates from the cryostat wall into the field cage at 
 location of the incoming test beam. 
 
@@ -261,7 +245,7 @@ Ten photon detector modules are embedded in each APA frame between the layers
 of wires on either side of the APA, as shown in Figure \ref{fig:pdsp_tpc}. 
 Three types of photon detector module were tested in \protodune{}, two very 
 similar module designs based on coupling silicon photomultipliers to 
-wavelength shifting bars, and a third novel design know as the ARAPUCA light 
+wavelength shifting bars, and a third novel design known as the ARAPUCA light 
 trap. The operating principles of the two designs are illustrated in Figure 
 \ref{fig:pdsp_pd}.
 
@@ -297,7 +281,7 @@ wavelength shifting bars coupled to silicon photomultipliers (SiPM).
 Tetraphenyl-butadiene (TPB) is used to shift the wavelength of the light 
 from ultra--violet to blue before the light is transmitted down the waveguide to
 the SiPMs. The main difference between the two nominal designs is in the 
-wavelength of transmission within the waveguide; in one case the wavelength is 
+wavelength of transmission within the waveguide. In one case the wavelength is 
 transmitted at the blue wavelength produced by the TPB, in the other case the 
 blue light from the TPB is first absorbed in the waveguide which then produces 
 green light which is transmitted down the waveguide.
@@ -305,28 +289,29 @@ green light which is transmitted down the waveguide.
 A small number of the photon detector modules in \protodune{} feature a novel 
 design known as an ARAPUCA light trap. In this design the photons are trapped 
 in a small box through a sequence of wavelength shifting and optical 
-filtering, significantly increasing the photon detection 
+filtering, thereby significantly increasing the photon detection 
 efficiency\cite{Segreto:2018jdx}. An ARAPUCA light trap consists of a box 
-which is coated with a highly reflective surface, on one side of the box is 
+which is high reflective on the inside. On one side of the box is 
 the filtering window, and on the other a SiPM. Incoming ultra--violet photons 
 are shifted to the blue spectrum before passing through a dichroic filter 
 which has a tunable wavelength cut--off at which it transitions from being 
 transparent to reflective. After passing through the filter the photons are 
 shifted again, this time from blue to green, such that if they get back to the 
 filter it is reflective. As such green photons can be trapped within the 
-ARAPUCA until they come into contact with the SiPM, providing increased photon 
-detection efficiency. Each ARAPUCA photon detector module in \protodune{} 
-features an array of these traps arranged in a line across the width of an 
-APA. 12 ARAPUCA light traps make up an ARAPUCA module, these are constructed 
-from 16 so called cells, which are 5 cm $\times$ 5 cm $\times$ 1 cm boxes.  
-Half of the light traps are made of one cell and the others being made of two 
-cells joined together. Regardless of the number of cells, each ARAPUCA trap is 
-read out by a single SiPM, making for 12 SiPMs per ARAPUCA module.
+ARAPUCA until they come into contact with the SiPM, this provides increased 
+photon detection efficiency. Each ARAPUCA photon detector module in 
+\protodune{} features an array of these traps arranged in a line across the 
+width of an APA. The ARAPUCA modules contain 12 ARAPUCA light traps, these are 
+constructed from 16 so called cells, which are 5 cm $\times$ 5 cm $\times$ 1 
+cm boxes.  Half of the light traps are made of one cell and the others are 
+made of two cells joined together. Regardless of the number of cells, each 
+ARAPUCA trap is read out by a single SiPM, making for 12 SiPMs per ARAPUCA 
+module.
 
 Unlike with the TPC electronics, there are no front--end electronics in the LAr
 volume for the PDS, the unamplified analogue signals are transmitted out of the
 cryostat before processing and digitisation. The light guide based photon 
-detector module have 12 SiPMs which are read out in threes such that each 
+detector module have 12 SiPMs, which are read out in threes meaning that each 
 module corresponds to 4 readout channels. The ARAPUCA modules are read out by
 one channel per SiPM, resulting in 12 channels per ARAPUCA module. The readout 
 channels from each APA are processed by four so called SiPM Signal Processors 
@@ -339,14 +324,15 @@ The \protodune{} experiment is located at the end of the H4 beamline at CERN,
 the location of the beamline with respect to the detector is illustrated in
 Figure \ref{fig:pdsp_CRT}. The beam has a mixture of particle types including
 hadrons, muons, and electrons, with momenta in the range 0.3--7 GeV. The momenta
-and composition of the beam can be varied, and several runs were taken across a
+and composition of the beam can be varied, several runs were taken across a 
 range of particle compositions and beam momenta.
 
 The H4 beamline is a tertiary beamline, which is produced when a secondary beam
-from the T2 primary target interacts with a secondary target. Particles from the
-secondary target are selected based on momentum and charge before travelling down
-the H4 beamline to \protodune{}. A schematic of the beamline instrumentation
-(BI) and magnets in the H4 beamline is given in Figure \ref{fig:h4_schem}. 
+from the T2 primary target interacts with a target. Particles from the 
+secondary target are selected based on momentum and charge before travelling 
+down the H4 beamline to \protodune{}. A schematic of the beamline 
+instrumentation (BI) and magnets in the H4 beamline is given in Figure 
+\ref{fig:h4_schem}. 
 
 \begin{figure}
 
@@ -370,8 +356,8 @@ the H4 beamline to \protodune{}. A schematic of the beamline instrumentation
 
 By combining momentum measurements from the profile monitors with time of flight
 (TOF) and Cerenkov measurements, the beam momentum and composition can be 
-measured. The predicted and measured distribution of TOF vs momentum for data 
-from a number of runs at different momenta is shown in Figure \ref{fig:h4_tof}.
+measured. The predicted and measured distribution of TOF vs momentum for data,
+from a number of runs at different momenta, is shown in Figure \ref{fig:h4_tof}.
 This information is used to trigger the detector during beam running, and is
 sent to the central trigger board for distribution to the detector components.
 
@@ -443,9 +429,10 @@ assemblies, the locations of the CRT assemblies is illustrated in Figure
 \ref{fig:pdsp_CRT}. Each CRT assembly is constructed from overlapping 
 scintillation counters, which cover an area 6.8 m high and 3.65 m wide. 
 Scintillation strips of length 365 cm and width 5 cm are placed in 
-perpendicular arrays to give two--dimensional reconstruction within each CRT 
+perpendicular arrays to give 2D reconstruction within each CRT 
 assembly. By combining data from upstream and downstream CRT assemblies, with a 
-time coincidence requirement, the trajectories of tracks can be reconstructed.
+time coincidence requirement, the 3D trajectories of tracks can be 
+reconstructed.
 
 \begin{figure}
 
@@ -502,7 +489,7 @@ data from the BI and CRT\cite{Abi:2017aow}.
 	{Outline of the data acquisition system in \protodune{}, showing the data flow
 	from the detector components through to offline storage ready for later
 	analysis. The main elements of the system are shown, including the important 
-	software components, which are part of the artDAQ framework highlighted by 
+	software components, which are part of the ArtDAQ framework highlighted by 
 	the yellow box. Figure from \cite{Abi:2017aow}.}
 
 	\label{fig:pdsp_daq}
@@ -515,21 +502,22 @@ flow of around 480 $\mbox{Gb/s}$ from the TPC electronics. An event in
 \protodune{} corresponds to a continuous readout of the detector for 3 ms,
 resulting in 6000 samples from each wire; data is buffered such that the readout
 window can be opened 250 $\mu$s before the trigger time. Data from the TPC is
-received by two systems, a system based on Reconfigurable Computing Elements
-(RCE)\cite{7431254} handles the data from five APAs, while data from the sixth 
-is received by a system based on Front--End Link Exchange (FELIX) cards, which 
-have been developed by the ATLAS collaboration\cite{Anderson_2016}.
+received by two systems, one system, which is based on Reconfigurable Computing Elements
+(RCE)\cite{7431254}, handles the data from five APAs, while the other system
+handles the data from the sixth APA, and is based on Front--End Link Exchange 
+(FELIX) cards, which have been developed by the ATLAS 
+collaboration\cite{Anderson_2016}.
 
 The software layer of the \protodune{} DAQ is based on Fermilab's 
-artDAQ\cite{6495515}. This component is primarily responsible for acquiring 
+ArtDAQ\cite{6495515}. This component is primarily responsible for acquiring 
 the data, packaging it, and storing it locally. Triggered events are queued 
 and distributed to the board readers and event builders by the Data Flow 
 Orchestrator. There are multiple board readers, which are each responsible for 
 processing the data from specific hardware components. Details vary between 
 specific board readers, but generally these processes are responsible for 
 formatting the data from each component ready for aggregation. Data from the 
-various detector components are aggregated by the event builders, which are 
-responsible for assembling the completed events. After compression events have 
+various detector components is aggregated by the event builders, which are 
+responsible for assembling the completed events. After compression, events have 
 an average size of 60 MB. ArtDAQ is also responsible for the real--time 
 monitoring of data quality via the online monitoring system, this system will 
 be discussed in Section \ref{sec:pdsp_om}.
@@ -541,32 +529,30 @@ framework\cite{Snider2017}. LArSoft is a software suite for simulating and
 reconstructing data collected by LArTPC detectors, based on the art event 
 framework from Fermilab\cite{Green:2012gv}. LArSoft is under active use and
 development by a number of participating LArTPC based experiments, with each
-experiment making use of its core functionality as well as experiment specific
-code. The simulation and reconstruction of \protodune{} data in the LArSoft
-framework will be discussed in Sections \ref{sec:simulation} and
-\ref{sec:reconstruction} of this chapter respectively.
+experiment making use of its core functionality, in addition to experiment 
+specific code. 
 
 Simulation in LArSoft is broken down into three sequential stages: generation,
 propagation, and detector simulation. The initial state particles are produced
-in the generation step, the propagation and interaction of these particles in
-the detector is simulated during the propagation step, finally the transport of 
-energy depositions and simulation of detector effects are handled by the
-detector simulation phase.
+in the generation step, the propagation and interaction of these particles is 
+simulated during the propagation step and finally the transport of energy 
+depositions, and simulation of detector effects are handled by the detector 
+simulation phase.
 
 As a surface based detector in a test beam, \protodune{} is subject to three
-main sources of particles: beam particles, beam halo particles, and cosmic--ray
-particles. The beam particle and beam halo flux in the vicinity of 
-\protodune{} was provided by simulations of the H4 
-beamline\cite{Booth:2019brj} based on two simulation frameworks, 
-G4beamline\cite{g4beamline} and FLUKA\cite{BOHLEN2014211}. The cosmic--ray 
-flux in \protodune{} is simulated using CORSIKA\cite{Heck:1998vt}. Finally, 
-low energy radiological backgrounds in LAr are simulated, these include 
-$^{39}\mbox{Ar,} ^ {85}\mbox{Kr, and } ^{222}\mbox{Rn}$.
+main sources of particles: beam particles, cosmic--rays, and radiological 
+decays. The beam particle flux in the vicinity of \protodune{} was provided by 
+simulations of the H4 beamline\cite{Booth:2019brj} based on two simulation 
+frameworks, G4beamline\cite{g4beamline} and FLUKA\cite{BOHLEN2014211}. The flux
+of cosmic--ray particles in \protodune{} is simulated using 
+CORSIKA\cite{Heck:1998vt}.  Finally, low energy radiological backgrounds in 
+LAr are simulated, these include $^{39}\mbox{Ar,} ^ {85}\mbox{Kr, and } 
+^{222}\mbox{Rn}$.
 
 After generation, the particles are allowed to propagate and interact in the 
 detector geometry, including the cryostat, external systems, and experimental
 hall. This is simulated using GEANT4\cite{Agostinelli:2002hh}, which tracks 
-particles in small steps; the step size, $300 \mu m$, is chosen to be much 
+particles in small steps; the step size, $300 \mbox{ } \mu m$, is chosen to be much 
 smaller then the spatial resolution of the detector to allow for small--scale 
 processes like showering to be accurately simulated. 
 
@@ -872,7 +858,7 @@ the OM.
 \end{figure}
 
 \subsection{Data Processing}
-The data processing for the OM is based on Fermilab's art and artDAQ software
+The data processing for the OM is based on Fermilab's art and ArtDAQ software
 frameworks\cite{Green:2012gv, 6495515}, the only exception is the beam 
 instrumentation data which is analysed outside of the OM system by the CERN 
 beam group. The beam instrumentation plots are merged with the rest of the OM 
@@ -1313,7 +1299,7 @@ the latency in the OM, by allowing it to analyse the data promptly as it is
 read out by the detector. Unfortunately, this system wasn't successfully 
 implemented during the first beam run of \protodune{}, but it remains as a 
 possible improvement to the monitoring system for any future \protodune{} 
-runs, and for the DUNE far detector monitoring.
+runs, and for the DUNE Far Detector monitoring.
 
 Additional improvements could be made to the latency, through using different
 computing hardware and improving the efficiency of the code. However, at the
