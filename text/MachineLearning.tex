@@ -23,8 +23,8 @@ examples of the application of Neural Networks (NN) for event reconstruction
 in LArTPC data. These algorithms are classification algorithms based on the
 supervised learning approach. This chapter will not attempt to provide a full 
 survey of the available ML techniques, which are both numerous and diverse. 
-Instead, in this chapter we will briefly describe the theory behind NNs, as 
-well as providing details of the techniques used in the subsequent chapters. 
+Instead, this chapter will briefly describe the theory behind NNs, as well as 
+providing details of the techniques used in the subsequent chapters. 
 
 \section{Artificial Neural Networks}
 Artificial neural networks (ANN) are a class of ML algorithm that draw their
@@ -103,8 +103,8 @@ $j$ includes all nodes in the current layer. This construction ensures that
 the outputs from a softmax layer sum to one, and as such this unit is commonly 
 used in categorisation tasks when the output must belong to one of a given set 
 of categories. The benefits and drawbacks of these common activation functions 
-will be discussed later in this chapter, when we discuss modifying weights 
-with the backpropagation algorithm.
+will be discussed later in this chapter, when the modification of weights 
+with the backpropagation algorithm will be discussed.
 
 The weights and biases of the nodes in an MLP can be adjusted to make accurate 
 predictions of data. For a classification task, there are typically as many
@@ -268,17 +268,19 @@ weights and biases of the network need to be optimised. The backpropagation
 algorithm\cite{Rumelhart1986} is currently the most widely used algorithm for
 minimising the loss function by adjusting the weights and biases in the network.
 
+\subsection{The Backpropagation Algorithm}
+
 Consider the weight for the $j^{th}$ node in the $l^{th}$ layer of a network for
 an incoming connection from the $i^{th}$ node from the previous layer, 
 $W^l_{ij}$. The loss function varies with respect to these weights as 
-$\partial L/\partial W^l_{ ij }$. If we modify the weights with, 
+$\partial L/\partial W^l_{ ij }$. If the weights are modified with, 
 \begin{equation} 
 	\Delta W^l_{ ij } = -\eta \frac{\partial L}{\partial W^l_{ ij }},
 	\label{eq:delta_w}
 \end{equation}
-for positive learning rates, $\eta > 0$, we are guaranteed to reduce the loss
-for a given input. The backpropagation algorithm provides an means for 
-calculating the derivatives required to adjust the weights in each layer.
+for positive learning rates, $\eta > 0$, this method is guaranteed to reduce 
+the loss for a given input. The backpropagation algorithm provides an means 
+for calculating the derivatives required to adjust the weights in each layer.
 
 Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
 \begin{equation}
@@ -312,7 +314,7 @@ via the chain rule,
 		&= \sum^{n^{l+1}}_{k = 1} \delta^{l+1}_k \frac{\partial a^{l+1}_k}{\partial 
 		a^l_j},
 \end{align*}
-where the sum is over all nodes in layer $l+1$. We can use the definition of the
+where the sum is over all nodes in layer $l+1$. Using the definition of the 
 response function to simplify this further,
 \begin{align*}
 		\frac{\partial a^{l+1}_k}{\partial a^l_j} &= \frac{\partial}{\partial a^l_j} 
@@ -389,7 +391,7 @@ Regularisation ensures that the trained network can generalise well beyond the
 training data. A number of regularisation techniques can be used, such as 
 applying penalty terms to the loss function, which are proportional to the 
 square of the weights, ensuring that the weights stay relatively small. In 
-this thesis, we will make use of two regularisation techniques, 
+this thesis two regularisation techniques are used: 
 dropout\cite{Srivastava2014DropoutAS} and early 
 stopping\cite{OrrGenevieveB.1998NNTo}.
 

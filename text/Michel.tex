@@ -253,6 +253,7 @@ algorithm was developed based on combining the results from the hit tagging CNN
 from Chapter \ref{ch:chargeid} with clustering performed by the main
 \protodune{} reconstruction framework, Pandora.
 
+\newpage\noindent
 The event selection algorithm has four steps, which are detailed below.
 \subsubsection*{1. Select Primary Tracks}
 This step defines the initial sample of muon candidates, which consists of all
@@ -299,7 +300,7 @@ simulation.
 	\label{fig:michel_like_frac}
 \end{figure}
 
-\medskip\noindent
+\bigskip\noindent
 Based on this algorithm, Michel electron events are selected with a
 purity of 98\% and an overall efficiency of 6\% in \protodune{} simulation.
 Figure \ref{fig:ev_sel_eff} shows the event selection efficiency as a
@@ -905,16 +906,16 @@ contains both track--like and a shower--like components and, therefore, they
 require a unique reconstruction algorithm in order to maximise the energy
 collected from the events.
 
-In this chapter we have presented a novel Michel electron reconstruction
-algorithm based on machine learning techniques. A sample of Michel electrons was
-selected in \protodune{} data with a purity of over 98\% and an overall
-efficiency of around 6\%. The ionisation energy of these events was
-reconstructed based on a semantic segmentation algorithm, which uses a U--ResNet
-CNN architecture. The performance of this algorithm shows an improvement in
-energy resolution over similar experiments, with an ionisation energy resolution
-of around 10-15\%. However, there is still need for improvement, particularly
-in the high energy region where a large tail is seen in the fractional
-difference distribution.
+This chapter has presented a novel Michel electron reconstruction algorithm 
+based on machine learning techniques. A sample of Michel electrons was 
+selected in \protodune{} data with a purity of over 98\% and an overall 
+efficiency of around 6\%. The ionisation energy of these events was 
+reconstructed based on a semantic segmentation algorithm, which uses a 
+U--ResNet CNN architecture. The performance of this algorithm shows an 
+improvement in energy resolution over similar experiments, with an ionisation 
+energy resolution of around 10-15\%. However, there is still need for 
+improvement, particularly in the high energy region where a large tail is seen 
+in the fractional difference distribution.
 
 The promising results in the low energy region based on this method, suggest
 that with further study the semantic segmentation approach could prove to be an

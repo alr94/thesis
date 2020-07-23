@@ -116,18 +116,18 @@ where the terms have the same meanings as in Equation
 Above a few tens of MeV, electrons lose most of their energy through the 
 emission of bremsstrahlung photons. Detailed discussion of the energy loss due
 to bremsstrahlung emission is beyond the scope of this thesis, detailed
-discussions are provided in \cite{PhysRevD.98.030001, Tsai:1973py}. Here, we 
-discuss a simplified model, which highlights the important factors relevant for 
-the work in this thesis.
+discussions are provided in \cite{PhysRevD.98.030001, Tsai:1973py}. A simplified
+model, which highlights the important factors relevant for the work in this 
+thesis, will be discussed here.
 
 At high energies, where the radiative energy loss is dominant, the energy loss
 of electrons can be approximated as energy loss over a length scale, $X_0$,  
 known as the radiation length.  In this approximation, the energy loss per 
 unit distance due to bremsstrahlung is, 
-\begin{equation*}
-	\label{eq:rossi}
+\begin{equation}
 	- \left( \frac{dE}{dx} \right)_{brem} = \frac{E}{X_0}.
-\end{equation*}
+	\label{eq:rossi}
+\end{equation}
 The radiation length, $X_0$, can be parametrised as,
 \begin{equation}
 	\begin{gathered}
@@ -148,7 +148,7 @@ Critical energy is often defined as the energy at which the collision and
 radiative stopping power are equivalent, other definitions are also used, such
 as the definition by Rossi, the energy where the ionisation loss per
 radiation length is equal to the electron energy\cite{Rossi:1952kt}. Rossi's 
-definition is equivalent to using the approximate $dE/dx$ in equation 
+definition is equivalent to using the approximate $dE/dx$ in Equation 
 \ref{eq:rossi}\cite{PhysRevD.98.030001}. The value of the critical energy has 
 important implications for reconstruction algorithms, because different 
 approaches are often required above and below the critical energy. 
@@ -268,46 +268,6 @@ Figure \ref{fig:particle_signatures} shows the typical signatures of four
 types of interaction in a liquid argon TPC, for events from \protodune{} 
 data.
 
-The most common interaction in \protodune{} is that of a cosmic--ray muon, seen
-in Figure \ref{fig:muon_signature}. Muons, and other heavy particles, leave 
-long tracks in the detector which deposit around 2.1 MeV/cm in the minimum 
-ionising region. Alongside muon tracks, relatively high energy electrons, 
-known as delta rays, are occasionally produced. Delta rays can be seen as 
-electron activity along the length of the muon track.
-
-Electrons in \protodune{} have two distinct signatures, which depend on the
-energy of the electron. For high energy electrons, with energies above around
-300 MeV, radiative energy loss dominates and showers are produced, an example 
-of an electron shower can be seen in Figure \ref{fig:electron_signature}. 
-These showers are the result of a cascade of electrons, which are produced by 
-a chain of bremsstrahlung photons and electron positron pairs. At energies in 
-the tens of MeV range electrons have a different signature, which consists of 
-a small electron track accompanied by a number of small ionisation energy 
-deposits due to radiated photons. 
-
-A common source of tens of MeV electrons in \protodune{} are Michel electrons, 
-which are the electrons produced when a muon decays at rest in the detector. 
-An example of a typical Michel electron event is shown in Figure 
-\ref{fig:michel_signature}. The Michel electron is accompanied by the incoming 
-Muon in the image, because the lifetime of the muon is shorter than the time 
-it takes for the ionisation charge to drift away from the stationary muon.
-
-As with electrons, photon interactions in liquid argon have two distinct
-signatures at high and low energies. Low energy photons are typically produced
-by the interactions of low energy electrons in the liquid argon, such as the
-Michel electron interaction in Figure \ref{fig:michel_signature}. When these 
-photons interact they produce small isolated energy deposits, which are 
-created by the ionisation from either Compton scattered electron or an electron 
-positron pair.
-
-At high energies, photons produce similar interactions to high energy electrons,
-which produce electromagnetic showers in the liquid argon. There is a slight
-difference in the $dE/dx$ in the first few cm of electron and photon showers, 
-because the start of photon showers contain two electrons whereas the start of
-electron showers only have one. This difference can allow for electron and 
-photon showers to be distinguished from each other\cite{Acciarri:2016sli}. A 
-common source of photon showers in \protodune{} are $\pi^0$ decays, shown in 
-Figure \ref{fig:pi0_signature}, which produce a pair of photons.
 \begin{figure}
 
 	\centering
@@ -353,6 +313,47 @@ Figure \ref{fig:pi0_signature}, which produce a pair of photons.
 	\label{fig:particle_signatures}
 
 \end{figure}
+
+The most common interaction in \protodune{} is that of a cosmic--ray muon, seen
+in Figure \ref{fig:muon_signature}. Muons, and other heavy particles, leave 
+long tracks in the detector which deposit around 2.1 MeV/cm in the minimum 
+ionising region. Alongside muon tracks, relatively high energy electrons, 
+known as delta rays, are occasionally produced. Delta rays can be seen as 
+electron activity along the length of the muon track.
+
+Electrons in \protodune{} have two distinct signatures, which depend on the
+energy of the electron. For high energy electrons, with energies above around
+300 MeV, radiative energy loss dominates and showers are produced, an example 
+of an electron shower can be seen in Figure \ref{fig:electron_signature}. 
+These showers are the result of a cascade of electrons, which are produced by 
+a chain of bremsstrahlung photons and electron positron pairs. At energies in 
+the tens of MeV range electrons have a different signature, which consists of 
+a small electron track accompanied by a number of small ionisation energy 
+deposits due to radiated photons. 
+
+A common source of tens of MeV electrons in \protodune{} are Michel electrons, 
+which are the electrons produced when a muon decays at rest in the detector. 
+An example of a typical Michel electron event is shown in Figure 
+\ref{fig:michel_signature}. The Michel electron is accompanied by the incoming 
+Muon in the image, because the lifetime of the muon is shorter than the time 
+it takes for the ionisation charge to drift away from the stationary muon.
+
+As with electrons, photon interactions in liquid argon have two distinct
+signatures at high and low energies. Low energy photons are typically produced
+by the interactions of low energy electrons in the liquid argon, such as the
+Michel electron interaction in Figure \ref{fig:michel_signature}. When these 
+photons interact they produce small isolated energy deposits, which are 
+created by the ionisation from either Compton scattered electron or an electron 
+positron pair.
+
+At high energies, photons produce similar interactions to high energy electrons,
+which produce electromagnetic showers in the liquid argon. There is a slight
+difference in the $dE/dx$ in the first few cm of electron and photon showers, 
+because the start of photon showers contain two electrons whereas the start of
+electron showers only have one. This difference can allow for electron and 
+photon showers to be distinguished from each other\cite{Acciarri:2016sli}. A 
+common source of photon showers in \protodune{} are $\pi^0$ decays, shown in 
+Figure \ref{fig:pi0_signature}, which produce a pair of photons.
 
 \section{Scintillation Light in Liquid Argon}
 The second source of electromagnetic energy loss in liquid argon is due to the

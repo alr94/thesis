@@ -293,8 +293,8 @@ smaller for all hits tested. As such,
 	\mbox{TrackScore} \approx 1 - \mbox{ShowerScore},
 \end{equation*}
 which means that the results of the analysis of the shower score are valid for
-the analysis of the track score, therefore, we will only discuss the shower 
-score from now on.
+the analysis of the track score, therefore, the following analysis will focus on
+the shower score.
 
 The shower classification threshold for subsequent algorithms should be tuned on
 a case by case basis, however, for this study a simple optimisation strategy 
@@ -356,9 +356,10 @@ true Michel electron hits and all other hits is shown in Figure
 \ref{fig:michel_output}. In this case, the large discrepancy in sample size
 between Michel electron hits and other hits leads to a low $F_1$ score of around
 0.2 when considering the performance on a hit--by--hit basis. However, in
-Chapter \ref{ch:michel}, we will see that despite the low performance of the
-classifier for individual hits, a pure sample of Michel electron events can be
-selected by searching for clusters of hits with high Michel electron scores.
+Chapter \ref{ch:michel}, it will be shown that despite the low performance of 
+the classifier for individual hits, a pure sample of Michel electron events 
+can be selected by searching for clusters of hits with high Michel electron 
+scores.
 
 \begin{figure}
 	\centering
@@ -511,10 +512,10 @@ good. Figure \ref{fig:real_event} shows an example of the track score for hits
 in a reconstructed event from run 5387. The hits in this image are from the
 collection plane near the beam entry point, an electron shower tagged by the
 beam instrumentation (BI) can be seen near the centre of the image. In the event
-we can see that for hits in the tracks the CNN produces a large output score,
-and for the shower like activity in the event the score is low, as we expect. In
-addition, the classifier assigns a high shower score to the hits adjacent to the
-tracks, which are from delta--rays and low--energy photons.
+it can be seen that for hits in the tracks the CNN produces a large output 
+score, and for the shower like activity in the event the score is low, as
+expected. In addition, the classifier assigns a high shower score to the hits 
+adjacent to the tracks, which are from delta--rays and low--energy photons.
 
 \begin{figure}
 	\centering

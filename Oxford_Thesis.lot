@@ -1,0 +1,56 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{}{{\fontencoding {T1}\selectfont xi}}{chapter*.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{}{{\fontencoding {T1}\selectfont xii}}{chapter*.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{}{{\fontencoding {T1}\selectfont xv}}{chapter*.7}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Introduction}{1}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Neutrino Physics}{5}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{The ProtoDUNE--SP Experiment}{35}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.1}{\ignorespaces Summary of expected and recorded beam triggers in ProtoDUNE--SP{}.}}{47}{table.caption.37}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Electromagnetic Energy Loss in Liquid Argon}{72}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Neural Networks}{83}{chapter.5}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Hit Classification with Convolutional Neural Networks}{95}{chapter.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {6.1}{\ignorespaces Truth labels for the CNN output for different particle species.}}{99}{table.caption.89}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {6.2}{\ignorespaces Number of input images with each truth label.}}{99}{table.caption.90}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {6.3}{\ignorespaces False--positive rates for track shower classification with Pandora and the CNN.}}{109}{table.caption.98}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {6.4}{\ignorespaces Fraction of hits in correct class for different samples in ProtoDUNE--SP{} data and simulation.}}{118}{table.caption.105}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Study of Michel Electron Reconstruction in ProtoDUNE--SP{}}{121}{chapter.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {7.1}{\ignorespaces Comparison of energy resolution estimates for Michel electron ionisation energy.}}{147}{table.caption.131}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Conclusion}{151}{chapter.8}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {xchapter}{Additional Details for Michel Electron Reconstruction}{155}{appendix.A}%
