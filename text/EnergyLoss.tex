@@ -16,10 +16,10 @@
 The energy loss of particles in liquid argon has important implications for the
 reconstruction of different particles in a LArTPC, and will be relevant for the
 reconstruction algorithms developed in Chapters \ref{ch:chargeid} and 
-\ref{ch:michel} of  this thesis. This chapter will cover in more detail the 
-theory of electromagnetic energy loss in liquid argon, highlighting the 
-important features of the energy loss for muons, electrons, and photons. The
-discussion here closely follows the discussion in \cite{PhysRevD.98.030001}.
+\ref{ch:michel}. This chapter will cover in more detail the theory of 
+electromagnetic energy loss in liquid argon, highlighting the important 
+features of the energy loss for muons, electrons, and photons. The discussion 
+here closely follows the discussion in \cite{PhysRevD.98.030001}.
 
 \section{Electromagnetic Energy Loss in Matter}
 In matter, charged particles lose energy through a number of small successive
@@ -28,7 +28,7 @@ produce additional particles in the material. The relative importance of the
 collision and radiative stopping power depends on the mass and the energy of the
 particle. For most particles, which are heavy compared to the electron, 
 radiative energy losses are not important until very high energies, e.g. for a 
-muon they are not important until momenta of around 100 GeV. However, radiative 
+muon they are not important until momenta of around 100 GeV, however, radiative 
 energy loss become important for electrons at tens of 
 MeV\cite{PhysRevD.98.030001}. As a result, different theories are used to 
 describe the energy loss of heavy particles and electrons in matter.
@@ -66,8 +66,8 @@ as a function of momentum.
 
 \subsubsection*{Delta Rays}
 Another feature of the electromagnetic energy loss of heavy particles that
-impacts reconstruction in LArTPCs is delta rays. Delta rays are energetic
-electrons, which are knocked out of their atoms when they collide with the heavy
+impacts reconstruction in LArTPCs are delta rays. Delta rays are energetic
+electrons, which are knocked out of their atom when it collides with the heavy
 particle. In liquid argon detectors, these electrons are seen as small electron 
 tracks which protrude from muon tracks. 
 
@@ -144,15 +144,14 @@ where $L_{rad}$ and $L_{rad}^\prime$ are the so--called radiation logarithms,
 which depend on the atomic number of the material\cite{Tsai:1973py}.
 
 \subsubsection*{Critical Energy}
-The critical energy is often defined as the energy at which the collision and 
+Critical energy is often defined as the energy at which the collision and 
 radiative stopping power are equivalent, other definitions are also used, such
 as the definition by Rossi, the energy where the ionisation loss per
 radiation length is equal to the electron energy\cite{Rossi:1952kt}. Rossi's 
-definition is equivalent to using the approximate $dE/dx$ calculated 
-above, in equation \ref{eq:rossi}\cite{PhysRevD.98.030001}. The value of the 
-critical energy has important implications for reconstruction algorithms, 
-because different approaches are often required above and below the critical 
-energy. 
+definition is equivalent to using the approximate $dE/dx$ in equation 
+\ref{eq:rossi}\cite{PhysRevD.98.030001}. The value of the critical energy has 
+important implications for reconstruction algorithms, because different 
+approaches are often required above and below the critical energy. 
 
 The critical energy is slightly different for electrons and positrons, in 
 liquid argon they are both around 32 MeV, based on the Rossi 
@@ -235,7 +234,7 @@ production cross section dominates.
 \subsubsection*{Photon Mean Free Path}
 The mean free path of a photon is defined as the average distance travelled by 
 the photon before it interacts with the material. The mean free path for 
-photons has two main components for photons in the MeV range, which are due to 
+photons has two main components for photons in the MeV range, which are 
 Compton scattering and pair production. The mean free path is given by 
 $\lambda = 1 / (n \sigma)$, where $n$ is the number density of targets and 
 $\sigma$ is the cross section per target. The contribution to the mean free 
@@ -281,17 +280,17 @@ energy of the electron. For high energy electrons, with energies above around
 300 MeV, radiative energy loss dominates and showers are produced, an example 
 of an electron shower can be seen in Figure \ref{fig:electron_signature}. 
 These showers are the result of a cascade of electrons, which are produced by 
-a chain of bremsstrahlung photons and electron positron pairs.
+a chain of bremsstrahlung photons and electron positron pairs. At energies in 
+the tens of MeV range electrons have a different signature, which consists of 
+a small electron track accompanied by a number of small ionisation energy 
+deposits due to radiated photons. 
 
-At energies in the tens of MeV range electrons have a different signature, 
-which consists of a small electron track accompanied by a number of small 
-ionisation energy deposits due to radiated photons. A common source of these
-electrons in \protodune{} are Michel electrons, which are the electrons produced
-when a muon decays at rest in the detector. An example of a typical Michel
-electron event is shown in Figure \ref{fig:michel_signature}. The Michel 
-electron is accompanied by the incoming Muon in the image, which is seen in the
-image because the lifetime of the muon is shorter than the time it takes for 
-the ionisation charge from the muon to drift away from the stationary muon.
+A common source of tens of MeV electrons in \protodune{} are Michel electrons, 
+which are the electrons produced when a muon decays at rest in the detector. 
+An example of a typical Michel electron event is shown in Figure 
+\ref{fig:michel_signature}. The Michel electron is accompanied by the incoming 
+Muon in the image, because the lifetime of the muon is shorter than the time 
+it takes for the ionisation charge to drift away from the stationary muon.
 
 As with electrons, photon interactions in liquid argon have two distinct
 signatures at high and low energies. Low energy photons are typically produced
@@ -302,13 +301,13 @@ created by the ionisation from either Compton scattered electron or an electron
 positron pair.
 
 At high energies, photons produce similar interactions to high energy electrons,
-which produce electromagnetic showers in the liquid argon. Their is a slight
+which produce electromagnetic showers in the liquid argon. There is a slight
 difference in the $dE/dx$ in the first few cm of electron and photon showers, 
 because the start of photon showers contain two electrons whereas the start of
 electron showers only have one. This difference can allow for electron and 
-photon showers to be distinguished\cite{Acciarri:2016sli}. A common source of 
-photon showers in \protodune{} are $\pi^0$ decays, shown in Figure 
-\ref{fig:pi0_signature}, which produce a pair of photons.
+photon showers to be distinguished from each other\cite{Acciarri:2016sli}. A 
+common source of photon showers in \protodune{} are $\pi^0$ decays, shown in 
+Figure \ref{fig:pi0_signature}, which produce a pair of photons.
 \begin{figure}
 
 	\centering
@@ -357,10 +356,10 @@ photon showers in \protodune{} are $\pi^0$ decays, shown in Figure
 
 \section{Scintillation Light in Liquid Argon}
 The second source of electromagnetic energy loss in liquid argon is due to the
-production of scintillation light. The work in this thesis does not make
-use of the scintillation energy depositions, therefore, the mechanisms involved
-in the production of scintillation light will only be briefly summarised here 
-for completeness.
+production of scintillation light. As the work in this thesis does not make
+use of the scintillation energy depositions, the mechanisms involved in the 
+production of scintillation light will only be briefly summarised here for 
+completeness.
 
 Scintillation light in liquid argon is produced by radiative decay of excited
 argon dimers (or eximers), which are produced when excited argon atoms combine

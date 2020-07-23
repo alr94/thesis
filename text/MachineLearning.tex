@@ -4,36 +4,36 @@
 
 Machine Learning (ML) is a field of research, which studies algorithms that
 can learn to make predictions from data, i.e. predict a set of output variables,
-given a set of input variables. The algorithms typically take the form of a
+given a set of input variables. These algorithms typically take the form of a
 multivariate function, which is used to predict the output\cite{Reed1999}.
 
-ML algorithms are often classified into four groups based on two distinctions: 
-regression or classification, and supervised or unsupervised. The first
-distinction is based on the nature of the output distribution expected from the
-network; regression algorithms are designed to predict the outputs of a 
-continuous function, whereas classification algorithms aim to separate data 
-into groups. The distinction between supervised and unsupervised algorithms is 
-based on the inputs used during training; in a supervised algorithm the true 
-output is known, and the network's goal is to predict the true output, while 
-in an unsupervised algorithm the output is unknown, and the networks goal is 
-to extract meaningful structure from the data\cite{Lecun2015}.
+ML algorithms are often classified into four groups based on two distinctions:
+the expected output, and the level of supervision. The first distinction is 
+based on the nature of the output distribution expected from the network; 
+regression algorithms are designed to predict the outputs of a continuous 
+function, whereas classification algorithms aim to separate data into groups. 
+The distinction between supervised and unsupervised algorithms is based on the 
+inputs used during training. In a supervised algorithm the true output is 
+known, and the network's goal is to predict the true output, while in an 
+unsupervised algorithm the output is unknown, and the networks goal is to 
+extract meaningful structure from the data\cite{Lecun2015}.
 
 Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two 
 examples of the application of Neural Networks (NN) for event reconstruction 
 in LArTPC data. These algorithms are classification algorithms based on the
-supervised learning approach. This chapter will not provide a full survey of
-the available ML techniques, which are both numerous and diverse. Instead, it 
-will briefly describe the theory behind NNs, as well as providing details of 
-the techniques used in the subsequent chapters. 
+supervised learning approach. This chapter will not attempt to provide a full 
+survey of the available ML techniques, which are both numerous and diverse. 
+Instead, in this chapter we will briefly describe the theory behind NNs, as 
+well as providing details of the techniques used in the subsequent chapters. 
 
 \section{Artificial Neural Networks}
-Artificial neural networks (ANN) are a class of ML algorithm that draw
+Artificial neural networks (ANN) are a class of ML algorithm that draw their
 inspiration from biological neurons. An ANN consists of a set of nodes, along
-with a set of connections between those nodes. The set of nodes and connections
-is often referred to as a graph or architecture. The nodes in 
-the graph take the form of artificial neurons, which pass a number of inputs 
-through an activation function to produce a single output, as depicted in 
-Figure \ref{fig:neuron}.  The output of each neuron is either distributed to 
+with connections between those nodes. The set of nodes and connections is 
+often referred to as a graph or architecture. The nodes in the graph take the 
+form of artificial neurons, which pass a number of inputs through an 
+activation function to produce a single output, as depicted in Figure 
+\ref{fig:neuron}.  The output of each neuron is either distributed to 
 subsequent neurons in the network, or it is part of the output of the network. 
 \begin{figure}
 
@@ -114,22 +114,22 @@ represents each class, based on the networks prediction. In principle, MLPs
 are able to approximate any function to arbitrary precision with a 
 single hidden layer\cite{Cybenko1989ApproximationBS}; however, there is no 
 limit on the number of nodes required in order to achieve a good 
-approximation. In practice, networks with additional hidden layers can reach 
+approximation. In practice, networks with additional hidden layers can attain 
 the required precision with fewer nodes than a network with a single hidden 
-layer, but there are diminishing returns with more than a few hidden 
+layer, however, there are diminishing returns with more than a few hidden 
 layers\cite{Reed1999, Lecun2015}.
 
 \subsection{Convolutional Neural Networks}
-An extension of the MLP with considerable success, particularly in image 
-classification tasks, is the convolutional neural network 
-(CNN)\cite{Jackel2008, Szegedy2015, 5537907}, which addresses some of the 
-drawbacks of the traditional MLP. In particular, when evaluating data with a 
-high dimensional input, having a fully connected network architecture leads to 
-a large number of neurons and high computational cost. In addition, for 
-spatially correlated data, such an architecture does not take into account the 
-local spatial structure of the data, instead focussing on all the data at 
-once. A CNN attempts to resolve these issues by exploiting the local spatial 
-structure of the data.
+The convolutional neural network (CNN)\cite{Jackel2008, Szegedy2015, 5537907}, 
+is an extension of the MLP with considerable success, particularly in image 
+classification tasks. These architectures address some of the drawbacks of the
+traditional MLP, particularly when evaluating data with a high dimensional 
+input. When working with high dimensional inputs, networks with a fully 
+connected network architecture tend to have a large number of neurons and high 
+computational cost. In addition, for spatially correlated data, such an 
+architecture does not take into account the local spatial structure of the 
+data, instead focussing on all the data at once. A CNN attempts to resolve 
+these issues by exploiting the local spatial structure of the data.
 
 In a CNN the singular input neutrons of a traditional MLP are replaced by
 convolutional kernels. A convolutional kernel is a matrix containing a set of 
@@ -143,9 +143,9 @@ represents the image, and x the convolutional kernel, which are both finite in
 extent. Therefore, they are defined to be zero outside of their boundaries, and
 the sum range can be reduced to $\left[0, N\right]$, where $N$ is the number 
 of pixels in the kernel. The convolution operation is applied to all pixels in 
-the input image, which are replaced by the resulting convolution in the next 
-layer of the network. Many convolutional kernels are used in each layer of the 
-network, each producing an output image which is passed to the next 
+the input image, which are then replaced by the resulting convolution in the 
+next layer of the network. Many convolutional kernels are used in each layer 
+of the network, each producing an output image which is passed to the next 
 layer. 
 
 Convolutional kernels are sometimes referred to as feature detectors, which 
@@ -185,8 +185,8 @@ image.
 \end{figure}
 
 \subsubsection*{Pooling}
-The use of images as network input typically drastically increases the number of
-input parameters for a network, when combined with a large number of
+The use of images as network input often drastically increases the number of
+input parameters for a network. When combined with a large number of
 convolutional filters this can lead to a dramatic increase in the computational
 cost of training a network. Pooling\cite{5537907} is a downsampling technique 
 designed to reduce the number of parameters in the network and, therefore, 
@@ -219,11 +219,11 @@ Adding more layers to a neural network usually improves the performance, the
 popular intuition for this is that with each subsequent layer the network is
 able to learn more complex features of the image with which to make it's
 classification. In fact, adding more layers should never decrease the 
-performance of a network, because the new layers could be set to be the 
-identity, which would result in the same output from the network. However, it 
-has been demonstrated that adding too many layers to a simple neural network 
-will reduce performance, suggesting that the optimisation of
-larger networks leads to degradation\cite{He_2016_CVPR}.
+performance of a network, as the new layers could be set to the identity, 
+which would result in the same output from the network. However, it has been 
+demonstrated that adding too many layers to a simple neural network will 
+reduce performance, suggesting that the optimisation of larger networks leads 
+to degradation\cite{He_2016_CVPR}.
 
 One method which has been shown to counter the degradation of deep networks, 
 is the use of residual neural networks (ResNet). In a ResNet, the input to 
@@ -243,7 +243,7 @@ is shown in Figure \ref{fig:short_connect}\cite{He_2016_CVPR}.
 
 \section{Supervised Learning}
 Supervised learning is the process of teaching a neural network to accurately
-predict the correct output, the ground truth, for a given input. The network is 
+predict the correct output, or ground truth, for a given input. The network is 
 optimised by minimising the loss function, which quantifies the difference 
 between the network output and the ground truth. The choice of loss function 
 is dependent on the problem being considered, specific examples will be 
@@ -277,7 +277,7 @@ $\partial L/\partial W^l_{ ij }$. If we modify the weights with,
 	\label{eq:delta_w}
 \end{equation}
 for positive learning rates, $\eta > 0$, we are guaranteed to reduce the loss
-for a given input. The backpropagation algorithm provides an algorithm for 
+for a given input. The backpropagation algorithm provides an means for 
 calculating the derivatives required to adjust the weights in each layer.
 
 Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
@@ -287,8 +287,8 @@ Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
 	\label{eq:backprop_chain_rule}
 \end{equation}
 where $a^l$ are response functions for the nodes in layer $l$. The derivative 
-of the response function with respect to the weights, is just the input from the
-previous layer,
+of the response function with respect to the weights, is simply the input from 
+the previous layer,
 \begin{equation}
 	\frac{\partial a^l_j}{\partial W^l_{ij}} = \frac{\partial}{\partial W^l_{ij}}
 	\left( \sum_{k = 1}^{n_l} W^l_{kj} x^{l-1}_{k} \right) = x^{l-1}_i,
@@ -346,21 +346,24 @@ algorithms for adjusting the weights, such as mini--batch stochastic gradient
 descent (SGD)\cite{10.1145/2623330.2623612} and Adaptive Momentum Estimation 
 (Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
 important for the discussion in this thesis and, therefore, they will only be 
-mentioned in passing here, a review of gradient descent optimisation 
-algorithms can be found here \cite{ruder2016overview}. Some methodologies are
-common among many optimisation techniques, three important examples are the 
-ideas of mini--batches, training iterations, and training epochs. A mini--batch
-is a small sample of the input data, on which the backpropagation algorithm is
-applied simultaneously, this corresponds to one training iteration. A training
-epoch, which consists of a number of training iterations, refers to one cycle
-through the full training dataset, such that the network has been trained on 
-every training example exactly once.
+mentioned in passing here. A review of gradient descent optimisation 
+algorithms can be found here \cite{ruder2016overview}. 
+
+Some methodologies are common among many optimisation techniques, three 
+important examples are the ideas of mini--batches, training iterations, and 
+training epochs. A mini--batch is a small sample of the input data, on which 
+the backpropagation algorithm is applied simultaneously, this corresponds to 
+one training iteration. A training epoch consists of a number of training 
+iterations, and corresponds to one cycle through the full training dataset, 
+such that the network has been trained on every training example exactly 
+once.
 
 \medskip\noindent
 The rate of learning in the backpropagation algorithm is dependent on the
 derivative of the activation function, therefore, the choice of activation
-function has an impact on learning. Two important factors when considering
-activation functions are the computational cost of calculating the derivative,
+function has an impact on learning. There are two important factors when
+considering the impact of the choice of activation function on the rate of
+learning, these are the computational cost of calculating the derivative,
 and the gradient of the function. 
 
 Traditional activation functions, such as sigmoid and tanh, are usually 
@@ -371,10 +374,10 @@ activation is consistently in the tail of the distribution.
 
 The ReLU activation function is much cheaper to compute, and while the 
 gradient is undefined at zero, in practice this is not a problem. One issue 
-with ReLU units, is the vanishing gradient in the negative region. This issue 
-can be resolved by implementing a small negative gradient below zero, which is 
-known as a Leaky ReLU or Parametric ReLU\cite{He2015}. In practice, ReLU 
-units have been found to outperform traditional sigmoid 
+with ReLU units, is the vanishing gradient in the negative region. This can be 
+resolved by implementing a small negative gradient below zero, which is known 
+as a Leaky ReLU or Parametric ReLU\cite{He2015}. In practice, ReLU units have 
+been found to outperform traditional sigmoid 
 units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 
 \subsection{Regularisation}
@@ -386,7 +389,7 @@ Regularisation ensures that the trained network can generalise well beyond the
 training data. A number of regularisation techniques can be used, such as 
 applying penalty terms to the loss function, which are proportional to the 
 square of the weights, ensuring that the weights stay relatively small. In 
-this thesis we will make use of two regularisation techniques, 
+this thesis, we will make use of two regularisation techniques, 
 dropout\cite{Srivastava2014DropoutAS} and early 
 stopping\cite{OrrGenevieveB.1998NNTo}.
 
@@ -405,7 +408,8 @@ robust regularisation, and is a popular technique in the field\cite{Lecun2015}.
 \say{Early stopping (is) beautiful free lunch}, according to Geoff
 Hinton\cite{Hinton2015}. It refers to the act of monitoring the loss on the 
 validation set during training, in order to stop training before over--fitting 
-has occurred. The work in this thesis implements the early stopping technique 
-proposed by Lutz Prechelt\cite{OrrGenevieveB.1998NNTo}, which suggests 
-stopping training after the first checkpoint when the validation loss increases,
-and using the weights from the previous checkpoint.
+has occurred. This technique can be applied alongside other regularisation 
+techniques, and is used throughout this thesis, where the early stopping 
+technique proposed by Lutz Prechelt\cite{OrrGenevieveB.1998NNTo} has been used.
+This technique involves stopping training after the first checkpoint when the 
+validation loss increases, and using the weights from the previous checkpoint. 

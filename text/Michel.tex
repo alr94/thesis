@@ -10,8 +10,8 @@ detectors to electrons in this range will be important for any large scale
 LArTPC experiment wishing to study supernova bursts. At these energies,
 electron interactions have large contributions from both ionisation energy
 loss and radiative energy loss and, therefore, they have a unique signature,
-which is neither track--like or shower--like. As a result, low--energy electrons
-require unique reconstruction algorithms to maximise the overall
+which is neither track--like nor shower--like. As a result, low--energy 
+electrons require unique reconstruction algorithms to maximise the overall 
 reconstruction performance.
 
 This chapter will discuss an approach to low--energy electron reconstruction
@@ -27,8 +27,8 @@ a discussion of the algorithm used to select Michel electron events in Section
 \ref{ME_ES}. The Michel electron event reconstruction will be discussed in
 Sections \ref{ME_R}, along with a discussion of the reconstruction performance
 and a comparison to the results of other LArTPC experiments. Finally, the
-results of this chapter and the implications for the DUNE Far Detector will be
-summarised in Section \ref{ME_EU}.
+results presented in this chapter and their implications for the DUNE Far 
+Detector will be summarised in Section \ref{ME_EU}.
 
 \section{Michel Electrons in Liquid Argon} \label{ME_LAr}
 Michel electrons are produced when a muon decays at rest. In vacuum, this
@@ -91,7 +91,7 @@ features.
 One of the main challenges for Michel electron reconstruction in liquid argon is
 to successfully associate the radiated energy depositions back to the initial
 Michel electron once they have produced ionisation in the detector. Photons have
-a radiation length of around 20--30 cm in liquid argon which is many times
+a radiation length of around 20--30 cm in liquid argon, which is many times
 larger than the size of the typical track--like part of the event. Figure
 \ref{fig:photon_spec} shows the spectrum of radiated photons from Michel
 electron events in \protodune{} simulation, alongside the photon multiplicity
@@ -154,8 +154,8 @@ recovery.
 	\label{fig:photon_geom}
 \end{figure}
 
-To highlight the impact of the radiated energy deposits we can consider the
-results of perfect energy reconstruction in two cases:
+To highlight the impact of the radiated energy deposits, the results of perfect
+energy reconstruction was considered in two cases:
 \begin{itemize}
 	\item Only considering the Michel electron track.
 	\item Considering all ionisation energy within some radius and angle of the
@@ -239,13 +239,13 @@ radiated energy deposits.
 	\label{fig:40_v_80}
 \end{figure}
 
-The MC study presented here highlights the importance of radiated energy
-deposits in Michel electron and other low--energy electron events. Based on
-these results it is clear that to minimise energy uncertainties for these events
-it is important to maximise the amount of energy collected from radiated
-photons. The rest of this chapter will discuss an algorithm which was developed
-to tackle this problem, and its application on Michel electron events in
-\protodune{} data.
+The study of \protodune{} simulation presented in this section highlights the 
+importance of radiated energy deposits in Michel electron and other 
+low--energy electron events. Based on these results it is clear that to 
+minimise energy uncertainties for these events it is important to maximise the 
+amount of energy collected from radiated photons. The rest of this chapter 
+will discuss an algorithm which was developed to tackle this problem, and its 
+application on Michel electron events in \protodune{} data.
 
 \section{Michel Electron Event Selection} \label{ME_ES}
 In order to select Michel electrons in \protodune{} data, an event selection
@@ -253,45 +253,40 @@ algorithm was developed based on combining the results from the hit tagging CNN
 from Chapter \ref{ch:chargeid} with clustering performed by the main
 \protodune{} reconstruction framework, Pandora.
 
-The event selection algorithm has four steps:
-\begin{enumerate}
-	\item Start with all primary tracks from Pandora.
-	\item Define a set of Michel electron candidates from the list of all
-		daughters of the track.
-	\item Find the best Michel electron candidate from the list of Michel electron
-		candidates.
-	\item Select events where the best Michel electron candidate passes the event
-		selection cuts.
-\end{enumerate}
+The event selection algorithm has four steps, which are detailed below.
+\subsubsection*{1. Select Primary Tracks}
+This step defines the initial sample of muon candidates, which consists of all
+primary tracks from the Pandora reconstruction chain.
 
-First, the initial sample of muon candidates is defined. All primary tracks
-from the Pandora reconstruction chain are considered.
-
-The second step defines a set of Michel electron candidates for each muon
-candidate. A Michel electron candidate is any daughter of the primary Pandora
-track which satisfies the following conditions:
+\subsubsection*{2. Define Michel Electron Candidates}
+Based on the sample of muon candidates, a set of Michel electron candidates is
+defined. This sample includes any daughter of the muon candidate which satisfies
+the following conditions:
 \begin{itemize}
-	\item Starts within 5 cm of the primary track endpoint.
-	\item Contains a minimum of 5 reconstructed hits on the collection plane.
+	\item It has a start point within 5 cm of the primary track endpoint.
+	\item It contains a minimum of 5 reconstructed hits on the collection plane.
 \end{itemize}
 
-In the third step, the Michel electron candidates are analysed in order to
-define the best Michel electron candidate for each muon candidate. The best
-Michel electron candidate is the Michel electron candidate with the largest
+\subsubsection*{3. Define Best Michel Electron Candidate}
+The sample of Michel electron candidates is analysed to select the best Michel
+electron candidate. This is the Michel electron candidate with the largest
 fraction of Michel--like hits, based on the output of the Michel electron score
-from the CNN. A threshold of 0.9 is used to identify hits as Michel--like. In
-the case of a tie, the Michel electron candidate with the most hits is chosen.
+from the hit tagging CNN, A threshold of 0.9 is used to identify hits as
+Michel--like. In the case of a tie for the fraction of Michel--like hits, the 
+Michel electron candidate with the most hits is chosen.
 
-The fourth step is the final decision, which is based on the fraction of Michel
-like hits in the best Michel electron candidate. Figure
-\ref{fig:michel_like_frac} shows a comparison of the fraction of Michel--like
-hits in Michel electron candidates for \protodune{} data and simulation,
-normalised by the number of primary muon candidates. There is a greater spread
-in the fraction of Michel--like hits in data for low scores, but a good
-agreement at higher scores above around 0.6. Events are selected if the best
-Michel electron candidate contains more than 80\% of Michel--like hits, this
-threshold was selected by setting a requirement of greater than 97.5\% purity
-on the event selection algorithm in simulation.
+\subsubsection*{4. Event Selection Cuts}
+Events are selected based on the fraction of Michel--like hits in the best 
+Michel electron candidate. Figure \ref{fig:michel_like_frac} shows a 
+comparison of the fraction of Michel--like hits in Michel electron candidates 
+for \protodune{} data and simulation, normalised by the number of primary muon 
+candidates. There is a greater spread in the fraction of Michel--like hits in 
+data for low scores, but a good agreement at higher scores above around 0.6. 
+Events are selected if the best Michel electron candidate contains more than 
+80\% of Michel--like hits, this threshold was selected by setting a 
+requirement of greater than 97.5\% purity on the event selection algorithm in 
+simulation.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/frac_michel.pdf}
@@ -304,6 +299,7 @@ on the event selection algorithm in simulation.
 	\label{fig:michel_like_frac}
 \end{figure}
 
+\medskip\noindent
 Based on this algorithm, Michel electron events are selected with a
 purity of 98\% and an overall efficiency of 6\% in \protodune{} simulation.
 Figure \ref{fig:ev_sel_eff} shows the event selection efficiency as a
@@ -372,31 +368,31 @@ simulation for both the spatial and angular distributions.
 To reconstruct the energy of Michel electrons in liquid argon the relevant hits
 must first be selected. Once the hits are selected the ionisation energy
 deposited by each hit is then reconstructed, the reconstructed energy of the
-Michel electron is the sum of the reconstructed energy of all relevant hits. In
-this section we will detail a hit selection algorithm based on a type of
-convolutional neural network called a U--ResNet, which returns hit selection maps
-for the Michel electron energy reconstruction. This algorithm is used to select
-Michel electron hits with a high purity and efficiency, the resulting
-reconstructed energy spectrum is used to estimate the energy resolution of
+Michel electron is the sum of the reconstructed energy of all relevant hits.
+This section will detail a hit selection algorithm based on a type of 
+convolutional neural network called a U--ResNet, which returns hit selection 
+maps for the Michel electron energy reconstruction. This algorithm is used to 
+select Michel electron hits with a high purity and efficiency, the resulting 
+reconstructed energy spectrum is used to estimate the energy resolution of 
 \protodune{} for electrons in the tens of MeV range.
 
 \subsection{Michel Electron Hit Tagging with a U--ResNet}
 
-A U--ResNet is a type of convolutional neural network which is designed to perform
-semantic segmentation of images. The U--ResNet network architecture was first
-developed for biomedical image segmentation\cite{ronneberger2015u}. In
-semantic segmentation the goal is to return a map of pixels which correspond
-to the areas of interest; the output of the network is the same dimension as
-the input with a one--to--one correspondence between input pixels and output
-pixels. The architecture used for the hit selection algorithm is shown in
-Figure \ref{fig:unet_arch}. During the first half of the network architecture
-the resolution of the output is decreased, this is analogous to many
-conventional CNNs, and during this phase the network learns about the content
-of the image. The second phase of the architecture allows the U--ResNet to
-rebuild the locations of different learned features within the initial image,
-this is achieved by passing the details of previous layers to the network,
-through residual connections, allowing the resolution of the output map to be
-slowly increased back to the original resolution.
+A U--ResNet is a type of convolutional neural network which is designed to 
+perform semantic segmentation of images. The U--ResNet network architecture 
+was first developed for biomedical image segmentation\cite{ronneberger2015u}. 
+In semantic segmentation the aim is to return a map of pixels which correspond 
+to the areas of interest; the output of the network is the same dimension as 
+the input with a one--to--one correspondence between input pixels and output 
+pixels. The architecture used for the hit selection algorithm is shown in 
+Figure \ref{fig:unet_arch}. During the first half of the network architecture 
+the resolution of the output is decreased, this is analogous to many 
+conventional CNNs, and it is during this phase the network learns about the 
+content of the image. The second phase of the architecture allows the 
+U--ResNet to rebuild the locations of different learned features within the 
+initial image. This is achieved by passing the details of previous layers to 
+the network, through residual connections, allowing the resolution of the 
+output map to be slowly increased back to the original resolution.
 
 The network architecture used for the Michel electron reconstruction is shown in
 Figure \ref{fig:unet_arch}. The network consists of a repeating structure, which
@@ -420,7 +416,7 @@ the network to reconstruct the location of the learned features. As with the
 CNN from the previous chapter, both dropout and early--stopping are
 implemented to prevent over--fitting.
 
-In the Michel electron case, the goal of the network is to return a map of all
+In the Michel electron case, the aim of the network is to return a map of all
 ionisation energy deposits from the Michel electron, including the initial
 track and any secondary deposits from radiated photons. The inputs and outputs
 are two dimensional images of the location of reconstructed hits, centered on
@@ -488,16 +484,16 @@ was performed.
 The datasets for the training process were generated from a full simulation of
 the \protodune{} detector under beam operation, including both cosmic--ray and
 beam particles. The images produced contain the location and integrated charge
-for each hit within the image window. The training data is split into
-training, test, and validation sets in the ratio 80:10:10. In total around
-15,000 images were used in the combined training, test, and validation datasets.
+for each hit within the image window. The training data was split into training, 
+test, and validation sets in the ratio 80:10:10. In total around 15,000 images 
+were used in the combined training, test, and validation datasets.
 
 As with the hit tagging CNN from the Chapter \ref{ch:chargeid}, the training and
 validation scores were monitored throughout training using TensorBoard. The
 weights of the network were saved after each epoch, and the final weights were
-those from the epoch before the epoch when the validation score first increased.
-Figure \ref{fig:unet_loss} shows the evolution of the loss over time, along with
-a vertical line representing the loss at which the weights were chosen.
+those from one epoch before the validation score first increased.  Figure 
+\ref{fig:unet_loss} shows the evolution of the loss over time, along with a 
+vertical line representing the loss at which the weights were chosen.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_loss.pdf}
@@ -549,10 +545,10 @@ event from \protodune{} simulation.
 
 An additional dataset was prepared to evaluate the performance of the Michel
 electron reconstruction in simulation, this dataset was part of the same batch
-of simulation as the training, test, and validation data, but distinct from
-all of them. For the \protodune{} data sample, all data from runs 5387, 5809,
-and 5770 was used; at the time of writing, these runs are the only runs, for
-which the energy calibration constants have been calculated.
+of simulation as the training, test, and validation data. For the \protodune{} 
+data sample, all data from runs 5387, 5809, and 5770 was used; at the time of 
+writing, these runs are the only runs, for which the energy calibration 
+constants have been calculated.
 
 \subsubsection{Hit Selection}
 
@@ -564,8 +560,8 @@ can be seen because the data has a tendency to be above the simulation for
 scores far from zero and one. Hits from the input images are selected as
 Michel electron hits if their score exceed a selection threshold of 0.9. In
 simulation 7.8\% of hits are selected, while in data the fraction selected is
-8.0\%. Therefore, there is a 2.5\% difference in the selected fraction between
-data and simulation.
+8.0\%. Therefore, there is a fractional difference of 2.5\% in the fraction of
+selected hits between data and simulation.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
@@ -592,16 +588,16 @@ where $N_{TP}$, $N_{FP}$, and $N_{FN}$ are the number of true--positives,
 false--positives, and false--negatives respectively. These parameters give a
 quantitative evaluation of the performance of the hit tagging algorithm.
 
-The purity and completeness of the hit tagging was calculated for a range of
-selection thresholds in the range $[10^{-7}, 1 - 10^{-7}]$, which returned
-purities in the range 0.91--0.93, and completeness in the range 0.94--0.96. For
-thresholds outside of this range the purity and completeness remained constant,
-except for at thresholds of 0 and 1, this is due to the underlying precision in
-Keras, which is sets the smallest non--zero float to be $10^{-7}$. The hit
-tagging algorithm produces a high precision and completeness throughout the
-range of thresholds, however, the combination of the steep score distribution
-with the underlying precision in Keras means that little can be done to optimise
-the performance by varying the threshold in this case.
+The purity and completeness of the hit tagging was calculated for selection 
+thresholds in the range $[10^{-7}, 1 - 10^{-7}]$, which returned purities in 
+the range 0.91--0.93, and completeness in the range 0.94--0.96. For thresholds 
+outside of this range the purity and completeness remained constant, except 
+for at thresholds of 0 and 1, this is due to the underlying precision in 
+Keras, which sets the smallest non--zero float to be $10^{-7}$. The hit 
+tagging algorithm produces a high precision and completeness throughout the 
+range of thresholds, however, the combination of the steep score distribution 
+with the underlying precision in Keras means that little can be done to 
+optimise the performance by varying the threshold in this case.
 
 The number of hits selected per event for data and simulation is shown in
 figure \ref{fig:mich_n_hits}. Around 10 hits are selected per event, with a
@@ -719,7 +715,7 @@ the Michel electron energy reconstruction.
 
 To estimate the resolution and bias of the ionisation energy reconstruction, the
 fractional difference between the reconstructed and true ionisation energy was
-considered. We define the fractional difference as,
+considered. The fractional difference is defined as,
 \begin{equation*}
 	\mbox{Fractional Difference} = \frac{E_{corr} - E_{true}}{E_{true}},
 \end{equation*}
@@ -727,13 +723,13 @@ such that the spread of the distribution is a measure of the fractional
 uncertainty of the reconstructed energy. The energy resolution and bias were
 estimate by fitting a gaussian to the fractional difference distribution; the
 standard deviation of the gaussian was taken to be an estimate of the energy
-resolution, and the mean of the gaussian was taken to be an estimate of the
-bias. The distribution of the fractional difference for all events, and the
-associated gaussian fit, are shown in Figure \ref{fig:frac_diff_ion}. Based on
-this fit the energy resolution was estimated to be around 10\% and the bias
-around 1\%. However, it is worth noting that the fractional difference
-distribution has a fairly significant tail for negative fractional differences
-and, therefore, the fit was restricted to the central region of the distribution.
+resolution, and the mean as an estimate of the bias. The distribution of the 
+fractional difference for all events, and the associated gaussian fit, are 
+shown in Figure \ref{fig:frac_diff_ion}. Based on this fit the energy 
+resolution was estimated to be around 10\% and the bias around 1\%. However, 
+it is worth noting that the fractional difference distribution has a fairly 
+significant tail for negative fractional differences and, therefore, the fit 
+was restricted to the central region of the distribution.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/frac_diff_ion.pdf}
@@ -854,14 +850,14 @@ imperfect hit tagging.
 
 In order to put the performance of the Michel electron energy
 reconstruction into context, it is useful to compare the results presented
-here with those from other LArTPC experiments. We will restrict the
-comparisons here to the 0--30 MeV region for this comparison, recognising that
-improvements are still required in order to reduce the tail for higher energy
-ionisation energies.  The closest comparison is against the MicroBooNE
-experiment, which is a surface level LArTPC that used ionisation energy for
-the reconstruction\cite{Acciarri:2017sjy}. LArIAT and ICARUS have also performed
-Michel electron reconstruction\cite{Amoruso:2003sw,Foreman_2016}, however,
-LArIAT used the scintillation light for reconstruction, and ICARUS is deep
+here with those from other LArTPC experiments. The comparisons here are
+restricted to the 0--30 MeV region, recognising that improvements are still 
+required in order to reduce the tail for higher energy ionisation energies.  
+The closest comparison is against the MicroBooNE experiment, which is a 
+surface level LArTPC that used ionisation energy for the 
+reconstruction\cite{Acciarri:2017sjy}. LArIAT and ICARUS have also performed 
+Michel electron reconstruction\cite{Amoruso:2003sw,Foreman_2016}, however, 
+LArIAT used the scintillation light for reconstruction, and ICARUS is deep 
 underground and, therefore, has significantly less backgrounds.
 
 The closest comparison for Michel electron energy reconstruction comes from the
@@ -924,10 +920,10 @@ The promising results in the low energy region based on this method, suggest
 that with further study the semantic segmentation approach could prove to be an
 effective algorithm for reconstructing low energy particles in LArTPCs. However,
 more work is required to ensure good performance across the desired energy
-range. In order to increase the performance in the high energy region, we could
-consider increasing the amount of training data in the high energy region. At
-the time of writing, there is insufficient \protodune{} simulation to produce
-a flat training sample with sufficient data. Therefore, this remains as a
-possible future study, which has the potential to significantly increase the
-performance of this algorithm, by increasing the generalisability across the
-energy range.
+range. In order to increase the performance in the high energy region, it may be
+useful to consider increasing the amount of training data in the high energy 
+region. At the time of writing, there is insufficient \protodune{} simulation 
+to produce a flat training sample with sufficient data. Therefore, this 
+remains as a possible future study, which has the potential to significantly 
+increase the performance of this algorithm, by increasing the generalisability 
+across the energy range.

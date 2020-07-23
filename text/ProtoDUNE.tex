@@ -552,9 +552,9 @@ LAr are simulated, these include $^{39}\mbox{Ar,} ^ {85}\mbox{Kr, and }
 After generation, the particles are allowed to propagate and interact in the 
 detector geometry, including the cryostat, external systems, and experimental
 hall. This is simulated using GEANT4\cite{Agostinelli:2002hh}, which tracks 
-particles in small steps; the step size, $300 \mbox{ } \mu m$, is chosen to be much 
-smaller then the spatial resolution of the detector to allow for small--scale 
-processes like showering to be accurately simulated. 
+particles in small steps; the step size, $300 \mbox{ } \mu m$, is chosen to be 
+much smaller then the spatial resolution of the detector to allow for 
+small--scale processes like showering to be accurately simulated. 
 
 Particles which propagate through the detector, during the propagation phase of
 the simulation, leave energy deposits in the form of ionisation electrons and
@@ -592,16 +592,16 @@ summary of the steps involved in this reconstruction.
 
 First, the TPC waveforms are passed through a set of filtering algorithms which
 are designed to reduce the noise on the waveforms, as well as to mitigate 
-electronics effects such as sticky--codes and undershooting. An additional step
-known as a 2D deconvolution is applied to extract the original signal from the
-measured signal given a detector response function for the wire in question as
-well as neighboring wires, this method has been described in detail by the 
-MicroBooNE collaboration\cite{Adams:2018dra}. An important side
-effect of the 2D deconvolution technique is that, after deconvolution, the
-bi--polar induction signals become unipolar, which simplifies hit tagging for
-these hits. An example of the noise filtering and 2D deconvolution techniques 
-applied to a 7 GeV test beam event in \protodune{} data is given in Figure 
-\ref{fig:2d_deconv}. 
+effects from the electronics such as sticky--codes and undershooting. An 
+additional step, known as a 2D deconvolution, is applied to extract the original
+signal from the measured signal, based on a detector response function for 
+both the wire in question and the neighboring wires. This method has been 
+described in detail by the MicroBooNE collaboration\cite{Adams:2018dra}. An 
+important side effect of the 2D deconvolution technique is that, after 
+deconvolution, the bi--polar induction signals become unipolar, which 
+simplifies hit reconstruction. An example of the noise filtering and 2D 
+deconvolution techniques applied to a 7 GeV test beam event in \protodune{} 
+data is given in Figure \ref{fig:2d_deconv}. 
 
 \begin{figure}
 
@@ -669,21 +669,21 @@ clusters, as well as the reconstruction of 3D objects like tracks and
 showers. Ultimately Pandora returns a tree of reconstructed Particle Flow
 Particles (PFParticles), each corresponding to a distinct track or shower, and 
 connected through parent--daughter relationships, which define the particle flow
-in the interaction. Pandora reconstruction proceeds in two stages: a cosmic 
+in the interaction. Pandora reconstruction consists of two stages: a cosmic 
 pass and a beam pass. 
 
 
 First the cosmic pass reconstructs the event with algorithms designed to 
-reconstruct track--like particles. Track stitching algorithms can be used to
-predict the true interaction time for tracks during this stage. Any track which 
-crosses either a CPA or APA will produce track segments on either side of the 
-boundary, these segments point in the same direction, but will have been 
-displaced from each other in the drift direction based on the arrival time of 
-the corresponding particle. The $t_0$ for that track is equal to half the time 
-shift required to realign the two segments into a continuous track, a visual
-representation of this algorithm is show in Figure \ref{fig:track_stitching}. 
-After the cosmic pass, any clear cosmic--ray candidates are removed under the 
-following conditions\cite{protoduneperf}:
+reconstruct track--like particles. Track stitching algorithms are used to
+predict the true interaction time for certain tracks during this stage. Any 
+track which crosses either a CPA or APA will produce track segments on either 
+side of the boundary. These segments point in the same direction, but will 
+have been displaced from each other in the drift direction based on the 
+arrival time of the corresponding particle. The $t_0$ for that track is equal 
+to half the time shift required to realign the two segments into a continuous 
+track, a visual representation of this algorithm is show in Figure 
+\ref{fig:track_stitching}.  After the cosmic pass, any clear cosmic--ray 
+candidates are removed under the following conditions\cite{protoduneperf}:
 \begin{itemize}
 	\item The particle travels through both the top and bottom of the detector.
 	\item The assigned $t_0$ is inconsistent with the beam time.
@@ -709,11 +709,12 @@ following conditions\cite{protoduneperf}:
 Beam particle reconstruction considers only the hits that were not removed by 
 being labelled as clear cosmic--rays. These hits are formed into 3D slices which
 contain all the hits from a single parent particle and it's daughters. The
-slices are reconstructed under both the cosmic--ray and beam particle
-hypothesis, and a boosted decision tree is used to determine whether a 
+slices are reconstructed with both the cosmic--ray and beam particle
+algorithms, and a boosted decision tree is used to determine whether a 
 given slice is consistent with being a beam particle\cite{protoduneperf}. 
 
-Under the beam particle hypothesis, a more complex chain of algorithms is used 
+% TODO: define slice
+The beam particle reconstruction uses a more complex chain of algorithms
 to reconstruct a given slice. These algorithms are capable of reconstructing 
 the particle hierarchies seen in the complex hadronic interactions from the 
 \protodune{} beam. These algorithms return the particle flow of the 
@@ -781,7 +782,7 @@ X corrections respectively.
 
 The final step in energy reconstruction is to convert the corrected $dQ/dx$ into
 a reconstructed $dE/dx$, this involves accounting for electron--ion
-recombination at the source. The modified box model is used to model the
+recombination at the source. The modified box model is used to simulate the
 recombination correction, this model has been studied in a LArTPC by the 
 ArgoNeuT experiment\cite{Acciarri2013a}. The reconstructed $dE/dx$ is 
 \begin{equation*}
@@ -818,15 +819,15 @@ vs range for a sample of stopping muons, as shown in figure \ref{fig:dedx_v_rr}.
 \section{ProtoDUNE--SP Online Monitoring System} \label{sec:pdsp_om}
 
 As well as monitoring the stability of the detector and DAQ systems, the quality
-of the collected data has to be constantly monitored. This assures the shifter 
-that the data is of high quality, and prevents long runs of low quality data
-being collected. The online monitoring system (OM) is responsible for 
+of the collected data has to be constantly monitored. This ensures that data
+quality issues are quickly identified, and prevents long runs of low quality
+data being collected. The online monitoring system (OM) is responsible for 
 providing this quality assurance.
 
 As shown in Figure \ref{fig:pdsp_daq}, the OM is a part of the \protodune{} DAQ
 system. The OM is responsible for processing the data and displaying
-the results to the shifter in the control room as soon as possible after the
-event was triggered. It consists of three main components:
+the results in the control room as soon as possible after the event was 
+triggered. It consists of three main components:
 \begin{itemize}
 	\item Analysis processes which decode and analyse the raw data from each 
 		detector subsystem.
@@ -838,7 +839,7 @@ An overview of the data flow in the OM is shown in Figure \ref{fig:om_flow}.
 Data from the detector is first filtered before being run in any OM processes. 
 The data which is passed onto the OM processes is then split up and decoded by 
 the relevant RawDecoder, which reformats the data ready for analysis. A number 
-of Analyser Modules then make use of this data to make plots, which are merged 
+of Analyser Modules then make use of this data to make plots, which are merged,
 along with plots from external systems, and sent to a web interface to be 
 displayed in the control room. The following sections will provide a brief 
 summary of these stages, as well as examples of the plots which are produced in
@@ -853,26 +854,26 @@ the OM.
 	system. The data from each detector subsystem is processed by the RawDecoders
 	before being analysed. The results of the analyses are merged, along with data
 	from external detector systems, before being sent to the display server to be
-	viewed by the shifters.}
+	viewed in the control room.}
 	\label{fig:om_flow}
 \end{figure}
 
 \subsection{Data Processing}
-The data processing for the OM is based on Fermilab's art and ArtDAQ software
-frameworks\cite{Green:2012gv, 6495515}, the only exception is the beam 
-instrumentation data which is analysed outside of the OM system by the CERN 
-beam group. The beam instrumentation plots are merged with the rest of the OM 
-plots after data processing.
+The data processing for the OM is based on Fermilab's Art and ArtDAQ software
+frameworks\cite{Green:2012gv, 6495515}, however, the beam instrumentation data 
+is analysed outside of the OM system by the CERN beam group. The beam 
+instrumentation plots are merged with the rest of the OM plots after data 
+processing.
 
 The first step of the data processing is event filtering, the main purpose of
-this step is to control the flow of data into the OM. Two types of filtering
-take place sequentially; first a random filter is used to cut the data rate into
-the OM to a manageable level, then a second filter is used, which aims to 
-increase the likelihood that processed events were triggered by the beam 
-instrumentation or cosmic--ray tagger, as opposed to a random software generated
-trigger. Different OM processes take a different amount of processing time per 
-event, therefore, multiple filters are used, which control the data rate into 
-each process separately.
+which is to control the flow of data into the OM. Two types of filtering
+take place sequentially. First a random filter is used to cut the data rate 
+into the OM to a manageable level. This is followed by a second filter, which 
+aims to increase the likelihood that processed events were triggered by the 
+beam instrumentation or cosmic--ray tagger, as opposed to a random software 
+generated trigger. Different OM processes take different amounts of processing 
+time per event, therefore, multiple filters are used, to control the data rate 
+into each process separately.
 
 After filtering the events are ready to be processed. The data coming into the
 OM system is in its raw form. It arrives in small pieces known as Fragments,
@@ -881,8 +882,8 @@ are responsible for interpreting the headers and data streams from each
 detector component, and restructuring the data ready for processing. The 
 details of the decoding vary based on the readout system under consideration. 
 Each readout system defines a class, which details the contents of each
-fragment. The RawDecoders use the contents of this class to decode the
-fragments, to prepare the data for processing.
+Fragment. The RawDecoders use the contents of this class to decode the
+Fragments in order to prepare the data for processing.
 
 After the data has been decoded it is ready to be analysed. This is done by a
 number of Analyser Modules, which analyse the data from different detector
@@ -890,7 +891,7 @@ components and produce ROOT\cite{ANTCHEVA20092499} plots as output. Details
 of the processing done for each detector component are given below.
 
 \subsubsection*{Time Projection Chamber}
-As the largest data source in \protodune{} the TPC data was analysed in several
+As the largest data source in \protodune{} the TPC data is analysed in several
 small steps: basic data checks, pedestals and noise, Fourier analysis, and event
 displays. Examples of some of the plots produced by the TPC analysis are
 detailed below.
@@ -911,12 +912,12 @@ channels into a 2D grid and displaying the RMS as the colour scale on a 2D
 histogram, an example of this plot is shown in Figure \ref{fig:ped_noise}.
 
 To identify noise sources in the APA it is useful to study the Fourier transform
-of the signal distribution. This allows the noisy frequencies to be identified,
-and by studying the Fourier distributions under different conditions noise
-sources can be identified; the cameras in the TPC where identified as a noise 
-source in this way. The OM, therefore, provides Fast Fourier Transforms (FFT) 
-for each APA, an example of the FFT for a single FEMB is shown in Figure 
-\ref{fig:TPC_FFT}.
+of the signal distribution, which allows the noisy frequencies to be identified.
+Individual noise sources can be identified by studying the Fourier 
+distributions under different operating conditions, for example, the cameras 
+in the TPC were identified as a noise source in this way. The OM, therefore, 
+provides Fast Fourier Transforms (FFT) for each APA, an example of the FFT for 
+a single FEMB is shown in Figure \ref{fig:TPC_FFT}.
 
 \begin{figure}
 
@@ -956,7 +957,7 @@ for each APA, an example of the FFT for a single FEMB is shown in Figure
 
 \end{figure}
 
-Event Displays display all the data from all the TPC readout channels
+Event Displays show all the data from all the TPC readout channels
 simultaneously and, as such, they provide the most general check of TPC 
 performance in the OM. During the beam run of \protodune{}, a number of issues 
 in the data were first identified in the event display, for example, issues in 
@@ -1034,8 +1035,7 @@ monitoring plots are shown in Figure \ref{fig:pds_om}.
 \end{figure}
 
 \subsubsection*{Trigger and Timing}
-The trigger and timing systems share much of the same data, because the timing
-system is used to distribute the triggers from the trigger system, therefore, 
+The trigger and timing systems share much of the same data and, therefore, 
 their monitoring is related. Some examples of useful timing and trigger plots 
 include time--stamp difference distributions, and trigger records. The 
 time--stamp delta plots show the difference in time--stamp between consecutive 
@@ -1074,15 +1074,15 @@ detail the time and type of trigger issued by the trigger board. Figure
 \end{figure}
 
 \subsubsection*{Beam Instrumentation}
-The beamline instrumentation was monitored by CERN, who produced beamline
-monitoring plots\cite{Booth:2019brj}. The plots were continually overwritten 
-on a time schedule which was decoupled from the \protodune{} running schedule, 
-the OM was responsible for collating the output of these plots in sync with 
-the \protodune{} run schedule, such that the collated beam information for 
-each run could be monitored. After collation the beam instrumentation plots 
-were merged with the rest of the OM plots. The beam instrumentation plots 
-included momentum, and time of flight, examples of which are shown in 
-Figure \ref{fig:beam_OM}.
+During the \protodune{} beam run, the beamline instrumentation was monitored 
+by CERN, who produced beamline monitoring plots\cite{Booth:2019brj}. These plots
+were continually overwritten on a time schedule which was decoupled from the 
+\protodune{} running schedule, the OM was responsible for collating the output 
+of these plots in sync with the \protodune{} run schedule, so that the 
+collated beam information for each run could be monitored. After collation the 
+beam instrumentation plots were merged with the rest of the OM plots. The beam 
+instrumentation plots included momentum, and time of flight, examples of which 
+are shown in Figure \ref{fig:beam_OM}.
 
 \begin{figure}
 
@@ -1115,9 +1115,8 @@ Figure \ref{fig:beam_OM}.
 A bug in the DAQ meant that the CRT was run separately during the main beam 
 run. Therefore, the CRT data was analysed separately from the rest of the 
 \protodune{} systems and merged in the OM similarly to the beam instrumentation 
-data. Some examples of CRT monitoring plots include the rate of hits for each 
-channel and the mean ADC for each channel, these are shown in Figure 
-\ref{fig:crt_OM}.
+data. Some examples of CRT monitoring plots include the rate of hits and the
+mean ADC for each channel, these are shown in Figure \ref{fig:crt_OM}.
 
 \begin{figure}
 
@@ -1152,7 +1151,7 @@ channel and the mean ADC for each channel, these are shown in Figure
 
 \subsection{Monitoring Web Interface}
 The plots from the data analysis are stored in a ROOT file on the \protodune{}
-DAQ servers, this data is viewable from anywhere in CERN via a web interface
+DAQ servers. This data is viewable from anywhere in CERN via a web interface
 which was adapted for \protodune{} from LHCb's Monet\cite{Adinolfi_2017}. 
 Monet consists of a Flask web application\cite{flask} which uses 
 Bokeh\cite{bokeh} to render plots for display, ROOT\cite{ANTCHEVA20092499} and 
@@ -1165,12 +1164,12 @@ event displays, and the addition of a separate rendering server with
 additional capabilities. 
 
 The components of the web interface, and their connections, are outlined in 
-Figure \ref{fig:monet_flow}. When a user makes a request, which could be a
-request to open a new page of plots or a request to interact with a plot, the 
-request is sent to the display server which decides what to do with it.
-Depending on the nature of the request, the display server will then interact
-with the histogram database and/or the rendering server, before updating the
-plots and displaying them to the user. 
+Figure \ref{fig:monet_flow}. When a user makes a request, for example to open 
+a new page of plots or a to interact with a plot, the request is sent to the 
+display server which decides what to do with it. Depending on the nature of 
+the request, the display server will then interact with the histogram database 
+and/or the rendering server, before updating the plots and displaying them to 
+the user. 
 
 \begin{figure}
 
@@ -1194,7 +1193,7 @@ can contain any number of plots which are organised into an array on the screen,
 an example of this is shown in Figure \ref{fig:monet_page}. The histogram 
 database is responsible for the details of each of these pages, this includes
 the plots on each page, their locations, and the relevant rendering options for
-each plot. When a new page is requested the display server requests these
+each plot. When a new page is requested, the display server retrieves these
 details from the histogram database before requesting the rendering server to 
 render the plots.
 
@@ -1207,25 +1206,26 @@ render the plots.
 	\caption
 	[An example of an online monitoring page.] 
 	{ An example of an online monitoring page, containing the profiled FFTs for
-	all FEMBs on APA 1. Shifters are able to select which page to display from the
+	all FEMBs on APA 1. Users are able to select which page to display from the
 	folder list on the left, select a run number in the top bar, and interact 
 	with each plot, e.g. zooming in on a specific region.} 
 	\label{fig:monet_page}
 
 \end{figure}
 
-The rendering server is responsible for rendering the plots from the monitoring
-ROOT files, it is capable of rendering all 1D and 2D ROOT plots. In LHCb's Monet
-rendering is handled directly on the display server, however in \protodune{} an
-additional rendering server was added. By separating the rendering processes 
-onto their own server additional functionality was possible. The main 
-advantage of the rendering server was that it enabled the OM to utilise a 
-dynamic binning algorithm to scale the resolution of the displayed images in 
-response to user interaction. This is mainly used for the event displays; the 
-event display is initially loaded in a low resolution, but if a user is 
-interested in a specific region of the event display they can zoom in on 
-the region of interest, which is then displayed at a higher resolution by the 
-dynamic binning algorithm as demonstrated in Figure \ref{fig:dynamic_binning}.
+The rendering server is responsible for visualising the plots from the 
+monitoring ROOT files, it is capable of rendering all 1D and 2D ROOT plots. In 
+LHCb's Monet rendering is handled directly on the display server, however in 
+\protodune{} an additional rendering server was added. By separating the 
+rendering processes onto their own server additional functionality is 
+possible. The main advantage of the rendering server is that it enables the 
+OM to utilise a dynamic binning algorithm to scale the resolution of the 
+displayed images in response to user interaction. This is mainly used for the 
+event displays; the event display is initially loaded in low resolution, but 
+if a user is interested in a specific region of the event display they can 
+zoom in on the region of interest, which is then displayed at a higher 
+resolution by the dynamic binning algorithm as demonstrated in Figure 
+\ref{fig:dynamic_binning}.
 
 \begin{figure}
 
@@ -1262,8 +1262,8 @@ dynamic binning algorithm as demonstrated in Figure \ref{fig:dynamic_binning}.
 The other significant modification to Monet was to modify the data handling to 
 significantly improve the efficiency of data transfer to the renderer.
 When Monet was first adapted for \protodune{} it was too slow to render some 
-of the larger plots such as event displays, it would take minutes to render a 
-single event display. By improving the efficiency of the data transfer from ROOT
+of the larger plots, such as event displays, which would initially take 
+minutes to render. By improving the efficiency of the data transfer from ROOT 
 to Bokeh, the rendering time was reduced to around 4 seconds per event display.
 
 \subsection{System Performance and Possible Improvements}
@@ -1291,26 +1291,23 @@ The latency introduced by each of these components have an approximate ratio of
 Input file closure currently makes up the most significant portion 
 of the latency. In the current system, the OM processes have to wait for the 
 Event Builders to finish processing a batch of 100 events and close the output 
-file before they can access the data, which introduces a delay while the system
-waits for the data file to be closed. A shared memory system was proposed to 
+file before they can access the data. A shared memory system was proposed to 
 tackle this problem, in this system the OM and Event Builders can 
-simultaneously process the data as it leaves the detector.  This would reduce 
+simultaneously process the data as it leaves the detector. This would reduce 
 the latency in the OM, by allowing it to analyse the data promptly as it is 
 read out by the detector. Unfortunately, this system wasn't successfully 
 implemented during the first beam run of \protodune{}, but it remains as a 
 possible improvement to the monitoring system for any future \protodune{} 
 runs, and for the DUNE Far Detector monitoring.
 
-Additional improvements could be made to the latency, through using different
-computing hardware and improving the efficiency of the code. However, at the
-time of writing there are no specific improvements being investigated in these
+Additional improvements could be made to the latency, by using different 
+computing hardware and improving the efficiency of the code. However, at the 
+time of writing there are no specific improvements being investigated in these 
 areas.
 
 \subsubsection*{Authors Contributions to the \protodune{} Online Monitoring}
 My main contributions to the online monitoring system in \protodune{} were made
-from January 2018 to January 2019. I have remained involved in the maintenance 
-of the OM since, but mostly for small maintenance tasks. My main contributions 
-during this time have been:
+from January 2018 to January 2019, these were: 
 \begin{itemize}
 	\item Writing code to produce plots for the Analyser Modules.
 	\item Developing merger processes to merge the monitoring results from
@@ -1329,4 +1326,5 @@ during this time have been:
 		other DAQ software.
 \end{itemize}
 In addition, I worked as the on--call expert on the online monitoring system
-during the \protodune{} beam run in 2018.
+during the \protodune{} beam run in 2018. I have remained involved in the OM 
+since, mostly for small maintenance tasks. 
