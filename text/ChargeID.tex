@@ -72,7 +72,7 @@ probabilities. The track, shower, and empty (TSE) probabilities are
 constrained to sum to one, such that every hit is classified into one of these 
 categories.
 
-The input data for the CNN was made using a \emph{small--patch approach}, in
+The input data for the CNN was made using a small--patch approach, in
 which a small input image is made for each reconstructed hit. This approach was
 chosen based on the CPU time and memory requirements for the CNN, when run 
 during the \protodune{} reconstruction chain. Another approach could be to 
@@ -181,16 +181,16 @@ The network architecture used is shown in Figure \ref{fig:arch}, a simple
 network architecture was chosen, which was necessary in order to meet the 
 current running requirements. The images are first processed by convolutional 
 layer with 48 $5 \times 5$ filters, this layer extracts feature maps from the 
-data. The responses from the convolutional layer are passed through the Leaky 
+data. The responses from the convolutional layer are passed through the leaky 
 ReLU activation function, which is discussed in Chapter \ref{ch:ml}, before 
 being processed by the dense layers. The feature maps are then processed by a 
 pair of dense layers, with 128 and 32 nodes respectively. These layers also 
-use the Leaky ReLU activation function. After the second dense layer the 
+use the leaky ReLU activation function. After the second dense layer the 
 network is split into two branches in order to make it's prediction. The first 
 branch returns the prediction for the TSE categories, and the second branch 
-for the Michel electron category. The first branch uses a Softmax activation 
+for the Michel electron category. The first branch uses a softmax activation 
 function, which ensures that the scores for the TSE categories sum to one.  
-The second branch uses a Sigmoid activation function, which ensures that the 
+The second branch uses a sigmoid activation function, which ensures that the 
 Michel electron scores are bounded between zero and one. The choice of 
 activation functions in the output layers allows for a pseudo--probabilistic 
 interpretation of the scores from the CNN.
@@ -225,7 +225,7 @@ it is the mean squared error\cite{mse_springer},
 \end{align*}
 where $t_j$ and $p_j$ are the truth and the prediction for the $j^{th}$ sample 
 in the training batch, and $i$ sums over all outputs in the TSE branch. These
-losses are commonly used for classification tasks within the field of Machine 
+losses are commonly used for classification tasks within the field of machine 
 learning, the categorical cross entropy is related to the negative
 log--likelihood between the true distribution and the predictions from the 
 CNN\cite{GoodfellowIan2016Dl}. 
@@ -241,7 +241,7 @@ The CNN was trained using the mini--batch stochastic gradient descent (SGD)
 algorithm, including both the momentum and decay algorithms\cite{Reed1999}. 
 The momentum algorithm reduces the oscillations of the weights during 
 learning, while the decay of the learning rate allows for rapid learning 
-during early stages of SGD, and increased precision as the model converges. 
+during early stages of SGD, and increases precision as the model converges. 
 
 During training the learning metrics were monitored with TensorBoard. The
 losses for each branch and the total loss were monitored for the training
@@ -270,7 +270,7 @@ network, this is highlighted in Figure \ref{fig:training}.
 During training, the validation loss remains stable over a number of epochs,
 which suggests that the dropout algorithm was successful in preventing 
 over--fitting. After training, the networks performance was verified against 
-the test set, which found that the test set losses were compatible with the 
+the test set, which found that the test set losses were comparable with the 
 validation set loss. 
 % The final test set losses were, 
 % \begin{equation*}
@@ -309,7 +309,7 @@ where the purity is defined as the fraction of correctly classified shower
 hits in the sample of all selected shower hits, and the efficiency as the 
 fraction of all true shower hits which were selected as shower hits. The $F_1$ 
 score was calculated across a range of selection thresholds, this is shown in 
-Figure \ref{fig:show_output}. The score peaks at a threshold of 0.72 where, 
+Figure \ref{fig:show_output}. This score peaks at a threshold of 0.72 where, 
 \begin{equation*} 
 	F_1 = \mbox{purity} = \mbox{efficiency} = 0.863.  
 \end{equation*}
@@ -387,11 +387,11 @@ difference between the SCE and no SCE curves for the Michel electron sample,
 however, the difference is no bigger than 4\% and is not currently 
 understood. It is important, therefore, to validate the performance of the 
 Michel electron classifier in data, where space charge distortions are 
-present. Possible causes of this discrepancy include, distortion of images due 
-to space charge effects, which could lead to energy depositions near the 
-boundary of images to be included in the SCE sample but not in the no SCE 
-sample, or differences in the recombination correction between the SCE and no 
-SCE samples.
+present. Possible causes of the discrepancy in the ROC curves include, 
+distortion of images due to space charge effects, which could lead to energy 
+depositions near the boundary of images to be included in the SCE sample but 
+not in the no SCE sample, or differences in the recombination correction 
+between the SCE and no SCE samples.
 
 \begin{figure}
 	\centering
@@ -478,14 +478,13 @@ of zero.
 The stronger classification from the CNN gives supplementary information to
 Pandora, which can be used in analyses to improve event selection or background
 rejection. This information is being utilised in a number of \protodune{}
-analyses, some of these analyses are highlighted briefly in Section
-\ref{cnn-appl}.
+analyses, some of these are highlighted briefly in Section \ref{cnn-appl}.
 
 As well as providing supplementary information to Pandora for analysis, the CNN
-scores could be utilised during Pandora reconstruction as an additional guide
-for the reconstruction algorithms. This approach is being developed by Pandora
-for the DUNE Far Detector, based on a similar deep neural network for 
-discriminating tracks and showers\cite{chappel_poster}.
+scores could, in future, be used during Pandora reconstruction as an 
+additional guide for the reconstruction algorithms. This approach is being 
+developed by Pandora for the DUNE Far Detector, based on a similar deep neural 
+network for discriminating tracks and showers\cite{chappel_poster}.
 
 \section{Validation on \protodune{} Data} \label{cnn-perf-data}
 

@@ -2,7 +2,7 @@
 
 \minitoc
 
-Machine Learning (ML) is a field of research, which studies algorithms that
+Machine learning (ML) is a field of research, which studies algorithms that
 can learn to make predictions from data, i.e. predict a set of output variables,
 given a set of input variables. These algorithms typically take the form of a
 multivariate function, which is used to predict the output\cite{Reed1999}.
@@ -19,7 +19,7 @@ unsupervised algorithm the output is unknown, and the networks goal is to
 extract meaningful structure from the data\cite{Lecun2015}.
 
 Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two 
-examples of the application of Neural Networks (NN) for event reconstruction 
+examples of the application of Neural networks (NN) for event reconstruction 
 in LArTPC data. These algorithms are classification algorithms based on the
 supervised learning approach. This chapter will not attempt to provide a full 
 survey of the available ML techniques, which are both numerous and diverse. 
@@ -55,11 +55,10 @@ One of the most widely used ANNs is the multi--layer perceptron
 (MLP)\cite{Reed1999}; this class of network consists of at least three layers 
 of nodes: an input layer, one or more hidden layers, and an output layer. The 
 layers are connected in a feedforward configuration, such that the graph of 
-nodes contains no cycles. The layers of an MLP are often \emph{fully 
-connected} or \emph{dense}, meaning that the output of every node is connected 
-to the input of every node in the next layer of the network. An example of a 
-fully connected MLP, with two hidden layers, is shown in Figure \ref{fig:mlp}. 
-
+nodes contains no cycles. The layers of an MLP are often fully connected or 
+dense, meaning that the output of every node is connected to the input of 
+every node in the next layer of the network. An example of a fully connected 
+MLP, with two hidden layers, is shown in Figure \ref{fig:mlp}. 
 \begin{figure}
 
 	\centering
@@ -215,15 +214,15 @@ graphical representation of a typical CNN architecture is shown in Figure
 \end{figure}
 
 \subsection{Residual Neural Networks}
-Adding more layers to a neural network usually improves the performance, the
-popular intuition for this is that with each subsequent layer the network is
-able to learn more complex features of the image with which to make it's
-classification. In fact, adding more layers should never decrease the 
-performance of a network, as the new layers could be set to the identity, 
-which would result in the same output from the network. However, it has been 
-demonstrated that adding too many layers to a simple neural network will 
-reduce performance, suggesting that the optimisation of larger networks leads 
-to degradation\cite{He_2016_CVPR}.
+Adding more layers to a neural network usually improves the performance,
+typically with each subsequent layer the network is able to learn more complex 
+features of the image with which to make it's classification. In fact, adding 
+more layers should never decrease the performance of a network, as the new 
+layers could be set to the identity, which would result in the same output 
+from the network. However, it has been demonstrated that adding too many 
+layers to a simple neural network will reduce performance, suggesting that the 
+optimisation of larger networks leads to some form of 
+degradation\cite{He_2016_CVPR}.
 
 One method which has been shown to counter the degradation of deep networks, 
 is the use of residual neural networks (ResNet). In a ResNet, the input to 
@@ -279,7 +278,7 @@ $\partial L/\partial W^l_{ ij }$. If the weights are modified with,
 	\label{eq:delta_w}
 \end{equation}
 for positive learning rates, $\eta > 0$, this method is guaranteed to reduce 
-the loss for a given input. The backpropagation algorithm provides an means 
+the loss for a given input. The backpropagation algorithm provides a means 
 for calculating the derivatives required to adjust the weights in each layer.
 
 Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
@@ -345,7 +344,7 @@ algorithm is as follows,
 The backpropagation algorithm is used to calculate the gradients in order to
 adjust weights in a neural network. There are a number of optimisation 
 algorithms for adjusting the weights, such as mini--batch stochastic gradient 
-descent (SGD)\cite{10.1145/2623330.2623612} and Adaptive Momentum Estimation 
+descent (SGD)\cite{10.1145/2623330.2623612} and adaptive momentum estimation 
 (Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
 important for the discussion in this thesis and, therefore, they will only be 
 mentioned in passing here. A review of gradient descent optimisation 
@@ -364,9 +363,9 @@ once.
 The rate of learning in the backpropagation algorithm is dependent on the
 derivative of the activation function, therefore, the choice of activation
 function has an impact on learning. There are two important factors when
-considering the impact of the choice of activation function on the rate of
-learning, these are the computational cost of calculating the derivative,
-and the gradient of the function. 
+considering the impact of this choice on the rate of learning, these are the 
+computational cost of calculating the derivative, and the gradient of the 
+function. 
 
 Traditional activation functions, such as sigmoid and tanh, are usually 
 bounded and differentiable, however the presence of exponentials makes 
@@ -378,13 +377,13 @@ The ReLU activation function is much cheaper to compute, and while the
 gradient is undefined at zero, in practice this is not a problem. One issue 
 with ReLU units, is the vanishing gradient in the negative region. This can be 
 resolved by implementing a small negative gradient below zero, which is known 
-as a Leaky ReLU or Parametric ReLU\cite{He2015}. In practice, ReLU units have 
+as a leaky ReLU or parametric ReLU\cite{He2015}. In practice, ReLU units have 
 been found to outperform traditional sigmoid 
 units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 
 \subsection{Regularisation}
 Regularisation refers to a set of techniques, which are used to prevent
-over--fitting during the training of a NN. Over--fitting refers to the tendency
+over--fitting during the training of a NN. Over--fitting is the tendency
 of models with a high number of parameters to produce overly complex models,
 which fit the training data well but do not generalise to new data.  
 Regularisation ensures that the trained network can generalise well beyond the 

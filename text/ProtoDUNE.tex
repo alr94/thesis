@@ -122,8 +122,8 @@ from the ionisation signals alone; by utilising the much faster scintillation
 signals, the time of interactions can be calculated with much higher 
 precision.  This data can be combined with the arrival time of drifting 
 electrons to reconstruct the true drift distance. Without an accurate $t_0$, 
-the reconstructed drift distance will be incorrect, and as a result, the 
-predicted charge attenuation will also be incorrect.
+the reconstructed drift distance will be incorrect, and as a result, so too
+would the predicted charge attenuation.
 
 Whilst the details of the charge readout and photon detection systems are unique
 in each detector, LArTPC detectors can be split into two main categories: 
@@ -168,11 +168,11 @@ mass of 0.77 kt, making it the largest monolithic single--phase liquid argon TPC
 at the time of writing. The TPC comprises the following major components, which 
 are illustrated in Figure \ref{fig:pdsp_tpc}:
 \begin{itemize}
-	\item A cathode plane constructed of modular Cathode Plane Assemblies (CPA).
-	\item Two anode planes constructed of modular Anode Plane Assemblies (APA).
+	\item A cathode plane constructed of modular cathode plane assemblies (CPA).
+	\item Two anode planes constructed of modular anode plane assemblies (APA).
 	\item A photon detection system (PDS), which is integrated into the APAs.
 	\item A field cage, beam plug, and high voltage systems.
-	\item Readout electronics and Data Acquisition System (DAQ).
+	\item Readout electronics and data acquisition system (DAQ).
 \end{itemize}
 The detector components are designed to be an almost exact replica of the final 
 single--phase Far Detector modules, but the detector has an overall scaling 
@@ -208,21 +208,21 @@ wires on the inward and outward facing sides, these are oriented at different
 angles to enable 3D reconstruction. The outer two sets of wires are induction
 wires, these are biased such that they are electrically transparent to the 
 drifting ionisation. Ionisation passing the induction wires causes an induced 
-bi--polar signal. The third set of wires are known as collection wires, these
-wires are not biased. When drifting ionisation approaches the collection wires 
+bi--polar signal. The third set of wires are known as collection wires, which
+are not biased. When drifting ionisation approaches the collection wires 
 it is absorbed producing a uni--polar signal. In \protodune{}, each set of 
 induction wires contains 800 wires at a spacing of 4.67 mm, and each set of 
 collection wires contains 480 wires at a spacing of 4.79 mm. 
 
 The wire planes from each APA are read out by electronics boards, known as
-Front--end Mother Boards (FEMB), which are mounted on the APA frame. The FEMBs 
+front--end mother boards (FEMB), which are mounted on the APA frame. The FEMBs 
 are submerged in the liquid argon and, therefore, they are also referred to as 
 cold electronics (CE). A total of 2560 electronics channels are used to read 
 out the data from each APA, with each readout window corresponding to 3 ms, 
 which is 6000 time samples. The CE amplify, shape, and digitise the signals 
-from the wires before transmitting them outside the TPC to the Warm Interface 
-Boards (WIB). The WIBs collate the data from the CE boards and pass the data 
-onto the Data Acquisition System (DAQ).
+from the wires before transmitting them outside the TPC to the warm interface 
+boards (WIB). The WIBs collate the data from the CE boards and pass the data 
+onto the data acquisition system (DAQ).
 
 The cathode plane in \protodune{} consists of an array of 18 CPA modules, 2 m 
 (height) $\times$ 1.2 m (width). The cathode plane is held at -180 kV to 
@@ -294,10 +294,10 @@ efficiency\cite{Segreto:2018jdx}. An ARAPUCA light trap consists of a box
 which is high reflective on the inside. On one side of the box is 
 the filtering window, and on the other a SiPM. Incoming ultra--violet photons 
 are shifted to the blue spectrum before passing through a dichroic filter 
-which has a tunable wavelength cut--off at which it transitions from being 
+which has a tunable wavelength cut--off after which it transitions from being 
 transparent to reflective. After passing through the filter the photons are 
 shifted again, this time from blue to green, such that if they get back to the 
-filter it is reflective. As such green photons can be trapped within the 
+filter it is reflective. Consequently green photons can be trapped within the 
 ARAPUCA until they come into contact with the SiPM, this provides increased 
 photon detection efficiency. Each ARAPUCA photon detector module in 
 \protodune{} features an array of these traps arranged in a line across the 
@@ -311,10 +311,10 @@ module.
 Unlike with the TPC electronics, there are no front--end electronics in the LAr
 volume for the PDS, the unamplified analogue signals are transmitted out of the
 cryostat before processing and digitisation. The light guide based photon 
-detector module have 12 SiPMs, which are read out in threes meaning that each 
+detector modules have 12 SiPMs, which are read out in threes meaning that each 
 module corresponds to 4 readout channels. The ARAPUCA modules are read out by
 one channel per SiPM, resulting in 12 channels per ARAPUCA module. The readout 
-channels from each APA are processed by four so called SiPM Signal Processors 
+channels from each APA are processed by four so called SiPM signal processors 
 (SSP), which are mounted on the top of the cryostat. After processing in the 
 SSPs, the PDS data is passed onto the DAQ along with the TPC data.
 
@@ -418,7 +418,7 @@ As a surface level detector with no overburden \protodune{} measures a
 significant rate, on the order of 20 kHz, of cosmic--ray muons. This corresponds
 to an average of 60 muons per 3 ms readout window. These muons provide a 
 useful source of calibration data in the form of long tracks and stopping 
-muons.  The Cosmic--Ray Tagger (CRT) in \protodune{} was installed on the 
+muons.  The cosmic--ray tagger (CRT) in \protodune{} was installed on the 
 upstream and downstream faces of the TPC, to trigger the detector for 
 cosmic--ray muons which travel parallel to the anode plane. In addition the 
 CRT, can provide accurate timing information for any tracks which are
@@ -468,14 +468,14 @@ reconstructed.
 
 \section{The Data Acquisition System}
 
-Data from the TPC, PDS, and CRT in \protodune{} are collated by the Data 
-Acquisition system (DAQ). The DAQ distributes triggers, compresses and packages 
+Data from the TPC, PDS, and CRT in \protodune{} are collated by the data 
+acquisition system (DAQ). The DAQ distributes triggers, compresses and packages 
 the data into events, and stores the data ready for future analysis. 
 An overview of the \protodune{} DAQ system is seen in Figure 
 \ref{fig:pdsp_daq}; there are four primary data flows in the system: TPC, PDS, 
 CRT, and BI. Timing and triggering signals are distributed to the detector 
 components by the timing board, which maintains a 50 MHz clock and receives 
-$\sim 40 \mbox{Hz}$ of triggers from the Central Trigger Board (CTB) based on 
+$\sim 40 \mbox{Hz}$ of triggers from the central trigger board (CTB) based on 
 data from the BI and CRT\cite{Abi:2017aow}.
 
 \begin{figure}
@@ -504,15 +504,15 @@ resulting in 6000 samples from each wire; data is buffered such that the readout
 window can be opened 250 $\mu$s before the trigger time. Data from the TPC is
 received by two systems, one system, which is based on Reconfigurable Computing Elements
 (RCE)\cite{7431254}, handles the data from five APAs, while the other system
-handles the data from the sixth APA, and is based on Front--End Link Exchange 
+handles the data from the sixth APA, and is based on front--end link exchange 
 (FELIX) cards, which have been developed by the ATLAS 
 collaboration\cite{Anderson_2016}.
 
 The software layer of the \protodune{} DAQ is based on Fermilab's 
 ArtDAQ\cite{6495515}. This component is primarily responsible for acquiring 
 the data, packaging it, and storing it locally. Triggered events are queued 
-and distributed to the board readers and event builders by the Data Flow 
-Orchestrator. There are multiple board readers, which are each responsible for 
+and distributed to the board readers and event builders by the data flow 
+orchestrator. There are multiple board readers, which are each responsible for 
 processing the data from specific hardware components. Details vary between 
 specific board readers, but generally these processes are responsible for 
 formatting the data from each component ready for aggregation. Data from the 
@@ -546,7 +546,7 @@ simulations of the H4 beamline\cite{Booth:2019brj} based on two simulation
 frameworks, G4beamline\cite{g4beamline} and FLUKA\cite{BOHLEN2014211}. The flux
 of cosmic--ray particles in \protodune{} is simulated using 
 CORSIKA\cite{Heck:1998vt}.  Finally, low energy radiological backgrounds in 
-LAr are simulated, these include $^{39}\mbox{Ar,} ^ {85}\mbox{Kr, and } 
+liquid argon are simulated, these include $^{39}\mbox{Ar,} ^ {85}\mbox{Kr, and }
 ^{222}\mbox{Rn}$.
 
 After generation, the particles are allowed to propagate and interact in the 
@@ -586,9 +586,9 @@ and analogue to digital conversion. The simulated waveforms produced by the
 
 An event consists of a synchronised set of waveforms from all of the TPC 
 channels, with each event corresponding to 3 ms or 6000 samples. The particle
-interactions within each event are reconstructed into objects like tracks and
-showers, which can be used for physics analyses, this section provides a brief 
-summary of the steps involved in this reconstruction.
+interactions within each event are reconstructed into tracks and showers, 
+which can be used for physics analyses, this section provides a brief summary 
+of the steps involved in this reconstruction.
 
 First, the TPC waveforms are passed through a set of filtering algorithms which
 are designed to reduce the noise on the waveforms, as well as to mitigate 
@@ -666,8 +666,8 @@ interactions in the detector, and has been successfully used by other LArTPC
 detectors, such as MicroBooNE\cite{Acciarri:2017hat}. Pandora handles the 
 clustering of hits into 2D clusters, the matching of 2D clusters into 3D
 clusters, as well as the reconstruction of 3D objects like tracks and 
-showers. Ultimately Pandora returns a tree of reconstructed Particle Flow
-Particles (PFParticles), each corresponding to a distinct track or shower, and 
+showers. Ultimately Pandora returns a tree of reconstructed particle flow
+particles (PFParticles), each corresponding to a distinct track or shower, and 
 connected through parent--daughter relationships, which define the particle flow
 in the interaction. Pandora reconstruction consists of two stages: a cosmic 
 pass and a beam pass. 
@@ -744,7 +744,7 @@ Figure \ref{fig:pandora_pfp}.
 
 As well as precise spatial reconstruction, LArTPCs provide excellent
 calorimetric information. Each reconstructed hit has an associated charge, 
-$Q$, and energy $E$, which measure the amount of energy deposited by the 
+$Q$, and energy, $E$, which measure the amount of energy deposited by the 
 charged particle in that small energy depositon. The measured charge in ADC 
 depends on the spatial location of the hit within the TPC, as well as the 
 local ionisation density, or $dQ/dx$, in the region of the associated energy 
@@ -837,13 +837,13 @@ triggered. It consists of three main components:
 
 An overview of the data flow in the OM is shown in Figure \ref{fig:om_flow}. 
 Data from the detector is first filtered before being run in any OM processes. 
-The data which is passed onto the OM processes is then split up and decoded by 
-the relevant RawDecoder, which reformats the data ready for analysis. A number 
-of Analyser Modules then make use of this data to make plots, which are merged,
-along with plots from external systems, and sent to a web interface to be 
-displayed in the control room. The following sections will provide a brief 
-summary of these stages, as well as examples of the plots which are produced in
-the OM.
+The data which is passed to the OM processes is then split up and decoded by 
+the relevant \emph{RawDecoder}, which reformats the data ready for analysis. A 
+number of \emph{Analyser Modules} then make use of this data to make plots, 
+which are merged, along with plots from external systems, and sent to a web 
+interface to be displayed in the control room. The following sections will 
+provide a brief summary of these stages, as well as examples of the plots 
+which are produced in the OM.
 
 \begin{figure}
 	\centering
@@ -876,14 +876,15 @@ time per event, therefore, multiple filters are used, to control the data rate
 into each process separately.
 
 After filtering the events are ready to be processed. The data coming into the
-OM system is in its raw form. It arrives in small pieces known as Fragments,
-which have to be decoded before they can be used by the OM. The RawDecoders 
-are responsible for interpreting the headers and data streams from each 
-detector component, and restructuring the data ready for processing. The 
-details of the decoding vary based on the readout system under consideration. 
-Each readout system defines a class, which details the contents of each
-Fragment. The RawDecoders use the contents of this class to decode the
-Fragments in order to prepare the data for processing.
+OM system is in its raw form. It arrives in small pieces known as
+\emph{Fragments}, which have to be decoded before they can be used by the OM. 
+The RawDecoders are responsible for interpreting the headers and data streams 
+from each detector component, and restructuring the data ready for processing. 
+The details of the decoding vary based on the readout system under 
+consideration.  Each readout system defines a class, which details the 
+contents of each Fragment. The RawDecoders use the contents of this class to 
+decode the Fragments in order to prepare the data for 
+processing.
 
 After the data has been decoded it is ready to be analysed. This is done by a
 number of Analyser Modules, which analyse the data from different detector
@@ -916,7 +917,7 @@ of the signal distribution, which allows the noisy frequencies to be identified.
 Individual noise sources can be identified by studying the Fourier 
 distributions under different operating conditions, for example, the cameras 
 in the TPC were identified as a noise source in this way. The OM, therefore, 
-provides Fast Fourier Transforms (FFT) for each APA, an example of the FFT for 
+provides fast fourier transforms (FFT) for each APA, an example of the FFT for 
 a single FEMB is shown in Figure \ref{fig:TPC_FFT}.
 
 \begin{figure}
@@ -957,7 +958,7 @@ a single FEMB is shown in Figure \ref{fig:TPC_FFT}.
 
 \end{figure}
 
-Event Displays show all the data from all the TPC readout channels
+Event displays show all the data from all the TPC readout channels
 simultaneously and, as such, they provide the most general check of TPC 
 performance in the OM. During the beam run of \protodune{}, a number of issues 
 in the data were first identified in the event display, for example, issues in 
@@ -965,16 +966,16 @@ the channel mapping and timing synchronisation. They are also particularly
 useful for checking that the beam trigger results in beam particles in the 
 TPC. As a result a significant effort was made to make event displays 
 available in the \protodune{} OM system. In particular, changes to the display 
-server were required, these changes are discussed later. 
+server were required, these changes are discussed later in this chapter. 
 
-Event Displays were offered for all views in all APAs. In addition, a special 
-Beam--window Event Display, which focussed on the data in the beam window, and 
-Stitched Event Displays, which showed the data from all APAs either side of the
-TPC as a continuous image were produced. The Event Displays took the longest 
-time to process out of all the plots in the OM, therefore, only one set of 
-event displays was made per OM output file. To maximise the number of beam 
-particles in the Event Displays, the trigger information was included during 
-processing. An example of a Beam--window Event Display is shown in Figure 
+Event displays were offered for all views in all APAs. In addition, a special 
+event display, which focussed on the data in the beam window, and event 
+displays, which showed the data from all APAs either side of the TPC as a 
+continuous image were produced. The event displays took the longest time to 
+process out of all the plots in the OM, therefore, only one set of event 
+displays was made per OM output file. To maximise the number of beam particles 
+in the event displays, the trigger information was included during 
+processing.  An example of a beam--window event display is shown in Figure 
 \ref{fig:beam_evd}; the timing synchronisation issue mentioned previously is 
 visible here, this issue affects a single FEMB and is mitigated during offline 
 reconstruction.  
@@ -1114,9 +1115,10 @@ are shown in Figure \ref{fig:beam_OM}.
 \subsubsection*{Cosmic--Ray Tagger}
 A bug in the DAQ meant that the CRT was run separately during the main beam 
 run. Therefore, the CRT data was analysed separately from the rest of the 
-\protodune{} systems and merged in the OM similarly to the beam instrumentation 
-data. Some examples of CRT monitoring plots include the rate of hits and the
-mean ADC for each channel, these are shown in Figure \ref{fig:crt_OM}.
+\protodune{} systems and merged in the OM in the same way as the beam 
+instrumentation data. Some examples of CRT monitoring plots include the rate 
+of hits and the mean ADC for each channel, these are shown in Figure 
+\ref{fig:crt_OM}.
 
 \begin{figure}
 
@@ -1217,7 +1219,7 @@ The rendering server is responsible for visualising the plots from the
 monitoring ROOT files, it is capable of rendering all 1D and 2D ROOT plots. In 
 LHCb's Monet rendering is handled directly on the display server, however in 
 \protodune{} an additional rendering server was added. By separating the 
-rendering processes onto their own server additional functionality is 
+rendering processes onto their own server, additional functionality is 
 possible. The main advantage of the rendering server is that it enables the 
 OM to utilise a dynamic binning algorithm to scale the resolution of the 
 displayed images in response to user interaction. This is mainly used for the 
@@ -1267,11 +1269,11 @@ minutes to render. By improving the efficiency of the data transfer from ROOT
 to Bokeh, the rendering time was reduced to around 4 seconds per event display.
 
 \subsection{System Performance and Possible Improvements}
-In the \protodune{} Technical Design Report\cite{Abi:2017aow}, the proposed 
+In the \protodune{} technical design report\cite{Abi:2017aow}, the proposed 
 online monitoring system was described as being able to \say{provide data 
 quality assurance in real--time}. In practice, the response time is around one 
 minute. During this time, 10 events will have been processed for each set of 
-plots, however, the Event Displays and TPC FFTs only contain data from one 
+plots, however, the event displays and TPC FFTs only contain data from one 
 event.
 
 The performance of the OM was found to be satisfactory for the operation of the
@@ -1290,9 +1292,9 @@ The latency introduced by each of these components have an approximate ratio of
 
 Input file closure currently makes up the most significant portion 
 of the latency. In the current system, the OM processes have to wait for the 
-Event Builders to finish processing a batch of 100 events and close the output 
+event builders to finish processing a batch of 100 events and close the output 
 file before they can access the data. A shared memory system was proposed to 
-tackle this problem, in this system the OM and Event Builders can 
+tackle this problem, in this system the OM and event builders can 
 simultaneously process the data as it leaves the detector. This would reduce 
 the latency in the OM, by allowing it to analyse the data promptly as it is 
 read out by the detector. Unfortunately, this system wasn't successfully 
@@ -1315,7 +1317,7 @@ from January 2018 to January 2019, these were:
 	\item Maintenance and development of the display server including:
 	\begin{itemize}
 		\item Significantly improving the efficiency of the plotting algorithms,
-			such that Event Displays were possible in the OM.
+			such that event displays were possible in the OM.
 		\item Integrating the rendering server into the display server.
 		\item Integrating the histogram database into the display server.
 	\end{itemize}

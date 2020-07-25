@@ -367,15 +367,14 @@ simulation for both the spatial and angular distributions.
 \section{Michel Electron Energy Reconstruction} \label{ME_R}
 
 To reconstruct the energy of Michel electrons in liquid argon the relevant hits
-must first be selected. Once the hits are selected the ionisation energy
-deposited by each hit is then reconstructed, the reconstructed energy of the
-Michel electron is the sum of the reconstructed energy of all relevant hits.
-This section will detail a hit selection algorithm based on a type of 
-convolutional neural network called a U--ResNet, which returns hit selection 
-maps for the Michel electron energy reconstruction. This algorithm is used to 
-select Michel electron hits with a high purity and efficiency, the resulting 
-reconstructed energy spectrum is used to estimate the energy resolution of 
-\protodune{} for electrons in the tens of MeV range.
+must first be selected. The reconstructed ionisation energy for the Michel
+electron is the sum of the reconstructed ionisation energy for all of the
+selected hits. This section will detail a hit selection algorithm based on a 
+type of convolutional neural network called a U--ResNet, which returns hit 
+selection maps for the Michel electron energy reconstruction. This algorithm 
+is used to select Michel electron hits with a high purity and efficiency, the 
+resulting reconstructed energy spectrum is used to estimate the energy 
+resolution of \protodune{} for electrons in the tens of MeV range.
 
 \subsection{Michel Electron Hit Tagging with a U--ResNet}
 
@@ -405,7 +404,7 @@ contains the following key components:
 \end{itemize}
 The convolutional blocks each contain three convolutional layers, which is
 shown in Figure \ref{fig:conv_block}. These take the form of inception
-units\cite{Szegedy2015} with Leaky ReLU activation functions, a schematic of
+units\cite{Szegedy2015} with leaky ReLU activation functions, a schematic of
 the inception units is shown in Figure \ref{fig:unet_inception}. During the
 first half of the network, maximum pooling is used to downsample the size of
 the feature maps, which reduce by a factor of two in each max pooling layer.
@@ -489,12 +488,13 @@ for each hit within the image window. The training data was split into training,
 test, and validation sets in the ratio 80:10:10. In total around 15,000 images 
 were used in the combined training, test, and validation datasets.
 
-As with the hit tagging CNN from the Chapter \ref{ch:chargeid}, the training and
-validation scores were monitored throughout training using TensorBoard. The
-weights of the network were saved after each epoch, and the final weights were
-those from one epoch before the validation score first increased.  Figure 
-\ref{fig:unet_loss} shows the evolution of the loss over time, along with a 
-vertical line representing the loss at which the weights were chosen.
+As with the hit tagging CNN discussed in Chapter \ref{ch:chargeid}, the 
+training and validation scores were monitored throughout training using 
+TensorBoard. The weights of the network were saved after each epoch, and the 
+final weights were those from one epoch before the validation score first 
+increased.  Figure \ref{fig:unet_loss} shows the evolution of the loss over 
+time, along with a vertical line representing the loss at which the weights 
+were chosen.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_loss.pdf}
@@ -638,12 +638,12 @@ is the recombination factor. The distribution of reconstructed hit energies in
 \protodune{} data and simulation is shown in Figure \ref{fig:hit_ion_reco}, 
 which shows a good agreement between data and simulation.
 
-The position dependent calibration matrices correct for non-uniformity in the
-detector response across the TPC. In the X direction, which is parallel to the
-drift direction, the main contributing factors are attenuation due to electron
-absorption, and variations in the electron drift velocity due to space charge
-effects. The main contributing factor for the YZ--correction factor is
-wire--to--wire response variations.
+The position dependent calibration matrices correct for any non-uniformity in 
+the detector response across the TPC. In the X direction, which is parallel to 
+the drift direction, the main contributing factors are attenuation due to 
+electron absorption, and variations in the electron drift velocity due to 
+space charge effects. The main contributing factor for the YZ--correction 
+factor is wire--to--wire response variations.
 
 As discussed in Chapter \ref{ch:energyloss}, the recombination factor is a
 $dQ/dx$ dependent factor, which depends on the conditions in the liquid
@@ -722,7 +722,7 @@ considered. The fractional difference is defined as,
 \end{equation*}
 such that the spread of the distribution is a measure of the fractional
 uncertainty of the reconstructed energy. The energy resolution and bias were
-estimate by fitting a gaussian to the fractional difference distribution; the
+estimated by fitting a gaussian to the fractional difference distribution; the
 standard deviation of the gaussian was taken to be an estimate of the energy
 resolution, and the mean as an estimate of the bias. The distribution of the 
 fractional difference for all events, and the associated gaussian fit, are 
@@ -886,8 +886,8 @@ LArIAT measured an energy resolution on the order of 20\% for Michel electrons
 based on the scintillation light signal\cite{Foreman_2016}.
 
 In DUNE, both the ionisation energy and scintillation light will be used to
-reconstruct supernova neutrinos. The results in the DUNE Technical Design
-Report are based on energy resolution estimates from the standard
+reconstruct supernova neutrinos. The results in the DUNE technical design
+report are based on energy resolution estimates from the standard
 LArSoft reconstruction framework, which give an ionisation energy resolution of
 around 20\%, and a scintillation light energy resolution in the range of
 10-20\%\cite{Abi:2020evt}. Therefore, if the tail at high energy can be
