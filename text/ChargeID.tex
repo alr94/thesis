@@ -77,7 +77,8 @@ which a small input image is made for each reconstructed hit. This approach was
 chosen based on the CPU time and memory requirements for the CNN, when run 
 during the \protodune{} reconstruction chain. Another approach could be to 
 create a single large input image for each wire plane and perform semantic 
-segmentation, which would trade a higher memory usage for a lower CPU time.
+segmentation, however, this would trade a higher memory usage for a lower CPU 
+time.
 
 An input image was produced for every reconstructed hit, with the hit being 
 classified at the centre of the image. These images were produced from the 
@@ -267,7 +268,7 @@ network, this is highlighted in Figure \ref{fig:training}.
 	\label{fig:training}
 \end{figure}
 
-During training, the validation loss remains stable over a number of epochs,
+During training, the validation loss remained stable over a number of epochs,
 which suggests that the dropout algorithm was successful in preventing 
 over--fitting. After training, the networks performance was verified against 
 the test set, which found that the test set losses were comparable with the 
@@ -293,8 +294,8 @@ smaller for all hits tested. As such,
 	\mbox{TrackScore} \approx 1 - \mbox{ShowerScore},
 \end{equation*}
 which means that the results of the analysis of the shower score are valid for
-the analysis of the track score, therefore, the following analysis will focus on
-the shower score.
+the analysis of the track score, therefore, the following analysis will only 
+focus on the shower score.
 
 The shower classification threshold for subsequent algorithms should be tuned on
 a case by case basis, however, for this study a simple optimisation strategy 
@@ -492,7 +493,7 @@ For validation on real \protodune{} data three approaches were used: visual
 validation with event scans, comparisons of the overall score distributions, 
 and the comparison of score distributions for different particle species. Data 
 from \protodune{} runs 5387 and 5809 were used for these validations; the data 
-for these run was taken under stable operating conditions, with an average 
+for these runs were taken under stable operating conditions, with an average 
 beam energy of 1 GeV. The beam composition in run 5387 was tuned to contain
 mostly hadrons, while in run 5809 it was tuned to have an enhanced electron
 component. The same operating conditions were used for the simulated data, in
@@ -694,7 +695,8 @@ between data and simulation for all particle species, is the tendency for
 Pandora to cluster more hits into each reconstructed particle in data than it 
 does in simulation. This can be seen in the bins at the two ends of the 
 distributions, which contain the majority of the hits, and consistently have 
-more entries in data than they do in simulation.
+more entries in data than they do in simulation. This difference is the result
+of the Pandora reconstruction algorithms, but it is not yet fully understood.
 
 The cosmic--ray sample was selected based on the cosmic--ray part of the
 Pandora reconstruction chain, discussed in Chapter \ref{ch:protodune}. Any
@@ -729,9 +731,9 @@ In practice, the CNN is used to select events based on choosing hits with
 CNN scores above a threshold. This could be based on an average over a number 
 of hits, on a hit--by--hit basis, or a more complicated algorithm. For the 
 purposes of understanding the approximate errors involved in selecting hits 
-with the CNN, a hit--by--hit algorithm was considered. The uncertainties 
-involved with selecting hits in this way was evaluated by considering the 
-fraction of hits selected into the sample given a selection threshold. 
+with the CNN, a hit--by--hit algorithm was used. The uncertainties involved 
+with selecting hits in this way was evaluated by considering the fraction of 
+hits selected into the sample given a selection threshold. 
 
 Table \ref{tab:frac_selected} lists the fraction of individual hits selected 
 into the appropriate category for each sample in data and simulation.  The 

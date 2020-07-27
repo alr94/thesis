@@ -48,7 +48,8 @@ at Sanford Underground Research Facility (SURF) in South Dakota, approximately
 1300 km away from the neutrino source. The experimental setup is shown in Figure
 \ref{fig:dune_baseline}. 
 
-The DUNE experiment identifies three primary scientific goals\cite{Abi:2020evt}:
+The DUNE experiment identifies three primary scientific goals, which are stated
+in the DUNE technical design report\cite{Abi:2020evt}:
 \begin{itemize}
 	\item Perform a comprehensive programme of neutrino oscillation measurements
 		including measurements of \dcp{}, neutrino mass ordering, and $\theta_{23}$.
@@ -56,8 +57,8 @@ The DUNE experiment identifies three primary scientific goals\cite{Abi:2020evt}:
 	\item Measure neutrinos from a core--collapse supernova, if one occurs within 
 		our galaxy during the lifetime of the experiment.
 \end{itemize}
-In addition, the experiment hopes to fulfill a significant programme of
-secondary science goals:
+In addition, the technical design report also highlights a significant programme
+of secondary science goals:
 \begin{itemize}
 	\item Other accelerator based neutrino physics, such as non--standard
 		interactions, sterile neutrinos, and CPT violation.
@@ -246,7 +247,7 @@ of wires on either side of the APA, as shown in Figure \ref{fig:pdsp_tpc}.
 Three types of photon detector module were tested in \protodune{}, two very 
 similar module designs based on coupling silicon photomultipliers to 
 wavelength shifting bars, and a third novel design known as the ARAPUCA light 
-trap. The operating principles of the two designs are illustrated in Figure 
+trap. The operating principles of these modules are illustrated in Figure 
 \ref{fig:pdsp_pd}.
 
 \begin{figure}
@@ -277,36 +278,35 @@ trap. The operating principles of the two designs are illustrated in Figure
 \end{figure}
 
 The majority of the photon detector modules in \protodune{} consist of 
-wavelength shifting bars coupled to silicon photomultipliers (SiPM). 
-Tetraphenyl-butadiene (TPB) is used to shift the wavelength of the light 
-from ultra--violet to blue before the light is transmitted down the waveguide to
-the SiPMs. The main difference between the two nominal designs is in the 
-wavelength of transmission within the waveguide. In one case the wavelength is 
-transmitted at the blue wavelength produced by the TPB, in the other case the 
-blue light from the TPB is first absorbed in the waveguide which then produces 
-green light which is transmitted down the waveguide.
+wavelength shifting bars coupled to silicon photomultipliers (SiPM). There are 
+two very similar designs of this style, which differ only in terms of the 
+wavelength used to transmit the light within the waveguide. In both designs, 
+tetraphenyl-butadiene (TPB) is used to shift the wavelength of the light from 
+ultra--violet to blue before is enters the waveguide. In one case the 
+light is transmitted at the blue wavelength produced by the TPB, whereas 
+in the other, the blue light from the TPB is absorbed in the waveguide, followed
+by the emission of green light, which is transmitted down the waveguide.
 
-A small number of the photon detector modules in \protodune{} feature a novel 
-design known as an ARAPUCA light trap. In this design the photons are trapped 
-in a small box through a sequence of wavelength shifting and optical 
-filtering, thereby significantly increasing the photon detection 
-efficiency\cite{Segreto:2018jdx}. An ARAPUCA light trap consists of a box 
-which is high reflective on the inside. On one side of the box is 
-the filtering window, and on the other a SiPM. Incoming ultra--violet photons 
-are shifted to the blue spectrum before passing through a dichroic filter 
-which has a tunable wavelength cut--off, after which it transitions from being 
-transparent to reflective. After passing through the filter the photons are 
-shifted again, this time from blue to green, such that the filter becomes
-reflective to them. Consequently green photons can be trapped within the 
-ARAPUCA until they come into contact with the SiPM, this provides increased 
-photon detection efficiency. Each ARAPUCA photon detector module in 
-\protodune{} features an array of these traps arranged in a line across the 
-width of an APA. The ARAPUCA modules contain 12 ARAPUCA light traps, these are 
-constructed from 16 so called cells, which are 5 cm $\times$ 5 cm $\times$ 1 
-cm boxes.  Half of the light traps are made of one cell and the others are 
-made of two cells joined together. Regardless of the number of cells, each 
-ARAPUCA trap is read out by a single SiPM, making for 12 SiPMs per ARAPUCA 
-module.
+The ARAPUCA is a novel design and only used in a small number of photon detector
+modules in \protodune{}. In this design the photons are trapped in a small 
+box through a sequence of wavelength shifting and optical filtering, thereby 
+significantly increasing the photon detection efficiency\cite{Segreto:2018jdx}. 
+An ARAPUCA light trap consists of a box which is highly reflective on the 
+inside. On one side of the box is the filtering window, and on the other a 
+SiPM. Incoming ultra--violet photons are shifted to the blue spectrum before 
+passing through a dichroic filter which has a tunable wavelength cut--off, 
+after which it transitions from being transparent to reflective. After passing 
+through the filter the photons are shifted again, this time from blue to 
+green, such that the filter becomes reflective to them. Consequently green 
+photons can be trapped within the ARAPUCA until they come into contact with 
+the SiPM, this provides increased photon detection efficiency. Each ARAPUCA 
+photon detector module in \protodune{} features an array of these traps 
+arranged in a line across the width of an APA. The ARAPUCA modules contain 12 
+ARAPUCA light traps, these are constructed from 16 so called cells, which are 
+5 cm $\times$ 5 cm $\times$ 1 cm boxes.  Half of the light traps are made of 
+one cell and the others are made of two cells joined together. Regardless of 
+the number of cells, each ARAPUCA trap is read out by a single SiPM, making 
+for 12 SiPMs per ARAPUCA module.
 
 Unlike with the TPC electronics, there are no front--end electronics in the LAr
 volume for the PDS, the unamplified analogue signals are transmitted out of the
@@ -1081,9 +1081,9 @@ were continually overwritten on a time schedule which was decoupled from the
 \protodune{} running schedule, the OM was responsible for collating the output 
 of these plots in sync with the \protodune{} run schedule, so that the 
 collated beam information for each run could be monitored. After collation the 
-beam instrumentation plots were merged with the rest of the OM plots. The beam 
-instrumentation plots included momentum, and time of flight, examples of which 
-are shown in Figure \ref{fig:beam_OM}.
+beam instrumentation plots, which included momentum and time of flight, examples
+of which are shown in Figure \ref{fig:beam_OM}, were merged with the rest of 
+the OM plots. 
 
 \begin{figure}
 
@@ -1298,8 +1298,8 @@ tackle this problem, in this system the OM and event builders can
 simultaneously process the data as it leaves the detector. This would reduce 
 the latency in the OM, by allowing it to analyse the data promptly as it is 
 read out by the detector. Unfortunately, this system wasn't successfully 
-implemented during the first beam run of \protodune{}, but it remains as a 
-possible improvement to the monitoring system for any future \protodune{} 
+implemented during the first 2018 beam runs of \protodune{}, but it remains as 
+a possible improvement to the monitoring system for any future \protodune{} 
 runs, and for the DUNE Far Detector monitoring.
 
 Additional improvements could be made to the latency, by using different 
@@ -1328,5 +1328,5 @@ from January 2018 to January 2019, these were:
 		other DAQ software.
 \end{itemize}
 In addition, I worked as the on--call expert on the online monitoring system
-during the \protodune{} beam run in 2018. I have remained involved in the OM 
+during the \protodune{} beam run in 2018. I have remained involved with the OM 
 since, mostly for small maintenance tasks. 

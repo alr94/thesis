@@ -12,11 +12,11 @@ the expected output, and the level of supervision. The first distinction is
 based on the nature of the output distribution expected from the network; 
 regression algorithms are designed to predict the outputs of a continuous 
 function, whereas classification algorithms aim to separate data into groups. 
-The distinction between supervised and unsupervised algorithms is based on the 
-inputs used during training. In a supervised algorithm the true output is 
-known, and the network's goal is to predict the true output, while in an 
-unsupervised algorithm the output is unknown, and the networks goal is to 
-extract meaningful structure from the data\cite{Lecun2015}.
+The second distinction, between supervised and unsupervised algorithms, is 
+based on the inputs used during training. In a supervised algorithm the true 
+output is known, and the network's goal is to predict the true output, while 
+in an unsupervised algorithm the output is unknown, and the networks goal is 
+to extract meaningful structure from the data\cite{Lecun2015}.
 
 Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two 
 examples of the application of Neural networks (NN) for event reconstruction 
@@ -120,13 +120,13 @@ layers\cite{Reed1999, Lecun2015}.
 
 \subsection{Convolutional Neural Networks}
 The convolutional neural network (CNN)\cite{Jackel2008, Szegedy2015, 5537907}, 
-is an extension of the MLP with considerable success, particularly in image 
-classification tasks. These architectures address some of the drawbacks of the
-traditional MLP, particularly when evaluating data with a high dimensional 
-input. When working with high dimensional inputs, networks with a fully 
-connected network architecture tend to have a large number of neurons and high 
-computational cost. In addition, for spatially correlated data, such an 
-architecture does not take into account the local spatial structure of the 
+is an extension of the MLP, which has had considerable success particularly in 
+image classification tasks. These architectures address some of the drawbacks 
+of the traditional MLP, particularly when evaluating data with a high 
+dimensional input. When working with high dimensional inputs, networks with a 
+fully connected network architecture tend to have a large number of neurons 
+and high computational cost. In addition, for spatially correlated data, such 
+an architecture does not take into account the local spatial structure of the 
 data, instead focussing on all the data at once. A CNN attempts to resolve 
 these issues by exploiting the local spatial structure of the data.
 

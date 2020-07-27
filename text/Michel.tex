@@ -655,9 +655,13 @@ under \protodune{} operating conditions, which gives an average value of 0.69.
 
 As a result of the spatially dependent calibration factors, the energy of hits
 can only be accurately reconstructed for events with a reconstructed true
-time. This leads to a significant drop in event selection efficiency, which is
-due to the fact that only 15\% of cosmic--ray tracks have a reconstructed true
-time in simulation, and only 1\% in data.
+time, which means that the tracks needs to have been stitched by the track
+stitching algorithm described in Section \ref{sec:reconstruction}. This 
+algorithm has a low efficiency due to the fact that only cathode crossing 
+tracks can be used, and has a different efficiency in data and simulation due 
+to differences in the alignment properties of track segments. The overall 
+efficiency of the track stitching algorithm is around 15\% in simulation, and 
+only 4\% in data.
 
 \begin{figure}
 	\centering
@@ -818,7 +822,7 @@ The ionisation energy resolution is made up of a combination of the hit--by--hit
 energy resolution, and the spread introduced due to imperfect hit tagging. The
 contribution from the hit--by--hit energy resolution can be estimated by
 considering the fractional energy difference in the case of perfect hit tagging,
-which sums up the reconstructed energy of all the true Michel electron hits in
+which sums the reconstructed energy of all the true Michel electron hits in
 the image. The sum over the hits in each image is considered because this
 allows the error in the hit--by--hit recombination factor, which arises due to
 the use of an average recombination factor during reconstruction, to be
@@ -861,8 +865,8 @@ Michel electron reconstruction\cite{Amoruso:2003sw,Foreman_2016}, however,
 LArIAT used the scintillation light for reconstruction, and ICARUS is deep 
 underground and, therefore, has significantly less backgrounds.
 
-The closest comparison for Michel electron energy reconstruction comes from the
-MicroBooNE LArTPC; both MicroBooNE and \protodune{} are surface level TPCs, and
+The MicroBooNE experiment gives the closest comparison for Michel electron
+reconstruction, as both MicroBooNE and \protodune{} are surface level TPCs, and
 they both use ionisation energy for Michel electron reconstruction. In
 MicroBooNE, the ionisation energy resolution for Michel electrons was found to
 be between 15--25\% in the 0--30 MeV region\cite{Acciarri:2017sjy}. In this region
