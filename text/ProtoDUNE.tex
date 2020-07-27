@@ -14,14 +14,16 @@ of the DUNE experiment. This will be followed by a discussion of the main
 elements of the \protodune{} detector systems and the H4 beamline, in Sections 
 \ref{sec:pdsp_detector} and \ref{sec:h4} respectively. The tagging of 
 cosmic--ray muons for calibration is done by the Cosmic--Ray Tagger (CRT), 
-which will be discussed in Section \ref{sec:pdsp_cosmic}. Sections 
-\ref{sec:simulation} and \ref{sec:reconstruction} will then discuss the 
-simulation and reconstruction of \protodune{} data. Finally Section 
-\ref{sec:pdsp_om} will cover details of the online monitoring system in 
-\protodune{}. During my time at CERN I was the primary developer and expert on
-the \protodune{} online monitoring system. The development and maintenance of 
-this system represents a significant body of work over a 12 month period, as 
-well as ongoing maintenance work throughout the following 2 years.
+which will be discussed in Section \ref{sec:pdsp_cosmic}. The data acquisition
+system responsible for handling the data from each detector component will be
+discussed in Section \ref{sec:pdsp_daq}. Sections \ref{sec:simulation} and 
+\ref{sec:reconstruction} will then discuss the simulation and reconstruction 
+of \protodune{} data. Finally Section \ref{sec:pdsp_om} will cover details of 
+the online monitoring system in \protodune{}. During my time at CERN I was the 
+primary developer and expert on the \protodune{} online monitoring system. The 
+development and maintenance of this system represents a significant body of 
+work over a 12 month period, as well as ongoing maintenance work throughout 
+the following 2 years.
 
 \section{\protodune{} in the Context of DUNE} \label{sec:pdsp_dune}
 
@@ -121,7 +123,7 @@ interactions within the readout window. The true time, often referred to as
 the $t_0$, of the interactions in the event cannot be accurately reconstructed 
 from the ionisation signals alone; by utilising the much faster scintillation 
 signals, the time of interactions can be calculated with much higher 
-precision.  This data can be combined with the arrival time of drifting 
+precision. This data can be combined with the arrival time of drifting 
 electrons to reconstruct the true drift distance. Without an accurate $t_0$, 
 the reconstructed drift distance will be incorrect, and as a result, so too
 would the predicted charge attenuation.
@@ -144,7 +146,7 @@ Detector is designed such that each module is built up of a number of
 identical components. \protodune{} was designed to prototype the design of 
 many of these components at a 1:1 scale, including the anode planes, cathode 
 plane, and photon detectors. The \protodune{} experiment has four primary 
-goals, as outlined in the Technical Design Report\cite{Abi:2017aow}:
+goals, as outlined in the technical design report\cite{Abi:2017aow}:
 \begin{itemize}
 	\item Prototype the production and installation procedures for the
 		single--phase Far Detector design.
@@ -237,7 +239,7 @@ the inclusion of the beam plug. This is necessary to minimize interactions
 between the charged particle test beam and the cryostat before the beam enters 
 the active region of the detector. A cylindrical beam plug, which contains 
 nitrogen gas, penetrates from the cryostat wall into the field cage at 
-location of the incoming test beam. 
+the location of the incoming test beam. 
 
 \subsection{The Photon Detection System}
 
@@ -282,7 +284,7 @@ wavelength shifting bars coupled to silicon photomultipliers (SiPM). There are
 two very similar designs of this style, which differ only in terms of the 
 wavelength used to transmit the light within the waveguide. In both designs, 
 tetraphenyl-butadiene (TPB) is used to shift the wavelength of the light from 
-ultra--violet to blue before is enters the waveguide. In one case the 
+ultra--violet to blue before it enters the waveguide. In one case the 
 light is transmitted at the blue wavelength produced by the TPB, whereas 
 in the other, the blue light from the TPB is absorbed in the waveguide, followed
 by the emission of green light, which is transmitted down the waveguide.
@@ -292,8 +294,8 @@ modules in \protodune{}. In this design the photons are trapped in a small
 box through a sequence of wavelength shifting and optical filtering, thereby 
 significantly increasing the photon detection efficiency\cite{Segreto:2018jdx}. 
 An ARAPUCA light trap consists of a box which is highly reflective on the 
-inside. On one side of the box is the filtering window, and on the other a 
-SiPM. Incoming ultra--violet photons are shifted to the blue spectrum before 
+inside. On one side of the box is the filtering window, and on another a SiPM. 
+Incoming ultra--violet photons are shifted to the blue spectrum before 
 passing through a dichroic filter which has a tunable wavelength cut--off, 
 after which it transitions from being transparent to reflective. After passing 
 through the filter the photons are shifted again, this time from blue to 
@@ -303,7 +305,7 @@ the SiPM, this provides increased photon detection efficiency. Each ARAPUCA
 photon detector module in \protodune{} features an array of these traps 
 arranged in a line across the width of an APA. The ARAPUCA modules contain 12 
 ARAPUCA light traps, these are constructed from 16 so called cells, which are 
-5 cm $\times$ 5 cm $\times$ 1 cm boxes.  Half of the light traps are made of 
+5 cm $\times$ 5 cm $\times$ 1 cm boxes. Half of the light traps are made of 
 one cell and the others are made of two cells joined together. Regardless of 
 the number of cells, each ARAPUCA trap is read out by a single SiPM, making 
 for 12 SiPMs per ARAPUCA module.
@@ -328,7 +330,7 @@ and composition of the beam can be varied, several runs were taken across a
 range of particle compositions and beam momenta.
 
 The H4 beamline is a tertiary beamline, which is produced when a secondary beam
-from the T2 primary target interacts with a target. Particles from the 
+from the T2 primary target interacts with another target. Particles from the 
 secondary target are selected based on momentum and charge before travelling 
 down the H4 beamline to \protodune{}. A schematic of the beamline 
 instrumentation (BI) and magnets in the H4 beamline is given in Figure 
@@ -418,7 +420,7 @@ As a surface level detector with no overburden \protodune{} measures a
 significant rate, on the order of 20 kHz, of cosmic--ray muons. This corresponds
 to an average of 60 muons per 3 ms readout window. These muons provide a 
 useful source of calibration data in the form of long tracks and stopping 
-muons.  The cosmic--ray tagger (CRT) in \protodune{} was installed on the 
+muons. The cosmic--ray tagger (CRT) in \protodune{} was installed on the 
 upstream and downstream faces of the TPC, to trigger the detector for 
 cosmic--ray muons which travel parallel to the anode plane. In addition the 
 CRT, can provide accurate timing information for any tracks which are
@@ -466,7 +468,7 @@ reconstructed.
 
 \end{figure}
 
-\section{The Data Acquisition System}
+\section{The Data Acquisition System} \label{sec:pdsp_daq}
 
 Data from the TPC, PDS, and CRT in \protodune{} are collated by the data 
 acquisition system (DAQ). The DAQ distributes triggers, compresses and packages 
@@ -475,7 +477,7 @@ An overview of the \protodune{} DAQ system is seen in Figure
 \ref{fig:pdsp_daq}; there are four primary data flows in the system: TPC, PDS, 
 CRT, and BI. Timing and triggering signals are distributed to the detector 
 components by the timing board, which maintains a 50 MHz clock and receives 
-$\sim 40 \mbox{Hz}$ of triggers from the central trigger board (CTB) based on 
+$\sim 40 \mbox{Hz}$ of triggers from the central trigger board (CTB), based on 
 data from the BI and CRT\cite{Abi:2017aow}.
 
 \begin{figure}
@@ -535,8 +537,8 @@ specific code.
 Simulation in LArSoft is broken down into three sequential stages: generation,
 propagation, and detector simulation. The initial state particles are produced
 in the generation step, the propagation and interaction of these particles is 
-simulated during the propagation step and finally the transport of energy 
-depositions, and simulation of detector effects are handled by the detector 
+simulated during the propagation step, and finally the transport of energy 
+depositions and simulation of detector effects are handled by the detector 
 simulation phase.
 
 As a surface based detector in a test beam, \protodune{} is subject to three
@@ -545,7 +547,7 @@ decays. The beam particle flux in the vicinity of \protodune{} was provided by
 simulations of the H4 beamline\cite{Booth:2019brj} based on two simulation 
 frameworks, G4beamline\cite{g4beamline} and FLUKA\cite{BOHLEN2014211}. The flux
 of cosmic--ray particles in \protodune{} is simulated using 
-CORSIKA\cite{Heck:1998vt}.  Finally, low energy radiological backgrounds in 
+CORSIKA\cite{Heck:1998vt}. Finally, low energy radiological backgrounds in 
 liquid argon are simulated, these include $^{39}\mbox{Ar,} ^ {85}\mbox{Kr, and }
 ^{222}\mbox{Rn}$.
 
@@ -639,7 +641,7 @@ Once the deconvoluted waveforms have been calculated, regions of interest (ROI)
 are defined, these are regions of high amplitude in which charge deposition is
 likely to have occurred. Reconstructed hits are found within each region of
 interest by fitting gaussian peaks to the pulses within the region; most hits
-consist of a single gaussian peak, however in busy regions of the detector
+consist of a single gaussian peak, however in busy regions of the detector,
 multiple gaussian peaks may be used to fit a single pulse. Each reconstructed
 hit will have an associated peak time, width, and integral, these objects form
 the basic input for the subsequent pattern recognition algorithms. An example of
@@ -679,10 +681,10 @@ predict the true interaction time for certain tracks during this stage. Any
 track which crosses either a CPA or APA will produce track segments on either 
 side of the boundary. These segments point in the same direction, but will 
 have been displaced from each other in the drift direction based on the 
-arrival time of the corresponding particle. The $t_0$ for that track is equal 
-to half the time shift required to realign the two segments into a continuous 
-track, a visual representation of this algorithm is show in Figure 
-\ref{fig:track_stitching}.  After the cosmic pass, any clear cosmic--ray 
+arrival time of the corresponding particle. The true time for that track is 
+equal to half the time shift required to realign the two segments into a 
+continuous track, a visual representation of this algorithm is show in Figure 
+\ref{fig:track_stitching}. After the cosmic pass, any clear cosmic--ray 
 candidates are removed under the following conditions\cite{protoduneperf}:
 \begin{itemize}
 	\item The particle travels through both the top and bottom of the detector.
@@ -748,9 +750,9 @@ $Q$, and energy, $E$, which measure the amount of energy deposited by the
 charged particle in that small energy depositon. The measured charge in ADC 
 depends on the spatial location of the hit within the TPC, as well as the 
 local ionisation density, or $dQ/dx$, in the region of the associated energy 
-deposition.  Therefore, to convert the measured charge of each hit into a 
+deposition. Therefore, to convert the measured charge of each hit into a 
 reconstructed energy, a number of spatial and $dQ/dx$ dependent factors need 
-to be taken into account.  The reconstructed charge of each hit is given by 
+to be taken into account. The reconstructed charge of each hit is given by 
 the integrated area under the gaussian fit to that hit. The $dx$ for each hit 
 varies based on the direction of the track with respect to the wires, it is 
 equal to the wire spacing divided by the sine of the angle between the wire 
@@ -838,8 +840,8 @@ triggered. It consists of three main components:
 An overview of the data flow in the OM is shown in Figure \ref{fig:om_flow}. 
 Data from the detector is first filtered before being run in any OM processes. 
 The data which is passed to the OM processes is then split up and decoded by 
-the relevant \emph{RawDecoder}, which reformats the data ready for analysis. A 
-number of \emph{Analyser Modules} then make use of this data to make plots, 
+the relevant RawDecoder, which reformats the data ready for analysis. A 
+number of Analyser Modules then make use of this data to make plots, 
 which are merged, along with plots from external systems, and sent to a web 
 interface to be displayed in the control room. The following sections will 
 provide a brief summary of these stages, as well as examples of the plots 
@@ -877,11 +879,11 @@ into each process separately.
 
 After filtering the events are ready to be processed. The data coming into the
 OM system is in its raw form. It arrives in small pieces known as
-\emph{Fragments}, which have to be decoded before they can be used by the OM. 
+Fragments, which have to be decoded before they can be used by the OM. 
 The RawDecoders are responsible for interpreting the headers and data streams 
 from each detector component, and restructuring the data ready for processing. 
 The details of the decoding vary based on the readout system under 
-consideration.  Each readout system defines a class, which details the 
+consideration. Each readout system defines a class, which details the 
 contents of each Fragment. The RawDecoders use the contents of this class to 
 decode the Fragments in order to prepare the data for 
 processing.
@@ -975,10 +977,10 @@ continuous image were produced. The event displays took the longest time to
 process out of all the plots in the OM, therefore, only one set of event 
 displays was made per OM output file. To maximise the number of beam particles 
 in the event displays, the trigger information was included during 
-processing.  An example of a beam--window event display is shown in Figure 
+processing. An example of a beam--window event display is shown in Figure 
 \ref{fig:beam_evd}; the timing synchronisation issue mentioned previously is 
 visible here, this issue affects a single FEMB and is mitigated during offline 
-reconstruction.  
+reconstruction.
 
 \begin{figure}
 

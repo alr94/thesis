@@ -410,7 +410,7 @@ first half of the network, maximum pooling is used to downsample the size of
 the feature maps, which reduce by a factor of two in each max pooling layer.
 Then, during the second half of the network, the up--sampling layers increase
 the resolution of the feature maps by a factor of two, such that the output of
-the network has the same resolution as the input.  The residual connections
+the network has the same resolution as the input. The residual connections
 from early layers, are combined with the up--sampled feature maps, to allow
 the network to reconstruct the location of the learned features. As with the
 CNN from the previous chapter, both dropout and early--stopping are
@@ -427,7 +427,7 @@ Michel electron hit, and 0 otherwise. Only data from the collection plane is
 used, because there is a higher signal to noise ratio on these wires.
 
 The $F_\beta$ metric\cite{VanRijsbergenC.J.1975Ir} was used as the loss
-function for the U--ResNet.  This loss is a generalised version of the $F_1$
+function for the U--ResNet. This loss is a generalised version of the $F_1$
 metric discussed in Chapter \ref{ch:chargeid}, which allows for the relative
 importance of precision and recall to be tuned,
 \begin{equation*}
@@ -475,7 +475,7 @@ was performed.
 	[U--ResNet CNN architecture used to select Michel electron ionisation energy
 	deposits.]
 	{U--ResNet CNN architecture used to select Michel electron ionisation energy
-	deposits.  Visualisation adapted from the output of the Netron neural network
+	deposits. Visualisation adapted from the output of the Netron neural network
 	viewer\cite{netron}.}
 
 	\label{fig:unet_arch}
@@ -492,7 +492,7 @@ As with the hit tagging CNN discussed in Chapter \ref{ch:chargeid}, the
 training and validation scores were monitored throughout training using 
 TensorBoard. The weights of the network were saved after each epoch, and the 
 final weights were those from one epoch before the validation score first 
-increased.  Figure \ref{fig:unet_loss} shows the evolution of the loss over 
+increased. Figure \ref{fig:unet_loss} shows the evolution of the loss over 
 time, along with a vertical line representing the loss at which the weights 
 were chosen.
 \begin{figure}
@@ -857,7 +857,7 @@ In order to put the performance of the Michel electron energy
 reconstruction into context, it is useful to compare the results presented
 here with those from other LArTPC experiments. The comparisons here are
 restricted to the 0--30 MeV region, recognising that improvements are still 
-required in order to reduce the tail for higher energy ionisation energies.  
+required in order to reduce the tail for higher energy ionisation energies.
 The closest comparison is against the MicroBooNE experiment, which is a 
 surface level LArTPC that used ionisation energy for the 
 reconstruction\cite{Acciarri:2017sjy}. LArIAT and ICARUS have also performed 

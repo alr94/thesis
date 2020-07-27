@@ -33,7 +33,7 @@ with connections between those nodes. The set of nodes and connections is
 often referred to as a graph or architecture. The nodes in the graph take the 
 form of artificial neurons, which pass a number of inputs through an 
 activation function to produce a single output, as depicted in Figure 
-\ref{fig:neuron}.  The output of each neuron is either distributed to 
+\ref{fig:neuron}. The output of each neuron is either distributed to 
 subsequent neurons in the network, or it is part of the output of the network. 
 \begin{figure}
 
@@ -196,7 +196,7 @@ network. Two common pooling algorithms are max pooling and average pooling; in
 max pooling the maximum value from within the downsampling region is used, 
 whereas average pooling uses the average value from the region.
 
-\medskip\noindent
+\bigskip\noindent
 While convolutions are able to extract features from the data, they typically
 are not able to make predictions in the desired format for classification tasks.
 Therefore, after convolutions, data is typically flattened and passed through
@@ -256,7 +256,7 @@ evaluations and matrix multiplication; for a network with $n$ layers,
 \end{equation*}
 where $g$ is the output of the network, $x$ is the input, $f$ are the 
 activation functions for each layer, and $W$ are the weights for each layer. 
-The loss of the network is given by the loss function, L,  evaluated on the 
+The loss of the network is given by the loss function, L, evaluated on the 
 output of the network and the ground truth, y,
 \begin{equation*}
 	L(y, g(x)).
@@ -359,7 +359,7 @@ iterations, and corresponds to one cycle through the full training dataset,
 such that the network has been trained on every training example exactly 
 once.
 
-\medskip\noindent
+\bigskip\noindent
 The rate of learning in the backpropagation algorithm is dependent on the
 derivative of the activation function, therefore, the choice of activation
 function has an impact on learning. There are two important factors when
@@ -385,7 +385,7 @@ units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 Regularisation refers to a set of techniques, which are used to prevent
 over--fitting during the training of a NN. Over--fitting is the tendency
 of models with a high number of parameters to produce overly complex models,
-which fit the training data well but do not generalise to new data.  
+which fit the training data well but do not generalise to new data.
 Regularisation ensures that the trained network can generalise well beyond the 
 training data. A number of regularisation techniques can be used, such as 
 applying penalty terms to the loss function, which are proportional to the 
@@ -398,10 +398,10 @@ The dropout algorithm sets a random subset of weights in each layer to zero for
 each training iteration. Each weight has a probability, $p$, of being set to 
 zero for each iteration. The product of the remaining weights is scaled up by 
 a factor of $1/p$, which ensures that the size of the input to the activation 
-function remains reasonably consistent.  This reduced network is then trained 
+function remains reasonably consistent. This reduced network is then trained 
 using the backpropagation algorithm, and the non--zero weights are updated. 
 During the next iteration, the set of non--zero weights is reselected, and a 
-new reduced network is trained.  Finally, after training, the final weights of 
+new reduced network is trained. Finally, after training, the final weights of 
 the network are multiplied by $p$ to give the so--called model average of the 
 reduced networks. The dropout algorithm with $p=0.5$, has proven to provide 
 robust regularisation, and is a popular technique in the field\cite{Lecun2015}.

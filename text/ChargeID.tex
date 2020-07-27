@@ -23,7 +23,7 @@ decision making during event reconstruction.
 This chapter will describe an approach to hit classification in \protodune{} 
 using machine learning techniques. Section \ref{hit-id} will detail an 
 approach to hit classification in LArTPCs based on identifying the source of 
-energy depositions with a convolutional neural network.  The performance of 
+energy depositions with a convolutional neural network. The performance of 
 this approach will then be analysed with ProtoDUNE--SP simulation and data in 
 sections \ref{cnn-perf-sim} and \ref{cnn-perf-data} respectively. Finally,
 Section \ref{cnn-appl} will briefly highlight some of the current applications 
@@ -95,7 +95,7 @@ the images and the detector readout.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/patch_zoom.pdf}  
+	\includegraphics[width=\textwidth]{figures/patch_zoom.pdf}
 	\caption
 	[Example CNN input images for the track, shower, and Michel classes.]
 	{Example CNN input images for the track, shower, and Michel classes. The 
@@ -190,7 +190,7 @@ use the leaky ReLU activation function. After the second dense layer the
 network is split into two branches in order to make it's prediction. The first 
 branch returns the prediction for the TSE categories, and the second branch 
 for the Michel electron category. The first branch uses a softmax activation 
-function, which ensures that the scores for the TSE categories sum to one.  
+function, which ensures that the scores for the TSE categories sum to one.
 The second branch uses a sigmoid activation function, which ensures that the 
 Michel electron scores are bounded between zero and one. The choice of 
 activation functions in the output layers allows for a pseudo--probabilistic 
@@ -249,7 +249,7 @@ losses for each branch and the total loss were monitored for the training
 and validation datasets. The validation loss was calculated once per training
 epoch, and the training loss was averaged at the end of each epoch. The 
 training and validation losses as a function of training epoch are shown in 
-Figure \ref{fig:training}.  The weights of the network were saved at the end 
+Figure \ref{fig:training}. The weights of the network were saved at the end 
 of each epoch, and the final weights were chosen based on the early stopping 
 algorithm discussed in Chapter \ref{ch:ml}, focussing on the TSE branch of the 
 network, this is highlighted in Figure \ref{fig:training}.
@@ -312,7 +312,7 @@ fraction of all true shower hits which were selected as shower hits. The $F_1$
 score was calculated across a range of selection thresholds, this is shown in 
 Figure \ref{fig:show_output}. This score peaks at a threshold of 0.72 where, 
 \begin{equation*} 
-	F_1 = \mbox{purity} = \mbox{efficiency} = 0.863.  
+	F_1 = \mbox{purity} = \mbox{efficiency} = 0.863.
 \end{equation*}
 
 \begin{figure}
@@ -449,7 +449,7 @@ are more often classified as tracks.
 The false--positive rates (FPR) for Pandora and the CNN for each particle 
 species are given in Table \ref{tab:false_pos}, as well as the ratio of Pandora
 to the CNN. The CNN only gives a modest improvement over Pandora for pions, 
-and muons.  However, there is a significant improvement in the false--positive 
+and muons. However, there is a significant improvement in the false--positive 
 rate for electrons, photons, and protons. The biggest improvement is for 
 photons where, for a sample of 694 photons, the CNN has a false--positive rate 
 of zero.
@@ -538,12 +538,12 @@ which impact the input images to the CNN.
 
 In this comparison, and the following beam particle comparisons, a cut is made 
 on the reconstructed charge of each hit. This removes the excess of low 
-charge hits in data, as illustrated in Figure \ref{fig:charge_cuts}.  In 
+charge hits in data, as illustrated in Figure \ref{fig:charge_cuts}. In 
 addition, all hits in the first 45 cm of the APA closest to the beam entry 
 point were removed. This region has a known issue in charge simulation, which 
 can be seen as a discontinuity in the reconstructed charge. This charge 
 discontinuity can be seen in in Figure \ref{fig:90_wires_charge}, which 
-shows the discontinuity for a simulated proton beam sample.  
+shows the discontinuity for a simulated proton beam sample.
 
 \begin{figure}
 
@@ -573,7 +573,7 @@ The overall shower score distribution for data and simulation is shown in
 Figure \ref{fig:cnn_overall_score}, as well as the fractional residuals in 
 each bin. These distributions are normalised by the number of hits, which allows
 the shape of the score distribution in data and simulation to be 
-compared.  Overall there is a good agreement between the data and the 
+compared. Overall there is a good agreement between the data and the 
 simulation, however, the distribution in data has a slightly different shape 
 at low CNN scores. This can be seen in the residuals, which are consistently 
 negative for hits with shower score less than around 0.2.
@@ -726,7 +726,7 @@ cosmic--ray tracks in data than in simulation.
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 
-\medskip\noindent
+\bigskip\noindent
 In practice, the CNN is used to select events based on choosing hits with 
 CNN scores above a threshold. This could be based on an average over a number 
 of hits, on a hit--by--hit basis, or a more complicated algorithm. For the 
@@ -736,9 +736,9 @@ with selecting hits in this way was evaluated by considering the fraction of
 hits selected into the sample given a selection threshold. 
 
 Table \ref{tab:frac_selected} lists the fraction of individual hits selected 
-into the appropriate category for each sample in data and simulation.  The 
+into the appropriate category for each sample in data and simulation. The 
 fractional difference between the numbers in each case is an estimate of the 
-percentage uncertainty associated with this simple selection algorithm.  For 
+percentage uncertainty associated with this simple selection algorithm. For 
 the sample of all hits, the track category was used, and a fractional 
 difference of 1\% was seen. The fractional difference varies depending on the
 particle species, with the largest difference being 3\% for the cosmic--ray 
@@ -791,7 +791,7 @@ network are being incorporated into analyses by other members of the
 		calibration\cite{fabio_muon}.
 \end{itemize}
 
-\medskip
+\bigskip\noindent
 In the neutral pion analysis, the CNN score is being used as part of the 
 sample selection algorithm, which is used to select a sample of events with
 pairs of secondary photons. An example of the CNN shower score distribution for
@@ -804,7 +804,7 @@ developed the neutral pion event selection algorithm in \protodune{}\cite{pi_0}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/cnn_pi_0.pdf}  
+	\includegraphics[width=\textwidth]{figures/cnn_pi_0.pdf}
 	\caption
 	[CNN shower score distribution for secondary particles in neutral pion event
 	selection sample.]
