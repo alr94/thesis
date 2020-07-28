@@ -2,6 +2,7 @@
 
 \minitoc
 
+\noindent
 The correct categorisation of particle interactions in the detector is a major
 problem faced by any particle physics experiment. This typically starts with
 identifying low level features of the interactions, which can then be used to
@@ -329,6 +330,7 @@ Figure \ref{fig:show_output}. This score peaks at a threshold of 0.72 where,
 	\label{fig:show_output}
 \end{figure}
 
+\noindent
 The overall performance of the TSE classifier can also be evaluated with a
 receiver operating characteristic (ROC) curve\cite{Fawcett2006}. The ROC curve
 shows the true--positive rate vs the false--positive rate for the classifier, as
@@ -728,7 +730,6 @@ cosmic--ray tracks in data than in simulation.
 	\label{fig:cosmic_muon_cnn}
 \end{figure}
 
-\bigskip\noindent
 In practice, the CNN is used to select events based on choosing hits with 
 scores above a threshold. This could be based on an average over a number of 
 hits, on a hit--by--hit basis, or a more complicated algorithm. For the purposes
@@ -793,7 +794,7 @@ network are being incorporated into analyses by other members of the
 		calibration\cite{fabio_muon}.
 \end{itemize}
 
-\bigskip\noindent
+\noindent
 In the neutral pion analysis, the CNN score is being used as part of the 
 sample selection algorithm, which is used to select a sample of events with
 pairs of secondary photons. An example of the CNN shower score distribution for

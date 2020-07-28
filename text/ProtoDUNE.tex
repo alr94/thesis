@@ -2,6 +2,7 @@
 
 \minitoc
 
+\noindent
 \protodune{} is one of two prototypes for the DUNE Far Detector modules, which 
 has been operating at the Neutrino Platform at CERN since the summer of 2018. 
 The experiment collected data from a charged particle beam for approximately 3 
@@ -70,6 +71,7 @@ of secondary science goals:
 		Detector.
 \end{itemize}
 
+\noindent
 To achieve these goals, DUNE has opted to base the Near and Far Detector designs
 on the liquid argon time projection chamber (LArTPC) technology. The DUNE
 Far Detector will eventually consist of four LArTPC detectors each with 10 kt 
@@ -139,7 +141,7 @@ extraction field, is applied to extract the ionisation from the liquid into
 the gas before it is amplified and collected on a pair of anode wire 
 planes\cite{Abi:2020wmh}.
 
-\bigskip\noindent
+\subsection{\protodune{} Goals}
 \protodune{} is one of two large scale prototypes for the DUNE Far Detector
 modules, which focusses on the single--phase LArTPC technology. The DUNE Far
 Detector is designed such that each module is built up of a number of 
@@ -170,7 +172,7 @@ H4 beamline. It is a single--phase LArTPC detector with a total liquid argon
 mass of 0.77 kt, making it the largest monolithic single--phase liquid argon TPC
 at the time of writing. The TPC comprises the following major components, which 
 are illustrated in Figure \ref{fig:pdsp_tpc}:
-\begin{itemize}
+\begin{itemize}[noitemsep, topsep=2pt]
 	\item A cathode plane constructed of modular cathode plane assemblies (CPA).
 	\item Two anode planes constructed of modular anode plane assemblies (APA).
 	\item A photon detection system (PDS), which is integrated into the APAs.
@@ -708,6 +710,7 @@ candidates are removed under the following conditions\cite{protoduneperf}:
 	\label{fig:track_stitching}
 \end{figure}
 
+\noindent
 Beam particle reconstruction considers only the hits that were not removed by 
 being labelled as clear cosmic--rays. These hits are formed into 3D slices which
 contain all the hits from a single parent particle and it's daughters. The
@@ -837,6 +840,7 @@ triggered. It consists of three main components:
 	\item A web interface which displays monitoring data.
 \end{itemize}
 
+\noindent
 An overview of the data flow in the OM is shown in Figure \ref{fig:om_flow}. 
 Data from the detector is first filtered before being run in any OM processes. 
 The data which is passed to the OM processes is then split up and decoded by 
@@ -1012,7 +1016,7 @@ monitoring plots are shown in Figure \ref{fig:pds_om}.
 
 	\centering
 
-	\begin{subfigure}[b]{0.8\textwidth}
+	\begin{subfigure}[b]{0.75\textwidth}
 		\centering
 		\vspace{3mm}
 		\includegraphics[width=\textwidth]{figures/pds_fft.pdf}
@@ -1020,7 +1024,7 @@ monitoring plots are shown in Figure \ref{fig:pds_om}.
 		\label{fig:PDS_FFT}
 	\end{subfigure}
 
-	\begin{subfigure}[b]{0.8\textwidth}
+	\begin{subfigure}[b]{0.75\textwidth}
 		\centering
 		\vspace{3mm}
 		\includegraphics[width=\textwidth]{figures/pds_wav.pdf}

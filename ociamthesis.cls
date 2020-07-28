@@ -121,6 +121,7 @@
 % Allows tables to span multiple pages (this package must be called before hyperref)
 
 \usepackage[font=small,labelfont=bf]{caption} 
+\captionsetup{belowskip=0pt}
 % Nicer captions
 
 \usepackage{multicol,multirow,array} 
@@ -152,6 +153,7 @@
 	
 % JEM the following package allows changing spacing in lists (for acknowledgements)
 \usepackage{enumitem}
+\setlist[1]{noitemsep, topsep=2pt}
 
 % JEM the following allows table columns aligned by decimal point
 \usepackage{dcolumn}

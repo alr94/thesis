@@ -2,6 +2,7 @@
 
 \minitoc
 
+\noindent
 Machine learning (ML) is a field of research, which studies algorithms that
 can learn to make predictions from data, i.e. predict a set of output variables,
 given a set of input variables. These algorithms typically take the form of a
@@ -88,6 +89,7 @@ $y$, which is part of the input for the next layer,
 	\left(\mathbf{x}^j\right)_i = y^{i,j} = f \left( a^{i,j} \right).
 \end{equation*}
 
+\noindent
 Some common choices for the activation function are the sigmoid function, the
 hyperbolic tangent, the rectified linear unit (ReLU), and the softmax 
 function\cite{Lecun2015, He2015, Szegedy2015}.
@@ -262,6 +264,7 @@ output of the network and the ground truth, y,
 	L(y, g(x)).
 \end{equation*}
 
+\noindent
 To make accurate predictions with a NN, quantified by the loss function, the
 weights and biases of the network need to be optimised. The backpropagation
 algorithm\cite{Rumelhart1986} is currently the most widely used algorithm for
@@ -304,6 +307,7 @@ known as the error; this term will be discussed shortly. Combining Equations
 	\frac{\partial L}{\partial W^l_{ij}} = \delta^l_j \; x^{l-1}_i.
 \end{equation*}
 
+\noindent
 The value of the error depends on the loss function being used in each 
 particular model. The error can also be shown to have a recursive relationship 
 via the chain rule,
@@ -342,6 +346,7 @@ algorithm is as follows,
 		\ref{eq:delta_w}.
 \end{enumerate}
 
+\noindent
 The backpropagation algorithm is used to calculate the gradients in order to
 adjust weights in a neural network. There are a number of optimisation 
 algorithms for adjusting the weights, such as mini--batch stochastic gradient 
@@ -360,7 +365,7 @@ iterations, and corresponds to one cycle through the full training dataset,
 such that the network has been trained on every training example exactly 
 once.
 
-\bigskip\noindent
+\subsubsection{The Choice of Activation}
 The rate of learning in the backpropagation algorithm is dependent on the
 derivative of the activation function, therefore, the choice of activation
 function has an impact on learning. There are two important factors when
