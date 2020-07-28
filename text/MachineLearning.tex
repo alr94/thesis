@@ -215,7 +215,7 @@ graphical representation of a typical CNN architecture is shown in Figure
 
 \subsection{Residual Neural Networks}
 Adding more layers to a neural network usually improves the performance,
-typically with each subsequent layer the network is able to learn more complex 
+typically with each subsequent layer, the network is able to learn more complex 
 features of the image with which to make it's classification. In fact, adding 
 more layers should never decrease the performance of a network, as the new 
 layers could be set to the identity, which would result in the same output 
@@ -245,8 +245,8 @@ Supervised learning is the process of teaching a neural network to accurately
 predict the correct output, or ground truth, for a given input. The network is 
 optimised by minimising the loss function, which quantifies the difference 
 between the network output and the ground truth. The choice of loss function 
-is dependent on the problem being considered, specific examples will be 
-discussed in subsequent chapters, which will detail the CNN algorithms 
+is dependent on the problem being considered and, therefore, specific examples 
+will be discussed in subsequent chapters, which will detail the CNN algorithms 
 developed as part of this thesis.
 
 The output of a neural network, g(x), is the result of a chain of function 
@@ -277,9 +277,10 @@ $\partial L/\partial W^l_{ ij }$. If the weights are modified with,
 	\Delta W^l_{ ij } = -\eta \frac{\partial L}{\partial W^l_{ ij }},
 	\label{eq:delta_w}
 \end{equation}
-for positive learning rates, $\eta > 0$, this method is guaranteed to reduce 
-the loss for a given input. The backpropagation algorithm provides a means 
-for calculating the derivatives required to adjust the weights in each layer.
+for positive learning rates, $\eta > 0$, the loss will be reduced provided it
+is not already too close to the minimum. The backpropagation algorithm provides 
+a means for calculating the derivatives required to adjust the weights in each 
+layer.
 
 Applying the chain rule to the right hand side of Equation \ref{eq:delta_w},
 \begin{equation}
@@ -348,7 +349,7 @@ descent (SGD)\cite{10.1145/2623330.2623612} and adaptive momentum estimation
 (Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
 important for the discussion in this thesis and, therefore, they will only be 
 mentioned in passing here. A review of gradient descent optimisation 
-algorithms can be found here \cite{ruder2016overview}. 
+algorithms can be found in \cite{ruder2016overview}. 
 
 Some methodologies are common among many optimisation techniques, three 
 important examples are the ideas of mini--batches, training iterations, and 

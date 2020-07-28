@@ -50,7 +50,7 @@ In addition to track and shower objects, Michel electrons are a useful
 calibration sample in LArTPCs. Michel electrons are electrons produced when a 
 muon decays at rest, which have an energy spectrum in the range of 0--50 MeV. 
 As discussed in Chapter \ref{ch:energyloss}, the critical energy for electrons 
-in liquid argon is around 30 MeV, at this point the collection energy deposition 
+in liquid argon is around 30 MeV, at this point the collision energy deposition 
 and the radiative energy deposition are equal. Therefore, Michel electrons 
 have a unique signature in LArTPCs, and they are included as a unique category 
 in the classification algorithm.
@@ -115,7 +115,8 @@ vicinity of charged particles, to increase the training sample for the empty
 category. The truth vectors for different true particle sources are detailed 
 in Table \ref{tab:ground_truth}. These values were chosen based on the typical 
 interaction type in \protodune{} for these particle species, which is based on 
-the electromagnetic energy loss in liquid argon for energies in the GeV range.
+the electromagnetic energy loss in liquid argon for energies in the MeV--GeV 
+range.
 \begin{table}
 	\centering
 	\bgroup
@@ -242,7 +243,7 @@ The CNN was trained using the mini--batch stochastic gradient descent (SGD)
 algorithm, including both the momentum and decay algorithms\cite{Reed1999}. 
 The momentum algorithm reduces the oscillations of the weights during 
 learning, while the decay of the learning rate allows for rapid learning 
-during early stages of SGD, and increases precision as the model converges. 
+during early stages of SGD, and increased precision as the model converges. 
 
 During training the learning metrics were monitored with TensorBoard. The
 losses for each branch and the total loss were monitored for the training
@@ -289,13 +290,14 @@ hits and all other hits is given in Figure \ref{fig:show_output}, where there is
 strong separation between the distributions for the shower and track hits, 
 showing that the network has strong discriminating power. In practice, the 
 empty score of the TSE classifier was found to be on the order of $10^{-9}$ or 
-smaller for all hits tested. As such,
+smaller for all hits tested, as such,
 \begin{equation*}
-	\mbox{TrackScore} \approx 1 - \mbox{ShowerScore},
+	\mbox{TrackScore} \approx 1 - \mbox{ShowerScore}.
 \end{equation*}
-which means that the results of the analysis of the shower score are valid for
-the analysis of the track score, therefore, the following analysis will only 
-focus on the shower score.
+Since the track and shower samples are of similar size, and the scores are
+related in this way, the results of the analysis of track and shower scores 
+give similar results. Therefore, the following analysis will only focus on the 
+shower score.
 
 The shower classification threshold for subsequent algorithms should be tuned on
 a case by case basis, however, for this study a simple optimisation strategy 
@@ -728,12 +730,12 @@ cosmic--ray tracks in data than in simulation.
 
 \bigskip\noindent
 In practice, the CNN is used to select events based on choosing hits with 
-CNN scores above a threshold. This could be based on an average over a number 
-of hits, on a hit--by--hit basis, or a more complicated algorithm. For the 
-purposes of understanding the approximate errors involved in selecting hits 
-with the CNN, a hit--by--hit algorithm was used. The uncertainties involved 
-with selecting hits in this way was evaluated by considering the fraction of 
-hits selected into the sample given a selection threshold. 
+scores above a threshold. This could be based on an average over a number of 
+hits, on a hit--by--hit basis, or a more complicated algorithm. For the purposes
+of understanding the approximate errors involved in selecting hits with the CNN,
+a hit--by--hit algorithm was used. The uncertainties involved with selecting 
+hits in this way were evaluated by considering the fraction of hits selected 
+into the sample given a selection threshold. 
 
 Table \ref{tab:frac_selected} lists the fraction of individual hits selected 
 into the appropriate category for each sample in data and simulation. The 
