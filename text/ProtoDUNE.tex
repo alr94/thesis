@@ -19,8 +19,8 @@ which will be discussed in Section \ref{sec:pdsp_cosmic}. The data acquisition
 system responsible for handling the data from each detector component will be
 discussed in Section \ref{sec:pdsp_daq}. Sections \ref{sec:simulation} and 
 \ref{sec:reconstruction} will then discuss the simulation and reconstruction 
-of \protodune{} data. Finally Section \ref{sec:pdsp_om} will cover details of 
-the online monitoring system in \protodune{}. During my time at CERN I was the 
+of \protodune{} data. Finally, Section \ref{sec:pdsp_om} will cover details of 
+the online monitoring system in \protodune{}. During my time at CERN, I was the 
 primary developer and expert on the \protodune{} online monitoring system. The 
 development and maintenance of this system represents a significant body of 
 work over a 12 month period, as well as ongoing maintenance work throughout 
@@ -74,7 +74,7 @@ of secondary science goals:
 \noindent
 To achieve these goals, DUNE has opted to base the Near and Far Detector designs
 on the liquid argon time projection chamber (LArTPC) technology. The DUNE
-Far Detector will eventually consist of four LArTPC detectors each with 10 kt 
+Far Detector will eventually consist of four LArTPC detectors, each with 10 kt 
 of active liquid argon mass. This technology will have never before been used 
 on this scale and, therefore, there has been a significant ongoing programme 
 of LArTPC research and development, to validate and characterise the performance
@@ -138,7 +138,7 @@ read out on three anode wire planes, although pixel readout systems have also
 been developed\cite{argoncube}. A dual--phase LArTPC contains an additional 
 region of gaseous argon, in which a high electric field, known as the 
 extraction field, is applied to extract the ionisation from the liquid into 
-the gas before it is amplified and collected on a pair of anode wire 
+the gas, before it is amplified and collected on a pair of anode wire 
 planes\cite{Abi:2020wmh}.
 
 \subsection{\protodune{} Goals}
@@ -177,7 +177,7 @@ are illustrated in Figure \ref{fig:pdsp_tpc}:
 	\item Two anode planes constructed of modular anode plane assemblies (APA).
 	\item A photon detection system (PDS), which is integrated into the APAs.
 	\item A field cage, beam plug, and high voltage systems.
-	\item Readout electronics and data acquisition system (DAQ).
+	\item Readout electronics and a data acquisition system (DAQ).
 \end{itemize}
 The detector components are designed to be an almost exact replica of the final 
 single--phase Far Detector modules, but the detector has an overall scaling 
@@ -291,26 +291,26 @@ light is transmitted at the blue wavelength produced by the TPB, whereas
 in the other, the blue light from the TPB is absorbed in the waveguide, followed
 by the emission of green light, which is transmitted down the waveguide.
 
-The ARAPUCA is a novel design and only used in a small number of photon detector
-modules in \protodune{}. In this design the photons are trapped in a small 
-box through a sequence of wavelength shifting and optical filtering, thereby 
-significantly increasing the photon detection efficiency\cite{Segreto:2018jdx}. 
-An ARAPUCA light trap consists of a box which is highly reflective on the 
-inside. On one side of the box is the filtering window, and on another a SiPM. 
-Incoming ultra--violet photons are shifted to the blue spectrum before 
-passing through a dichroic filter which has a tunable wavelength cut--off, 
-after which it transitions from being transparent to reflective. After passing 
-through the filter the photons are shifted again, this time from blue to 
-green, such that the filter becomes reflective to them. Consequently green 
-photons can be trapped within the ARAPUCA until they come into contact with 
-the SiPM, this provides increased photon detection efficiency. Each ARAPUCA 
-photon detector module in \protodune{} features an array of these traps 
-arranged in a line across the width of an APA. The ARAPUCA modules contain 12 
-ARAPUCA light traps, these are constructed from 16 so called cells, which are 
-5 cm $\times$ 5 cm $\times$ 1 cm boxes. Half of the light traps are made of 
-one cell and the others are made of two cells joined together. Regardless of 
-the number of cells, each ARAPUCA trap is read out by a single SiPM, making 
-for 12 SiPMs per ARAPUCA module.
+The ARAPUCA is a novel design, which is only used in a small number of photon 
+detector modules in \protodune{}. In this design the photons are trapped in a 
+small box through a sequence of wavelength shifting and optical filtering, 
+thereby significantly increasing the photon detection 
+efficiency\cite{Segreto:2018jdx}. An ARAPUCA light trap consists of a box 
+which is highly reflective on the inside. On one side of the box is the 
+filtering window, and on another a SiPM. Incoming ultra--violet photons are 
+shifted to the blue spectrum before passing through a dichroic filter, which 
+has a tunable wavelength cut--off, after which it transitions from being 
+transparent to reflective. After passing through the filter the photons are 
+shifted again, this time from blue to green, such that the filter becomes 
+reflective to them. Consequently green photons can be trapped within the 
+ARAPUCA until they come into contact with the SiPM, this provides increased 
+photon detection efficiency. Each ARAPUCA photon detector module in 
+\protodune{} features an array of these traps arranged in a line across the 
+width of an APA. The ARAPUCA modules contain 12 ARAPUCA light traps, these are 
+constructed from 16 so called cells, which are 5 cm $\times$ 5 cm $\times$ 1 
+cm boxes. Half of the light traps are made of one cell and the others are made 
+of two cells joined together. Regardless of the number of cells, each ARAPUCA 
+trap is read out by a single SiPM, making for 12 SiPMs per ARAPUCA module.
 
 Unlike with the TPC electronics, there are no front--end electronics in the LAr
 volume for the PDS, the unamplified analogue signals are transmitted out of the
@@ -327,13 +327,13 @@ SSPs, the PDS data is passed onto the DAQ along with the TPC data.
 The \protodune{} experiment is located at the end of the H4 beamline at CERN,
 the location of the beamline with respect to the detector is illustrated in
 Figure \ref{fig:pdsp_CRT}. The beam has a mixture of particle types including
-hadrons, muons, and electrons, with momenta in the range 0.3--7 GeV. The momenta
-and composition of the beam can be varied, several runs were taken across a 
+hadrons, muons, and electrons, with momenta in the range 0--7 GeV. The momenta
+and composition of the beam can be varied, and several runs were taken across a 
 range of particle compositions and beam momenta.
 
 The H4 beamline is a tertiary beamline, which is produced when a secondary beam
 from the T2 primary target interacts with another target. Particles from the 
-secondary target are selected based on momentum and charge before travelling 
+secondary target are selected, based on momentum and charge, before travelling 
 down the H4 beamline to \protodune{}. A schematic of the beamline 
 instrumentation (BI) and magnets in the H4 beamline is given in Figure 
 \ref{fig:h4_schem}. 
@@ -418,18 +418,18 @@ Table \ref{tab:beam_runs}.
 
 \section{The Cosmic--Ray Tagger} \label{sec:pdsp_cosmic}
 
-As a surface level detector with no overburden \protodune{} measures a
+As a surface level detector with no overburden, \protodune{} measures a
 significant rate, on the order of 20 kHz, of cosmic--ray muons. This corresponds
 to an average of 60 muons per 3 ms readout window. These muons provide a 
 useful source of calibration data in the form of long tracks and stopping 
 muons. The cosmic--ray tagger (CRT) in \protodune{} was installed on the 
 upstream and downstream faces of the TPC, to trigger the detector for 
-cosmic--ray muons which travel parallel to the anode plane. In addition the 
-CRT, can provide accurate timing information for any tracks which are
+cosmic--ray muons which travel parallel to the anode plane. In addition, the 
+CRT can provide accurate timing information for any tracks which are
 successfully matched between the TPC and CRT.
 
 The CRT consists of four parts, two upstream assemblies and two downstream
-assemblies, the locations of the CRT assemblies is illustrated in Figure
+assemblies, the locations of these assemblies is illustrated in Figure
 \ref{fig:pdsp_CRT}. Each CRT assembly is constructed from overlapping 
 scintillation counters, which cover an area 6.8 m high and 3.65 m wide. 
 Scintillation strips of length 365 cm and width 5 cm are placed in 
@@ -506,11 +506,11 @@ flow of around 480 $\mbox{Gb/s}$ from the TPC electronics. An event in
 \protodune{} corresponds to a continuous readout of the detector for 3 ms,
 resulting in 6000 samples from each wire; data is buffered such that the readout
 window can be opened 250 $\mu$s before the trigger time. Data from the TPC is
-received by two systems, one system, which is based on Reconfigurable Computing Elements
-(RCE)\cite{7431254}, handles the data from five APAs, while the other system
-handles the data from the sixth APA, and is based on front--end link exchange 
-(FELIX) cards, which have been developed by the ATLAS 
-collaboration\cite{Anderson_2016}.
+received by two systems, one system, which is based on reconfigurable 
+computing elements (RCE)\cite{7431254}, handles the data from five APAs, while 
+the other system handles the data from the sixth APA, and is based on 
+front--end link exchange (FELIX) cards, which have been developed by the 
+ATLAS collaboration\cite{Anderson_2016}.
 
 The software layer of the \protodune{} DAQ is based on Fermilab's 
 ArtDAQ\cite{6495515}. This component is primarily responsible for acquiring 
@@ -591,7 +591,7 @@ and analogue to digital conversion. The simulated waveforms produced by the
 An event consists of a synchronised set of waveforms from all of the TPC 
 channels, with each event corresponding to 3 ms or 6000 samples. The particle
 interactions within each event are reconstructed into tracks and showers, 
-which can be used for physics analyses, this section provides a brief summary 
+which can be used for physics analyses. This section provides a brief summary 
 of the steps involved in this reconstruction.
 
 First, the TPC waveforms are passed through a set of filtering algorithms which
@@ -670,7 +670,7 @@ interactions in the detector, and has been successfully used by other LArTPC
 detectors, such as MicroBooNE\cite{Acciarri:2017hat}. Pandora handles the 
 clustering of hits into 2D clusters, the matching of 2D clusters into 3D
 clusters, as well as the reconstruction of 3D objects like tracks and 
-showers. Ultimately Pandora returns a tree of reconstructed particle flow
+showers. Ultimately, Pandora returns a tree of reconstructed particle flow
 particles (PFParticles), each corresponding to a distinct track or shower, and 
 connected through parent--daughter relationships, which define the particle flow
 in the interaction. Pandora reconstruction consists of two stages: a cosmic 
@@ -687,7 +687,8 @@ arrival time of the corresponding particle. The true time for that track is
 equal to half the time shift required to realign the two segments into a 
 continuous track, a visual representation of this algorithm is show in Figure 
 \ref{fig:track_stitching}. After the cosmic pass, any clear cosmic--ray 
-candidates are removed under the following conditions\cite{protoduneperf}:
+candidates are removed if they satisfy any of the following 
+conditions\cite{protoduneperf}:
 \begin{itemize}
 	\item The particle travels through both the top and bottom of the detector.
 	\item The assigned $t_0$ is inconsistent with the beam time.
@@ -723,7 +724,7 @@ The beam particle reconstruction uses a more complex chain of algorithms
 to reconstruct a given slice. These algorithms are capable of reconstructing 
 the particle hierarchies seen in the complex hadronic interactions from the 
 \protodune{} beam. These algorithms return the particle flow of the 
-interactions in the form of PFParticles as well as the reconstructed 
+interactions, in the form of PFParticles, as well as the reconstructed 
 interaction vertex for the primary beam particle. An example of the 
 reconstructed particle hierarchy from a \protodune{} beam event is shown in 
 Figure \ref{fig:pandora_pfp}.
@@ -976,7 +977,7 @@ server were required, these changes are discussed later in this chapter.
 
 Event displays were offered for all views in all APAs. In addition, a special 
 event display, which focussed on the data in the beam window, and event 
-displays, which showed the data from all APAs either side of the TPC as a 
+displays which showed the data from all APAs either side of the TPC as a 
 continuous image were produced. The event displays took the longest time to 
 process out of all the plots in the OM, therefore, only one set of event 
 displays was made per OM output file. To maximise the number of beam particles 
@@ -1047,7 +1048,7 @@ their monitoring is related. Some examples of useful timing and trigger plots
 include time--stamp difference distributions, and trigger records. The 
 time--stamp delta plots show the difference in time--stamp between consecutive 
 events, this distribution can be used to monitor the stability of the trigger 
-rate during triggered operation. Trigger records are 2D histograms which 
+rate during triggered operation. Trigger records are 2D histograms, which 
 detail the time and type of trigger issued by the trigger board. Figure 
 \ref{fig:timing_OM} contains examples of these two plots.
 
@@ -1159,7 +1160,7 @@ of hits and the mean ADC for each channel, these are shown in Figure
 
 \subsection{Monitoring Web Interface}
 The plots from the data analysis are stored in a ROOT file on the \protodune{}
-DAQ servers. This data is viewable from anywhere in CERN via a web interface
+DAQ servers. This data is viewable from anywhere in CERN via a web interface,
 which was adapted for \protodune{} from LHCb's Monet\cite{Adinolfi_2017}. 
 Monet consists of a Flask web application\cite{flask} which uses 
 Bokeh\cite{bokeh} to render plots for display, ROOT\cite{ANTCHEVA20092499} and 
@@ -1325,7 +1326,7 @@ from January 2018 to January 2019, these were:
 	\begin{itemize}
 		\item Significantly improving the efficiency of the plotting algorithms,
 			such that event displays were possible in the OM.
-		\item Integrating the rendering server into the display server.
+		\item Integrating a new rendering server into the display server.
 		\item Integrating the histogram database into the display server.
 	\end{itemize}
 	\item Populating and maintaining the histogram database.
