@@ -376,7 +376,7 @@ sent to the central trigger board for distribution to the detector components.
 	instrumentation.]
 	{Time of flight vs momentum distributions from the H4 beamline
 	instrumentation, for \protodune{} runs at average momenta from 1--7 GeV. The
-	simulated distributions for different beam particle species are labelled on
+	theoretical distributions for different beam particle species are labelled on
 	the figure. Figure from \cite{protoduneperf}.}
 
 	\label{fig:h4_tof}
@@ -506,7 +506,7 @@ flow of around 480 $\mbox{Gb/s}$ from the TPC electronics. An event in
 \protodune{} corresponds to a continuous readout of the detector for 3 ms,
 resulting in 6000 samples from each wire; data is buffered such that the readout
 window can be opened 250 $\mu$s before the trigger time. Data from the TPC is
-received by two systems, one system, which is based on reconfigurable 
+received by two systems. One system, which is based on reconfigurable 
 computing elements (RCE)\cite{7431254}, handles the data from five APAs, while 
 the other system handles the data from the sixth APA, and is based on 
 front--end link exchange (FELIX) cards, which have been developed by the 
@@ -533,8 +533,8 @@ framework\cite{Snider2017}. LArSoft is a software suite for simulating and
 reconstructing data collected by LArTPC detectors, based on the Art event 
 framework from Fermilab\cite{Green:2012gv}. LArSoft is under active use and
 development by a number of participating LArTPC based experiments, with each
-experiment making use of its core functionality, in addition to experiment 
-specific code. 
+experiment making use of its core functionality, in addition to 
+experiment--specific code. 
 
 Simulation in LArSoft is broken down into three sequential stages: generation,
 propagation, and detector simulation. The initial state particles are produced
@@ -569,7 +569,7 @@ and photons per cm.
 The detector simulation is responsible for drifting the ionisation electrons 
 towards the collection wires, propagating the simulated photons to the photon 
 detectors, and simulating the response of the wires, SiPMs, and electronics to 
-the signals. The shear number of ionisation electrons and scintillation 
+the signals. The sheer number of ionisation electrons and scintillation 
 photons produced in a \protodune{} event makes simulating the propagation of 
 the full set of particles impractical and, therefore, LArSoft employs 
 approximation techniques to predict the observed signals within a reasonable 
@@ -714,7 +714,7 @@ conditions\cite{protoduneperf}:
 \noindent
 Beam particle reconstruction considers only the hits that were not removed by 
 being labelled as clear cosmic--rays. These hits are formed into 3D slices which
-contain all the hits from a single parent particle and it's daughters. The
+contain all the hits from a single parent particle and its daughters. The
 slices are reconstructed with both the cosmic--ray and beam particle
 algorithms, and a boosted decision tree is used to determine whether a 
 given slice is consistent with being a beam particle\cite{protoduneperf}. 
@@ -749,9 +749,9 @@ Figure \ref{fig:pandora_pfp}.
 \end{figure}
 
 As well as precise spatial reconstruction, LArTPCs provide excellent
-calorimetric information. Each reconstructed hit has an associated charge, 
-$Q$, and energy, $E$, which measure the amount of energy deposited by the 
-charged particle in that small energy depositon. The measured charge in ADC 
+calorimetric information. Each reconstructed hit has an associated deposited 
+charge, $Q$, and energy, $E$, which measure the amount of energy deposited by 
+the charged particle in that small energy deposition. The measured charge in ADC
 depends on the spatial location of the hit within the TPC, as well as the 
 local ionisation density, or $dQ/dx$, in the region of the associated energy 
 deposition. Therefore, to convert the measured charge of each hit into a 
@@ -773,7 +773,7 @@ These factors are split into two parts in the \protodune{} reconstruction:
 		Examples include wire to wire response variations, and transverse diffusion.
 \end{itemize}
 Calibration factors are calculated for both sets of corrections by considering a
-sample of cathode crossing muons. The aim of these calibration matrices is to 
+sample of cathode--crossing muons. The aim of these calibration matrices is to 
 normalise the response over the TPC volume based on the median of the measured
 $dQ/dx$ distribution in each location. The distribution is then normalised to 
 the average value at the anode plane, where the effects of the X corrections are
@@ -1137,7 +1137,8 @@ of hits and the mean ADC for each channel, these are shown in Figure
 		\includegraphics[width=\textwidth]{figures/crt_rate_om.pdf}
 		\caption {Rate of hits measured by each CRT channel. The channels are
 		arranged into a 2D histogram based on the module number and the channel
-		number within each module.}
+		number within each module. Due to an issue on two of the readout boards,
+		some of the CRT channels had a significantly lower rate of hits.}
 		\label{fig:crt_rate_om}
 	\end{subfigure}
 

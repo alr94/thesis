@@ -9,10 +9,10 @@ neutrinos from supernova bursts. Understanding the response of LArTPC
 detectors to electrons in this range will be important for any large scale
 LArTPC experiment wishing to study supernova bursts. At these energies,
 electron interactions have large contributions from both ionisation energy
-loss and radiative energy loss and, therefore, they have a unique signature,
-which is neither track--like nor shower--like. As a result, low--energy 
-electrons require unique reconstruction algorithms to maximise the overall 
-reconstruction performance.
+loss and radiative energy loss and, therefore, they have a distinctive 
+signature, which is neither track--like nor shower--like. As a result, 
+low--energy electrons require dedicated reconstruction algorithms to maximise 
+the overall reconstruction performance.
 
 This chapter will discuss an approach to low--energy electron reconstruction
 in LArTPC detectors, based on the use of convolutional neural networks and
@@ -25,7 +25,7 @@ electrons in liquid argon, and the implications of this signature on
 reconstructing Michel electron events in \protodune{}. This will be followed by
 a discussion of the algorithm used to select Michel electron events in Section
 \ref{ME_ES}. The Michel electron event reconstruction will be discussed in
-Sections \ref{ME_R}, along with a discussion of the reconstruction performance
+Section \ref{ME_R}, along with a discussion of the reconstruction performance
 and a comparison to the results of other LArTPC experiments. Finally, the
 results presented in this chapter and their implications for the DUNE Far 
 Detector will be summarised in Section \ref{ME_EU}.
@@ -40,7 +40,7 @@ comparison of the Michel electron energy spectrum for free $\mu^\pm$ and
 captured $\mu^-$ is given in Figure \ref{fig:michel_spec}. The capture process
 occurs roughly 70\% of the time for negative muons in liquid argon, therefore,
 in \protodune{}, the observed Michel electron energy spectrum is a combination
-of the two processes in roughly equal quantities.
+of the two processes in similar quantities.
 \begin{figure}
 
 	\centering
@@ -70,11 +70,11 @@ As discussed in Chapter \ref{ch:energyloss}, the energy loss for electrons in
 liquid argon passes from an ionisation dominated regime to a radiation dominated
 regime in the tens of MeV region. The crossover point for this transition occurs
 at around 30 MeV, close to the peak of the Michel electron spectrum. This
-leads to a unique signature for Michel electrons in liquid argon detectors: a
-short ($\sim$ 5 cm) track segment is surrounded by a number of small radiated
-energy deposits. Figure \ref{fig:michel_event} shows an example of a Michel
-electron candidate from \protodune{} data, along with labels of the key
-features.
+leads to a distinctive signature for Michel electrons in liquid argon 
+detectors: a short ($\sim$ 5 cm) track segment is surrounded by a number of 
+small radiated energy deposits. Figure \ref{fig:michel_event} shows an example 
+of a Michel electron candidate from \protodune{} data, along with labels of 
+the key features.
 
 \begin{figure}
 	\centering
@@ -137,7 +137,7 @@ events.
 
 The energy that is lost into radiated photons is only visible once the photons
 interact in the argon to produce secondary electrons, which then ionise the
-argon. These secondary electrons are scattered over large angles and distances
+argon. These secondary electrons are produced over large angles and distances
 in the detector when compared to the short Michel electron track, the spatial
 distribution of secondary electrons is shown in Figure \ref{fig:photon_geom}.
 This shows that the radiated energy deposits are spread over a large area, when
@@ -167,7 +167,7 @@ energy reconstruction was considered in two cases:
 Figure \ref{fig:michel_track_only} illustrates the considerable increase in
 energy collected if radiated energy is considered. The distribution is
 significantly narrower, and much more energy is recovered when considering the
-energy deposited within a sphere of height $40\mbox{ cm}$ and angle
+energy deposited within a spherical--section of height $40\mbox{ cm}$ and angle
 $30^\circ$ of the Michel electron vertex. In addition, the fraction of energy
 recovered as a function of Michel electron energy has a more linear
 distribution for a collection radius of 40 cm.
@@ -188,8 +188,8 @@ distribution for a collection radius of 40 cm.
 		\includegraphics[clip, trim = 0cm 0cm 0cm 1cm, width=\textwidth]{figures/cone_reco.pdf}
 		\caption
 		{True collected ionisation energy from the initial Michel electron track,
-		and any radiated ionisation within a 40 cm cone at a $30^\circ$ opening
-		angle of the initial Michel electron track.}
+		and any radiated ionisation within a 40 cm spherical--section at a $30^\circ$ 
+		opening angle of the initial Michel electron track.}
 		\label{fig:cone_reco}
 	\end{subfigure}
 
@@ -245,7 +245,7 @@ radiated energy deposits.
 The study of \protodune{} simulation presented in this section highlights the 
 importance of radiated energy deposits in Michel electron and other 
 low--energy electron events. Based on these results it is clear that to 
-minimise energy uncertainties for these events it is important to maximise the 
+reduce energy uncertainties for these events it is important to increase the 
 amount of energy collected from radiated photons. The rest of this chapter 
 will discuss an algorithm which was developed to tackle this problem, and its 
 application on Michel electron events in \protodune{} data.
@@ -282,7 +282,7 @@ Events are selected based on the fraction of Michel--like hits in the best
 Michel electron candidate. Figure \ref{fig:michel_like_frac} shows a comparison 
 of the fraction of Michel--like hits in Michel electron candidates for 
 \protodune{} data and simulation, normalised by the number of muon candidates. 
-There is a greater spread in the fraction of Michel--like hits in 
+There is a less good modelling in the fraction of Michel--like hits in 
 data for low scores, but a good agreement at higher scores, above around 0.6. 
 Events are selected if the Michel electron candidate contains more than 80\% 
 Michel--like hits, this threshold was selected by setting a requirement of 
@@ -433,16 +433,18 @@ function for the U--ResNet. This loss is a generalised version of the $F_1$
 metric discussed in Chapter \ref{ch:chargeid}, which allows for the relative
 importance of purity and efficiency to be tuned,
 \begin{equation*}
-	F_\beta = \left( 1 + \beta^2\right) \frac{purity \cdot
-	efficiency}{\left(\beta^2 \cdot purity\right) + efficiency}.
+	F_\beta = \left( 1 + \beta^2\right) \frac{\mbox{purity} \cdot
+	\mbox{efficiency}}{\left(\beta^2 \cdot \mbox{purity}\right) +
+	\mbox{efficiency}}.
 \end{equation*}
 This loss rewards the network for selecting as many correct hits as possible
 (high efficiency), while penalising it for selecting more hits that necessary 
 (low purity). The $F_\beta$ score lies between 0 and 1, with a score of 1 
 corresponding to a perfect match. The $\beta$ parameter was chosen to be 2, 
 such that efficiency was considered to be more important than purity. This was 
-found to improve the performance, however, no extensive optimisation of $\beta$ 
-was performed.
+found to improve the performance of the Michel electron reconstruction in terms 
+of energy resolution and bias, however, no extensive optimisation of $\beta$ was
+performed.
 
 \begin{figure}
 
@@ -561,7 +563,7 @@ normalised by the number of entries. Both distributions show sharp peaks at zero
 and one, but the distribution has slightly sharper peaks in simulation, which
 can be seen because the data has a tendency to be above the simulation for
 scores far from zero and one. Hits from the input images are selected as
-Michel electron hits if their score exceed a selection threshold of 0.9. In
+Michel electron hits if their score exceeds a selection threshold of 0.9. In
 simulation 7.8\% of hits are selected, while in data the fraction selected is
 8.0\%. Therefore, there is a fractional difference of 2.5\% in the fraction of
 selected hits between data and simulation.
@@ -573,8 +575,8 @@ selected hits between data and simulation.
 	images.]
 	{U--ResNet predicted score distribution for hits in Michel electron
 	ionisation images. The simulated results are shown by the red line, with the
-	backgrounds as a shaded red region. The data is shown in black, with
-	statistical error bars.}
+	backgrounds, including track hits and hits due to noise, as a shaded red 
+	region. The data is shown in black, with statistical error bars.}
 	\label{fig:unet_pred_data}
 \end{figure}
 
@@ -623,7 +625,7 @@ electron.
 \subsubsection{Ionisation Energy Reconstruction}
 
 The total ionisation energy is reconstructed by summing the hit--by--hit
-ionisation energy for all hits selected by the U--ResNet. The ionisation energy for
+ionisation energy for hits selected by the U--ResNet. The ionisation energy for
 each hit is reconstructed from the hit integral in ADC as
 \begin{equation*}
 	E_{hit} = \frac{I_{hit} \times C_X \times C_{YZ} \times N \times W_{ion}}{C \times R}\mbox{,}

@@ -36,9 +36,9 @@ Effective track shower separation forms the basis of many reconstruction
 challenges in DUNE and \protodune{}, for example, it is used to define pure 
 calibration samples, such as minimum ionising muons and $\pi^0$ decays, and it 
 is an important part of neutrino event reconstruction. Each particle species 
-leaves a unique signature in the detector, but the first step in reconstructing 
-them is the same, reconstructing tracks and showers, which can be combined to 
-build the final state. 
+leaves a characteristic signature in the detector, but the first step in 
+reconstructing them is the same, reconstructing tracks and showers, which can 
+be combined to build the final state. 
 
 In a LArTPC, tracks and showers are built from collections of hits, these hits
 have to be clustered and identified as track or shower objects. In this section,
@@ -53,8 +53,8 @@ muon decays at rest, which have an energy spectrum in the range of 0--50 MeV.
 As discussed in Chapter \ref{ch:energyloss}, the critical energy for electrons 
 in liquid argon is around 30 MeV, at this point the collision energy deposition 
 and the radiative energy deposition are equal. Therefore, Michel electrons 
-have a unique signature in LArTPCs, and they are included as a unique category 
-in the classification algorithm.
+have a distinctive signature in LArTPCs, and they are included as a separate 
+category in the classification algorithm.
 
 \subsection{Data Preparation}
 
@@ -90,7 +90,7 @@ data. The width of the image corresponds to one wire per pixel, and the height
 is the time coordinate. The time data is downsampled, using an average over 
 time samples, such that the spatial dimensions of the image are the same in 
 both directions. Therefore, each image represents around $24 \times 24 \mbox{ 
-cm}^2$ of wire data. Examples of an input image from each none empty class are 
+cm}^2$ of wire data. Examples of an input image from each non--empty class are 
 shown in Figure \ref{fig:patches}, which also shows the relationship between 
 the images and the detector readout.
 
@@ -169,16 +169,16 @@ each type in these three datasets are detailed in Table \ref{tab:patches}.
 
 \subsection{Network Architecture}
 
-The network architecture for this CNN was designed to provide the best possible
-performance given constraints on running time and memory usage during network
-evaluation. This CNN is run on CPUs as part of the low level reconstruction 
-chain for \protodune{}, and it's run time is required to be no more than 10 
-seconds per event. In addition, the CNN should not increase the maximum memory 
-usage during reconstruction beyond around 4 GB. There is currently ongoing 
-work looking into using GPUs during the network evaluation, which would decrease
-the evaluation time, and allow more complex architectures to be used. 
-Therefore, there is potential to increase performance of this method in the 
-future.
+The network architecture for this CNN gave the best performance in terms of
+false--positive rates of the architectures considered given constraints on 
+running time and memory usage during network evaluation. This CNN is run on 
+CPUs as part of the low level reconstruction chain for \protodune{}, and it's 
+run time is required to be no more than 10 seconds per event. In addition, the 
+CNN should not increase the maximum memory usage during reconstruction beyond 
+around 4 GB. There is currently ongoing work looking into using GPUs during 
+the network evaluation, which would decrease the evaluation time, and allow 
+more complex architectures to be used. Therefore, there is potential to 
+increase performance of this method in the future.
 
 The network architecture used is shown in Figure \ref{fig:arch}, a simple
 network architecture was chosen, which was necessary in order to meet the 
@@ -291,7 +291,7 @@ hits and all other hits is given in Figure \ref{fig:show_output}, where there is
 strong separation between the distributions for the shower and track hits, 
 showing that the network has strong discriminating power. In practice, the 
 empty score of the TSE classifier was found to be on the order of $10^{-9}$ or 
-smaller for all hits tested, as such,
+smaller for all hits, as such,
 \begin{equation*}
 	\mbox{TrackScore} \approx 1 - \mbox{ShowerScore}.
 \end{equation*}
@@ -547,7 +547,10 @@ addition, all hits in the first 45 cm of the APA closest to the beam entry
 point were removed. This region has a known issue in charge simulation, which 
 can be seen as a discontinuity in the reconstructed charge. This charge 
 discontinuity can be seen in in Figure \ref{fig:90_wires_charge}, which 
-shows the discontinuity for a simulated proton beam sample.
+shows the discontinuity for a simulated proton beam sample. The cause of the
+discontinuity is not currently understood, possible causes include poor
+simulation of the energy loss of particles in the wall of the TPC and poor
+modelling of the space charge effect in the region of the beam window.
 
 \begin{figure}
 

@@ -139,8 +139,8 @@ image. The convolution operator is defined as,
 \begin{equation*}
 	\left( x * y \right)_i = \sum_{j = - \infty}^{\infty} x_j \; y_{i-j},
 \end{equation*}
-where x and y are discrete sequences. In the machine learning context, y
-represents the image, and x the convolutional kernel, which are both finite in
+where $x$ and $y$ are discrete sequences. In the machine learning context, $y$
+represents the image, and $x$ the convolutional kernel, which are both finite in
 extent. Therefore, they are defined to be zero outside of their boundaries, and
 the sum range can be reduced to $\left[0, N\right]$, where $N$ is the number 
 of pixels in the kernel. The convolution operation is applied to all pixels in 
@@ -251,15 +251,15 @@ is dependent on the problem being considered and, therefore, specific examples
 will be discussed in subsequent chapters, which will detail the CNN algorithms 
 developed as part of this thesis.
 
-The output of a neural network, g(x), is the result of a chain of function 
+The output of a neural network, $g(x)$, is the result of a chain of function 
 evaluations and matrix multiplication; for a network with $n$ layers,
 \begin{equation*}
 	g(x) = f^n(W^n f^{n-1}(W^{n-1} \;...\; f^1(W^1 x) \;...\; ).
 \end{equation*}
 where $g$ is the output of the network, $x$ is the input, $f$ are the 
 activation functions for each layer, and $W$ are the weights for each layer. 
-The loss of the network is given by the loss function, L, evaluated on the 
-output of the network and the ground truth, y,
+The loss of the network is given by the loss function, $L$, evaluated on the 
+output of the network and the ground truth, $y$,
 \begin{equation*}
 	L(y, g(x)).
 \end{equation*}
