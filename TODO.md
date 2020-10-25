@@ -36,7 +36,27 @@ Hit Tag
 * Why all hits independent of pandora pg 110
 * Quantify BI performance
 * Differences between runs.
-* are these discrepancies big pg 118
+* Are these discrepancies big pg 118
+* Michel spectra page 122
+* Axis labels on page 123
+* Labels and missing region on page 124
+* Cone label on page 125
+* Legend page 126
+* Bin in michel energy page 127
+* Legend page 130
+* Fragment page 130?
+* Legends page 132
+* Run conditions page 136
+* Plot on page 138
+* Explain why efficiency is correct on page 138
+* Plot on page 140
+* Systematics on page 140
+* Systematics on page 141
+* Systematics on page 142
+* Fractional difference
+* Plot and syst on page 144
+* Axes on page 145
+* Say why 6% is good enough
 
 
 General
@@ -46,4 +66,3 @@ General
 * GANs in Michel chapter
 * Mention OM work in conclusions and reference to pdune and dune goals
 * Figures!
-

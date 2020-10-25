@@ -16,13 +16,13 @@ sector. In addition, DUNE provides an opportunity to study the mechanisms
 involved in supernova bursts through the measurement of supernova neutrinos. 
 To achieve these goals, the charged particles in the DUNE detectors will have to
 be accurately reconstructed, in order to allow the details of the neutrino
-interactions to be determined. This thesis presented the results of the
+interactions to be determined. This thesis presents the results of the
 development of two reconstruction algorithms in the \protodune{} detector, which
 is a surface level proto--type for the single phase DUNE Far Detector modules. 
 
 In this thesis, the development of a hit tagging algorithm for track, shower, 
 and Michel electron hit classification was discussed in Chapter 
-\ref{ch:chargeid}. This algorithm is based on convolution neural networks, 
+\ref{ch:chargeid}. This algorithm is based on convolutional neural networks, 
 with a small patch approach. In terms of track--shower discrimination, the 
 algorithm was shown to reduce the false--positive rate for all particle 
 species, with a reduction of more than a factor of 10 in some cases, when
@@ -53,21 +53,21 @@ convolutional neural network. A U--ResNet architecture was used to perform the
 segmentation, and the results were promising, however, more work is required to
 improve the performance of this algorithm across the whole energy range. 
 
-In the 0--25 MeV region, where the performance of the U--ResNet algorithm was 
+In the 0--30 MeV region, where the performance of the U--ResNet algorithm was 
 good, the ionisation energy resolution for Michel electrons based on this 
 algorithm was found to be around 10--12\%, and the bias was less than 
 5\%. This represents an improvement over the measured Michel electron ionisation
 energy resolution of MicroBooNE, which is the closest comparison to \protodune{}
-in terms of Michel electron reconstruction. Above 25 MeV, the reconstruction 
-algorithm began to develop a significant tail in the fractional difference 
-distribution. This tail represents the tendency of the algorithm to 
-under--reconstruct the Michel electron ionisation energy, and is a result of a 
-drop in hit selection efficiency above 25 MeV. Some additional work
-is required to improve the performance of this algorithm, but the excellent
-performance in the low energy region shows that this is a promising approach. A
-similar approach could be developed, in the future, for other low--energy 
-reconstruction tasks in LArTPCs, such as the reconstruction of supernova 
-neutrinos in the DUNE far detector.
+in terms of Michel electron reconstruction. Above 30 MeV, the reconstruction 
+algorithm began to develop a significant degradation in energy resolution. 
+This represents the tendency of the algorithm to under--reconstruct the Michel 
+electron ionisation energy, and is a result of a drop in hit selection 
+efficiency above 30 MeV. Some additional work is required to improve the 
+performance of this algorithm, but the excellent performance in the low energy 
+region shows that this is a promising approach. A similar approach could be 
+developed, in the future, for other low--energy reconstruction tasks in 
+LArTPCs, such as the reconstruction of supernova neutrinos in the DUNE far 
+detector.
 
 The DUNE experiment will use a liquid argon time projection chamber to make 
 precision studies of neutrino oscillations, supernova neutrinos, and beyond 

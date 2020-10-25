@@ -33,7 +33,7 @@ Detector will be summarised in Section \ref{ME_EU}.
 \section{Michel Electrons in Liquid Argon} \label{ME_LAr}
 Michel electrons are produced when a muon decays at rest. In vacuum, this
 decay gives rise to a characteristic energy spectrum which has a sharp
-cut--off at around 50 MeV, corresponding to half the muon mass. In matter it
+cut--off at around 50 MeV, corresponding to half the muon mass. In matter, it
 is also possible for $\mu^-$ to be captured on nuclei before they decay, this
 causes a broadening of the Michel electron spectrum for these events. A
 comparison of the Michel electron energy spectrum for free $\mu^\pm$ and
@@ -96,7 +96,7 @@ larger than the size of the typical track--like part of the event. Figure
 \ref{fig:photon_prop} shows the spectrum of radiated photons from Michel
 electron events in \protodune{} simulation, alongside the photon multiplicity
 as a function of Michel electron energy. While most of the radiated photons
-only carry a small fraction of the Michel electrons energy, in some cases a
+only carry a small fraction of the Michel electron's energy, in some cases a
 single radiated photon can carry a significant fraction of the electron
 energy. In addition, around the peak of the Michel electron spectrum ($\sim$
 45 MeV) there is a high photon multiplicity and a large spread in the
@@ -122,7 +122,8 @@ events.
 		\includegraphics[width=0.9\textwidth]{figures/photon_mult.pdf}
 		\caption{Photon multiplicity as a function of true Michel electron energy.
 		The distribution is overlaid with a profile of the mean of the distribution,
-		the error bars on the profile represent the RMS of the distribution.}
+		the error bars on the profile represent the RMS of a gaussian fit to the
+		distribution in each bin.}
 		\label{fig:photon_mult}
 	\end{subfigure}
 
@@ -141,10 +142,10 @@ argon. These secondary electrons are produced over large angles and distances
 in the detector when compared to the short Michel electron track, the spatial
 distribution of secondary electrons is shown in Figure \ref{fig:photon_geom}.
 This shows that the radiated energy deposits are spread over a large area, when
-compared to the size of the initial Michel electron track. Therefore, any
-reconstruction algorithm hoping to recover the radiated energy, will
-need to use data from a relatively large volume in order to maximise energy
-recovery.
+compared to the size of the initial Michel electron track, which is typically
+around 5--10 cm. Therefore, any reconstruction algorithm hoping to recover the 
+radiated energy, will need to use data from a relatively large volume in order 
+to maximise energy recovery.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/photon_geom.pdf}
@@ -158,7 +159,7 @@ recovery.
 
 \noindent
 To highlight the impact of the radiated energy deposits, the results of perfect
-energy reconstruction was considered in two cases:
+energy reconstruction were considered in two cases:
 \begin{itemize}
 	\item Only considering the Michel electron track.
 	\item Considering all ionisation energy within some radius and angle of the
@@ -227,7 +228,7 @@ improvement in the fractional energy recovery from ionisation. This can been
 seen in Figure \ref{fig:40_v_80}, which shows the total true ionisation energy
 collected for the case of a 40 cm collection radius and an 80 cm collection
 radius. While increasing the collection radius does not significantly increase
-the collected ionisation, it is likely to impact the purity and efficiency of
+the collected ionisation, it was found to impact the purity and efficiency of
 reconstruction algorithms. Therefore, the energy reconstruction algorithm
 discussed in this chapter considers a 40 cm collection radius when collecting
 radiated energy deposits.
@@ -244,7 +245,7 @@ radiated energy deposits.
 
 The study of \protodune{} simulation presented in this section highlights the 
 importance of radiated energy deposits in Michel electron and other 
-low--energy electron events. Based on these results it is clear that to 
+low--energy electron events. Based on these results, it is clear that to 
 reduce energy uncertainties for these events it is important to increase the 
 amount of energy collected from radiated photons. The rest of this chapter 
 will discuss an algorithm which was developed to tackle this problem, and its 
@@ -297,7 +298,7 @@ in data.
 	[Fraction of Michel--like hits in the best Michel electron candidate.]
 	{Fraction of Michel--like hits in the best Michel electron candidate in data
 	and simulation. The red line is the full distribution in simulation, and the
-	solid red region represents the predicted background in simulation. The black
+	solid red region represents the background in simulation. The black
 	points are the results in data, with statistical error bars only.}
 	\label{fig:michel_like_frac}
 \end{figure}
@@ -311,7 +312,8 @@ across the energy range, however, there is a significant reduction for energies
 below 5 MeV, which is likely a result of the cut on the minimum number of
 collection plane hits. The efficiency is highest for Michel electrons in the
 range of 10--40 MeV, and reduces slightly at high energies. At 40--50 MeV,
-around the peak of the Michel electron spectrum, the efficiency is around 5\%.
+around the peak of the Michel electron energy spectrum, the efficiency is 
+around 5\%.  
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth, height=0.68\textwidth]{figures/eff_v_energy.pdf}
@@ -374,8 +376,8 @@ electron is the sum of the reconstructed ionisation energy for all of the
 selected hits. This section will detail a hit selection algorithm based on a 
 type of convolutional neural network called a U--ResNet, which returns hit 
 selection maps for the Michel electron energy reconstruction. This algorithm 
-is used to select Michel electron hits with a high purity and efficiency, the 
-resulting reconstructed energy spectrum is used to estimate the energy 
+is used to select Michel electron hits with a high purity and efficiency, and 
+the resulting reconstructed energy spectrum is used to estimate the energy 
 resolution of \protodune{} for electrons in the tens of MeV range.
 
 \subsection{Michel Electron Hit Tagging with a U--ResNet}
@@ -406,7 +408,7 @@ contains the following key components:
 \end{itemize}
 The convolutional blocks each contain three convolutional layers, which is
 shown in Figure \ref{fig:conv_block}. These take the form of inception
-units\cite{Szegedy2015} with leaky ReLU activation functions, a schematic of
+units\cite{Szegedy2015} with leaky ReLU activation functions; a schematic of
 the inception units is shown in Figure \ref{fig:unet_inception}. During the
 first half of the network, maximum pooling is used to downsample the size of
 the feature maps, which reduce by a factor of two in each max pooling layer.
@@ -535,7 +537,7 @@ event from \protodune{} simulation.
 			\centering
 			\vspace{3mm}
 			\includegraphics[width=\textwidth]{figures/unet_example_pred.pdf}
-			\caption {Prediction.}
+			\caption {Output.}
 			\label{fig:unet_example_pred}
 		\end{subfigure}
 	\end{tabularx}
@@ -549,10 +551,10 @@ event from \protodune{} simulation.
 \subsection{Michel Electron Reconstruction}
 
 An additional dataset was prepared to evaluate the performance of the Michel
-electron reconstruction in simulation, this dataset was part of the same batch
+electron reconstruction in simulation; this dataset was part of the same batch
 of simulation as the training, test, and validation data. For the \protodune{} 
-data sample, all data from runs 5387, 5809, and 5770 was used; at the time of 
-writing, these runs are the only runs, for which the energy calibration 
+data sample, all data from runs 5387, 5809, and 5770 were used; at the time of 
+writing, these runs are the only runs for which the energy calibration 
 constants have been calculated.
 
 \subsubsection{Hit Selection}
@@ -560,13 +562,12 @@ constants have been calculated.
 The U--ResNet produces a sharply peaked output distribution in both data and
 simulation, as seen in Figure \ref{fig:unet_pred_data}. The histograms here are
 normalised by the number of entries. Both distributions show sharp peaks at zero
-and one, but the distribution has slightly sharper peaks in simulation, which
-can be seen because the data has a tendency to be above the simulation for
-scores far from zero and one. Hits from the input images are selected as
-Michel electron hits if their score exceeds a selection threshold of 0.9. In
-simulation 7.8\% of hits are selected, while in data the fraction selected is
-8.0\%. Therefore, there is a fractional difference of 2.5\% in the fraction of
-selected hits between data and simulation.
+and one, but the distribution has slightly sharper peaks in simulation. Hits 
+from the input images are selected as Michel electron hits if their score 
+exceeds a selection threshold of 0.9. In simulation 7.8\% of hits are 
+selected, while in data the fraction selected is 8.0\%. Therefore, there is a 
+fractional difference of 2.5\% in the fraction of selected hits between data 
+and simulation.  
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/unet_pred_data.pdf}
@@ -605,12 +606,12 @@ underlying precision in Keras means that little can be done to optimise the
 performance by varying the threshold in this case.
 
 The number of hits selected per event for data and simulation is shown in
-Figure \ref{fig:mich_n_hits}. Around 10 hits are selected per event, with a
-tail extending up to around 30 hits. The distribution of the backgrounds
-follows a similar distribution to the true events. A good agreement is seen
-between the data and simulation for the number of selected hits, these hits
-are then used to reconstruct the deposited ionisation energy of the Michel
-electron.
+Figure \ref{fig:mich_n_hits}. Around 10 hits are selected on average per 
+event, with a tail extending up to around 30 hits. The distribution of the 
+backgrounds peaks at a lower energy than the true events, but is only a small
+contribution to the overall distribution. A good agreement is seen between the 
+data and simulation for the number of selected hits; these hits are then used 
+to reconstruct the deposited ionisation energy of the Michel electron.
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/mich_n_hits.pdf}
@@ -782,7 +783,7 @@ Figure \ref{fig:res_and_bias_ion}, the associated fits are given in Appendix
 	\label{fig:res_and_bias_ion}
 \end{figure}
 
-The energy resolution and bias as a function of energy demonstrates that the
+The energy resolution and bias as a function of energy demonstrate that the
 energy reconstruction algorithm is capable of good energy reconstruction
 performance. However, it is important to note that above around 25 MeV there is
 significant tail for negative fractional differences. This is due to a reduction
@@ -876,7 +877,8 @@ MicroBooNE, the ionisation energy resolution for Michel electrons was found to
 be between 15--25\% in the 0--30 MeV region\cite{Acciarri:2017sjy}. In this 
 region the algorithm developed here gives an improved energy resolution of 
 around 10--12\%, which highlights the potential of the semantic segmentation 
-approach if the bias at higher energies can be improved.
+approach if the bias at higher energies can be improved such that the approach
+is applicable across the full energy range.
 
 ICARUS also used ionisation energy for Michel electron reconstruction, however,
 the ICARUS detector was located deep underground and, therefore, they were
@@ -908,11 +910,11 @@ important parameter\cite{Abi:2020evt}.
 \section{Conclusion} \label{ME_EU}
 
 In the energy regime of Michel electrons, and supernova neutrinos, the
-electromagnetic energy deposition of electrons moves from a ionisation dominated
-to a radiation dominated region. As such, these events have a signature, which
-contains both track--like and a shower--like components and, therefore, they
-require a unique reconstruction algorithm in order to maximise the energy
-collected from the events.
+electromagnetic energy deposition of electrons moves from an 
+ionisation--dominated to a radiation--dominated region. As such, these events 
+have a signature, which contains both track--like and a shower--like 
+components and. Therefore, they require a unique reconstruction algorithm in 
+order to maximise the energy collected from the events.
 
 This chapter has presented a novel Michel electron reconstruction algorithm 
 based on machine learning techniques. A sample of Michel electrons was 
@@ -927,12 +929,11 @@ in the fractional difference distribution.
 
 The promising results in the low energy region based on this method, suggest
 that with further study the semantic segmentation approach could prove to be an
-effective algorithm for reconstructing low energy particles in LArTPCs. However,
-more work is required to ensure good performance across the desired energy
-range. In order to increase the performance in the high energy region, it may be
-useful to consider increasing the amount of training data in this region. At the
-time of writing, there is insufficient \protodune{} simulation to produce a 
-flat training sample with sufficient data. Therefore, this remains as a 
-possible future study, which has the potential to significantly increase the 
+effective algorithm for reconstructing low energy particles in LArTPCs. In 
+order to increase the performance in the high energy region, it may be useful 
+to consider increasing the amount of training data in this region. At the time 
+of writing, there is insufficient \protodune{} simulation to produce a flat 
+training sample with sufficient data. Therefore, this remains as a possible 
+future study, which has the potential to significantly increase the 
 performance of this algorithm, by increasing the generalisability across the 
 energy range.
