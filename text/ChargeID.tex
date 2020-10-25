@@ -4,7 +4,7 @@
 
 \noindent
 The correct categorisation of particle interactions in the detector is a major
-problem faced by any particle physics experiment. This typically starts with
+challenge faced by any particle physics experiment. This typically starts with
 identifying low level features of the interactions, which can then be used to
 gradually build up a picture of the full interaction. In DUNE, the
 classification of neutrino interactions requires identifying the lepton content
@@ -32,29 +32,30 @@ of the network in \protodune{} analyses.
 
 \section{Hit Classification with Convolutional Neural Networks} \label{hit-id}
 
-Effective track shower separation forms the basis of many reconstruction
+Effective tracks--shower separation forms the basis of many reconstruction
 challenges in DUNE and \protodune{}, for example, it is used to define pure 
 calibration samples, such as minimum ionising muons and $\pi^0$ decays, and it 
 is an important part of neutrino event reconstruction. Each particle species 
 leaves a characteristic signature in the detector, but the first step in 
-reconstructing them is the same, reconstructing tracks and showers, which can 
+reconstructing them is the same: reconstructing tracks and showers, which can 
 be combined to build the final state. 
 
-In a LArTPC, tracks and showers are built from collections of hits, these hits
-have to be clustered and identified as track or shower objects. In this section,
-a method for identifying the source of hits in the \protodune{} LArTPC will 
-be described. The classification of each hit is stored as part of the 
-reconstructed output in LArSoft, and can be used by subsequent reconstruction 
-and analysis algorithms.
+In a LArTPC, tracks and showers are built from collections of hits; these hits
+then have to be clustered and identified as track or shower objects. In this 
+section, a method for identifying the source of hits in the \protodune{} 
+LArTPC will be described. The classification of each hit is stored as part of 
+the reconstructed output in LArSoft, and can be used by subsequent 
+reconstruction and analysis algorithms.
 
 In addition to track and shower objects, Michel electrons are a useful 
 calibration sample in LArTPCs. Michel electrons are electrons produced when a 
-muon decays at rest, which have an energy spectrum in the range of 0--50 MeV. 
+muon decays at rest, and have an energy spectrum in the range of 0--50 MeV. 
 As discussed in Chapter \ref{ch:energyloss}, the critical energy for electrons 
 in liquid argon is around 30 MeV, at this point the collision energy deposition 
 and the radiative energy deposition are equal. Therefore, Michel electrons 
-have a distinctive signature in LArTPCs, and they are included as a separate 
-category in the classification algorithm.
+have a distinctive signature in LArTPCs, including a significant fraction of
+both track--like and shower--like energy deposition, and they are included as 
+a separate category in the classification algorithm.
 
 \subsection{Data Preparation}
 
@@ -70,8 +71,8 @@ shower--like classifications to empty or noisy regions of the data. In addition,
 because the Michel electron category has an overlap with the shower and track
 categories, the Michel electron probability is decoupled from the other 
 probabilities. The track, shower, and empty (TSE) probabilities are 
-constrained to sum to one, such that every hit is classified into one of these 
-categories.
+constrained to sum to one, such that every hit is classified into one and only
+one of these categories.
 
 The input data for the CNN was made using a small--patch approach, in
 which a small input image is made for each reconstructed hit. This approach was
@@ -101,9 +102,9 @@ the images and the detector readout.
 	[Example CNN input images for the track, shower, and Michel classes.]
 	{Example CNN input images for the track, shower, and Michel classes. The 
 	input images are $48 \times 48$ pixel images, which are taken from regions of 
-	the full readout from a single APA. In the diagram, one example of each image 
-	class is displayed. The white outlines demonstrate the location of each input 
-	image in the APA readout.}
+	the full readout from a single APA. In the diagram, one example of each
+	non--empty image class is displayed. The white outlines demonstrate the 
+	location of each input image in the APA readout.}
 	\label{fig:patches}
 \end{figure}
 
@@ -141,12 +142,13 @@ The training data for the CNN was built using simulations of the \protodune{}
 detector in the LArSoft framework; the simulations used were under beam
 operating conditions and, therefore, included simulations of cosmic--rays, and
 test beam particles in the range of 1--7 GeV. Around 29 million input images
-were produced in total for the training. This sample was split into three
-datasets, the training, validation, and test sets. The training set was used to
-train the CNN, the validation set was used to monitor the performance of the CNN
-during training, and the test set was used as an initial verification of the 
-performance of the network after training. Details of the number of patches of
-each type in these three datasets are detailed in Table \ref{tab:patches}.
+were produced in total. This sample was split into three datasets, the 
+training, validation, and test sets. The training set was used to train the 
+CNN, the validation set was used to monitor the performance of the CNN during 
+training, and the test set was used as an initial verification of the 
+performance of the network after training. Details of the number of patches of 
+each type in these three datasets are detailed in Table \ref{tab:patches}, in
+total 26 million images were used to train the network.
 
 \begin{table}
 	\centering
@@ -172,7 +174,7 @@ each type in these three datasets are detailed in Table \ref{tab:patches}.
 The network architecture for this CNN gave the best performance in terms of
 false--positive rates of the architectures considered given constraints on 
 running time and memory usage during network evaluation. This CNN is run on 
-CPUs as part of the low level reconstruction chain for \protodune{}, and it's 
+CPUs as part of the low level reconstruction chain for \protodune{}, and its
 run time is required to be no more than 10 seconds per event. In addition, the 
 CNN should not increase the maximum memory usage during reconstruction beyond 
 around 4 GB. There is currently ongoing work looking into using GPUs during 
@@ -180,23 +182,23 @@ the network evaluation, which would decrease the evaluation time, and allow
 more complex architectures to be used. Therefore, there is potential to 
 increase performance of this method in the future.
 
-The network architecture used is shown in Figure \ref{fig:arch}, a simple
+The network architecture used is shown in Figure \ref{fig:arch}. A simple
 network architecture was chosen, which was necessary in order to meet the 
-current running requirements. The images are first processed by convolutional 
-layer with 48 $5 \times 5$ filters, this layer extracts feature maps from the 
-data. The responses from the convolutional layer are passed through the leaky 
-ReLU activation function, which is discussed in Chapter \ref{ch:ml}, before 
-being processed by the dense layers. The feature maps are then processed by a 
-pair of dense layers, with 128 and 32 nodes respectively. These layers also 
-use the leaky ReLU activation function. After the second dense layer the 
-network is split into two branches in order to make it's prediction. The first 
-branch returns the prediction for the TSE categories, and the second branch 
-for the Michel electron category. The first branch uses a softmax activation 
-function, which ensures that the scores for the TSE categories sum to one.
-The second branch uses a sigmoid activation function, which ensures that the 
-Michel electron scores are bounded between zero and one. The choice of 
-activation functions in the output layers allows for a pseudo--probabilistic 
-interpretation of the scores from the CNN.
+current running requirements. The images are first processed by a convolutional 
+layer with fourty--eight $5 \times 5$ filters, this layer extracts feature 
+maps from the data. The responses from the convolutional layer are passed 
+through the leaky ReLU activation function, which is discussed in Chapter 
+\ref{ch:ml}. The feature maps are then processed by a pair of dense layers, 
+with 128 and 32 nodes respectively.  These layers also use the leaky ReLU 
+activation function. After the second dense layer the network is split into 
+two branches in order to make its prediction. The first branch returns the 
+prediction for the TSE categories, and the second branch for the Michel 
+electron category. The first branch uses a softmax activation function, which 
+ensures that the scores for the TSE categories sum to one.  The second branch 
+uses a sigmoid activation function, which ensures that the Michel electron 
+scores are bounded between zero and one. The choice of activation functions in 
+the output layers allows for a pseudo--probabilistic interpretation of the 
+scores from the CNN, due to the constraint of the scores summing to one.
 
 \begin{figure}
 	\centering
@@ -212,7 +214,7 @@ Two dropout layers are used in the network, these layers are used as part of the
 regularisation of the network. A dropout probability of 0.5 is used in both of
 the dropout layers. The dropout algorithm is discussed in Chapter \ref{ch:ml}.
 
-The loss of the network was the weighted sum of the losses for the two output
+The loss of the network is the weighted sum of the losses for the two output
 branches,
 \begin{equation*}
 	L = 0.1 \cdot L_{TSE} + L_M,
@@ -272,7 +274,7 @@ network, this is highlighted in Figure \ref{fig:training}.
 
 During training, the validation loss remained stable over a number of epochs,
 which suggests that the dropout algorithm was successful in preventing 
-over--fitting. After training, the networks performance was verified against 
+over--fitting. After training, the network's performance was verified against 
 the test set, which found that the test set losses were comparable with the 
 validation set loss. 
 % The final test set losses were, 
@@ -307,15 +309,17 @@ on the $F_1$ metric, a specific case of the $F_\beta$
 metric\cite{VanRijsbergenC.J.1975Ir}, which places equal importance on 
 purity and efficiency. The $F_1$ metric is given by, 
 \begin{equation*}
-	\frac{1}{F_1} = \frac{1}{\mbox{purity}} + \frac{1}{\mbox{efficiency}},
+	\frac{1}{F_1} = \frac{1}{2} \left( \frac{1}{\mbox{purity}} +
+	\frac{1}{\mbox{efficiency}} \right),
 \end{equation*}
 where the purity is defined as the fraction of correctly classified shower 
 hits in the sample of all selected shower hits, and the efficiency as the 
 fraction of all true shower hits which were selected as shower hits. The $F_1$ 
 score was calculated across a range of selection thresholds, this is shown in 
-Figure \ref{fig:show_output}. This score peaks at a threshold of 0.72 where, 
+Figure \ref{fig:show_output}. This score peaks at a classifier threshold of 
+0.72 where, 
 \begin{equation*} 
-	F_1 = \mbox{purity} = \mbox{efficiency} = 0.863.
+	F_1 \approx \mbox{purity} \approx \mbox{efficiency} \approx 0.863.
 \end{equation*}
 
 \begin{figure}
@@ -415,7 +419,7 @@ Pandora is the primary reconstruction framework used in \protodune{}, it is
 discussed in Chapter \ref{ch:protodune}. One of the goals of the CNN is to
 provide supplementary information to Pandora, to assist analysers in defining 
 pure event samples. This is possible because Pandora and the CNN have slightly
-different goals, Pandora aims to cluster hits in the most appropriate way based
+different goals: Pandora aims to cluster hits in the most appropriate way based
 on their spatial distribution, while the CNN aims to classify the hits based on 
 the particle that caused the energy deposition.
 
@@ -424,19 +428,19 @@ particle sample in \protodune{} simulation, including the primary particle and
 any daughters. The true particle type was obtained from the simulation, and 
 the track--shower categorisation was compared between Pandora and the CNN. For 
 Pandora, the type of reconstructed cluster was taken as the classification. 
-For the CNN the average shower score for the hits in the particle was 
-calculated and compared to a threshold of 0.72, based on the previous F1 score 
-calculation. Any particles with an average shower score above the threshold were
-classified as showers, and any with score below the threshold were classified 
-as tracks. 
+For the CNN the average shower score for the hits in the cluster was 
+calculated and compared to a classification threshold of 0.72, based on the 
+peak of the F1 score distribution in Figure \ref{fig:show_output}. Any particles
+with an average shower score above the threshold were classified as showers, 
+and any with score below the threshold were classified as tracks. 
 
 The track--shower classification by particle species based on the Pandora 
 method and the CNN method are compared in Figure \ref{fig:track_show_pan_cnn}. 
 The figure shows the fraction of each particle species classified as tracks and
 showers by both Pandora and the CNN, and it can be seen that CNN gives a 
-stronger classification than Pandora for all particle species. Electron and 
+stronger classification than Pandora for all particle species. Electrons and 
 photons are more often classified as showers, and pions, muons, and protons 
-are more often classified as tracks. 
+are more often classified as tracks; this is as was hoped. 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/track_shower_labels.pdf}
@@ -452,11 +456,11 @@ are more often classified as tracks.
 
 The false--positive rates (FPR) for Pandora and the CNN for each particle 
 species are given in Table \ref{tab:false_pos}, as well as the ratio of Pandora
-to the CNN. The CNN only gives a modest improvement over Pandora for pions, 
-and muons. However, there is a significant improvement in the false--positive 
-rate for electrons, photons, and protons. The biggest improvement is for 
-photons where, for a sample of 694 photons, the CNN has a false--positive rate 
-of zero.
+to the CNN. The CNN gives an improved false--positive rate for all species, 
+with a modest improvement over Pandora for pions and muons, and a significant 
+improvement for electrons, photons, and protons. The biggest improvement is 
+for photons where, for a sample of 694 photons, the CNN has a false--positive 
+rate of zero.  
 \begin{table}
 	\centering
 	\bgroup 
@@ -488,7 +492,7 @@ analyses, some of these are highlighted briefly in Section \ref{cnn-appl}.
 As well as providing supplementary information to Pandora for analysis, the CNN
 scores could, in future, be used during Pandora reconstruction as an 
 additional guide for the reconstruction algorithms. This approach is being 
-developed by Pandora for the DUNE Far Detector, based on a similar deep neural 
+developed by Pandora for the DUNE Far Detector, based on a similar neural 
 network for discriminating tracks and showers\cite{chappel_poster}.
 
 \section{Validation on \protodune{} Data} \label{cnn-perf-data}
@@ -501,7 +505,7 @@ for these runs were taken under stable operating conditions, with an average
 beam energy of 1 GeV. The beam composition in run 5387 was tuned to contain
 mostly hadrons, while in run 5809 it was tuned to have an enhanced electron
 component. The same operating conditions were used for the simulated data, in
-order to give the closest possible comparison between data and simulation.
+order to give the best possible comparison between data and simulation.
 
 As discussed in Section \ref{cnn-perf-sim}, the sample of Michel electron hits
 is smaller than the other hits by orders of magnitude. In order to make a
@@ -655,8 +659,8 @@ in Figure \ref{fig:angular_dist}.
 
 The shower classifier scores for the pion, proton, and electron test beam 
 samples are shown in Figure \ref{fig:cnn_scores_beam}. The data in the pion 
-and proton distributions was taken from \protodune{} run 5387, and the data in 
-the electron distribution was from run 5809. The data in all of these beam
+and proton distributions were taken from \protodune{} run 5387, and the data in 
+the electron distribution were from run 5809. The data in all of these beam
 particle distributions are normalised by the number of triggered 
 beam particles of the given flavour.
 \begin{figure}
@@ -695,7 +699,7 @@ beam particles of the given flavour.
 
 Overall, there is a good agreement between the data and simulation in terms of
 the shower score distributions for each particle species. However, there are
-still some discrepancies, which highlights the differences between the data and
+still some discrepancies, which highlight the differences between the data and
 the simulation. The difference is most pronounced for the electron sample, which
 gets consistently more entries at low CNN scores. One consistent difference
 between data and simulation for all particle species, is the tendency for 
@@ -715,7 +719,7 @@ run was chosen in order to match as closely as possible to the simulation.
 
 The shower score distribution for cosmic--ray tracks is shown in Figure
 \ref{fig:cosmic_muon_cnn}. These distributions are normalised by the total
-number of hits in each distribution, this is because there is a large difference
+number of hits in each distribution, because there is a large difference
 in the average number of reconstructed hits in clear cosmic--rays from Pandora
 between data and simulation. Again a good agreement is seen over the majority 
 of the range, but in data there is a prominent excess of hits with a high 
@@ -793,8 +797,8 @@ network are being incorporated into analyses by other members of the
 	\item Selecting shower candidates for neutral--pion event selection\cite{pi_0}.
 	\item Identifying charge exchange candidates in charged--pion cross section 
 		analyses\cite{pion_exchange}.
-	\item Identifying Michel electron contaminated tracks for stopping muon
-		calibration\cite{fabio_muon}.
+	\item Identifying Michel electron contaminated tracks for calibration studies
+		with stopping muons\cite{fabio_muon}.
 \end{itemize}
 
 \noindent
@@ -814,7 +818,7 @@ developed the neutral pion event selection algorithm in \protodune{}\cite{pi_0}.
 	\caption
 	[CNN shower score distribution for secondary particles in neutral pion event
 	selection sample.]
-	{CNN shower score distribution for secondary particles in neutral pion event
+	{CNN shower score distribution for secondary particles in a neutral pion event
 	selection sample. The coloured distributions represent different true particle
 	species in \protodune{} simulation, and the black points represent the
 	distribution in \protodune{} data. Figure courtesy of Milo

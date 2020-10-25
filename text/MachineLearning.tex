@@ -3,21 +3,21 @@
 \minitoc
 
 \noindent
-Machine learning (ML) is a field of research, which studies algorithms that
+Machine learning (ML) is a field of research which studies algorithms that
 can learn to make predictions from data, i.e. predict a set of output variables,
 given a set of input variables. These algorithms typically take the form of a
 multivariate function, which is used to predict the output\cite{Reed1999}.
 
 ML algorithms are often classified into four groups based on two distinctions:
-the expected output, and the level of supervision. The first distinction is 
+the expected output and the level of supervision. The first distinction is 
 based on the nature of the output distribution expected from the network; 
 regression algorithms are designed to predict the outputs of a continuous 
 function, whereas classification algorithms aim to separate data into groups. 
 The second distinction, between supervised and unsupervised algorithms, is 
 based on the inputs used during training. In a supervised algorithm the true 
 output is known, and the network's goal is to predict the true output, while 
-in an unsupervised algorithm the output is unknown, and the networks goal is 
-to extract meaningful structure from the data\cite{Lecun2015}.
+in an unsupervised algorithm the true output is unknown, and the networks goal 
+is to extract meaningful structure from the data\cite{Lecun2015}.
 
 Chapters \ref{ch:chargeid} and \ref{ch:michel} of this thesis describe two 
 examples of the application of Neural networks (NN) for event reconstruction 
@@ -45,8 +45,8 @@ subsequent neurons in the network, or it is part of the output of the network.
 	\caption
 	[Graphical representation of an individual neuron in an artificial neural
 	network.]
-	{Graphical representation of an individual neuron in an artificial neural
-	network.}
+	{Graphical representation of an individual neuron (node) in an artificial 
+	neural network.}
 
 	\label{fig:neuron}
 
@@ -110,7 +110,7 @@ with the backpropagation algorithm will be discussed.
 The weights and biases of the nodes in an MLP can be adjusted to make accurate 
 predictions of data. For a classification task, there are typically as many
 output nodes as there are classes, with output values in the range zero to one. 
-The output value of a classification network, quantifies how well the input
+The output value of a classification network quantifies how well the input
 represents each class, based on the networks prediction. In principle, MLPs 
 are able to approximate any function to arbitrary precision with a 
 single hidden layer\cite{Cybenko1989ApproximationBS}; however, there is no 
@@ -132,7 +132,7 @@ an architecture does not take into account the local spatial structure of the
 data, instead focussing on all the data at once. A CNN attempts to resolve 
 these issues by exploiting the local spatial structure of the data.
 
-In a CNN the singular input neutrons of a traditional MLP are replaced by
+In a CNN the singular input neurons of a traditional MLP are replaced by
 convolutional kernels. A convolutional kernel is a matrix containing a set of 
 weights, which are multiplied pixel--by--pixel with small regions of the input 
 image. The convolution operator is defined as, 
@@ -230,8 +230,12 @@ One method which has been shown to counter the degradation of deep networks,
 is the use of residual neural networks (ResNet). In a ResNet, the input to 
 each layer is combined with the results of the convolutions as part of the 
 input to a future layer; in effect, the identity transformation has been added
-to the set of operations in the layer. An example of these shortcut connections 
-is shown in Figure \ref{fig:short_connect}\cite{He_2016_CVPR}. 
+to the set of operations in the layer. This results in the weights of each layer
+remaining as small perturbations around the identity, rather than large
+corrections which would be required to build up the output from zero. This is a 
+common qualitative intuition for why this method improves optimisation of the 
+network weights. An example of these shortcut connections is shown in Figure 
+\ref{fig:short_connect}\cite{He_2016_CVPR}. 
 \begin{figure}
 	\centering
 	\includegraphics[width = 0.6\textwidth]{figures/short_connect.pdf}
@@ -332,7 +336,7 @@ where $f$ is the activation function. The error is, therefore,
 which depends on the value of the error in the following layer.
 
 Based on these manipulations with the chain rule, the backpropagation 
-algorithm is as follows,
+algorithm works as follows,
 \begin{enumerate}
 	\item Calculate the forward pass, while storing the results for $g(x)$, 
 		$a^l_j$, and $x^l_j$.
@@ -354,18 +358,16 @@ descent (SGD)\cite{10.1145/2623330.2623612} and adaptive momentum estimation
 (Adam)\cite{KingmaD.P.2015AAMf}. The details of these algorithms are not 
 important for the discussion in this thesis and, therefore, they will only be 
 mentioned in passing here. A review of gradient descent optimisation 
-algorithms can be found in \cite{ruder2016overview}. 
+algorithms can be found in \cite{ruder2016overview}. Some methodologies are 
+common among many optimisation techniques, three important examples are the 
+ideas of mini--batches, training iterations, and training epochs. A 
+mini--batch is a small sample of the input data, on which the backpropagation 
+algorithm is applied simultaneously, this corresponds to one training 
+iteration. A training epoch consists of a number of training iterations, and 
+corresponds to one cycle through the full training dataset, such that the 
+network has been trained on every training example exactly once.
 
-Some methodologies are common among many optimisation techniques, three 
-important examples are the ideas of mini--batches, training iterations, and 
-training epochs. A mini--batch is a small sample of the input data, on which 
-the backpropagation algorithm is applied simultaneously, this corresponds to 
-one training iteration. A training epoch consists of a number of training 
-iterations, and corresponds to one cycle through the full training dataset, 
-such that the network has been trained on every training example exactly 
-once.
-
-\subsubsection{The Choice of Activation}
+\subsubsection{The Choice of Activation Function}
 The rate of learning in the backpropagation algorithm is dependent on the
 derivative of the activation function, therefore, the choice of activation
 function has an impact on learning. There are two important factors when
@@ -412,7 +414,7 @@ the network are multiplied by $p$ to give the so--called model average of the
 reduced networks. The dropout algorithm with $p=0.5$, has proven to provide 
 robust regularisation, and is a popular technique in the field\cite{Lecun2015}.
 
-\say{Early stopping (is) beautiful free lunch}, according to Geoff
+\say{Early stopping (is a) beautiful free lunch}, according to Geoff
 Hinton\cite{Hinton2015}. It refers to the act of monitoring the loss on the 
 validation set during training, in order to stop training before over--fitting 
 has occurred. This technique can be applied alongside other regularisation 

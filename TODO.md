@@ -6,7 +6,6 @@ Neutrino Physics
 * Flavour state in neutronisation burst?
 ProtoDUNE
 * Figures out of order?
-* Explain sticky codes
 * Problems found and fixed with OM
 Energy Loss
 * Outline derivation of Bethe-Bloch
@@ -24,4 +23,27 @@ Michel
 	* Page 132
 
 
+LA
+Intro
+* Protodune split over line
+ProtoDUNE
+* Uncertainties page 56
+Hit Tag
+* Any other benefits to small patches
+* Evaluation on GPU's page 99
+* Why these runs page 109
+* Michel ROC curve difference
+* Why all hits independent of pandora pg 110
+* Quantify BI performance
+* Differences between runs.
+* are these discrepancies big pg 118
+
+
+General
+* Systematics
+	* Dominant effects
+* Possible mitigation
+* GANs in Michel chapter
+* Mention OM work in conclusions and reference to pdune and dune goals
+* Figures!
 

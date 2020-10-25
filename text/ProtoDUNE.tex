@@ -48,8 +48,8 @@ neutrino beam, a precise Near Detector complex, and a Far Detector. The neutrino
 beam and Near Detector complex will be based at the Fermilab National 
 Accelerator Laboratory (FNAL) near Chicago, and the Far Detector will be based 
 at Sanford Underground Research Facility (SURF) in South Dakota, approximately 
-1300 km away from the neutrino source. The experimental setup is shown in Figure
-\ref{fig:dune_baseline}. 
+1300 km away from the neutrino source. A schematic of the experimental setup 
+is shown in Figure \ref{fig:dune_baseline}. 
 
 The DUNE experiment identifies three primary scientific goals, which are stated
 in the DUNE technical design report\cite{Abi:2020evt}:
@@ -83,13 +83,13 @@ of the technology for DUNE.
 \subsection{Liquid Argon Time Projection Chambers}
 A LArTPC consists of a large volume of highly--purified liquid argon, which is
 subjected to an electric field. Charged particles traversing the liquid argon 
-produce two primary energy depositions, a trail of ionisation electrons along 
+produce two primary energy depositions: a trail of ionisation electrons along 
 their path, and prompt ultra--violet scintillation photons. After creation, 
 the ionisation electrons drift in the electric field toward the charge readout 
 plane, where they induce electrical signals. Liquid argon is transparent to 
 its own scintillation light, therefore, the scintillation photons can travel 
 through the argon to be collected in a photon detection system. The LArTPC 
-detection principal is illustrated in Figure \ref{fig:lartpc}. 
+detection principle is illustrated in Figure \ref{fig:lartpc}. 
 
 \begin{figure}
 
@@ -98,8 +98,8 @@ detection principal is illustrated in Figure \ref{fig:lartpc}.
 	\includegraphics[width=\textwidth]{figures/LArTPC_Concept.pdf}
 
 	\caption
-	[A schematic of the LArTPC detection principal.]
-	{A schematic of the LArTPC detection principal. Charged particles, in this
+	[A schematic of the LArTPC detection princile.]
+	{A schematic of the LArTPC detection principle. Charged particles, in this
 	case resulting from a neutrino interaction, produce two signals in the liquid
 	argon, ionisation electrons and scintillation light. The ionisation electrons
 	are drifted in the applied electric field and collected on a set of sense
@@ -139,7 +139,9 @@ been developed\cite{argoncube}. A dual--phase LArTPC contains an additional
 region of gaseous argon, in which a high electric field, known as the 
 extraction field, is applied to extract the ionisation from the liquid into 
 the gas, before it is amplified and collected on a pair of anode wire 
-planes\cite{Abi:2020wmh}.
+planes\cite{Abi:2020wmh}. The large amplification produced in a dual--phase
+LArTPC provides an increased signal--to--noise ratio in these detectors when
+compared to single phase LArTPCs.
 
 \subsection{\protodune{} Goals}
 \protodune{} is one of two large scale prototypes for the DUNE Far Detector
@@ -237,7 +239,7 @@ uniform across the detector volume, by providing the necessary electrical
 boundary conditions.
 
 One area in which the design of \protodune{} differs from the Far Detector is
-the inclusion of the beam plug. This is necessary to minimize interactions
+the inclusion of the beam plug. This is necessary to minimise interactions
 between the charged particle test beam and the cryostat before the beam enters 
 the active region of the detector. A cylindrical beam plug, which contains 
 nitrogen gas, penetrates from the cryostat wall into the field cage at 
@@ -272,8 +274,8 @@ trap. The operating principles of these modules are illustrated in Figure
 	\end{subfigure}
 
 	\caption
-	[The operating principal of the photon detector modules in \protodune{}.]
-	{The operating principal of the two main types of photon detector module in 
+	[The operating principle of the photon detector modules in \protodune{}.]
+	{The operating principle of the two main types of photon detector module in 
 	\protodune{}. Figure \subref{fig:pd_bars} from \cite{Abi:2017aow}. Figure 
 	\subref{fig:arapuca} from \cite{Machado:2016jqe}.}
 
@@ -307,7 +309,7 @@ ARAPUCA until they come into contact with the SiPM, this provides increased
 photon detection efficiency. Each ARAPUCA photon detector module in 
 \protodune{} features an array of these traps arranged in a line across the 
 width of an APA. The ARAPUCA modules contain 12 ARAPUCA light traps, these are 
-constructed from 16 so called cells, which are 5 cm $\times$ 5 cm $\times$ 1 
+constructed from 16 cells, which are 5 cm $\times$ 5 cm $\times$ 1 
 cm boxes. Half of the light traps are made of one cell and the others are made 
 of two cells joined together. Regardless of the number of cells, each ARAPUCA 
 trap is read out by a single SiPM, making for 12 SiPMs per ARAPUCA module.
@@ -318,18 +320,51 @@ cryostat before processing and digitisation. The light guide based photon
 detector modules have 12 SiPMs, which are read out in threes meaning that each 
 module corresponds to 4 readout channels. The ARAPUCA modules are read out by
 one channel per SiPM, resulting in 12 channels per ARAPUCA module. The readout 
-channels from each APA are processed by four so called SiPM signal processors 
+channels from each APA are processed by four SiPM signal processors 
 (SSP), which are mounted on the top of the cryostat. After processing in the 
 SSPs, the PDS data is passed onto the DAQ along with the TPC data.
 
 \section{The H4 beamline} \label{sec:h4}
 
-The \protodune{} experiment is located at the end of the H4 beamline at CERN,
-the location of the beamline with respect to the detector is illustrated in
-Figure \ref{fig:pdsp_CRT}. The beam has a mixture of particle types including
-hadrons, muons, and electrons, with momenta in the range 0--7 GeV. The momenta
-and composition of the beam can be varied, and several runs were taken across a 
-range of particle compositions and beam momenta.
+The \protodune{} experiment is located in the North Area of CERN at the end of 
+the H4 beamline, the location of the beamline with respect to the 
+detector is illustrated in Figure \ref{fig:pdsp_CRT}. The beam has a mixture 
+of particle types including hadrons, muons, and electrons, with momenta in the 
+range 0--7 GeV. The momenta and composition of the beam can be varied, and 
+several runs were taken across a range of particle compositions and beam 
+momenta.
+
+\begin{figure}
+
+	\centering
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/crt_side.pdf}
+		\label{fig:crt_side}
+		\caption{Side view.}
+	\end{subfigure}
+
+	\vspace{3mm}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/crt_top.pdf}
+		\label{fig:crt_top}
+		\caption{Top view.}
+	\end{subfigure}
+
+	\caption
+	[Location of the H4 beamline and cosmic--ray taggers in relation to the
+	\protodune{} detector.]
+	{A rendering of the location of the H4 beamline and cosmic--ray taggers in 
+	relation to the \protodune{} detector. The CRT modules are labelled on the
+	figures, in both the side view and the top view. Figures from 
+	\cite{protoduneperf}.}
+
+	\label{fig:pdsp_CRT}
+
+\end{figure}
 
 The H4 beamline is a tertiary beamline, which is produced when a secondary beam
 from the T2 primary target interacts with another target. Particles from the 
@@ -406,11 +441,12 @@ Table \ref{tab:beam_runs}.
 
 	\caption
 	[Summary of expected and recorded beam triggers in \protodune{}.]
-	{ Summary of expected and recorded beam triggers in \protodune{}. The number
-	of expected triggers represents the number of triggers expected in the initial
-	\protodune{} run plan, which are exceeded at every energy. The breakdown of
-	expected triggers by particle species is based on simulations of the
-	H4 beam--line. Data from \cite{Spanu_2019}.}
+	{ Summary of expected and recorded beam triggers in \protodune{} for all runs
+	taken during the 2018 data taking period. The number of expected triggers 
+	represents the number of triggers expected in the initial \protodune{} run 
+	plan, which are exceeded at every energy. The breakdown of expected triggers 
+	by particle species is based on simulations of the H4 beam--line. Data from 
+	\cite{Spanu_2019}.}
 
 	\label{tab:beam_runs}
 
@@ -424,9 +460,10 @@ to an average of 60 muons per 3 ms readout window. These muons provide a
 useful source of calibration data in the form of long tracks and stopping 
 muons. The cosmic--ray tagger (CRT) in \protodune{} was installed on the 
 upstream and downstream faces of the TPC, to trigger the detector for 
-cosmic--ray muons which travel parallel to the anode plane. In addition, the 
-CRT can provide accurate timing information for any tracks which are
-successfully matched between the TPC and CRT.
+cosmic--ray muons which travel parallel to the anode plane, which are
+particularly useful for calibration studies. In addition, the CRT can provide 
+accurate timing information for any tracks which are successfully matched 
+between the TPC and CRT.
 
 The CRT consists of four parts, two upstream assemblies and two downstream
 assemblies, the locations of these assemblies is illustrated in Figure
@@ -437,38 +474,6 @@ perpendicular arrays to give 2D reconstruction within each CRT
 assembly. By combining data from upstream and downstream CRT assemblies, with a 
 time coincidence requirement, the 3D trajectories of tracks can be 
 reconstructed.
-
-\begin{figure}
-
-	\centering
-
-	\begin{subfigure}[b]{\textwidth}
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/crt_side.pdf}
-		\label{fig:crt_side}
-		\caption{Side view.}
-	\end{subfigure}
-
-	\vspace{3mm}
-
-	\begin{subfigure}[b]{\textwidth}
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/crt_top.pdf}
-		\label{fig:crt_top}
-		\caption{Top view.}
-	\end{subfigure}
-
-	\caption
-	[Location of the H4 beamline and cosmic--ray taggers in relation to the
-	\protodune{} detector.]
-	{A rendering of the location of the H4 beamline and cosmic--ray taggers in 
-	relation to the \protodune{} detector. The CRT modules are labelled on the
-	figures, in both the side view and the top view. Figures from 
-	\cite{protoduneperf}.}
-
-	\label{fig:pdsp_CRT}
-
-\end{figure}
 
 \section{The Data Acquisition System} \label{sec:pdsp_daq}
 
@@ -506,8 +511,8 @@ flow of around 480 $\mbox{Gb/s}$ from the TPC electronics. An event in
 \protodune{} corresponds to a continuous readout of the detector for 3 ms,
 resulting in 6000 samples from each wire; data is buffered such that the readout
 window can be opened 250 $\mu$s before the trigger time. Data from the TPC is
-received by two systems. One system, which is based on reconfigurable 
-computing elements (RCE)\cite{7431254}, handles the data from five APAs, while 
+received by two systems. One system, which is based on Reconfigurable 
+Computing Elements (RCE)\cite{7431254}, handles the data from five APAs, while 
 the other system handles the data from the sixth APA, and is based on 
 front--end link exchange (FELIX) cards, which have been developed by the 
 ATLAS collaboration\cite{Anderson_2016}.
@@ -560,11 +565,10 @@ particles in small steps; the step size, $300 \mbox{ } \mu m$, is chosen to be
 much smaller then the spatial resolution of the detector to allow for 
 small--scale processes like showering to be accurately simulated. 
 
-Particles which propagate through the detector, during the propagation phase of
-the simulation, leave energy deposits in the form of ionisation electrons and
-scintillation photons. A minimum--ionising particle (MIP), which deposits 
-around 2 MeV/cm in liquid argon, will produce tens of thousands of electrons 
-and photons per cm.
+Particles which propagate through the detector, leave energy deposits in the 
+form of ionisation electrons and scintillation photons. A minimum--ionising 
+particle (MIP), which deposits around 2 MeV/cm in liquid argon, will produce 
+tens of thousands of electrons and photons per cm.
 
 The detector simulation is responsible for drifting the ionisation electrons 
 towards the collection wires, propagating the simulated photons to the photon 
@@ -596,16 +600,16 @@ of the steps involved in this reconstruction.
 
 First, the TPC waveforms are passed through a set of filtering algorithms which
 are designed to reduce the noise on the waveforms, as well as to mitigate 
-effects from the electronics such as sticky--codes and undershooting. An 
-additional step, known as a 2D deconvolution, is applied to extract the original
-signal from the measured signal, based on a detector response function for 
-both the wire in question and the neighboring wires. This method has been 
-described in detail by the MicroBooNE collaboration\cite{Adams:2018dra}. An 
-important side effect of the 2D deconvolution technique is that, after 
-deconvolution, the bi--polar induction signals become unipolar, which 
-simplifies hit reconstruction. An example of the noise filtering and 2D 
-deconvolution techniques applied to a 7 GeV test beam event in \protodune{} 
-data is given in Figure \ref{fig:2d_deconv}. 
+effects from the electronics such as sticky--codes and undershooting, which are
+discussed in \cite{protoduneperf}. An additional step, known as a 2D 
+deconvolution, is applied to extract the original signal from the measured 
+signal, based on a detector response function for both the wire in question 
+and the neighboring wires. This method has been described in detail by the 
+MicroBooNE collaboration\cite{Adams:2018dra}. An important side effect of the 
+2D deconvolution technique is that, after deconvolution, the bi--polar 
+induction signals become unipolar, which simplifies hit reconstruction. An 
+example of the noise filtering and 2D deconvolution techniques applied to a 7 
+GeV test beam event in \protodune{} data is given in Figure \ref{fig:2d_deconv}.
 
 \begin{figure}
 
@@ -669,7 +673,7 @@ Pandora\cite{Marshall2015} is the primary pattern recognition software used in
 interactions in the detector, and has been successfully used by other LArTPC
 detectors, such as MicroBooNE\cite{Acciarri:2017hat}. Pandora handles the 
 clustering of hits into 2D clusters, the matching of 2D clusters into 3D
-clusters, as well as the reconstruction of 3D objects like tracks and 
+clusters, and the reconstruction of 3D objects like tracks and 
 showers. Ultimately, Pandora returns a tree of reconstructed particle flow
 particles (PFParticles), each corresponding to a distinct track or shower, and 
 connected through parent--daughter relationships, which define the particle flow
@@ -685,7 +689,7 @@ side of the boundary. These segments point in the same direction, but will
 have been displaced from each other in the drift direction based on the 
 arrival time of the corresponding particle. The true time for that track is 
 equal to half the time shift required to realign the two segments into a 
-continuous track, a visual representation of this algorithm is show in Figure 
+continuous track. A visual representation of this algorithm is show in Figure 
 \ref{fig:track_stitching}. After the cosmic pass, any clear cosmic--ray 
 candidates are removed if they satisfy any of the following 
 conditions\cite{protoduneperf}:
@@ -843,7 +847,7 @@ triggered. It consists of three main components:
 
 \noindent
 An overview of the data flow in the OM is shown in Figure \ref{fig:om_flow}. 
-Data from the detector is first filtered before being run in any OM processes. 
+Data from the detector are first filtered before being run in any OM processes. 
 The data which is passed to the OM processes is then split up and decoded by 
 the relevant RawDecoder, which reformats the data ready for analysis. A 
 number of Analyser Modules then make use of this data to make plots, 
@@ -910,12 +914,12 @@ active in the monitored events, Figure \ref{fig:active_femb} shows an example of
 the number of events recorded by each FEMB on APA 1 for a sample of 10 analysed
 events.
 
-The pedestals and noise are continually evaluated by the online monitoring, this
-data is displayed in the control room and used later in the monitoring chain to
-flatten the background in the event displays. Basic hit removal is used to 
-ensure that the pedestals and root mean square deviation (RMS) are only 
-calculated in the regions of the readout corresponding to noise signals. The 
-RMS of all channels can be represented on a single plot by arranging the 
+The pedestals and noise are continually evaluated by the online monitoring;
+these data are displayed in the control room and used later in the monitoring 
+chain to flatten the background in the event displays. Basic hit removal is 
+used to ensure that the pedestals and root mean square deviation (RMS) are 
+only calculated in the regions of the readout corresponding to noise signals. 
+The RMS of all channels can be represented on a single plot by arranging the 
 channels into a 2D grid and displaying the RMS as the colour scale on a 2D 
 histogram, an example of this plot is shown in Figure \ref{fig:ped_noise}.
 
@@ -1000,7 +1004,7 @@ reconstruction.
 	monitoring system. The measured signal on the collection plane wires in ADC 
 	is displayed on wire vs time axes, for the region where the beam enters the 
 	TPC. An example of a data defect which was discovered in the OM can be seen 
-	on the left side of the plot, this timing issue was mitigated during offline
+	on the left side of the plot; this timing issue was mitigated during offline
 	reconstruction.}
 
 	\label{fig:beam_evd}
@@ -1225,7 +1229,7 @@ render the plots.
 
 The rendering server is responsible for visualising the plots from the 
 monitoring ROOT files, it is capable of rendering all 1D and 2D ROOT plots. In 
-LHCb's Monet rendering is handled directly on the display server, however in 
+LHCb's Monet, rendering is handled directly on the display server, however in 
 \protodune{} an additional rendering server was added. By separating the 
 rendering processes onto their own server, additional functionality is 
 possible. The main advantage of the rendering server is that it enables the 
