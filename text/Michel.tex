@@ -863,6 +863,25 @@ approximately 8\%. The remaining energy resolution and bias seen in the Michel
 electron ionisation energy reconstruction is a result of the spread due to
 imperfect hit tagging.
 
+\subsection{Systematic Uncertainties}
+
+While no extensive study has been made into the magnitude of the systematic
+uncertainties associated with this reconstruction algorithm, this section will 
+aim to discuss the possible sources of systematic uncertainty in the network,
+and to suggest possible mitigation strategies for any similar algorithms, which
+may be developed in the future. 
+
+As with the hit tagging CNN in Chapter \ref{ch:chargeid}, there are likely to be
+systematic uncertainties associated with the effects that impact the generation
+of images for the training and evaluation of the network. These include the
+noise model and space charge model in the simulation, and they will impact the
+U--ResNet scores due to the effects discussed in Section \ref{hittag_syst}.
+These effects could be mitigated with a network which has been trained on a
+variety of models, which could be generated with a generative adversarial
+network, as discussed in Section \ref{hittag_syst}.
+
+TODO.
+
 \subsubsection*{Comparison to Other LArTPC Experiments} \label{ME_COMP}
 
 In order to put the performance of the Michel electron energy

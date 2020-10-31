@@ -1,16 +1,10 @@
 General
-* Systematics in hit tagging chapter
 * Systematics in michel chapter
-
 * Possible mitigation
-	* GANs or train with different noise models 
 
 LA
 * Photon multiplicity below 2 page 124
 * Bin in michel energy page 127
-* Systematics
-	* Page 140, 141, 142, 144
-
 
 NOT DONE
 ================================================================================
@@ -47,6 +41,7 @@ DONE
 * Discussion of differences between michel and supernova neutrinos
 	* Pages 130, 141, 148
 * Explain features in end point distributions
+* Systematics in hit tagging chapter
 
 NOT Required
 ================================================================================

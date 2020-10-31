@@ -811,6 +811,57 @@ The typical error in the analyses that make use of these hits is around
 15-20\%\cite{pi_0}, therefore, the error due to this hit tagging algorithm is 
 a small contribution to the overall errors.
 
+\subsection{Systematic Uncertainties} \label{hittag_syst}
+
+While no extensive study has been made into the magnitude of the systematic
+uncertainties associated with this hit tagging algorithm, this section will aim
+to discuss the possible sources of systematic uncertainty in the network, for 
+the benefit of those working on analyses with the algorithm and those who 
+would like to develop the algorithm further in the future. Possible mitigation 
+strategies will also be discussed for the likely uncertainties.
+
+Two possible sources of systematic uncertainty in the hit tagging algorithm 
+relate to the training of the network and the images used during the training
+process. These are systematic uncertainties due to differences in the noise
+model between data and simulation, and those due to differences in the space
+charge model. Each of these effects impact the images generated during the
+training and evaluation of the network, which the network uses in order to make
+its prediction of scores for each hit. Differences in the noise model could lead
+to a change in the number of hits being mis--identified, if, for example, the 
+noise model caused an increase in small hits which mimic shower like energy 
+deposits. In the case of a difference in the space charge model between data 
+and simulation, the images could be distorted differently in data which could 
+lead to some hits being included or excluded from images, or the changes in 
+the local electric field could lead to a different recombination correction, 
+which could also lead to mis--identified hits. While it has not been confirmed,
+it is possible that differences in the recombination effect are responsible for
+the difference in the ROC curve for the Michel electron events, which can be
+seen in Figure \ref{fig:michel_roc}.
+
+In order to mitigate against these effects in the image production, I
+recommend that any further developments to this network consider producing
+a more diverse training sample including a variety of simulated detector
+effects. For example the network could be trained on images which include a wide
+range of noise models, such that the network learns to make accurate predictions
+irrespective of the noise present in the images. This training data set could be
+produced directly from simulation by varying the parameters in the noise model
+for each batch of images, but a particularly promising technique for building 
+such a data set for training at lower computational cost is that of a generative
+adversarial network (GAN). An in depth discussion of GANs is beyond the scope 
+of this thesis, they are mentioned here as a possible extension of this work,
+and they have been discussed in detail in \cite{10.5555/2969033.2969125}.
+
+Another possible source of systematic uncertainty is due to the cuts made during
+this analysis, these include fiducial volume cuts in Figures 
+\ref{fig:90_wires_charge} and \ref{fig:spatial_cuts}, the cut on the 
+reconstructed hit charge in Figure \ref{fig:charge_cuts}, and the threshold used
+to select hits as shower--like. These cuts may exclude certain interactions to a
+greater or lesser extent in data that in simulation, which could lead to a 
+systematic effect. Since the cuts used in each analysis involving these CNN 
+scores are likely to be different these effects were not investigated here. 
+However, they should be considered for analyses which make use of the output 
+of this network for event selection or reconstruction.
+
 \section{Application in \protodune{} Analyses} \label{cnn-appl}
 The general agreement between data and simulation is a sign that the CNN results
 are sensible, and the additional classification strength of the CNN over
