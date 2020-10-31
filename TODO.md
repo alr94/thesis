@@ -1,17 +1,15 @@
-General
-* Systematics in michel chapter
-* Possible mitigation
-
 LA
 * Photon multiplicity below 2 page 124
-* Bin in michel energy page 127
 
 NOT DONE
 ================================================================================
-* Quantify BI performance -> No numbers available
+* Quantify BI performance -> No numbers available.
+* Bin in michel energy page 127 -> Would have to run some specialist simulation that I no longer have the data from.
 
 DONE
 ================================================================================
+* Systematics in Michel chapter
+* Possible mitigation
 * Fermi presented?
 * Mention OM work in conclusions and reference to pdune and dune goals
 * Figures out of order?
