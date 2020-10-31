@@ -624,6 +624,33 @@ illustrated for the end point of the tracks in Figure \ref{fig:spatial_cuts}.
 The reconstructed angular distributions for tracks after these cuts are shown 
 in Figure \ref{fig:angular_dist}.
 
+The cuts made were as follows:
+\begin{itemize}
+	\item X (drift) direction:
+		\begin{itemize}
+			\item $|x| > 330$ cm, to remove tracks with end--points close to or 
+				outside of the detector volume.
+		\end{itemize}
+	\item Y (vertical) direction:
+		\begin{itemize}
+			\item $|y| < 50$ cm, to remove tracks with end--points close to the bottom
+				of the detector volume.
+		\end{itemize}
+	\item Z (beam) direction:
+		\begin{itemize}
+			\item $|z| < 50$ cm and $|z| > 650$ cm, to remove tracks with end--points 
+				close to the edge of the detector volume.
+			\item $|z - 233| < 10$ cm and $|z - 466| < 10$ cm, to remove tracks with 
+				end--points close to an APA boundary.
+		\end{itemize}
+\end{itemize}
+After the cuts, there is one region in which there is a large discrepancy
+between data and simulation, near the center of the X direction. This
+discrepancy is due to the fact that the track stitching algorithm which is used
+to assign the true time to tracks is more efficienct in simulation than data,
+and the distribution of true times impacts the end point distribution of tracks
+in the drift direction (X).
+
 \begin{figure}
 
 	\begin{subfigure}[b]{\textwidth}
@@ -670,21 +697,18 @@ beam particles of the given flavour.
 	\begin{subfigure}[b]{0.64\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/hit_cnn_pion.pdf}
-		\caption {Pions.}
 		\label{fig:beam_pi_cnn}
 	\end{subfigure}
 
 	\begin{subfigure}[b]{0.64\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/hit_cnn_proton.pdf}
-		\caption {Protons.}
 		\label{fig:beam_proton_cnn}
 	\end{subfigure}
 
 	\begin{subfigure}[b]{0.64\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{figures/hit_cnn_electron.pdf}
-		\caption {Electrons.}
 		\label{fig:beam_electron_cnn}
 	\end{subfigure}
 
@@ -783,6 +807,9 @@ These differences will impact each analysis differently, therefore, the
 uncertainties involved with using the CNN classifier should be evaluated on a 
 case--by--case basis; for hit selection with a simple hit--by--hit algorithm, 
 the uncertainties are on the order of 1-3\% depending on the particle species.
+The typical error in the analyses that make use of these hits is around
+15-20\%\cite{pi_0}, therefore, the error due to this hit tagging algorithm is 
+a small contribution to the overall errors.
 
 \section{Application in \protodune{} Analyses} \label{cnn-appl}
 The general agreement between data and simulation is a sign that the CNN results

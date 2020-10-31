@@ -30,6 +30,7 @@ and a comparison to the results of other LArTPC experiments. Finally, the
 results presented in this chapter and their implications for the DUNE Far 
 Detector will be summarised in Section \ref{ME_EU}.
 
+
 \section{Michel Electrons in Liquid Argon} \label{ME_LAr}
 Michel electrons are produced when a muon decays at rest. In vacuum, this
 decay gives rise to a characteristic energy spectrum which has a sharp
@@ -299,7 +300,10 @@ in data.
 	{Fraction of Michel--like hits in the best Michel electron candidate in data
 	and simulation. The red line is the full distribution in simulation, and the
 	solid red region represents the background in simulation. The black
-	points are the results in data, with statistical error bars only.}
+	points are the results in data, with statistical error bars only. The vertical
+	blue line represents the cut used to select Michel electron candidates as
+	Michel electron events, with any candidates containing more than 80\% of
+	Michel--like  hits being selected.}
 	\label{fig:michel_like_frac}
 \end{figure}
 
@@ -577,7 +581,10 @@ and simulation.
 	{U--ResNet predicted score distribution for hits in Michel electron
 	ionisation images. The simulated results are shown by the red line, with the
 	backgrounds, including track hits and hits due to noise, as a shaded red 
-	region. The data is shown in black, with statistical error bars.}
+	region. The data is shown in black, with statistical error bars. The vertical
+	blue line represent the selection cut for hits which were included in the
+	energy reconstruction, all hits with a score above 0.9 where included in the
+	energy reconstruction.}
 	\label{fig:unet_pred_data}
 \end{figure}
 
@@ -670,7 +677,7 @@ only 4\% in data.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/hit_ion_reco.png}
+	\includegraphics[width=\textwidth]{figures/hit_ion_reco.pdf}
 	\caption
 	[Reconstructed ionisation energy for hits in U--ResNet input images.]
 	{Reconstructed ionisation energy for hits in U--ResNet input images
@@ -919,13 +926,15 @@ order to maximise the energy collected from the events.
 This chapter has presented a novel Michel electron reconstruction algorithm 
 based on machine learning techniques. A sample of Michel electrons was 
 selected in \protodune{} data with a purity of over 98\% and an overall 
-efficiency of around 6\%. The ionisation energy of these events was 
-reconstructed based on a semantic segmentation algorithm, which uses a 
-U--ResNet CNN architecture. The performance of this algorithm shows an 
-improvement in energy resolution over similar experiments, with an ionisation 
-energy resolution of around 10-15\%. However, there is still need for 
-improvement, particularly in the high energy region where a large tail is seen 
-in the fractional difference distribution.
+efficiency of around 6\%. The low efficiency is acceptable due to the very high
+rate of Michel electron events in \protodune{}, which will lead to a large high
+purity sample once more calibrated data has been collected and processed. The 
+ionisation energy of these events was reconstructed based on a semantic 
+segmentation algorithm, which uses a U--ResNet CNN architecture. The 
+performance of this algorithm shows an improvement in energy resolution over 
+similar experiments, with an ionisation energy resolution of around 10-15\%.  
+However, there is still need for improvement, particularly in the high energy 
+region where a large tail is seen in the fractional difference distribution.
 
 The promising results in the low energy region based on this method, suggest
 that with further study the semantic segmentation approach could prove to be an
@@ -937,3 +946,37 @@ training sample with sufficient data. Therefore, this remains as a possible
 future study, which has the potential to significantly increase the 
 performance of this algorithm, by increasing the generalisability across the 
 energy range.
+
+While Michel electrons provide an interesting sample with which to study low
+energy electron reconstruction, it is important to note the differences between
+Michel electron and supernova neutrino events in LArTPCs, and the
+different conditions between \protodune{} and DUNE, when considering the
+applicability of these results to supernova neutrino reconstruction in DUNE. A 
+number of relevant differences will now be detailed.
+
+Firstly, Michel electron events are accompanied by a muon track in LArTPC 
+events, which aids with event selection but also masks some of the Michel 
+electron energy due to the presence of the Bragg peak of the muon. Second, the 
+peak of the Michel electron energy spectrum is at around 40 MeV as opposed to 
+around 15 MeV in the case of supernova neutrinos. As a result, Michel electron 
+events contain a larger fraction of radiated energy deposition than supernova 
+neutrinos, and as such the energy reconstruction results in the lower energy 
+region are likely to give a more representative prediction of the expected 
+energy resolution for supernova neutrinos in DUNE. Finally, DUNE will have a 
+significantly lower background of cosmic--ray events than \protodune{}, which 
+will give two benefits: the hit tagging algorithm will have fewer unnecessary 
+hits to filter due to cosmic--ray activity, and it will be significantly 
+easier to match signals from the TPC to those in the photon detectors, which 
+will allow for both ionisation and scintillation energy deposits to be 
+utilised during energy reconstruction.
+
+As a result of these differences, it will be important to conduct separate
+studies of supernova neutrino reconstruction under the operating conditions
+expected in the DUNE far detector. This study has demonstrated the considerable
+promise of a semantic segmentation approach to low energy electron
+reconstruction in LArTPCs and it outperforms the current supernova neutrino 
+energy resolution estimates based on ionisation energy deposits in the region of
+interest for supernova neutrinos. As such this would be an interesting 
+approach to consider when studying the capabilities of DUNE when it comes to 
+supernova neutrino reconstruction, and may lead to improved energy resolution 
+for supernova neutrino reconstruction in DUNE.
