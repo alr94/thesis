@@ -10,7 +10,7 @@ detectors to electrons in this range will be important for any large scale
 LArTPC experiment wishing to study supernova bursts. At these energies,
 electron interactions have large contributions from both ionisation energy
 loss and radiative energy loss and, therefore, they have a distinctive 
-signature, which is neither track--like nor shower--like. As a result, 
+signature that is neither track--like nor shower--like. As a result, 
 low--energy electrons require dedicated reconstruction algorithms to maximise 
 the overall reconstruction performance.
 
@@ -33,7 +33,7 @@ Detector will be summarised in Section \ref{ME_EU}.
 
 \section{Michel Electrons in Liquid Argon} \label{ME_LAr}
 Michel electrons are produced when a muon decays at rest. In vacuum, this
-decay gives rise to a characteristic energy spectrum which has a sharp
+decay gives rise to a characteristic energy spectrum that has a sharp
 cut--off at around 50 MeV, corresponding to half the muon mass. In matter, it
 is also possible for $\mu^-$ to be captured on nuclei before they decay, this
 causes a broadening of the Michel electron spectrum for these events. A
@@ -162,9 +162,9 @@ to maximise energy recovery.
 To highlight the impact of the radiated energy deposits, the results of perfect
 energy reconstruction were considered in two cases:
 \begin{itemize}
-	\item Only considering the Michel electron track.
+	\item Only considering the Michel electron track
 	\item Considering all ionisation energy within some radius and angle of the
-		Michel electron track.
+		Michel electron track
 \end{itemize}
 Figure \ref{fig:michel_track_only} illustrates the considerable increase in
 energy collected if radiated energy is considered. The distribution is
@@ -249,7 +249,7 @@ importance of radiated energy deposits in Michel electron and other
 low--energy electron events. Based on these results, it is clear that to 
 reduce energy uncertainties for these events it is important to increase the 
 amount of energy collected from radiated photons. The rest of this chapter 
-will discuss an algorithm which was developed to tackle this problem, and its 
+will discuss an algorithm that was developed to tackle this problem, and its 
 application on Michel electron events in \protodune{} data.
 
 \section{Michel Electron Event Selection} \label{ME_ES}
@@ -265,11 +265,11 @@ primary tracks from the Pandora reconstruction chain.
 
 \subsubsection*{2. Define Michel Electron Candidates}
 Based on the sample of muon candidates, a set of Michel electron candidates is
-defined. This sample includes any daughter of the muon candidate which satisfies
+defined. This sample includes any daughter of the muon candidate that satisfies
 the following conditions:
 \begin{itemize}
-	\item It has a start point within 5 cm of the primary track endpoint.
-	\item It contains a minimum of 5 reconstructed hits on the collection plane.
+	\item It has a start point within 5 cm of the primary track endpoint
+	\item It contains a minimum of 5 reconstructed hits on the collection plane
 \end{itemize}
 
 \subsubsection*{3. Define Best Michel Electron Candidate}
@@ -386,10 +386,10 @@ resolution of \protodune{} for electrons in the tens of MeV range.
 
 \subsection{Michel Electron Hit Tagging with a U--ResNet}
 
-A U--ResNet is a type of convolutional neural network which is designed to 
+A U--ResNet is a type of convolutional neural network that is designed to 
 perform semantic segmentation of images. The U--ResNet network architecture 
 was first developed for biomedical image segmentation\cite{ronneberger2015u}. 
-In semantic segmentation the aim is to return a map of pixels which correspond 
+In semantic segmentation the aim is to return a map of pixels that correspond 
 to the areas of interest; the output of the network is the same dimension as 
 the input with a one--to--one correspondence between input pixels and output 
 pixels. The architecture used for the hit selection algorithm is shown in 
@@ -403,12 +403,12 @@ the network, through residual connections, allowing the resolution of the
 output map to be slowly increased back to the original resolution.
 
 The network architecture used for the Michel electron reconstruction is shown in
-Figure \ref{fig:unet_arch}. The network consists of a repeating structure, which
+Figure \ref{fig:unet_arch}. The network consists of a repeating structure that
 contains the following key components:
 \begin{itemize}
-	\item Convolutional blocks, which contain multiple convolutional layers.
-	\item Pooling layers for downscaling in the first half of the network.
-	\item Residual connections and up--sampling in the second half of the network.
+	\item Convolutional blocks that contain multiple convolutional layers
+	\item Pooling layers for downscaling in the first half of the network
+	\item Residual connections and up--sampling in the second half of the network
 \end{itemize}
 The convolutional blocks each contain three convolutional layers, which is
 shown in Figure \ref{fig:conv_block}. These take the form of inception
@@ -517,7 +517,7 @@ were chosen.
 \end{figure}
 
 A demonstration of the output of the U--ResNet is given in Figure
-\ref{fig:unet_example} which shows the input, output, and truth images for an
+\ref{fig:unet_example}, which shows the input, output, and truth images for an
 event from \protodune{} simulation.
 \begin{figure}
 	\centering
@@ -582,7 +582,7 @@ and simulation.
 	ionisation images. The simulated results are shown by the red line, with the
 	backgrounds, including track hits and hits due to noise, as a shaded red 
 	region. The data is shown in black, with statistical error bars. The vertical
-	blue line represent the selection cut for hits which were included in the
+	blue line represent the selection cut for hits that were included in the
 	energy reconstruction, all hits with a score above 0.9 where included in the
 	energy reconstruction.}
 	\label{fig:unet_pred_data}
@@ -639,13 +639,13 @@ each hit is reconstructed from the hit integral in ADC as
 	E_{hit} = \frac{I_{hit} \times C_X \times C_{YZ} \times N \times W_{ion}}{C \times R}\mbox{,}
 \end{equation*}
 where $E_{hit}$ is the reconstructed hit energy in MeV, $I_{hit}$ is the
-integrated hit charge in ADC, $C_X$ is the X--correction factor which is
-dependent on the X (drift) coordinate of the hit within the TPC, $C_{YZ}$ is the
-YZ--correction factor which is dependent on the Y (vertical) and Z (beam) 
+integrated hit charge in ADC, $C_X$ is an X--correction factor that is
+dependent on the X (drift) coordinate of the hit within the TPC, $C_{YZ}$ is a
+YZ--correction factor that is dependent on the Y (vertical) and Z (beam) 
 coordinates of the hit within the TPC, $N$ is a dimensionless normalisation 
-factor which normalises the data and MC distributions to give the same 
+factor that normalises the data and MC distributions to give the same 
 magnitude, $W_{ion}$ is the ionisation energy of argon in MeV per electron, 
-$C$ is a constant conversion factor which has units ADC per electron, and $R$ 
+$C$ is a constant conversion factor that has units ADC per electron, and $R$ 
 is the recombination factor. The distribution of reconstructed hit energies in 
 \protodune{} data and simulation is shown in Figure \ref{fig:hit_ion_reco}, 
 which shows a good agreement between data and simulation.
@@ -658,7 +658,7 @@ space charge effects. The main contributing factor for the YZ--correction
 factor is wire--to--wire response variations.
 
 As discussed in Chapter \ref{ch:energyloss}, the recombination factor is a
-$dQ/dx$ dependent factor, which depends on the conditions in the liquid
+$dQ/dx$ dependent factor that depends on the conditions in the liquid
 argon. Due to the shortness of Michel electron tracks and the other charge
 deposits, it is challenging to assign $dQ/dx$ on a hit--by--hit basis for this
 sample. Therefore, an average recombination factor is used for all hits. The
@@ -868,16 +868,16 @@ imperfect hit tagging.
 While no study has been made into the magnitude of the systematic 
 uncertainties associated with this reconstruction algorithm, this section will 
 aim to discuss the possible sources of systematic uncertainty in the network, 
-and to suggest possible mitigation strategies for any similar algorithms, 
-which may be developed for supernova neutrino energy reconstruction in the 
+and to suggest possible mitigation strategies for any similar algorithms
+that may be developed for supernova neutrino energy reconstruction in the 
 future. 
 
 As with the hit tagging CNN in Chapter \ref{ch:chargeid}, there are likely to be
 systematic uncertainties associated with the effects that impact the generation
 of images for the training and evaluation of the network. These include the
-noise model and space charge model in the simulation, and they will impact the
+noise model and space charge model in the simulation, which will impact the
 U--ResNet scores due to the effects discussed in Section \ref{hittag_syst}.
-These effects could be mitigated with a network which has been trained on images
+These effects could be mitigated with a network that has been trained on images
 produced with a variety of noise and SCE models, which could be generated with 
 a generative adversarial network, as discussed in Section \ref{hittag_syst}.
 
@@ -886,7 +886,7 @@ reconstruction include:
 \begin{itemize}
 	\item Fiducial volume cuts
 	\item The requirement of a true time ($t_0$), and the different efficiency for
-		$t_0$ tagging in data and simulation.
+		$t_0$ tagging in data and simulation
 	\item The calibration constants used during energy reconstruction
 	\item The use of an average recombination correction 
 	\item The calculated linear energy correction factor 
@@ -955,8 +955,8 @@ important parameter\cite{Abi:2020evt}.
 In the energy regime of Michel electrons, and supernova neutrinos, the
 electromagnetic energy deposition of electrons moves from an 
 ionisation--dominated to a radiation--dominated region. As such, these events 
-have a signature, which contains both track--like and a shower--like 
-components and. Therefore, they require a unique reconstruction algorithm in 
+have a signature that contains both track--like and a shower--like 
+components. Therefore, they require a unique reconstruction algorithm in 
 order to maximise the energy collected from the events.
 
 This chapter has presented a novel Michel electron reconstruction algorithm 
@@ -967,37 +967,37 @@ rate of Michel electron events in \protodune{}, which will lead to a large high
 purity sample once more calibrated data has been collected and processed. The 
 ionisation energy of these events was reconstructed based on a semantic 
 segmentation algorithm, which uses a U--ResNet CNN architecture. The 
-performance of this algorithm shows an improvement in energy resolution over 
+performance of this algorithm showed an improvement in energy resolution over 
 similar experiments, with an ionisation energy resolution of around 10-15\%.  
-However, there is still need for improvement, particularly in the high energy 
+However, there is still room for improvement, particularly in the high energy 
 region where a large tail is seen in the fractional difference distribution.
 
-The promising results in the low energy region based on this method, suggest
-that with further study the semantic segmentation approach could prove to be an
-effective algorithm for reconstructing low energy particles in LArTPCs. In 
+The promising results in the low energy region based on this method suggest
+that, with further study, the semantic segmentation approach could prove to be 
+an effective algorithm for reconstructing low energy particles in LArTPCs. In 
 order to increase the performance in the high energy region, it may be useful 
 to consider increasing the amount of training data in this region. At the time 
 of writing, there is insufficient \protodune{} simulation to produce a flat 
-training sample with sufficient data. Therefore, this remains as a possible 
+training sample with enough data. Therefore, this remains as a possible 
 future study, which has the potential to significantly increase the 
-performance of this algorithm, by increasing the generalisability across the 
-energy range.
+performance of this algorithm by increasing the generalisability across the 
+energy range. 
 
-While Michel electrons provide an interesting sample with which to study low
+While Michel electrons provide an interesting sample for studying low
 energy electron reconstruction, it is important to note the differences between
-Michel electron and supernova neutrino events in LArTPCs, and the
+Michel electron and supernova neutrino events in LArTPCs, as well as the
 different conditions between \protodune{} and DUNE, when considering the
 applicability of these results to supernova neutrino reconstruction in DUNE. A 
 number of relevant differences will now be detailed.
 
 Firstly, Michel electron events are accompanied by a muon track in LArTPC 
-events. This aids with event selection but also masks some of the Michel 
+events. This aids event selection but also masks some of the Michel 
 electron energy due to the presence of the Bragg peak of the muon. 
 
-Second, the peak of the Michel electron energy spectrum is at around 40 MeV as 
+Secondly, the peak of the Michel electron energy spectrum is around 40 MeV as 
 opposed to around 15 MeV in the case of supernova neutrinos. As a result, 
 Michel electron events contain a larger fraction of radiated energy deposition 
-than supernova neutrinos, and as such the energy reconstruction results in the 
+than supernova neutrinos. Therefore, the energy reconstruction results in the 
 lower energy region are likely to give a more representative prediction of the 
 expected energy resolution for supernova neutrinos in DUNE. 
 
@@ -1006,16 +1006,16 @@ than \protodune{}, which will give two benefits: the hit tagging algorithm
 will have fewer unnecessary hits to filter due to cosmic--ray activity, and it 
 will be significantly easier to match signals from the TPC to those in the 
 photon detectors. This will allow for both ionisation and scintillation energy 
-deposits to be utilised during energy reconstruction in DUNE, this was not 
+deposits to be utilised during energy reconstruction in DUNE, which was not 
 possible in \protodune{}.
 
 As a result of these differences, it will be important to conduct separate
 studies of supernova neutrino reconstruction under the operating conditions
 expected in the DUNE far detector. This study has demonstrated the considerable
 promise of a semantic segmentation approach to low energy electron
-reconstruction in LArTPCs and it outperforms the current supernova neutrino 
+reconstruction in LArTPCs, one that outperforms the current supernova neutrino 
 energy resolution estimates based on ionisation energy deposits in the region of
-interest for supernova neutrinos. As such this would be an interesting 
-approach to consider when studying the capabilities of DUNE when it comes to 
-supernova neutrino reconstruction, and may lead to improved energy resolution 
-for supernova neutrino reconstruction in DUNE.
+interest for supernova neutrinos. This would be an interesting approach to 
+consider when studying the capabilities of DUNE for supernova neutrino 
+reconstruction, and may lead to improved energy resolution in the associated
+analyses when compared to the benchmark set in the technical design report.

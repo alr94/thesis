@@ -3,7 +3,7 @@
 \minitoc
 
 \noindent
-Machine learning (ML) is a field of research which studies algorithms that
+Machine learning (ML) is a field of research that studies algorithms that
 can learn to make predictions from data, i.e. predict a set of output variables,
 given a set of input variables. These algorithms typically take the form of a
 multivariate function, which is used to predict the output\cite{Reed1999}.
@@ -146,7 +146,7 @@ the sum range can be reduced to $\left[0, N\right]$, where $N$ is the number
 of pixels in the kernel. The convolution operation is applied to all pixels in 
 the input image, which are then replaced by the resulting convolution in the 
 next layer of the network. Many convolutional kernels are used in each layer 
-of the network, each producing an output image which is passed to the next 
+of the network, each producing an output image that is passed to the next 
 layer. 
 
 Convolutional kernels are sometimes referred to as feature detectors, which 
@@ -226,13 +226,13 @@ layers to a simple neural network will reduce performance, suggesting that the
 optimisation of larger networks leads to some form of 
 degradation\cite{He_2016_CVPR}.
 
-One method which has been shown to counter the degradation of deep networks, 
+One method that has been shown to counter the degradation of deep networks, 
 is the use of residual neural networks (ResNet). In a ResNet, the input to 
 each layer is combined with the results of the convolutions as part of the 
 input to a future layer; in effect, the identity transformation has been added
 to the set of operations in the layer. This results in the weights of each layer
 remaining as small perturbations around the identity, rather than large
-corrections which would be required to build up the output from zero. This is a 
+corrections that would be required to build up the output from zero. This is a 
 common qualitative intuition for why this method improves optimisation of the 
 network weights. An example of these shortcut connections is shown in Figure 
 \ref{fig:short_connect}\cite{He_2016_CVPR}. 
@@ -390,13 +390,13 @@ been found to outperform traditional sigmoid
 units\cite{Maas13rectifiernonlinearities, 10.5555/3104322.3104425}.
 
 \subsection{Regularisation}
-Regularisation refers to a set of techniques, which are used to prevent
+Regularisation refers to a set of techniques that are used to prevent
 over--fitting during the training of a NN. Over--fitting is the tendency
 of models with a high number of parameters to produce overly complex models,
 which fit the training data well but do not generalise to new data.
 Regularisation ensures that the trained network can generalise well beyond the 
 training data. A number of regularisation techniques can be used, such as 
-applying penalty terms to the loss function, which are proportional to the 
+applying penalty terms to the loss function that are proportional to the 
 square of the weights, ensuring that the weights stay relatively small. In 
 this thesis two regularisation techniques are used: 
 dropout\cite{Srivastava2014DropoutAS} and early 

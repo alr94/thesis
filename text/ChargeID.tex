@@ -194,7 +194,7 @@ activation function. After the second dense layer the network is split into
 two branches in order to make its prediction. The first branch returns the 
 prediction for the TSE categories, and the second branch for the Michel 
 electron category. The first branch uses a softmax activation function, which 
-ensures that the scores for the TSE categories sum to one.  The second branch 
+ensures that the scores for the TSE categories sum to one. The second branch 
 uses a sigmoid activation function, which ensures that the Michel electron 
 scores are bounded between zero and one. The choice of activation functions in 
 the output layers allows for a pseudo--probabilistic interpretation of the 
@@ -306,7 +306,7 @@ The shower classification threshold for subsequent algorithms should be tuned on
 a case by case basis, however, for this study a simple optimisation strategy 
 is presented in order to quantify the basic network performance. This is based
 on the $F_1$ metric, a specific case of the $F_\beta$ 
-metric\cite{VanRijsbergenC.J.1975Ir}, which places equal importance on 
+metric\cite{VanRijsbergenC.J.1975Ir} that places equal importance on 
 purity and efficiency. The $F_1$ metric is given by, 
 \begin{equation*}
 	\frac{1}{F_1} = \frac{1}{2} \left( \frac{1}{\mbox{purity}} +
@@ -314,7 +314,7 @@ purity and efficiency. The $F_1$ metric is given by,
 \end{equation*}
 where the purity is defined as the fraction of correctly classified shower 
 hits in the sample of all selected shower hits, and the efficiency as the 
-fraction of all true shower hits which were selected as shower hits. The $F_1$ 
+fraction of all true shower hits that were selected as shower hits. The $F_1$ 
 score was calculated across a range of selection thresholds, this is shown in 
 Figure \ref{fig:show_output}. This score peaks at a classifier threshold of 
 0.72 where, 
@@ -548,7 +548,7 @@ In this comparison, and the following beam particle comparisons, a cut is made
 on the reconstructed charge of each hit. This removes the excess of low 
 charge hits in data, as illustrated in Figure \ref{fig:charge_cuts}. In 
 addition, all hits in the first 45 cm of the APA closest to the beam entry 
-point were removed. This region has a known issue in charge simulation, which 
+point were removed. This region has a known issue in charge simulation that 
 can be seen as a discontinuity in the reconstructed charge. This charge 
 discontinuity can be seen in in Figure \ref{fig:90_wires_charge}, which 
 shows the discontinuity for a simulated proton beam sample. The cause of the
@@ -646,8 +646,8 @@ The cuts made were as follows:
 \end{itemize}
 After the cuts, there is one region in which there is a large discrepancy
 between data and simulation, near the center of the X direction. This
-discrepancy is due to the fact that the track stitching algorithm which is used
-to assign the true time to tracks is more efficienct in simulation than data,
+discrepancy is due to the fact that the track stitching algorithm that is used
+to assign the true time to tracks is more efficient in simulation than data,
 and the distribution of true times impacts the end point distribution of tracks
 in the drift direction (X).
 
@@ -735,7 +735,7 @@ of the Pandora reconstruction algorithms, but it is not yet fully understood.
 
 The cosmic--ray sample was selected based on the cosmic--ray part of the
 Pandora reconstruction chain, discussed in Chapter \ref{ch:protodune}. Any
-reconstructed particles, which have been labelled as both clear cosmic--rays
+reconstructed particles that have been labelled as both clear cosmic--rays
 and tracks by Pandora are included in the sample. The data in this sample was
 taken from run 5387; while a cosmic--ray only run would be preferable, all of 
 the \protodune{} simulations include test beam particles. Therefore, a test beam
@@ -822,44 +822,44 @@ strategies will also be discussed for the likely uncertainties.
 
 Two possible sources of systematic uncertainty in the hit tagging algorithm 
 relate to the training of the network and the images used during the training
-process. These are systematic uncertainties due to differences in the noise
-model between data and simulation, and those due to differences in the space
+process. There are systematic uncertainties due to differences in the noise
+model between data and simulation, and due to the differences in the space
 charge model. Each of these effects impact the images generated during the
 training and evaluation of the network, which the network uses in order to make
 its prediction of scores for each hit. Differences in the noise model could lead
-to a change in the number of hits being mis--identified if, for example, the 
-noise model caused an increase in small hits which mimic shower like energy 
+to a change in the number of hits being misidentified if, for example, the 
+noise model caused an increase in small hits that mimic shower like energy 
 deposits. In the case of a difference in the space charge model between data 
 and simulation, the images could be distorted differently in data which could 
-lead to some hits being included or excluded from images, or the changes in 
-the local electric field could lead to a different recombination correction, 
-which could also lead to mis--identified hits. While it has not been confirmed,
-it is possible that differences in the recombination effect are responsible for
-the difference in the ROC curve for the Michel electron events, which can be
-seen in Figure \ref{fig:michel_roc}.
+lead to some hits being included or excluded from images. Additionally, the 
+changes in the local electric field could lead to a different recombination 
+correction, which could also lead to misidentified hits. While it has not been 
+confirmed, it is possible that differences in the recombination effect are 
+responsible for the difference in the ROC curve for the Michel electron 
+events, which can be seen in Figure \ref{fig:michel_roc}.
 
-In order to mitigate against these effects in the image production, I
-recommend that any further developments to this network consider producing
-a more diverse training sample including a variety of simulated detector
-effects. For example the network could be trained on images which include a wide
-range of noise models, such that the network learns to make accurate predictions
-irrespective of the noise present in the images. This training data set could be
-produced directly from simulation by varying the parameters in the noise model
-for each batch of images, but a particularly promising technique for building 
-such a data set for training at lower computational cost is that of a generative
-adversarial network (GAN). An in depth discussion of GANs is beyond the scope 
-of this thesis, they are mentioned here as a possible extension of this work,
-and they have been discussed in detail in \cite{10.5555/2969033.2969125}.
+In order to mitigate these effects in the image production, I recommend that 
+any further developments to this network consider producing a more diverse 
+training sample including a variety of simulated detector effects. For example,
+the network could be trained on images that include a wide range of noise 
+models so that the network learns to make accurate predictions irrespective 
+of the noise present in the images. This training data set could be produced 
+directly from simulation by varying the parameters in the noise model for each 
+batch of images, but a particularly promising technique for building such a 
+data set for training at lower computational cost is that of a generative 
+adversarial network (GAN). An in--depth discussion of GANs is beyond the scope 
+of this thesis; they are mentioned here as a possible extension of this work 
+and have been discussed in detail in \cite{10.5555/2969033.2969125}.
 
-Another possible source of systematic uncertainty is due to the cuts made during
-this analysis, these include fiducial volume cuts in Figures 
+Other possible sources of systematic uncertainty are the cuts made during
+this analysis. These include the fiducial volume cuts in Figures 
 \ref{fig:90_wires_charge} and \ref{fig:spatial_cuts}, the cut on the 
 reconstructed hit charge in Figure \ref{fig:charge_cuts}, and the threshold used
 to select hits as shower--like. These cuts may exclude certain interactions to a
-greater or lesser extent in data that in simulation, which could lead to a 
+greater or lesser extent in data than in simulation, which could lead to a 
 systematic effect. Since the cuts used in each analysis involving these CNN 
-scores are likely to be different these effects were not investigated here. 
-However, they should be considered for analyses which make use of the output 
+scores are likely to be different, these effects were not investigated here. 
+However, they should be considered for analyses that make use of the output 
 of this network for event selection or reconstruction.
 
 \section{Application in \protodune{} Analyses} \label{cnn-appl}
@@ -872,11 +872,11 @@ the network in a Michel electron analysis. In addition, the scores from the
 network are being incorporated into analyses by other members of the 
 \protodune{} experiment, including:
 \begin{itemize}
-	\item Selecting shower candidates for neutral--pion event selection\cite{pi_0}.
+	\item Selecting shower candidates for neutral--pion event selection\cite{pi_0}
 	\item Identifying charge exchange candidates in charged--pion cross section 
-		analyses\cite{pion_exchange}.
+		analyses\cite{pion_exchange}
 	\item Identifying Michel electron contaminated tracks for calibration studies
-		with stopping muons\cite{fabio_muon}.
+		with stopping muons\cite{fabio_muon}
 \end{itemize}
 
 \noindent
