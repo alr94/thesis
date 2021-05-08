@@ -1,1 +1,0 @@
-cat ~/Documents/Physics/DPhil/Thesis/draft/text/*.tex | wc -w 
